@@ -177,7 +177,6 @@ hashedPassword = await hashPassword(password);
 catch(error){
 	logger.log('error','['+Date()+'] can not update user profile' + error);
 	res.status(200).json({ message: "Update failed , Please try again ", statusCode : 501 });
-    
 }
 
 

@@ -56,7 +56,7 @@ const hashedPassword = await hashPassword(password);
     }else{
     res.status(200).json({message:"Account not created successfully.. ",statusCode:200});
     }
-    const users = await collection.find({userID:newUser.userID}).toArray();
+    // const users = await collection.find({userID:newUser.userID}).toArray();
     
 }
 

@@ -184,9 +184,7 @@ const user_token = {
    req.session.Authenticated = true;
    const Authenticated = req.session.Authenticated;
    req.session.User = User_Session;
-   //req.session.save();
-   const sessionuser = req.session.User;
-
+   
  //fetching user by auth
       await collection.updateOne(
       //find user with id
@@ -204,7 +202,7 @@ const user_token = {
 // Encrypt the data and create a token
 //URL_REDIRECT back to client
 const data_token = jwt.sign({userData , message:"Authenticated as "+email ,token,statusCode:200}, secretKey);
-res.redirect(`${process.env.SERVER_APP_URL_REDIRECT}/auth/google/callback?data_token=${data_token}`);
+res.redirect(`${process.env.SERVER_APP_URL_REDIRECT_CLIENT}/auth/google/callback?data_token=${data_token}`);
 
 }else{
 res.status(200).json({message : "User not found.. ",statusCode:404});
@@ -249,9 +247,7 @@ if (!err){
    User_Session.tel="";
 
 res.status(200).json({message : "Account logout sucsessfully.. ",statusCode:200});
-
-
-//console.log("user logged out sucsessfully")
+console.log("user logged out sucsessfully")
 }
 
 else{

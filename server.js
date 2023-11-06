@@ -82,7 +82,7 @@ const ArtisansController = require('./http/controllers/ArtisansController');
 VerificationController = require('./http/controllers/VerificationController');
 
 //error_404
-const error_404_PNF  = require('./http/controllers/error_404');
+//const error_404_PNF  = require('./http/controllers/error_404');
 
 
 //  configuring the location for file upload
@@ -149,7 +149,7 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET_LOGIN,
 
   //developing
-  callbackURL: process.env.SERVER_APP_URL_DEV+'/auth/callback',
+  callbackURL: process.env.SERVER_APP_URL_CALLBACK_DEV+'/auth/callback',
   
   //production
   //callbackURL: process.env.SERVER_API_URL_PRO+'/auth/callback',
