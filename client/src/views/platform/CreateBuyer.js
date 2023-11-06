@@ -1,126 +1,147 @@
-import TopNavBar from "../platform/includes/topNavBar";
-import PlatformFooter from "../platform/includes/platformFooter";
-import { useEffect } from "react";
-const CreateBuyer = () => {
+import {  Link} from "react-router-dom";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import  UploadNewBuyerController   from '../../controllers/UploadNewBuyerController';
 
 
-useEffect(()=>{
-    var currentTab = 0; // Current tab is set to be the first tab (0)
-    showTab(currentTab); // Display the current tab
-    
-    function showTab(n) {
-      // This function will display the specified tab of the form...
-      var x = document.getElementsByClassName("tab");
-      x[n].style.display = "block";
-      //... and fix the Previous/Next buttons:
-      if (n == 0) {
-        document.getElementById("prevBtn").style.display = "none";
-      } else {
-        document.getElementById("prevBtn").style.display = "inline";
-      }
-      if (n == (x.length - 1)) {
-        document.getElementById("nextBtn").innerHTML = "Submit";
-      } else {
-        document.getElementById("nextBtn").innerHTML = "Next";
-      }
-      //... and run a function that will display the correct step indicator:
-      fixStepIndicator(n)
-    }
-    
-    function nextPrev(n) {
-      // This function will figure out which tab to display
-      var x = document.getElementsByClassName("tab");
-      // Exit the function if any field in the current tab is invalid:
-      if (n == 1 && !validateForm()) return false;
-      // Hide the current tab:
-      x[currentTab].style.display = "none";
-      // Increase or decrease the current tab by 1:
-      currentTab = currentTab + n;
-      // if you have reached the end of the form...
-      if (currentTab >= x.length) {
-        // ... the form gets submitted:
-        document.getElementById("regForm").submit();
-        return false;
-      }
-      // Otherwise, display the correct tab:
-      showTab(currentTab);
-    }
-    
-    function validateForm() {
-      // This function deals with validation of the form fields
-      var x, y, i, valid = true;
-      x = document.getElementsByClassName("tab");
-      y = x[currentTab].getElementsByTagName("input");
-      // A loop that checks every input field in the current tab:
-      for (i = 0; i < y.length; i++) {
-        // If a field is empty...
-        if (y[i].value == "") {
-          // add an "invalid" class to the field:
-          y[i].className += " invalid";
-          // and set the current valid status to false
-          valid = false;
-        }
-      }
-      // If the valid status is true, mark the step as finished and valid:
-      if (valid) {
-        document.getElementsByClassName("step")[currentTab].className += " finish";
-      }
-      return valid; // return the valid status
-    }
-    
-    function fixStepIndicator(n) {
-      // This function removes the "active" class of all steps...
-      var i, x = document.getElementsByClassName("step");
-      for (i = 0; i < x.length; i++) {
-        x[i].className = x[i].className.replace(" active", "");
-      }
-      //... and adds the "active" class on the current step:
-      x[n].className += " active";
+import { useEffect, useState} from 'react'
+
+const CreateBuyer =  () => {
+
+   let message = localStorage.getItem('message');
+
+  // Function to clear the notification
+  // Regular expression for email validation
+  const [isLoading, setIsLoading] = useState(false);
+
+// Use useEffect to clear the message in localStorage on component load
+  useEffect(() => {
+    localStorage.removeItem('message');
+  }, []);
+
+//manage user data state 
+  const [formData, setformData] = useState({
+    userName : '',
+    password : '',
+   });
+
+
+const handleChange = async ( event )=>{
+     // Update the state when user types in the input fields
+     setformData({...formData ,
+      [event.target.name] : event.target.value
+     });
+   
+  }
+
+const handleSubmit = async ( event )=>{
+
+  event.preventDefault();
+        // Call the userAuthController and pass the user input
+    if (formData.userName === '' || formData.password === '') {
+      alert('all input are required ');
+      return;
     }
 
-    } , []);
-  return (
-    <>
-        < TopNavBar/>
-<form id="regForm" action="">
-  <h1>Register As A Buyer:</h1>
-   <div className="tab">Name:
-    <p><input placeholder="First name..." oninput="this.className = ''" name="fname" /></p>
-    <p><input placeholder="Last name..." oninput="this.className = ''" name="lname" /></p>
-  </div>
-  <div className="tab">Contact Info:
-    <p><input placeholder="E-mail..." oninput="this.className = ''" name="email" /></p>
-    <p><input placeholder="Phone..." oninput="this.className = ''" name="phone" /></p>
-  </div>
-  <div className="tab">Birthday:
-    <p><input placeholder="dd" oninput="this.className = ''" name="dd" /></p>
-    <p><input placeholder="mm" oninput="this.className = ''" name="nn" /></p>
-    <p><input placeholder="yyyy" oninput="this.className = ''" name="yyyy" /></p>
-  </div>
+    else{
+    //set loading
+    setIsLoading(true);
 
-  <div className="tab">Login Info:
-    <p><input placeholder="Username..." oninput="this.className = ''" name="uname" /></p>
-    <p><input placeholder="Password..." oninput="this.className = ''" name="pword" type="password" /></p>
-  </div>
+    // Simulate an API request (replace this with your actual login logic)
+    setTimeout(() => {
+      setIsLoading(false);
+    }, 2000);
 
-  <div  className="btn-controls">
-    <div className="btn-prev">
-      <button type="button" id="prevBtn" onclick="nextPrev(-1)">Previous</button>
-      <button type="button" id="nextBtn" onclick="nextPrev(1)">Next</button>
+    UploadNewBuyerController(formData);
+
+    }
+
+  }
+
+return (
+    <div className="login-view">
+
+    <div className="container">
+        <div className="left"></div>
+        <div className="right" id="create_buyer_container">
+            <div className="login-form">
+                <h2 className="login-title" >Create Buyer Account</h2>
+                <form id="login-form" id="create_buyer" action="" onSubmit={handleSubmit}  >
+                    <div className="form-group">
+                        <label for="email"  >Username</label>
+                        <input type="text" id="email" 
+                         name="userName" 
+                         onChange={handleChange}
+                         placeholder="Enter username or mail" 
+                         className="userName" />
+                    </div>
+                    <div className="form-group">
+                        <label for="email"  >Username</label>
+                        <input type="text" id="email" 
+                         name="userName" 
+                         onChange={handleChange}
+                         placeholder="Enter username or mail" 
+                         className="userName" />
+                    </div>
+                    <div className="form-group">
+                        <label for="email"  >Username</label>
+                        <input type="text" id="email" 
+                         name="userName" 
+                         onChange={handleChange}
+                         placeholder="Enter username or mail" 
+                         className="userName" />
+                    </div>
+                    <div className="form-group">
+                        <label for="email"  >Username</label>
+                        <input type="text" id="email" 
+                         name="userName" 
+                         onChange={handleChange}
+                         placeholder="Enter username or mail" 
+                         className="userName" />
+                    </div>
+
+                    <div className="form-group">
+                        <label for="password">Password:</label>
+
+
+                        <div className="show-password">
+                            <input type="password" 
+                            id="password"
+                             name="password" 
+                             onChange={handleChange}
+                             className="password"
+                             placeholder="*****************"
+                             /> 
+                        </div>
+                    </div>
+
+<button type="submit" title="login" className="submit-btn" onClick={handleSubmit}>
+       {isLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : 'Login'}
+ </button>
+
+
+ <div  className="createAc-container" >
+
+<Link to="/login"> Login here</Link>
+
+ </div>
+
+        </form>
+
+      {!message == "" && (
+        <div className="login-alert">
+          {message}   
+        </div>
+      )}
+        </div>
+        </div>
     </div>
-    
-  </div>
-   <div className="steps-container">
-    <span className="step"></span>
-    <span className="step"></span>
-    <span className="step"></span>
-    <span className="step"></span>
-  </div>
-</form>
 
 
-        < PlatformFooter />
-        </>
+    </div>
+
+
+
   )
 }
 

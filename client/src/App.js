@@ -4,6 +4,8 @@ import { useState } from 'react';
 
 import Login from './views/auths/login';
 import Forgotpassword from './views/auths/Forgotpassword';
+import ArtisanLogin from './views/auths/ArtisanLogin';
+import BuyerLogin from './views/auths/BuyerLogin';
 
 import Signup from './views/Signup';
 import ErrorPage from './partials/ErrorPage';
@@ -46,6 +48,10 @@ function App() {
 
 
         <Route path="/login" element={<Login />} />
+
+        <Route path="/login-buyer" element={<BuyerLogin />} />
+        <Route path="/login-artisan" element={<ArtisanLogin />} />
+
         <Route path="/forgot-password" element={<Forgotpassword />} />
         <Route path="*" element={<ErrorPage />} />
         <Route path="/auth/google/callback" element={<GoogleAuthLogin />} />

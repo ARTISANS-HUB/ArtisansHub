@@ -1,11 +1,9 @@
 import {Api_connect_server} from '../APIs/Api_connect_server'
- 
-const UploadNewUserController = async (formData , file) => {
-	
 const api_connect =  Api_connect_server();
 
+const UploadNewArtisanController = async ( formData ,file ) => {
+	 
 let message;
-
 api_connect.post('/auth/add-new-user',
  { formData , file }, {headers: { 'Content-Type': 'multipart/form-data' },})
 
@@ -40,12 +38,6 @@ localStorage.setItem('reponse_message_code', 501);
    console.log('file received at controller error ');
 
 })
+}
 
-} 
- 
-
-
-
-
-
-export default UploadNewUserController
+export default UploadNewArtisanController

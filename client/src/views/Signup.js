@@ -59,10 +59,7 @@ const handleSubmit = async ( event )=>{
     }
 
 	}
-
-if (isAuthenticated==="true") {
-    window.location.href = '/auth/dashboard';
-}
+ 
 
 	return (
 		<div className="login-view">

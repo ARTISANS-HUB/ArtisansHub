@@ -9,8 +9,8 @@ import { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom';
 
+const ArtisanLogin = async () => {
 
-const Login = () => {
 
   let message = localStorage.getItem('message');
   let password_update_success = localStorage.getItem('password_update_success');
@@ -155,6 +155,4 @@ const Login = () => {
   )
 }
 
-
-
-export default Login
+export default ArtisanLogin
