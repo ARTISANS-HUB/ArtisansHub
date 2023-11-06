@@ -1,2 +1,2 @@
-# MVCReactServer
-dashboard developed using nodejs
+# hackathon
+project developed using nodejs
