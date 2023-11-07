@@ -202,7 +202,10 @@ const user_token = {
 // Encrypt the data and create a token
 //URL_REDIRECT back to client
 const data_token = jwt.sign({userData , message:"Authenticated as "+email ,token,statusCode:200}, secretKey);
-res.redirect(`${process.env.SERVER_APP_URL_REDIRECT_CLIENT}/auth/google/callback?data_token=${data_token}`);
+
+
+// res.redirect(`${process.env.SERVER_APP_URL_REDIRECT_CLIENT}/auth/google/callback?data_token=${data_token}`);
+res.redirect(`${process.env.SERVER_APP_URL_REDIRECT_PRO}/auth/google/callback?data_token=${data_token}`);
 
 }else{
 res.status(200).json({message : "User not found.. ",statusCode:404});

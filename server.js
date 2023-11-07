@@ -146,10 +146,6 @@ const upload = multer({ storage: storage });
 const profileUpload = multer({ storage: storage2 });
 const profileUploadpic = multer({ storage: storage3 });
 
-
- // var YOUR_CLIENT_ID = '530295393593-8fgv9m3h3ccc90cf6dlht76i971kptk2.apps.googleusercontent.com';
- // var YOUR_CLIENT_SECRET = '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';
-
 app.use(passport.initialize());
 app.use(passport.session());
 
