@@ -1,8 +1,9 @@
 import { Link } from "react-router-dom";
 // import "../../../css/createBuyer.css";
-import "../../../css/topNavBar.css"
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
-import {faBell} from "@fortawesome/free-solid-svg-icons"
+import "../../../css/topNavBar.css";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
+import { useState } from "react";
 
 const TopNavBar = () => {
   const handleChange = async (event) => {
@@ -17,52 +18,109 @@ const TopNavBar = () => {
     }
   };
 
+  const [menuOpen, setMenuOpen] = useState(false);
 
   return (
+    // <nav>
+    //   <div className="TopNavBar-platform">
+    //     <div className="TopNavBar-platform-inner">
+    //       <div className="logo">
+    //         <Link>DiGiHaven</Link>
+    //       </div>
+    //       <div className="search-bar ">
+    //         <input type="text" placeholder="search" />
+    //       </div>
+
+    //       <div className="navbar">
+    //         <div className="contact">
+    //           <i>Contact</i>
+    //         </div>
+    //         <div>
+    // <select id="selectOption" onChange={handleChange} className="become-button">
+    //   <option value="" selected disabled>
+    //     <Link to="#">
+    //       <i> Become</i>
+    //     </Link>
+    //   </option>
+    //   <option value="buyer">
+    //     <Link to="/become-buyer">
+    //       <i> Buyer</i>
+    //     </Link>
+    //   </option>
+    //   <option value="artisan">
+    //     <Link to="/become-artisan">
+    //       <i> Artisan</i>
+    //     </Link>
+    //   </option>
+
+    //   <option value="admin">
+    //     <Link to="#">
+    //       <i> Admin Login </i>
+    //     </Link>
+    //   </option>
+    // </select>
+    //         </div>
+    //         <div className="notification">
+    //
+    //           </div>
+    //       </div>
+    //     </div>
+    //   </div>
+    // </nav>
+
     <nav>
-      <div className="TopNavBar-platform">
-        <div className="TopNavBar-platform-inner">
-          <div className="logo">
-            <Link>DiGiHaven</Link>
-          </div>
-          <div className="search-bar ">
-            <input type="text" placeholder="search" />
-          </div>
-
-          <div className="navbar">
-            <div className="contact">
-              <i>Contact</i>
-            </div>
-            <div>
-              <select id="selectOption" onChange={handleChange} className="become-button">
-                <option value="" selected disabled>
-                  <Link to="#">
-                    <i> Become</i>
-                  </Link>
-                </option>
-                <option value="buyer">
-                  <Link to="/become-buyer">
-                    <i> Buyer</i>
-                  </Link>
-                </option>
-                <option value="artisan">
-                  <Link to="/become-artisan">
-                    <i> Artisan</i>
-                  </Link>
-                </option>
-
-                <option value="admin">
-                  <Link to="#">
-                    <i> Admin Login </i>
-                  </Link>
-                </option>
-              </select>
-            </div>
-            <div className="notification">
-                  <FontAwesomeIcon icon={faBell}/>
-              </div>
-          </div>
+      <div className="navbar">
+        <Link to="/" className="title">
+          DiGiHaven
+        </Link>
+        <FontAwesomeIcon
+          icon={faBars}
+          className="menu"
+          onClick={() => setMenuOpen(!menuOpen)}
+        />
+        <div className="search-bar">
+        
+            <input type="text" placeholder="Search" />
+          
         </div>
+        <ul className={menuOpen ? "open" : ""}>
+          <li>
+            <Link to="./contact">Contact</Link>
+          </li>
+          
+          <li>
+            <select
+              id="selectOption"
+              onChange={handleChange}
+              className="become-button"
+            >
+              <option value="" selected disabled>
+                <Link to="#">
+                  <i> Become</i>
+                </Link>
+              </option>
+              <option value="buyer">
+                <Link to="/become-buyer">
+                  <i> Buyer</i>
+                </Link>
+              </option>
+              <option value="artisan">
+                <Link to="/become-artisan">
+                  <i> Artisan</i>
+                </Link>
+              </option>
+
+              <option value="admin">
+                <Link to="#">
+                  <i> Admin Login </i>
+                </Link>
+              </option>
+            </select>
+          </li>
+          <li>
+            <FontAwesomeIcon icon={faBell} />
+          </li>
+        </ul>
       </div>
     </nav>
   );
