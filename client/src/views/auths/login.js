@@ -112,13 +112,11 @@ const Login = () => {
 
               <div className="login-options" >
 
-                <button type="button" title="login" className="login-options-submit-btn" onClick={handleLoginWithGoogle}>
-                  Login with Google
+                <button type="button" title="login" className="login-options-submit-btn button-60" role="button"  onClick={handleLoginWithGoogle}>
+               <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
                 </button>
 
-                <button type="submit" title="login" className="login-options-submit-btn" onClick={handleSubmit}>
-                  Login with Facebook
-                </button>
+                 
 
               </div>
 

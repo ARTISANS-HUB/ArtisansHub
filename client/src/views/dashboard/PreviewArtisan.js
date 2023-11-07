@@ -28,7 +28,7 @@ const api_connect =  Api_connect_server();
   const work_ref_1 = localStorage.getItem('work_ref_1') || 'none';
   const work_ref_2 = localStorage.getItem('work_ref_2') || 'none';
   const work_tel = localStorage.getItem('work_tel');
-
+  const verified = localStorage.getItem('verified');
   const role = localStorage.getItem("artisanRole");
 
 
@@ -82,7 +82,33 @@ const api_connect =  Api_connect_server();
 
      <div className="container-left">
         
-        <h1  style={{textTransform:'upperCase'}}   >{role}</h1>
+        <h1  style={{textTransform:'upperCase'}}   >  
+        {
+        verified == 1 &&
+        <span className="artisan-tag" > 
+        {'Verified'} <i className="uil fas fa-check"></i>
+        </span>
+
+        }
+
+
+        {
+        verified == 0 &&
+        <span className="artisan-tag-error" > 
+        {'Not Verified'} <i className="uil fas fa-error"></i>
+        </span>
+
+        }
+
+        {
+        verified == 2  &&
+        <span className="artisan-tag-error" > 
+        {'Rejected'} <i className="uil fas fa-error"></i>
+        </span>
+
+        }
+
+        </h1>
 
        {  
          imageSrc ? (
@@ -100,6 +126,7 @@ const api_connect =  Api_connect_server();
  <div className="artisan-info">
  <center>Work Info</center>
  <ul>
+  <li><span className="info-title" >Role :</span>  {role}</li>
  <li><span className="info-title" >Profession :</span>  {artisanExpt}</li>
  <li><span className="info-title" >Experience :</span> {work_exp} </li>
  <li><span className="info-title" >Work Tel :</span> {work_tel} </li>

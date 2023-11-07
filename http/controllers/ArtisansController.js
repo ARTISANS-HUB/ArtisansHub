@@ -83,6 +83,51 @@ logger.log('error','['+Date()+'] can not delete artisan.. / internal eror',error
 }
 
 
+
+
+
+const VerifyArtisans = async ( req , res , next )=>{
+
+try{
+const artisanId = req.params.artisanId;
+//query
+db = await connectToDB();
+
+
+const collection = db.collection('artisans');
+
+    const userUpdateResult = await collection.updateOne(
+      //find user with id
+      { artisanId : artisanId},
+      { $set: { 
+
+        verified : 1,
+        updated_at : Date(),
+
+      }}
+      );
+
+
+    if (userUpdateResult.modifiedCount === 1) {
+
+     res.status(200).json({ message: "Artisan verified successfully", statusCode : 200 });
+   
+    }else{
+
+    res.status(200).json({ message: "Verification failed , Please try again ", statusCode : 501 });
+    logger.log('error','['+Date()+'] artisan Verification update failed..');
+
+    }
+
+
+}
+
+
+catch(error){
+logger.log('error','['+Date()+'] can not delete artisan.. / internal eror',error);
+}
+
+}
 module.exports = {
 
 artisans:artisans,

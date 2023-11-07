@@ -23,6 +23,9 @@ const CreateBuyer =  () => {
   const [formData, setformData] = useState({
     userName : '',
     password : '',
+    lname:'', fname:'', 
+    email:'', phone:'',
+
    });
 
 
@@ -58,88 +61,41 @@ const handleSubmit = async ( event )=>{
 
   }
 
+
+
+
+
 return (
-    <div className="login-view">
-
-    <div className="container">
-        <div className="left"></div>
-        <div className="right" id="create_buyer_container">
-            <div className="login-form">
-                <h2 className="login-title" >Create Buyer Account</h2>
-                <form id="login-form" id="create_buyer" action="" onSubmit={handleSubmit}  >
-                    <div className="form-group">
-                        <label for="email"  >Username</label>
-                        <input type="text" id="email" 
-                         name="userName" 
-                         onChange={handleChange}
-                         placeholder="Enter username or mail" 
-                         className="userName" />
-                    </div>
-                    <div className="form-group">
-                        <label for="email"  >Username</label>
-                        <input type="text" id="email" 
-                         name="userName" 
-                         onChange={handleChange}
-                         placeholder="Enter username or mail" 
-                         className="userName" />
-                    </div>
-                    <div className="form-group">
-                        <label for="email"  >Username</label>
-                        <input type="text" id="email" 
-                         name="userName" 
-                         onChange={handleChange}
-                         placeholder="Enter username or mail" 
-                         className="userName" />
-                    </div>
-                    <div className="form-group">
-                        <label for="email"  >Username</label>
-                        <input type="text" id="email" 
-                         name="userName" 
-                         onChange={handleChange}
-                         placeholder="Enter username or mail" 
-                         className="userName" />
-                    </div>
-
-                    <div className="form-group">
-                        <label for="password">Password:</label>
-
-
-                        <div className="show-password">
-                            <input type="password" 
-                            id="password"
-                             name="password" 
-                             onChange={handleChange}
-                             className="password"
-                             placeholder="*****************"
-                             /> 
-                        </div>
-                    </div>
-
-<button type="submit" title="login" className="submit-btn" onClick={handleSubmit}>
-       {isLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : 'Login'}
- </button>
-
-
- <div  className="createAc-container" >
-
-<Link to="/login"> Login here</Link>
-
- </div>
-
-        </form>
-
-      {!message == "" && (
-        <div className="login-alert">
-          {message}   
-        </div>
-      )}
-        </div>
-        </div>
+<>
+<form id="regForm" action="">
+  <h1>Register:</h1>
+   <div className="tab">Name:
+    <p><input placeholder="First name..." value={formData.fname} onChange={handleChange}  oninput="this.className = ''" name="fname" /></p>
+    <p><input placeholder="Last name..." value={formData.lname} onChange={handleChange} oninput="this.className = ''" name="lname" /></p>
+  </div>
+  <div className="tab">Contact Info:
+    <p><input placeholder="E-mail..." value={formData.userName} oninput="this.className = ''" name="email" / ></p>
+    <p><input placeholder="Phone..." onChange={handleChange} value={formData.userName}oninput="this.className = ''" name="phone" / ></p>
+  </div>
+  <div className="tab">Birthday:
+    <p><input placeholder="dd" onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="dd" /></p>
+    <p><input placeholder="mm" onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="nn" /></p>
+    <p><input placeholder="yyyy" onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="yyyy" /></p>
+  </div>
+  <div className="tab">Login Info:
+    <p><input placeholder="Username..." onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="uname" /></p>
+    <p><input placeholder="Password..." onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="pword" type="password" /></p>
+  </div>
+  <div className="btns-container" >   
+    <div>
+      <button type="button" id="prevBtn">Previous</button>
+      <button type="button" id="nextBtn" >Next</button>
     </div>
+  </div>
+    
+</form>
 
-
-    </div>
-
+</>
 
 
   )

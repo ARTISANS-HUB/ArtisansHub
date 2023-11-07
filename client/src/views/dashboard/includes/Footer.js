@@ -1,5 +1,6 @@
  import { Link} from 'react-router-dom';
- import { useEffect } from 'react'
+ import { useEffect ,useState} from 'react'
+import SupportController from "../../../controllers/SupportController";
 
 const Footer = () => {
 
@@ -34,24 +35,47 @@ const Footer = () => {
   }, []);
 
 
+  const created_by = localStorage.getItem("username");
+
+  const [formData, setformData] = useState({
+    supportID:Math.random().toString(36).substr(2 ,50),
+    message: "",
+    usermail: "",
+    created_by: created_by,
+    created_at: Date(),
+
+  });
+  //handles
+
+  const handleChange = (event) => {
+    setformData({ ...formData, [event.target.name]: event.target.value });
+  };
+ //handle submit
+  const handleSubmit = (event) => {
+    event.preventDefault();
+      SupportController(formData);
+     
+  };
+
+
 	return (
 		<>
 			
-	<div className="supportModal"  id="supportModal">
+	<div className="supportModal" onSubmit={handleSubmit} id="supportModal">
     <div className="modal-content">
       <span className="close" id="closeModal" title="Close modal" >&times;</span>
       <h2>Support Form</h2>
       <form>
         <div className="form-group">
           <label htmlFor="email">Email:</label>
-          <input type="email" id="email" name="email" required />
+          <input type="email" id="usermail" value={formData.usermail} onChange={handleChange} name="usermail" required />
         </div>
         <div className="form-group">
           <label htmlFor="message">Message:</label>
-          <textarea id="message" name="message" rows="5" required></textarea>
+          <textarea id="message" value={formData.messages} name="message" onChange={handleChange} rows="5" required></textarea>
         </div>
         <div className="form-group">
-          <button type="submit">Submit</button>
+          <button type="submit"  onClick={handleSubmit} >Submit</button>
         </div>
       </form>
     </div>
@@ -65,9 +89,9 @@ const Footer = () => {
 
     <div className="action-menu" id="actionMenu">
       <ul>
-        <li><Link href="#">Settings</Link></li>
+        {/*<li><Link href="#">Settings</Link></li>
         <li><Link href="#">Profile</Link></li>
-        <li><Link href="#">Logout</Link></li>
+        <li><Link href="#">Logout</Link></li>*/}
         <li><Link href="#" id="supportLink" >Support</Link></li>
       </ul>
     </div>

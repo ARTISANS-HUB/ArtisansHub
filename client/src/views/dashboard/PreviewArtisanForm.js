@@ -1,11 +1,11 @@
-import React from 'react'
+import { ApproveArtisanController , RejectArtisanController } from "../../controllers/ArtisanActionController";
 
 const PreviewArtisanForm = () => {
 
   const usermail = localStorage.getItem("artisanusermail");
-  const username = localStorage.getItem("editusername");
+  const username = localStorage.getItem("artisanUsername");
   const password = localStorage.getItem("password");
-  const userID = localStorage.getItem("editdatauserid");
+  const artisanId = localStorage.getItem("artisanI");
 
   const work_days = localStorage.getItem("work_days");
   const last_seen = localStorage.getItem("last_seen");
@@ -18,6 +18,27 @@ const PreviewArtisanForm = () => {
   const updated_at = localStorage.getItem("artisanupdated_at");
   const ready_for_work = localStorage.getItem("ready_for_work");
   
+
+
+//approve artisan
+const handleApproveArtisan = (event) =>{
+event.preventDefault();
+
+ApproveArtisanController(artisanId)
+
+}
+
+
+//reject artisan
+const handleRejectArtisan = (event)=>{
+
+  event.preventDefault();
+RejectArtisanController(artisanId)
+
+  
+}
+
+
   return (
     <>
       <form
@@ -131,6 +152,25 @@ const PreviewArtisanForm = () => {
               readOnly
             />
           </div>
+           <div className="form-group">
+            <label className="lbl-text">Last Visit:</label>
+            <input
+              type="text"
+              className="input-text"
+              value={last_seen}
+              
+              name="last_seen"
+              readOnly
+            />
+          </div>
+
+        </div>
+        
+        <div className="artisan-action-btn">
+
+        <button style={{backGround:'Green'}} onClick={handleApproveArtisan} >Approve</button>
+        <button  style={{backGround:'red'}} onClick={handleRejectArtisan} >Reject</button>
+
         </div>
 
         

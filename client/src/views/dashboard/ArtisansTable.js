@@ -116,6 +116,7 @@ if (error_close_btn) {
       let work_exp= event.target.getAttribute("work_exp");
       let work_ref_1 = event.target.getAttribute("work_ref_1");
       let work_ref_2 = event.target.getAttribute("work_ref_2");
+      let verified = event.target.getAttribute("verified");
 
       let artisanlocation = event.target.getAttribute("artisanlocation");
       let last_seen = event.target.getAttribute("last_seen");
@@ -135,6 +136,7 @@ if (error_close_btn) {
       localStorage.setItem('work_ref_1',work_ref_1);
       localStorage.setItem('work_ref_2',work_ref_2);
       localStorage.setItem('work_tel',work_tel);
+      localStorage.setItem('verified',verified);
 
       localStorage.setItem('artisanlocation',artisanlocation);
       localStorage.setItem('last_seen',last_seen);
@@ -249,6 +251,7 @@ if (error_close_btn) {
               <th style={{width:'10px'}}></th>
               <th data-sort="name">Name</th>
               <th data-sort="expertise">Expertise</th>
+              <th data-sort="">Verfified</th>
               <th data-sort="location">Loc</th>
               <th data-sort="Mail">Mail</th>
               <th data-sort="Tel">Tel</th>
@@ -269,20 +272,47 @@ if (error_close_btn) {
    props.artisans.length > 0 && props.artisans  ? ( 
             props.artisans.map( ( artisan , index) => (
 <tr key={artisan._id}>
+             
              {
-              artisan.status==1 ?
-              (
+              artisan.status == 0 &&
+
+<td><div class="user-status offline"></div> </td>
+                
+             }
+
+                          {
+              artisan.status == 1 &&
+            
 <td><div class="user-status online"></div>
        </td>
-                ):(
-<td><div class="user-status offline"></div> </td>
-                )
+               
+             }
 
 
-             } 
 
               <td>{artisan.username}</td>
                <td>{artisan.expertise}</td>
+
+
+            {
+              artisan.verified == 0 &&
+              
+           <td style={{color:'yellow'}}> Pending </td>
+                
+             }  
+
+             {
+           artisan.verified == 1 &&
+           <td style={{color:'green'}}>Yes</td>
+                
+             } 
+
+             {
+           artisan.verified == 2 &&
+           <td style={{color:'red'}}>Rejected</td>
+                
+             } 
+
               <td>{artisan.location}</td>
               <td>{artisan.usermail}</td>
               <td>{artisan.tel}</td>
@@ -310,6 +340,7 @@ if (error_close_btn) {
                      work_ref_2={artisan.work_ref_2}
                      work_ref_1={artisan.work_ref_1}
                      work_tel={artisan.work_tel}
+                     verified={artisan.verified}
                      artisancreated_at={artisan.created_at}
                      artisanupdated_at={artisan.updated_at}
 

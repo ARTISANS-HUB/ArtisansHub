@@ -74,12 +74,21 @@ const AddUserController  = require('./http/controllers/AddUserController');
 // users
 const UsersContoller  = require('./http/controllers/UsersContoller');
 
-
+const UserOverviewController = require('./http/controllers/UserOverviewController');
+const ArtisansOverviewController = require('./http/controllers/ArtisansOverviewController');
 //artisans
 const ArtisansController = require('./http/controllers/ArtisansController');
 
 //VerificationController
 VerificationController = require('./http/controllers/VerificationController');
+
+
+BuyersController = require('./http/controllers/BuyersController');
+FeedBackController = require('./http/controllers/FeedBackController');
+
+//support
+const SupportController  = require('./http/controllers/SupportController');
+
 
 //error_404
 //const error_404_PNF  = require('./http/controllers/error_404');
@@ -204,6 +213,10 @@ app.post('/auth/update/user-details',UpdateUserController.UpdateUserData);
 //fetch user details
 app.get('/auth/fetch-user-profile/:profile',UpdateUserController.fetchUserProfile);
 
+//overview
+app.get('/auth/fetch-users/active',UserOverviewController.fetchActiveUsers);
+app.get('/auth/fetch-users/inactive',UserOverviewController.fetchInActiveUsers);
+
 
 //add user details
 app.post('/auth/add-new-user',profileUpload.single("file"),AddUserController.AddUser);
@@ -222,17 +235,26 @@ app.post('/auth/edit/edit-user-details',UsersContoller.EditUsersDetails);
 
 //artisans controller 
 app.get('/auth/fetch-artisans',ArtisansController.artisans);
-//deleteUsers
 app.delete('/auth/delete-artisan/:artisanId',ArtisansController.deleteArtisan);
+app.get('/auth/fetch-artisans/active',ArtisansOverviewController.fetchActiveArtisans);
+app.get('/auth/fetch-artisans/inactive',ArtisansOverviewController.fetchInActiveArtisans);
+app.get('/auth/fetch-artisans/verified',ArtisansOverviewController.fetchVerfiedArtisans);
 
 
+app.get('/auth/fetch-feebacks',FeedBackController.feedbacks);
+app.get('/auth/fetch-buyers',BuyersController.buyers);
+
+
+//SupportController
+app.get('/auth/fetch-supports',SupportController.supports);
+app.post('/auth/add-support-message',upload.single("file"),SupportController.AddSuport);
 
 
 //verify user mail
 app.post('/auth/user/verify-usermailorTel',VerificationController.VerifyUsermail);
-
 //update forgot passord 
 app.post('/auth/user/update-forgot-password',VerificationController.UpdateForgotPassword);
+
 
 
 //logout

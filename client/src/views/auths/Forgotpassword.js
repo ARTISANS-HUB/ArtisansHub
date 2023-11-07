@@ -126,7 +126,7 @@ seterrorState(false);
 
 
 else{
-//alert('invalid mail or telephone number..');	
+
 setTimeout(() => {
 localStorage.setItem('message','invalid mail or telephone number..');
 setIsLoading(false);
@@ -272,13 +272,13 @@ return (
 
 <div className="forget-password-form-container">
 
-{ user_response_type == '' || 'invalid_user'  && reponse_message_code == 404  && suc_verified == false &&  (
+{ user_response_type == '' || 'invalid_user'   && suc_verified == false &&  (
 
 
 		
 <form  onSubmit={handleMailOrTelSubmit} className="forget-password-form">
        
-{!message == "" && (
+{!message == ""  && (
 <span  className="banner">
 <p className="error-message" >{message}</p>
 </span>

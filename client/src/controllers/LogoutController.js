@@ -24,15 +24,17 @@ window.location.href = '/login';
 
 message = response.data.message;
 localStorage.setItem('message', message);
-console.log(message)
-}
+ }
 
 })
 .catch((error)=>{
 
 //error 
-	console.log(error);
+	//console.log(error);
 	//alert('internal error...');
+localStorage.setItem('message', 'Try again..');
+
+
 })
 }
 
