@@ -1,0 +1,60 @@
+.artisans-card-container{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    /* gap: 1rem; */
+    padding: 3% 5%;
+    width: 90%;
+    margin: 0 auto;
+    background-color: #fe9931;
+    margin-top: -5rem;
+    /* height: 50rem; */
+    overflow-x: scroll;
+
+
+}
+
+.artisans-card-container .artisans-card-bottom{
+    overflow-x: hidden;
+    /* background: #000; */
+    padding: 0 10px;
+    /* width: 95%; */
+}
+
+.artisans-card-container::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+.artisans-card-container::-webkit-scrollbar-track{
+   background: #fe9931
+}
+.artisans-card-container::-webkit-scrollbar-thumb{
+    background: #fe9931
+}
+
+.artisans-card-container .artisans-card-header{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px 0;
+    color: #fff;
+    font-size: 2rem;
+    text-transform: capitalize;
+}
+
+.artisans-card-container .artisans-card-list{
+    /* width: 100%; */
+    display: flex;
+    /* flex-wrap: wrap; */
+    /* justify-content: center; */
+    gap: 2rem;
+    /* background: #000; */
+    overflow: hidden;
+}
+
+
+.slick-prev:before, .slick-next:before{
+    color: #000 !important;
+}
