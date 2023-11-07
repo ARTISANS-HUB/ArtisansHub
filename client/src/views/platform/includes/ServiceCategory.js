@@ -1,62 +1,99 @@
 import React, {useState} from 'react'
 import "../../../css/serviceCategory.css";
 import Categories from './Categories';
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
+
+import Slider from "react-slick";
+import { cartCategories, categoryData } from './utils';
+import FilterCategory from './FilterCategory';
 
 const ServiceCategory = () => {
+  const [cards,setCards]=useState(categoryData)
 
-    const [filter, setFilter] = useState("all");
-  
-    const filterImages = (images, filter) => {
-      if (filter === "all") {
-        return images;
-      } else {
-        return images.filter((image) => image.category === filter);
-      }
-    };
-  
-    const images = [
-      { id: 1, category: "landscape" },
-      { id: 2, category: "portrait" },
-      { id: 3, category: "cityscape" },
-    ];
-  
-    const filteredImages = filterImages(images, filter);
+  const [filterOption,setFilterOption]= useState(["all","cleaning"])
+  const [filter,setFilter] = useState("all")
+
+ const filterCards=()=>{
+  const filteredCards = cards.filter((card)=>{
+    if(filter ==="all"){
+      return true
+    }else{
+      return card.category === filter
+    }
+  })
+console.log(filteredCards)
+  setCards(filteredCards)
+ } 
+
+ const handleFilterChange = (e)=>{
+  const selectedFilter = e.target.value;
+  console.log(selectedFilter)
+  setFilter(selectedFilter)
+ }
+
+
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 7,
+    slidesToScroll: 1,
+    initialSlide: 0,
+      responsive: [
+        {
+          breakpoint: 1024,
+          settings: {
+            slidesToShow: 3,
+            slidesToScroll: 3,
+            infinite: true,
+            dots: true
+          }
+        },
+        {
+          breakpoint: 600,
+          settings: {
+            slidesToShow: 2,
+            slidesToScroll: 2,
+            initialSlide: 2
+          }
+        },
+        {
+          breakpoint: 480,
+          settings: {
+            slidesToShow: 1,
+            slidesToScroll: 1
+          }
+        }
+      ]
+  };
+
+
+
+   
   return (
     <div className='service-container'>
         <h2 className='service-title'>
                 service category
         </h2>
-        <div className='categories-card'>
-            <button className='categories-card-icon left'>left</button>
-                <div className='categories-card-icon-slider'>
-
-            {
-                [1,2,3,4,5,6,7,8,9,10].map((item,index)=>{
-                            return(
-                                <div className="slider-card">
-                                    <Categories/>
-                                </div>
-                            )
-                        })
-                    }
-
+        <div className='category-card'>
+        <div className='card'>
+            <Slider {...settings}>
+                {cartCategories.map((category,index) => {
+                  return <Categories key={index} onClick={handleFilterChange} icon={category.icon} title={category.title} />
+                })
+              }
+            </Slider>
             </div>
+        </div>
 
-     <button className='categories-card-icon right'>right</button>
-      </div>
-
-        <div>
-         {/* <div>
-           <button onClick={() => setFilter("all")}>All</button>
-           <button onClick={() => setFilter("landscape")}>Landscape</button>
-           <button onClick={() => setFilter("portrait")}>Portrait</button>
-           <button onClick={() => setFilter("cityscape")}>Cityscape</button>
-         </div>
-         <div>
-           {filteredImages.map((image) => (
-             <img key={image.id} src={image.src} />
-           ))}
-         </div> */}
+       <div className='category-filter'>
+       {
+          categoryData.map((cat)=>{
+            return <FilterCategory name={cat.name} description={cat.description}/>
+          })
+        }
        </div>
     </div>
   )
@@ -65,11 +102,3 @@ const ServiceCategory = () => {
 export default ServiceCategory
 
 
-
-// const ImageFilter = () => {
-//     
-  
-//     return (
-//       
-//     );
-//   };

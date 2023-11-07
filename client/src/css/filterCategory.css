@@ -1,0 +1,19 @@
+.filter-category-container{
+    /* width: 90%; */
+    margin:40px auto;
+    /* background: #000; */
+}
+
+.filter-category-container .filter-category-card{
+    width: 15rem;
+    height: 15rem;
+    background-color: #d1d1d1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.filter-category-card p{
+    text-align: center;
+}

@@ -5,11 +5,11 @@
 
 .service-container .categories-card {
     display: flex;
-    /* background: #000; */
 }
 
 .category-container{
     padding: 10px 0;
+
 
 }
 
@@ -23,9 +23,9 @@
 .categories-card{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: center;
     flex-wrap: wrap;
-    gap: 10px;
+    gap: 5px;
 
 }
 
@@ -51,4 +51,20 @@
     align-items: center;
     justify-content: center;
     background-color: #fff;
+}
+.category-card .category-card-text{
+    text-transform: capitalize;
+}
+
+
+.service-container .category-filter{
+    margin-top: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.slick-prev:before, .slick-next:before{
+    color: #000 !important;
 }
