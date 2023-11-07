@@ -1,13 +1,10 @@
 import {Api_connect_server} from '../APIs/Api_connect_server'
  
 const UploadNewUserController = async (formData , file) => {
- const api_connect =  Api_connect_server();
+	
+const api_connect =  Api_connect_server();
 
 let message;
-//send respond to update user profile
-
- // Send the file to the server using Axios
- // console.log('file received at controller good'+file_data);
 
 api_connect.post('/auth/add-new-user',
  { formData , file }, {headers: { 'Content-Type': 'multipart/form-data' },})

@@ -74,15 +74,25 @@ const AddUserController  = require('./http/controllers/AddUserController');
 // users
 const UsersContoller  = require('./http/controllers/UsersContoller');
 
-
+const UserOverviewController = require('./http/controllers/UserOverviewController');
+const ArtisansOverviewController = require('./http/controllers/ArtisansOverviewController');
 //artisans
 const ArtisansController = require('./http/controllers/ArtisansController');
 
 //VerificationController
 VerificationController = require('./http/controllers/VerificationController');
 
+
+BuyersController = require('./http/controllers/BuyersController');
+FeedBackController = require('./http/controllers/FeedBackController');
+
+//support
+const SupportController  = require('./http/controllers/SupportController');
+
+const PlatformServicesController = require('./http/controllers/PlatformServicesController')
+
 //error_404
-const error_404_PNF  = require('./http/controllers/error_404');
+//const error_404_PNF  = require('./http/controllers/error_404');
 
 
 //  configuring the location for file upload
@@ -137,10 +147,6 @@ const upload = multer({ storage: storage });
 const profileUpload = multer({ storage: storage2 });
 const profileUploadpic = multer({ storage: storage3 });
 
-
- // var YOUR_CLIENT_ID = '530295393593-8fgv9m3h3ccc90cf6dlht76i971kptk2.apps.googleusercontent.com';
- // var YOUR_CLIENT_SECRET = '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';
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -149,10 +155,10 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET_LOGIN,
 
   //developing
-  callbackURL: process.env.SERVER_APP_URL_DEV+'/auth/callback',
+  //callbackURL: process.env.SERVER_APP_URL_CALLBACK_DEV+'/auth/callback',
   
   //production
-  //callbackURL: process.env.SERVER_API_URL_PRO+'/auth/callback',
+  callbackURL: process.env.SERVER_APP_URL_CALLBACK_PRO+'/auth/callback',
 
 }, (accessToken, refreshToken, profile, done) => {
   // 'profile' contains user information, including the email
@@ -204,6 +210,10 @@ app.post('/auth/update/user-details',UpdateUserController.UpdateUserData);
 //fetch user details
 app.get('/auth/fetch-user-profile/:profile',UpdateUserController.fetchUserProfile);
 
+//overview
+app.get('/auth/fetch-users/active',UserOverviewController.fetchActiveUsers);
+app.get('/auth/fetch-users/inactive',UserOverviewController.fetchInActiveUsers);
+
 
 //add user details
 app.post('/auth/add-new-user',profileUpload.single("file"),AddUserController.AddUser);
@@ -222,18 +232,42 @@ app.post('/auth/edit/edit-user-details',UsersContoller.EditUsersDetails);
 
 //artisans controller 
 app.get('/auth/fetch-artisans',ArtisansController.artisans);
-//deleteUsers
 app.delete('/auth/delete-artisan/:artisanId',ArtisansController.deleteArtisan);
+app.get('/auth/fetch-artisans/active',ArtisansOverviewController.fetchActiveArtisans);
+app.get('/auth/fetch-artisans/inactive',ArtisansOverviewController.fetchInActiveArtisans);
+app.get('/auth/fetch-artisans/verified',ArtisansOverviewController.fetchVerfiedArtisans);
+
+
+app.get('/auth/fetch-feebacks',FeedBackController.feedbacks);
+app.get('/auth/fetch-buyers',BuyersController.buyers);
+
+
+//SupportController
+app.get('/auth/fetch-supports',SupportController.supports);
+app.post('/auth/add-support-message',upload.single("file"),SupportController.AddSuport);
+
+
+//dashboard
+app.get('/auth/fetch-services-platform-all',PlatformServicesController.Services);
+
+//services ARTISAN platform
+app.get('/auth/fetch-services-completed-artisan/:artisanId',PlatformServicesController.ServicesCompleted);
+app.get('/auth/fetch-services-cancelled-artisan/:artisanId',PlatformServicesController.ServicesCancelled);
+app.get('/auth/fetch-services-pending-artisan/:artisanId',PlatformServicesController.ServicesPending);
+
+
+//services BUYER platform
+app.get('/auth/fetch-services-completed-buyer/:buyerId',PlatformServicesController.ServicesCompletedBuyer);
+app.get('/auth/fetch-services-cancelled-buyer/:buyerId',PlatformServicesController.ServicesCancelledBuyer);
+app.get('/auth/fetch-services-pending-buyer/:buyerId',PlatformServicesController.ServicesPendingBuyer);
 
 
 
 
 //verify user mail
 app.post('/auth/user/verify-usermailorTel',VerificationController.VerifyUsermail);
-
 //update forgot passord 
 app.post('/auth/user/update-forgot-password',VerificationController.UpdateForgotPassword);
-
 
 //logout
 app.get('/logout/users',AuthController.logout);

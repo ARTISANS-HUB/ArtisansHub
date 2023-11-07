@@ -29,7 +29,6 @@ db = await connectToDB();
 //02434343434
 const { usermailorTel } =req.body;
 const randomNumbers= Math.floor(Math.random() * 1000000);
-console.log(req.body.usermailorTel)
 const collection = db.collection('users');
 
     const userData = await collection.findOne({

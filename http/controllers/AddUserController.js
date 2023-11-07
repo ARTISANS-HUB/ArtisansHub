@@ -3,6 +3,17 @@ const {connectToDB ,closeDB }= require('../../config/mongodbconfig');
 const logger = require('../../logger');
 let db;
 const AddUser = async (req , res , next) => {
+// Create a new Date object
+var currentDate = new Date();
+
+// Get the day, month, and year
+var day = currentDate.getDate();
+var month = currentDate.getMonth() + 1; 
+var year = currentDate.getFullYear();
+
+// Create a formatted string
+var formattedDate = day + '/' + month + '/' + year;
+
 
 try{
 
@@ -42,8 +53,8 @@ const hashedPassword = await hashPassword(password);
     tel:tel,
     created_at : created_at,
     created_by : created_by,
-    last_visit:Date(),
-    updated_at: Date(),
+    last_visit:formattedDate,
+    updated_at: formattedDate,
     status:0,
 
    };
@@ -56,7 +67,7 @@ const hashedPassword = await hashPassword(password);
     }else{
     res.status(200).json({message:"Account not created successfully.. ",statusCode:200});
     }
-    const users = await collection.find({userID:newUser.userID}).toArray();
+    // const users = await collection.find({userID:newUser.userID}).toArray();
     
 }
 

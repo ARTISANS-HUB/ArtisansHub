@@ -1,7 +1,7 @@
 import TopNavBar from "../platform/includes/topNavBar";
 import PlatformFooter from "../platform/includes/platformFooter";
 import "../../css/platform.css";
-
+import "../../css/artisanAndBuyerTopBarNav.css";
 const Index = () => {
 	return (
 		<div>

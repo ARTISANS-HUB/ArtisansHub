@@ -150,8 +150,6 @@ const ProfilePage =  () => {
   //handle notifications
  function closeNotificationSuccess() {
             const notification = document.getElementById('notification-success');
-
-
           if(notification!==null){
             notification.style.display = 'none';
           }

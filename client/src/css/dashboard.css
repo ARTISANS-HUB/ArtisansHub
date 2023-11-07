@@ -587,6 +587,7 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 8px;
   padding-left: 9px; 
   padding-top: 4px;
   padding-bottom: 4px;
+  z-index: 99;
   /* Add padding for better appearance */
 }
 
@@ -610,7 +611,7 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 8px;
   }
 }
 
-/* Styles for the action menu (initially hidden) */
+
 /* Styles for the action menu (initially hidden) */
 .action-menu {
   display: none;
@@ -626,6 +627,7 @@ box-shadow: rgba(0, 0, 0, 0.35) 0px 2px 8px;
       color: #fff;
       border-radius: 5px;
       text-align: left;
+      z-index: 99;
 }
 
 /* Styles for the action menu items */

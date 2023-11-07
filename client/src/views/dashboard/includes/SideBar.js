@@ -1,7 +1,34 @@
 
 import { Link} from 'react-router-dom';
+import { useEffect} from 'react'
 
 const SideBar = () => {
+
+
+  useEffect(() => {
+    const body = document.querySelector("body");
+    let sidebar = body.querySelector("nav");
+    let sidebarToggle = body.querySelector(".sidebar-toggle");
+
+
+    function handleSidebarToggle() {
+      sidebar.classList.toggle("close");
+      if (sidebar.classList.contains("close")) {
+        localStorage.setItem("status", "close");
+      } else {
+        localStorage.setItem("status", "open");
+      }
+    }
+
+
+
+     sidebarToggle.addEventListener("click", handleSidebarToggle);
+
+    // Cleanup function to remove event listeners
+    return () => {
+       sidebarToggle.removeEventListener("click", handleSidebarToggle);
+    };
+  }, []);
 
 	return (
       <nav  className="dashboard-nav"  >
