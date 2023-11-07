@@ -11,6 +11,8 @@ const [ artisans , setArtisans]=useState(0);
 const [ buyers , setBuyers]=useState(0);
 const [ services , setServices]=useState(0);
 const [ feedbacks , setFeedbacks]=useState(0);
+const [ supports , setSetSupport]=useState(0);
+
 
 useEffect(() => {
 api_connect.get('/auth/fetch-users')
@@ -87,6 +89,19 @@ const statusCode = response.data.statusCode;
   });
 
 
+api_connect.get('/auth/fetch-supports')
+  .then((response) => {
+const statusCode = response.data.statusCode;
+
+    if (response.status === 200) { 
+      setSetSupport(response.data.length);
+     } else if (statusCode===404) {
+      statusCode(0);
+     }
+  })
+  .catch((error) => {
+    console.error('Error fetching artisans:', error);
+  });
 
 }, [api_connect])
 
@@ -115,6 +130,11 @@ const statusCode = response.data.statusCode;
                         <i className="uil uil-user"></i>
                         <span className="text">Buyers</span>
                         <span className="number">{buyers}</span>
+                    </div>
+                    <div className="box box3">
+                        <i className="uil uil-user"></i>
+                        <span className="text">Supports</span>
+                        <span className="number">{supports}</span>
                     </div>
                     <div className="box box3">
                         <i className="uil uil-comments"></i>

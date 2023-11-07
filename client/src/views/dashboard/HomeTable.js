@@ -82,7 +82,7 @@ searchInputtable.removeEventListener("keyup", SearchTable );
 </div>
 
 
-<input type="text" id="searchInput-table" className="searchInput-table" placeholder="Search for names.." title="Type in anything..." />
+<input type="text" id="searchInput-table" className="searchInput-table" placeholder="Search for anything.." title="Type in anything..." />
 
 <div className="table-container">
 <table id="myTable">
@@ -93,7 +93,7 @@ searchInputtable.removeEventListener("keyup", SearchTable );
 
         <th data-sort="location">Location</th>
 
-        <th>Action</th>
+        
     </tr>
 </thead>
 
@@ -107,119 +107,55 @@ searchInputtable.removeEventListener("keyup", SearchTable );
 <tr>
   <td>John Forson</td>
   <td>Kumasi</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete" id="userIdButton" datauserid="5555" datausername="Berglunds snabbkop"  ></i></Link>
-    </div>
-  </td>
+  
 </tr>
 
 <tr>
   <td>Paul Marts</td>
   <td>Accra</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete" id="userIdButton" datauserid="6666" datausername="Berglunds snabbkop"   ></i></Link>
-    </div>
-  </td>
+ 
 </tr>
 <tr>
   <td>Esi Tom</td>
   <td>Cape Coast</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete"></i></Link>
-    </div>
-  </td>
+  
 </tr>
 <tr>
   <td>Hariet Sam </td>
   <td>Takoradi</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete" id="userIdButton" datauserid="3333"  ></i></Link>
-    </div>
-  </td>
+  
 </tr>
 <tr>
   <td>Abigail Sarpomah</td>
   <td>Tarkwa</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete" id="userIdButton" datauserid="444"  ></i></Link>
-    </div>
-  </td>
+ 
 </tr>
 <tr>
   <td>Berglunds snabbkop</td>
   <td>Sweden</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete"></i></Link>
-    </div>
-  </td>
+  
+</tr><tr>
+  <td>Berglunds snabbkop</td>
+  <td>Sweden</td>
+  
+</tr><tr>
+  <td>Berglunds snabbkop</td>
+  <td>Sweden</td>
+ 
 </tr><tr>
   <td>Berglunds snabbkop</td>
   <td>Sweden</td>
   <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete"></i></Link>
-    </div>
+    
   </td>
 </tr><tr>
   <td>Berglunds snabbkop</td>
   <td>Sweden</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete"></i></Link>
-    </div>
-  </td>
+ 
 </tr><tr>
   <td>Berglunds snabbkop</td>
   <td>Sweden</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete"></i></Link>
-    </div>
-  </td>
-</tr><tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete"></i></Link>
-    </div>
-  </td>
-</tr><tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
-  <td className="menu-icon">
-    <span className="menu-icon-content">&#8942;</span>
-    <div className="table-dropdown dropdown-2">
-      <Link to="#"><i className="fas fa-edit edit-icon" title="Edit"></i></Link>
-      <Link to="#"><i className="fas fa-trash delete-icon" title="Delete"></i></Link>
-    </div>
-  </td>
+ 
 </tr>
             
  

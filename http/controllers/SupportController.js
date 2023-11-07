@@ -9,7 +9,20 @@ var EMAIL_USERNAME = process.env.EMAIL_USERNAME;
 
 const supports = async ( req , res , next ) => {
 
+try{
+//query
+db = await connectToDB();
 
+const collection = db.collection('supports');
+
+ const support = await collection.find().toArray();
+ res.json(support);
+
+}
+catch(error){
+     res.status(501).json({ statusCode : 501 });
+    logger.log('error','['+Date()+']can not fetch all Users...'+ error);
+}
 }
 
 //add support
