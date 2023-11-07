@@ -68,8 +68,12 @@ const Login = () => {
 
   //redirect google login
   const handleLoginWithGoogle = () => {
-    // Redirect the user to your server for Google authentication
-    window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
+
+    //dev
+    //window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
+
+    //pro
+    window.location.href = process.env.REACT_APP_API_URL_PRO + '/google/auth';
 
   };
 
