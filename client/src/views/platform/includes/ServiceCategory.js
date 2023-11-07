@@ -53,7 +53,7 @@ const ServiceCategory = () => {
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: 2,
             slidesToScroll: 1
           }
         }
@@ -68,17 +68,17 @@ const ServiceCategory = () => {
         <h2 className='service-title'>
                 service category
         </h2>
-        <div className='category-card'>
+        {/* <div className='category-card'> */}
         <div className='card'>
             <Slider {...settings}>
                 {cartCategories.map((category,index) => {
               
-                  return <Categories key={index}  icon={category.icon} title={category.title} category={category.category} handleFilterChange={handleFilterChange} />
+                  return <Categories key={index}  icon={category.icon} title={category.title} category={category.category} handleFilterChange={handleFilterChange} bgColor={category.bgColor} />
                 })
               }
             </Slider>
             </div>
-        </div>
+        {/* </div> */}
 
       <Link to={"#"} className='category-filter' style={{textDecoration:"none"}}>
  

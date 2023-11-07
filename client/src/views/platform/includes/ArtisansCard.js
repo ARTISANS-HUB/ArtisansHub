@@ -45,10 +45,14 @@ const ArtisansCard = () => {
       };
 
   return (
-    <div className='artisans-card-container'>
-        <h2 className='artisans-card-header'>
+    <>
+      <h2 className='artisans-card-header'>
             Artisans
         </h2>
+    <div className='artisans-card-container'>
+    {/* <h2 className='artisans-card-header'>
+            Artisans
+        </h2> */}
         <div className='artisans-card-bottom'>
 
        <div className='artisans-card-list'>
@@ -71,6 +75,7 @@ const ArtisansCard = () => {
         </div>
 
     </div>
+    </>
   )
 }
 

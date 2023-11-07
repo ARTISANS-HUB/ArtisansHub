@@ -1,5 +1,5 @@
 import { Link } from "react-router-dom";
-import "../../../css/createBuyer.css";
+// import "../../../css/createBuyer.css";
 import "../../../css/topNavBar.css"
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
 import {faBell} from "@fortawesome/free-solid-svg-icons"

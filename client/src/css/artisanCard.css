@@ -1,7 +1,7 @@
 .artisan-card{
     /* background: #fe9931; */
     background: #fff;
-    width: 17rem;
+    width: 18.5rem;
     height: auto;
     padding: 20px 0;
     border-radius: 10px;
@@ -60,3 +60,5 @@
    border-radius: 10px;
    cursor: pointer;
 }
+
+

@@ -10,7 +10,7 @@ const Index = () => {
 	return (
 		<div>
 	
-		{/* <TopNavBar/> */}
+		<TopNavBar/>
 		<Banner/>
 		<ServiceCategory/>
 		<ArtisansCard/>
