@@ -1,12 +1,14 @@
 import TopNavBar from "../platform/includes/topNavBar";
 import PlatformFooter from "../platform/includes/platformFooter";
+import ContactForm from "./includes/ContactForm";
+// import "../../css/contactForm.css"
 
 const Contact = () => {
 	return (
 		<div>
 		< TopNavBar/>
-			<h1>Contact</h1>
-< PlatformFooter />
+			<ContactForm/>
+		< PlatformFooter />
 		</div>
 	)
 }
