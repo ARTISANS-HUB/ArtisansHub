@@ -1,0 +1,138 @@
+nav .TopNavBar-platform {
+  width: 90%;
+  margin: 30px auto;
+  box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
+  padding: 20px;
+}
+nav .TopNavBar-platform-inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 80%;
+  margin: 0 auto;
+}
+nav .logo {
+  width: 20%;
+}
+
+nav .logo {
+  text-decoration: none;
+  border: 1px solid red;
+  font-size: 20px;
+  font-weight: bold;
+  color: #000;
+  text-decoration: none;
+  border: none;
+}
+nav .search-bar {
+  width: 40%;
+  text-align: center;
+}
+nav .search-bar input {
+  border-radius: 10px;
+  height: 5vh;
+}
+nav .navbar {
+  display: flex;
+  width: 30%;
+  justify-content: space-between;
+}
+nav .navbar .contact {
+  text-decoration: none;
+  font-weight: bold;
+  color: #000;
+  text-decoration-line: none;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+nav .navbar .become-button {
+  width: 75%;
+  padding: 5px;
+  border: none;
+  font-weight: bold;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+nav .navbar .become-button:hover {
+  color: orange;
+}
+nav .navbar .notification {
+  font-size: 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: orange;
+  cursor: pointer;
+}
+nav .navbar .notification:hover {
+  color: #000;
+}
+nav .bars{
+    display: none;
+}
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  nav .TopNavBar-platform {
+    width: 100%;
+    margin: 0px auto;
+    height: 50vh;
+    box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
+    
+  }
+  nav .TopNavBar-platform-inner {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    text-align: center;
+  }
+  nav .TopNavBar-platform-inner .logo {
+    width: 100%;
+    margin: 20px auto;
+  }
+  nav .TopNavBar-platform-inner .logo i {
+    text-decoration: none;
+    font-size: 1.4rem;
+    font-weight: bold;
+    color: #000;
+  }
+
+  nav .TopNavBar-platform-inner .search-bar {
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+    border: 1px soild red;
+  }
+  
+  nav .TopNavBar-platform-inner .navbar {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  nav .TopNavBar-platform-inner .navbar .contact {
+    text-align: center;
+    width: 100%;
+    margin: 0 auto;
+  }
+  nav .TopNavBar-platform-inner .navbar .contact i{
+    font-size: 0.9rem;
+  }
+  nav .navbar .become-button {
+    font-size: 1rem;
+    font-weight: normal;
+    width: 120%;
+    margin: 20px auto;
+    text-align: center;
+  }
+ nav .navbar .notification{
+    width: 100;
+    margin: 10px auto;
+  }
+  nav .bars{
+    display: block;
+    float: right;
+    font-size: 2rem;
+    margin: 20px;
+    cursor: pointer;
+  }
+}
