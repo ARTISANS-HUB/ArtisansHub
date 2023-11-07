@@ -215,8 +215,6 @@ else{
 
 if(password === repassword || repassword === password){
 
-
-
 //lower cases
 var lowerCaseLetters = /[a-z]/g;
 // Validate capital letters
@@ -272,7 +270,7 @@ return (
 
 <div className="forget-password-form-container">
 
-{ user_response_type == '' || 'invalid_user'   && suc_verified == false &&  (
+{ user_response_type == 'invalid_user'   && suc_verified == false &&  (
 
 
 		
