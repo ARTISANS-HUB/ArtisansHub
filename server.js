@@ -146,10 +146,6 @@ const upload = multer({ storage: storage });
 const profileUpload = multer({ storage: storage2 });
 const profileUploadpic = multer({ storage: storage3 });
 
-
- // var YOUR_CLIENT_ID = '530295393593-8fgv9m3h3ccc90cf6dlht76i971kptk2.apps.googleusercontent.com';
- // var YOUR_CLIENT_SECRET = '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';
-
 app.use(passport.initialize());
 app.use(passport.session());
 
@@ -158,10 +154,10 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET_LOGIN,
 
   //developing
-  callbackURL: process.env.SERVER_APP_URL_CALLBACK_DEV+'/auth/callback',
+  //callbackURL: process.env.SERVER_APP_URL_CALLBACK_DEV+'/auth/callback',
   
   //production
-  //callbackURL: process.env.SERVER_API_URL_PRO+'/auth/callback',
+  callbackURL: process.env.SERVER_API_URL_PRO+'/auth/callback',
 
 }, (accessToken, refreshToken, profile, done) => {
   // 'profile' contains user information, including the email

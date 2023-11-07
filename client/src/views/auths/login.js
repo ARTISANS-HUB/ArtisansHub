@@ -68,8 +68,12 @@ const Login = () => {
 
   //redirect google login
   const handleLoginWithGoogle = () => {
-    // Redirect the user to your server for Google authentication
-    window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
+
+    //dev
+    //window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
+
+    //pro
+    window.location.href = process.env.REACT_APP_API_URL_PRO + '/google/auth';
 
   };
 
@@ -112,7 +116,7 @@ const Login = () => {
 
               <div className="login-options" >
 
-                <button type="button" title="login" className="login-options-submit-btn button-60" role="button"  onClick={handleLoginWithGoogle}>
+                <button type="button" title="login" className="login-options-submit-btn button-60"  onClick={handleLoginWithGoogle}>
                <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
                 </button>
 

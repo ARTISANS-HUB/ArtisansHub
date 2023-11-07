@@ -1,160 +1,160 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as XLSX from 'xlsx'; 
+import * as XLSX from 'xlsx';
 
 import { deleteArtisanController } from "../../controllers/DeleteController";
 //importing session
 import Usersession from '../dashboard/session/Usersession'
-const ArtisansTable = ( props ) => {
+const ArtisansTable = (props) => {
 
- //initiate  to check user session
-Usersession();
+  //initiate  to check user session
+  Usersession();
 
-   const getResponseMsg = localStorage.getItem('message');
-   const reponse_message_code = localStorage.getItem('reponse_message_code');
-	// handle delete , send id to controller
-const handleDelete = async (artisanId) => {
+  const getResponseMsg = localStorage.getItem('message');
+  const reponse_message_code = localStorage.getItem('reponse_message_code');
+  // handle delete , send id to controller
+  const handleDelete = async (artisanId) => {
     await deleteArtisanController(artisanId);
     return;
-};
+  };
 
 
-//clear message after effect
- useEffect(() => {
+  //clear message after effect
+  useEffect(() => {
 
-    
-setTimeout(()=>{
- localStorage.removeItem('message');
- localStorage.removeItem('reponse_message_code');
-},6000)
 
-   
+    setTimeout(() => {
+      localStorage.removeItem('message');
+      localStorage.removeItem('reponse_message_code');
+    }, 6000)
+
+
   }, [reponse_message_code]);
 
- useEffect(() => {
+  useEffect(() => {
 
     //handle notifications
- function closeNotificationSuccess() {
-            const notification = document.getElementById('notification-success');
-            notification.style.display = 'none';
- }
-
-  function closeNotificationError() {
-            const notification = document.getElementById('notification-error');
-            notification.style.display = 'none';
-        }
-
-const sucess_close_btn =  document.getElementById('sucess_close_btn');
-
-const error_close_btn =  document.getElementById('error_close_btn');
-
-
-//add listeners sucess
-if (sucess_close_btn) {
-sucess_close_btn.addEventListener('click',closeNotificationSuccess);   
-}
-
-
-if (error_close_btn) {
-  error_close_btn.addEventListener('click',closeNotificationError);
-}
-
-
-///remove listeners after 
-return (()=>{
-
-if (sucess_close_btn) {
-sucess_close_btn.removeEventListener('click',closeNotificationSuccess);  
-}
-
-
-if (error_close_btn) {
-  error_close_btn.removeEventListener('click',closeNotificationError);
-}
-
-});
-
- }, [reponse_message_code])
-
-
-//delete modal
-    const [  artisanId , setartisanId ] = useState('');
-    const tabledeleteUsersModal = document.getElementById("tabledeleteUsersModal");
-    let usernamedelete = document.getElementById("username-delete");
-      let temp_artisanId ;
-
-    function handleartisanIdBtn(event) {
-      tabledeleteUsersModal.style.display = "block";
-      temp_artisanId = event.target.getAttribute("dataartisanId");
-      usernamedelete.textContent = event.target.getAttribute("artisanUsername");
-      setartisanId(temp_artisanId);
-      //alert(artisanId);
-      //alert(usernamedelete);
+    function closeNotificationSuccess() {
+      const notification = document.getElementById('notification-success');
+      notification.style.display = 'none';
     }
 
-      function handleconfirmDelete(event) {
-
-      tabledeleteUsersModal.style.display = "none";
-      //alert('logged out');
-      handleDelete(artisanId);
-      //alert(artisanId);
+    function closeNotificationError() {
+      const notification = document.getElementById('notification-error');
+      notification.style.display = 'none';
     }
 
-    function handlecancelDelete() {
-      tabledeleteUsersModal.style.display = "none";
-      //alert('cancelled');
-    }
+    const sucess_close_btn = document.getElementById('sucess_close_btn');
 
-    //edit
-     const handleArtisanPrevBtn = async (event)=>{
+    const error_close_btn = document.getElementById('error_close_btn');
 
-      let previewArtisanId = event.target.getAttribute("dataartisanId");
-      let artisanUsername = event.target.getAttribute("artisanUsername");
-      let artisanusermail = event.target.getAttribute("userusermail");
-      let artisanprofile = event.target.getAttribute("artisanprofile");
-      let artisanTel = event.target.getAttribute("usertel");
-      let work_exp= event.target.getAttribute("work_exp");
-      let work_ref_1 = event.target.getAttribute("work_ref_1");
-      let work_ref_2 = event.target.getAttribute("work_ref_2");
-      let verified = event.target.getAttribute("verified");
 
-      let artisanlocation = event.target.getAttribute("artisanlocation");
-      let last_seen = event.target.getAttribute("last_seen");
-      let work_days = event.target.getAttribute("work_days_from") +'-'+ event.target.getAttribute("work_days_to");
-      let ready_for_work = event.target.getAttribute('ready_for_work');
-      let artisanExpt = event.target.getAttribute("artisanExpt");
-      let artisanRole = event.target.getAttribute("artisanRole");
-      let work_tel= event.target.getAttribute("work_tel");
-
-      let artisanupdated_at= event.target.getAttribute("artisanupdated_at");
-
-      localStorage.setItem('previewArtisanId',previewArtisanId);
-      localStorage.setItem('artisanUsername',artisanUsername);
-      localStorage.setItem('artisanusermail',artisanusermail);
-      localStorage.setItem('artisanprofile',artisanprofile);
-      localStorage.setItem('work_exp',work_exp);
-      localStorage.setItem('work_ref_1',work_ref_1);
-      localStorage.setItem('work_ref_2',work_ref_2);
-      localStorage.setItem('work_tel',work_tel);
-      localStorage.setItem('verified',verified);
-
-      localStorage.setItem('artisanlocation',artisanlocation);
-      localStorage.setItem('last_seen',last_seen);
-      localStorage.setItem('work_days',work_days);
-      localStorage.setItem('ready_for_work',ready_for_work);
-
-      localStorage.setItem('artisanTel',artisanTel);
-      localStorage.setItem('artisanExpt',artisanExpt);
-      localStorage.setItem('artisanRole',artisanRole);
-      localStorage.setItem('artisanupdated_at',artisanupdated_at);
-
-   
-
+    //add listeners sucess
+    if (sucess_close_btn) {
+      sucess_close_btn.addEventListener('click', closeNotificationSuccess);
     }
 
 
-  useEffect( () => {
-      function SearchTable() {
+    if (error_close_btn) {
+      error_close_btn.addEventListener('click', closeNotificationError);
+    }
+
+
+    ///remove listeners after 
+    return (() => {
+
+      if (sucess_close_btn) {
+        sucess_close_btn.removeEventListener('click', closeNotificationSuccess);
+      }
+
+
+      if (error_close_btn) {
+        error_close_btn.removeEventListener('click', closeNotificationError);
+      }
+
+    });
+
+  }, [reponse_message_code])
+
+
+  //delete modal
+  const [artisanId, setartisanId] = useState('');
+  const tabledeleteUsersModal = document.getElementById("tabledeleteUsersModal");
+  let usernamedelete = document.getElementById("username-delete");
+  let temp_artisanId;
+
+  function handleartisanIdBtn(event) {
+    tabledeleteUsersModal.style.display = "block";
+    temp_artisanId = event.target.getAttribute("dataartisanId");
+    usernamedelete.textContent = event.target.getAttribute("artisanUsername");
+    setartisanId(temp_artisanId);
+    //alert(artisanId);
+    //alert(usernamedelete);
+  }
+
+  function handleconfirmDelete(event) {
+
+    tabledeleteUsersModal.style.display = "none";
+    //alert('logged out');
+    handleDelete(artisanId);
+    //alert(artisanId);
+  }
+
+  function handlecancelDelete() {
+    tabledeleteUsersModal.style.display = "none";
+    //alert('cancelled');
+  }
+
+  //edit
+  const handleArtisanPrevBtn = async (event) => {
+
+    let previewArtisanId = event.target.getAttribute("dataartisanId");
+    let artisanUsername = event.target.getAttribute("artisanUsername");
+    let artisanusermail = event.target.getAttribute("userusermail");
+    let artisanprofile = event.target.getAttribute("artisanprofile");
+    let artisanTel = event.target.getAttribute("usertel");
+    let work_exp = event.target.getAttribute("work_exp");
+    let work_ref_1 = event.target.getAttribute("work_ref_1");
+    let work_ref_2 = event.target.getAttribute("work_ref_2");
+    let verified = event.target.getAttribute("verified");
+
+    let artisanlocation = event.target.getAttribute("artisanlocation");
+    let last_seen = event.target.getAttribute("last_seen");
+    let work_days = event.target.getAttribute("work_days_from") + '-' + event.target.getAttribute("work_days_to");
+    let ready_for_work = event.target.getAttribute('ready_for_work');
+    let artisanExpt = event.target.getAttribute("artisanExpt");
+    let artisanRole = event.target.getAttribute("artisanRole");
+    let work_tel = event.target.getAttribute("work_tel");
+
+    let artisanupdated_at = event.target.getAttribute("artisanupdated_at");
+
+    localStorage.setItem('previewArtisanId', previewArtisanId);
+    localStorage.setItem('artisanUsername', artisanUsername);
+    localStorage.setItem('artisanusermail', artisanusermail);
+    localStorage.setItem('artisanprofile', artisanprofile);
+    localStorage.setItem('work_exp', work_exp);
+    localStorage.setItem('work_ref_1', work_ref_1);
+    localStorage.setItem('work_ref_2', work_ref_2);
+    localStorage.setItem('work_tel', work_tel);
+    localStorage.setItem('verified', verified);
+
+    localStorage.setItem('artisanlocation', artisanlocation);
+    localStorage.setItem('last_seen', last_seen);
+    localStorage.setItem('work_days', work_days);
+    localStorage.setItem('ready_for_work', ready_for_work);
+
+    localStorage.setItem('artisanTel', artisanTel);
+    localStorage.setItem('artisanExpt', artisanExpt);
+    localStorage.setItem('artisanRole', artisanRole);
+    localStorage.setItem('artisanupdated_at', artisanupdated_at);
+
+
+
+  }
+
+
+  useEffect(() => {
+    function SearchTable() {
       var input, filter, table, tr, td, i, j, txtValue, noResultsRow;
       input = document.getElementById("searchInput-table");
       filter = input.value.toUpperCase();
@@ -206,11 +206,11 @@ if (error_close_btn) {
 
     searchInputtable.addEventListener("keyup", SearchTable);
 
-   
+
     //remove effect
     return () => {
       searchInputtable.removeEventListener("keyup", SearchTable);
-       };
+    };
   }, []);
 
   //consert table to xlsx data
@@ -221,16 +221,18 @@ if (error_close_btn) {
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
     XLSX.writeFile(wb, 'ARTISANS.xlsx');
   };
-	return (
+
+
+  return (
 		    <>
       <div className="title" id="top-button-table">
         <div className="tab-controll">
           <i className="uil uil-user"></i>
-          <span className="text"> ARTISANS ( { props.artisans ?  props.artisans.length : 0})</span>
+          <span className="text"> ARTISANS ( {props.artisans ? props.artisans.length : 0})</span>
         </div>
 
         <div className="add-user">
-         
+
           <button onClick={exportToExcel} className="link-export-data" >
             <i className="fa fa-download" title="export data"></i> <span></span>  </button>
         </div>
@@ -239,7 +241,7 @@ if (error_close_btn) {
       <input
         type="text"
         id="searchInput-table"
-         className="searchInput-table"
+        className="searchInput-table"
         placeholder="Search for anything.."
         title="Type in anything..."
       />
@@ -248,7 +250,7 @@ if (error_close_btn) {
         <table id="myTable">
           <thead>
             <tr className="header">
-              <th style={{width:'10px'}}></th>
+              <th style={{ width: '10px' }}></th>
               <th data-sort="name">Name</th>
               <th data-sort="expertise">Expertise</th>
               <th data-sort="">Verfified</th>
@@ -267,112 +269,112 @@ if (error_close_btn) {
               <td colSpan="3">No results found</td>
             </tr>
 
-         {
-
-   props.artisans.length > 0 && props.artisans  ? ( 
-            props.artisans.map( ( artisan , index) => (
-<tr key={artisan._id}>
-             
-             {
-              artisan.status == 0 &&
-
-<td><div class="user-status offline"></div> </td>
-                
-             }
-
-                          {
-              artisan.status == 1 &&
-            
-<td><div class="user-status online"></div>
-       </td>
-               
-             }
-
-
-
-              <td>{artisan.username}</td>
-               <td>{artisan.expertise}</td>
-
-
             {
-              artisan.verified == 0 &&
-              
-           <td style={{color:'yellow'}}> Pending </td>
-                
-             }  
 
-             {
-           artisan.verified == 1 &&
-           <td style={{color:'green'}}>Yes</td>
-                
-             } 
+              props.artisans.length > 0 && props.artisans ? (
+                props.artisans.map((artisan, index) => (
+                  <tr key={artisan._id}>
 
-             {
-           artisan.verified == 2 &&
-           <td style={{color:'red'}}>Rejected</td>
-                
-             } 
+                    {
+                      artisan.status == 0 &&
 
-              <td>{artisan.location}</td>
-              <td>{artisan.usermail}</td>
-              <td>{artisan.tel}</td>
-              <td>{artisan.created_at}</td>
-              <td>{artisan.updated_at}</td>
-              <td className="menu-icon">
-                <span className="menu-icon-content">&#8942;</span>
-                <div className="table-dropdown dropdown-1">
-                  <Link to="/auth/dashboard/preview-artisan">
-                    <i className="fas fa-eye edit-icon" title="Preview"
-                     dataartisanId={artisan.artisanId}
-                     artisanUsername={artisan.username}
-                     onClick={handleArtisanPrevBtn}
-                     userusermail={artisan.usermail}
-                     artisanprofile={artisan.profile}
-                     usertel={artisan.tel}
-                     work_days_from={artisan.work_days_from}
-                     work_days_to={artisan.work_days_to}
-                     ready_for_work={artisan.ready_for_work}
-                     last_seen={artisan.last_seen}
-                     artisanlocation={artisan.location}
-                     artisanExpt={artisan.expertise}
-                     artisanRole={artisan.role}
-                     work_exp={artisan.work_exp}
-                     work_ref_2={artisan.work_ref_2}
-                     work_ref_1={artisan.work_ref_1}
-                     work_tel={artisan.work_tel}
-                     verified={artisan.verified}
-                     artisancreated_at={artisan.created_at}
-                     artisanupdated_at={artisan.updated_at}
+                      <td><div class="user-status offline"></div> </td>
 
-                    ></i>
-                  </Link>
-                  <Link to="#">
-                    <i
-                      className="fas fa-trash delete-icon"
-                      title="Delete"
-                      id="artisanIdBtn"
-                      dataartisanId={artisan.artisanId}
-                      artisanUsername={artisan.username}
-                      onClick={handleartisanIdBtn}
-                    ></i>
-                  </Link>
-                </div>
-              </td>
-            </tr> ))
+                    }
 
-            ):(
+                    {
+                      artisan.status == 1 &&
 
-            <tr className="">
-              <td colSpan="3">Loading data...</td>
-            </tr>
+                      <td><div class="user-status online"></div>
+                      </td>
 
-            )
+                    }
 
 
-}
 
-          
-        </tbody>
+                    <td>{artisan.username}</td>
+                    <td>{artisan.expertise}</td>
+
+
+                    {
+                      artisan.verified == 0 &&
+
+                      <td style={{ color: 'yellow' }}> Pending </td>
+
+                    }
+
+                    {
+                      artisan.verified == 1 &&
+                      <td style={{ color: 'green' }}>Yes</td>
+
+                    }
+
+                    {
+                      artisan.verified == 2 &&
+                      <td style={{ color: 'red' }}>Rejected</td>
+
+                    }
+
+                    <td>{artisan.location}</td>
+                    <td>{artisan.usermail}</td>
+                    <td>{artisan.tel}</td>
+                    <td>{artisan.created_at}</td>
+                    <td>{artisan.updated_at}</td>
+                    <td className="menu-icon">
+                      <span className="menu-icon-content">&#8942;</span>
+                      <div className="table-dropdown dropdown-1">
+                        <Link to="/auth/dashboard/preview-artisan">
+                          <i className="fas fa-eye edit-icon" title="Preview"
+                            dataartisanId={artisan.artisanId}
+                            artisanUsername={artisan.username}
+                            onClick={handleArtisanPrevBtn}
+                            userusermail={artisan.usermail}
+                            artisanprofile={artisan.profile}
+                            usertel={artisan.tel}
+                            work_days_from={artisan.work_days_from}
+                            work_days_to={artisan.work_days_to}
+                            ready_for_work={artisan.ready_for_work}
+                            last_seen={artisan.last_seen}
+                            artisanlocation={artisan.location}
+                            artisanExpt={artisan.expertise}
+                            artisanRole={artisan.role}
+                            work_exp={artisan.work_exp}
+                            work_ref_2={artisan.work_ref_2}
+                            work_ref_1={artisan.work_ref_1}
+                            work_tel={artisan.work_tel}
+                            verified={artisan.verified}
+                            artisancreated_at={artisan.created_at}
+                            artisanupdated_at={artisan.updated_at}
+
+                          ></i>
+                        </Link>
+                        <Link to="#">
+                          <i
+                            className="fas fa-trash delete-icon"
+                            title="Delete"
+                            id="artisanIdBtn"
+                            dataartisanId={artisan.artisanId}
+                            artisanUsername={artisan.username}
+                            onClick={handleartisanIdBtn}
+                          ></i>
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>))
+
+              ) : (
+
+                <tr className="">
+                  <td colSpan="3">Loading data...</td>
+                </tr>
+
+              )
+
+
+            }
+
+
+          </tbody>
         </table>
       </div>
 
@@ -384,34 +386,34 @@ if (error_close_btn) {
 
           <div className="action-buttons">
             <button id="confirmDelete" onClick={handleconfirmDelete} >Yes</button>
-            <button id="cancelDelete"  onClick={handlecancelDelete} >Cancel</button>
+            <button id="cancelDelete" onClick={handlecancelDelete} >Cancel</button>
           </div>
         </div>
       </div>
 
-      { !getResponseMsg == ""  && reponse_message_code == 200 && ( 
+      {!getResponseMsg == "" && reponse_message_code == 200 && (
 
-<div class="notification-success" id="notification-success">
-        <span  class="inner-notifications" >
-        <div> {getResponseMsg}</div>
-        <div class="close-button" id="sucess_close_btn" title="Close" >x</div> 
-        </span>
- </div>
-)
+        <div class="notification-success" id="notification-success">
+          <span class="inner-notifications" >
+            <div> {getResponseMsg}</div>
+            <div class="close-button" id="sucess_close_btn" title="Close" >x</div>
+          </span>
+        </div>
+      )
 
-}
+      }
 
 
-{ !getResponseMsg == "" && reponse_message_code == 501  &&  (
-      <div class="notification-error" id="notification-error">
-        <span  class="inner-notifications" >
-        <div> {getResponseMsg}</div>
-        <div class="close-button" id="error_close_btn" title="Close" >x</div> 
-        </span>
-    < /div>
+      {!getResponseMsg == "" && reponse_message_code == 501 && (
+        <div class="notification-error" id="notification-error">
+          <span class="inner-notifications" >
+            <div> {getResponseMsg}</div>
+            <div class="close-button" id="error_close_btn" title="Close" >x</div>
+          </span>
+          < /div>
 )  }
-    </>
-	)
-}
+        </>
+      )
+  }
 
-export default ArtisansTable
+      export default ArtisansTable
