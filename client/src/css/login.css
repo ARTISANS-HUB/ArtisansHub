@@ -9,10 +9,15 @@
 
          .login-view .left {
             flex: 1;
-            background-image: url('../uploads/bg2.webp'); /* Change to your image URL */
+/* background-image: url('../uploads/bg2.webp'); /* Change to your image URL */
             background-size: cover;
             border-radius: 8px 0 0 8px;
             height: 100vh;
+        }
+
+        .login-view .left img{
+            width: 100%;
+            height: 100%;
         }
 
 
