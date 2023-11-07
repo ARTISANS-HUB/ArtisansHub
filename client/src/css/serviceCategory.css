@@ -8,7 +8,7 @@
 }
 
 .category-container{
-    padding: 10px 0;
+    /* padding: 10px 0; */
 
 
 }
@@ -61,10 +61,25 @@
     margin-top: 20px;
     display: flex;
     align-items: center;
-    justify-content: center;
+    /* justify-content: space-between; */
+    gap: 10px;
+    /* flex-wrap: wrap; */
+    overflow-x: scroll;
+    margin-bottom: -4rem;
     
 }
 
+.category-filter::-webkit-scrollbar{
+    width: 10px;
+    height: 10px;
+}
+.category-filter::-webkit-scrollbar-track{
+   background: #fff
+}
+.category-filter::-webkit-scrollbar-thumb{
+    background: #fff
+}
+
 .slick-prev:before, .slick-next:before{
-    color: #000 !important;
+    color: #fe9931 !important;
 }

@@ -1,19 +1,47 @@
+
 .filter-category-container{
     /* width: 90%; */
-    margin:40px auto;
+    margin:5rem auto;
     /* background: #000; */
+    /* overflow-x: auto;
+    display: flex; */
 }
 
 .filter-category-container .filter-category-card{
     width: 15rem;
     height: 15rem;
-    background-color: #d1d1d1;
+
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    position: relative;
+   
+}
+
+.filter-category-card h3{
+    color: #fff;
+    background: #fe9931;
+    padding: 5px 10px;
+    border-radius: 3px;
 }
 
 .filter-category-card p{
     text-align: center;
+}
+
+.filter-category-card .filter-category-card-img{
+    width: 15rem;
+    height: 15rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    /* border-radius: 50%; */
+    position: absolute;
+    top: -2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: -1;
 }

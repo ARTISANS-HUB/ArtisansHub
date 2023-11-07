@@ -7,32 +7,23 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { cartCategories, categoryData } from './utils';
 import FilterCategory from './FilterCategory';
+import myImage from "../../../uploads/bg.jpeg"
+import {Link } from 'react-router-dom'; 
 
 const ServiceCategory = () => {
-  const [cards,setCards]=useState(categoryData)
+  const [filteredCards, setFilteredCards] = useState(categoryData);
+  const [filteredCategory, setFilteredCategory] = useState(cartCategories);
 
-  const [filterOption,setFilterOption]= useState(["all","cleaning"])
-  const [filter,setFilter] = useState("all")
+  const filterCards = (buttonValue) => {
+    console.log(buttonValue);
+    const filteredCards = categoryData.filter((card) => card.category === buttonValue);
+    setFilteredCards(filteredCards);
+  };
 
- const filterCards=()=>{
-  const filteredCards = cards.filter((card)=>{
-    if(filter ==="all"){
-      return true
-    }else{
-      return card.category === filter
-    }
-  })
-console.log(filteredCards)
-  setCards(filteredCards)
- } 
-
- const handleFilterChange = (e)=>{
-  const selectedFilter = e.target.value;
-  console.log(selectedFilter)
-  setFilter(selectedFilter)
- }
-
-
+  const handleFilterChange = (e) => {
+    const buttonValue = e.target.value;
+    filterCards(buttonValue);
+  };
 
   const settings = {
     dots: true,
@@ -62,7 +53,7 @@ console.log(filteredCards)
         {
           breakpoint: 480,
           settings: {
-            slidesToShow: 1,
+            slidesToShow: 2,
             slidesToScroll: 1
           }
         }
@@ -77,24 +68,28 @@ console.log(filteredCards)
         <h2 className='service-title'>
                 service category
         </h2>
-        <div className='category-card'>
+        {/* <div className='category-card'> */}
         <div className='card'>
             <Slider {...settings}>
                 {cartCategories.map((category,index) => {
-                  return <Categories key={index} onClick={handleFilterChange} icon={category.icon} title={category.title} />
+              
+                  return <Categories key={index}  icon={category.icon} title={category.title} category={category.category} handleFilterChange={handleFilterChange} bgColor={category.bgColor} />
                 })
               }
             </Slider>
             </div>
-        </div>
+        {/* </div> */}
 
-       <div className='category-filter'>
+      <Link to={"#"} className='category-filter' style={{textDecoration:"none"}}>
+ 
        {
-          categoryData.map((cat)=>{
-            return <FilterCategory name={cat.name} description={cat.description}/>
+       
+          filteredCards.map((cat)=>{
+            return <FilterCategory name={cat.name} img={myImage}/>
           })
         }
-       </div>
+      
+      </Link>
     </div>
   )
 }

@@ -2,23 +2,33 @@
 export const categoryData = [
     {
         name:"Worker1",
-        category:"cleaning",
+        category:"cleaner",
+        img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
 
     {
         name:"Worker2",
-        category:"electrician",
+        category:"welder",
+        img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker3",
-        category:"plumbing",
+        category:"carpenter",
+        img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker4",
         category:"shoemaker",
+        img:"../../../uploads/bg.jpeg",
+        desc:"This command will add the library to your project."
+    },
+    {
+        name:"Worker5",
+        category:"shoemaker",
+        img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
 
@@ -28,36 +38,89 @@ export const categoryData = [
 export const cartCategories = [
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'cleaning',
-      category:"cleaning"
+      title: 'cleaner',
+      category:"cleaner",
+      bgColor:"#f5f0ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'welder',
-      category:"welder"
+      category:"welder",
+      bgColor:"#e5eee5"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'carpenter'
+      title: 'carpenter',
+      category:"carpenter",
+      bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'electrician'
+      title: 'electrician',
+      category: 'electrician',
+      bgColor:"#f7f7ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'plumber'
+      title: 'plumber',
+      category: 'plumber',
+      bgColor:"#f1f4ff"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'shoe maker'
+      title: 'shoe maker',
+      category: 'shoe maker',
+      bgColor:"#f5f0ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'tailor'
+      title: 'tailor',
+      category: 'tailor',
+      bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'Tv Repairer'
+      title: 'Tv Repairer',
+      category: 'Tv Repairer'
+    },
+  ]
+
+
+  export const artisanData = [
+    {
+      name:"Daniel",
+      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      link:"#",
+      img:"../../../uploads/bg.jpeg"
+    },
+    {
+      name:"Richard",
+      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      link:"#",
+      img:"../../../uploads/bg.jpeg",
+    },
+    {
+      name:"Doris",
+      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      link:"#",
+      img:"../../../uploads/bg.jpeg"
+    },
+    {
+      name:"Bismark",
+      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      link:"#",
+      img:"../../../uploads/bg.jpeg"
+    },
+    {
+      name:"Bismark",
+      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      link:"#",
+      img:"../../../uploads/bg.jpeg"
+    },
+    {
+      name:"Bismark",
+      description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+      link:"#",
+      img:"../../../uploads/bg.jpeg"
     },
   ]

@@ -1,9 +1,15 @@
 import { Link } from "react-router-dom";
 // import "../../../css/createBuyer.css";
+<<<<<<< HEAD
 import "../../../css/topNavBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
+=======
+import "../../../css/topNavBar.css"
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome"
+import {faBell} from "@fortawesome/free-solid-svg-icons"
+>>>>>>> c702fbde9e71d04f3fa62c0e6ec479628eb204a0
 
 const TopNavBar = () => {
   const handleChange = async (event) => {
