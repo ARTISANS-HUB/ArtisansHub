@@ -24,7 +24,6 @@ mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
   //log error
   logger.log('error','['+Date()+'Error connecting to the database:', error);
 
-
   });
 
 
