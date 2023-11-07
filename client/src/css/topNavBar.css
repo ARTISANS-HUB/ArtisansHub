@@ -1,4 +1,4 @@
-nav .TopNavBar-platform {
+/* nav .TopNavBar-platform {
   width: 90%;
   margin: 30px auto;
   box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
@@ -135,4 +135,145 @@ nav .bars{
     margin: 20px;
     cursor: pointer;
   }
+}
+
+
+
+
+ */
+
+
+
+
+
+
+
+
+
+
+
+
+nav{
+  
+  box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
+  width: 90%;
+  margin: 0 auto;
+
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+   
+    padding: 20px;
+    margin: 2% auto;
+    position: sticky;
+}
+
+.navbar .title {
+    font-size: 1.5rem;
+    margin: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+nav .search-bar {
+  width: 50%;
+  text-align: center;
+}
+nav .search-bar input {
+  border-radius: 10px;
+  height: 5vh;
+  width: 70%;
+  padding: 20px;
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: space-between;
+    width: 20%;
+}
+
+.navbar ul li {
+   list-style: none;
+}
+.navbar ul li a{
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+}
+
+.navbar .become-button{
+  border: none;
+  font-size: 1rem;
+}
+
+
+
+.navbar .menu {
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2rem;
+}
+
+.navbar .menu span {
+    height: 0.4rem;
+    width: 100%;
+    background-color: #fff;
+    border-radius: 0.2rem;
+}
+
+
+@media (max-width: 480px) {
+  nav{
+    box-shadow: none;
+  }
+    .navbar .menu {
+        display: flex;
+    }
+    .navbar .title{
+        margin: 0rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: none;
+        background-color: orange;
+    }
+    nav .search-bar{
+      width: 80%;
+      margin: 10px auto;
+    }
+    nav .search-bar input {
+      width: 100%;
+      height: 3vh;
+
+      text-align: center;
+    }
+
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .navbar ul.open {
+        display: flex;
+    }
+
+    .navbar ul li {
+        width: 100%;
+        text-align: center;
+    }
+
+  
 }
