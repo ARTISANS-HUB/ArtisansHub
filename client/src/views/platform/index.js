@@ -6,6 +6,7 @@ import ServiceCategory from "./includes/ServiceCategory";
 import FilterCategory from "./includes/FilterCategory";
 import ArtisansCard from "./includes/ArtisansCard";
 
+
 const Index = () => {
 	return (
 		<div>
@@ -13,7 +14,8 @@ const Index = () => {
 		<TopNavBar/>
 		<Banner/>
 		<ServiceCategory/>
-		<ArtisansCard/>
+		<ArtisansCard/>  
+		<PlatformFooter/>
 	
 
 	

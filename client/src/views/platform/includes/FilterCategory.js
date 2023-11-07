@@ -7,7 +7,7 @@ import "../../../css/filterCategory.css"
 const FilterCategory = ({name,description,img}) => {
   return (
     <div className='filter-category-container'>
-        
+      
        <div className='filter-category-card'>
             <h3 className='filter-category-card-name'>{name}</h3>
             {/* <p>{description}</p> */}

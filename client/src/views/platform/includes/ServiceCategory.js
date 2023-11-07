@@ -80,16 +80,19 @@ const ServiceCategory = () => {
             </div>
         {/* </div> */}
 
-      <Link to={"#"} className='category-filter' style={{textDecoration:"none"}}>
+     <div>
+     <div className='featured-category'>featured category</div>
+     <Link to={"#"} className='category-filter' style={{textDecoration:"none"}}>
  
-       {
-       
-          filteredCards.map((cat)=>{
-            return <FilterCategory name={cat.name} img={myImage}/>
-          })
-        }
-      
-      </Link>
+ {
+ 
+    filteredCards.map((cat)=>{
+      return <FilterCategory name={cat.name} img={myImage}/>
+    })
+  }
+
+</Link>
+     </div>
     </div>
   )
 }
