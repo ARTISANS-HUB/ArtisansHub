@@ -82,7 +82,9 @@ const Login = () => {
     <div className="login-view">
 
       <div className="container">
-        <div className="left"></div>
+        <div className="left">
+          <img src="../../uploads/bg224.jpeg"  alt="" />
+        </div>
         <div className="right">
           <div className="login-form">
             <h2 className="login-title" >Login</h2>
