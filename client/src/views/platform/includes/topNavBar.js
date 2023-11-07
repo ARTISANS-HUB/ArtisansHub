@@ -1,45 +1,35 @@
-
 import { Link } from "react-router-dom";
 
 const TopNavBar = () => {
-	return (
-		<div className="TopNavBar-platform" >
-		<div className="TopNavBar-platform-inner">
-            
-            <Link to="/" >
-             <i> Home</i>
-             </Link>
+  return (
+    <nav>
+      <div className="TopNavBar-platform">
+        <div className="TopNavBar-platform-inner">
+          <div>
+            <div>
+              <Link>DigiHave</Link>
+            </div>
+            <div>
+              <input type="text" name="" id="" placeholder="Search" />
+            </div>
+            <div>
+              <div>
+                <h2>Contact Us</h2>
+              </div>
+              <div>
+                <select name="" id="">
+                  <option value=""></option>
+                </select>
+              </div>
+              <div>
+                <h1>Contact s</h1>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </nav>
+  );
+};
 
-		     <Link to="/auth/customer/book-service" >
-             <i> book services</i>
-             </Link>
-
-             <Link to="/services" >
-             <i> Services</i>
-             </Link>
-
-             <Link to="/services-provider" >
-             <i> Services providers </i>
-             </Link>
-
-             <Link to="/about" >
-             <i> About</i>
-             </Link>
-
-             <Link to="/contact" >
-             <i> contact</i>
-             </Link>
-
-             <Link to="/auth/customer/book-history" >
-             <i> Booking history</i>
-             </Link>
-
-              <Link to="/login" >
-             <i> Login</i>
-             </Link>
-		</div>
-	 </div>
-	)
-}
-
-export default TopNavBar
+export default TopNavBar;
