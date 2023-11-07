@@ -10,7 +10,6 @@ db = await connectToDB();
 
 const collection = db.collection('users');
 
-//fetching user password,empty
  const users = await collection.find({status:1}).toArray();
  res.json({total : users.length});
 

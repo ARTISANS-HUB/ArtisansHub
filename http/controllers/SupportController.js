@@ -15,6 +15,16 @@ const supports = async ( req , res , next ) => {
 //add support
 const AddSuport = async ( req , res , next )=>{
 try{
+// Create a new Date object
+var currentDate = new Date();
+
+// Get the day, month, and year
+var day = currentDate.getDate();
+var month = currentDate.getMonth() + 1; 
+var year = currentDate.getFullYear();
+
+// Create a formatted string
+var formattedDate = day + '/' + month + '/' + year;
 
 db = await connectToDB();
 const collection = db.collection('supports');
@@ -22,7 +32,7 @@ const collection = db.collection('supports');
 const { 
     supportID,
     message,
-    created_at,
+    // created_at,
     usermail,
     created_by,
 
@@ -32,7 +42,7 @@ const {
     supportID:supportID,
     usermail : usermail,
     message:message,
-    created_at : created_at,
+    created_at : formattedDate,
     created_by : created_by,
 
    };

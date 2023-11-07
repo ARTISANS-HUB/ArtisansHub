@@ -89,6 +89,7 @@ FeedBackController = require('./http/controllers/FeedBackController');
 //support
 const SupportController  = require('./http/controllers/SupportController');
 
+const PlatformServicesController = require('./http/controllers/PlatformServicesController')
 
 //error_404
 //const error_404_PNF  = require('./http/controllers/error_404');
@@ -246,12 +247,27 @@ app.get('/auth/fetch-supports',SupportController.supports);
 app.post('/auth/add-support-message',upload.single("file"),SupportController.AddSuport);
 
 
+//dashboard
+app.get('/auth/fetch-services-platform-all',PlatformServicesController.Services);
+
+//services ARTISAN platform
+app.get('/auth/fetch-services-completed-artisan/:artisanId',PlatformServicesController.ServicesCompleted);
+app.get('/auth/fetch-services-cancelled-artisan/:artisanId',PlatformServicesController.ServicesCancelled);
+app.get('/auth/fetch-services-pending-artisan/:artisanId',PlatformServicesController.ServicesPending);
+
+
+//services BUYER platform
+app.get('/auth/fetch-services-completed-buyer/:buyerId',PlatformServicesController.ServicesCompletedBuyer);
+app.get('/auth/fetch-services-cancelled-buyer/:buyerId',PlatformServicesController.ServicesCancelledBuyer);
+app.get('/auth/fetch-services-pending-buyer/:buyerId',PlatformServicesController.ServicesPendingBuyer);
+
+
+
+
 //verify user mail
 app.post('/auth/user/verify-usermailorTel',VerificationController.VerifyUsermail);
 //update forgot passord 
 app.post('/auth/user/update-forgot-password',VerificationController.UpdateForgotPassword);
-
-
 
 //logout
 app.get('/logout/users',AuthController.logout);

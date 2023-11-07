@@ -98,7 +98,16 @@ try{
     tel
      } = req.body.formData;
 
-const currentDate = new Date();
+// Create a new Date object
+var currentDate = new Date();
+
+// Get the day, month, and year
+var day = currentDate.getDate();
+var month = currentDate.getMonth() + 1; 
+var year = currentDate.getFullYear();
+
+// Create a formatted string
+var formattedDate = day + '/' + month + '/' + year;
 
  //query
     db = await connectToDB();
@@ -143,7 +152,7 @@ hashedPassword = await hashPassword(password);
         tel:tel,
         password : hashedPassword,
         usermail : usermail,
-        updated_at : currentDate
+        updated_at : formattedDate
 
       }}
       );

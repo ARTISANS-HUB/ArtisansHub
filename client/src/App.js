@@ -31,10 +31,18 @@ import BookServices from './views/platform/bookServices';
 import ServicesProviders from './views/platform/servicesProviders';
 import HistoryPage from './views/platform/HistoryPage';
 
+
+//artisan dashboar
+
+
 //create
 import CreateBuyer from './views/platform/CreateBuyer';
 import CreateArtisan from './views/platform/CreateArtisan';
 
+
+//artisan dashboard
+import ArtitsanHome from './views/platform/ArtisansDashbaord/ArtitsanHome';
+import BuyerHome from './views/platform/BuyerDashboard/BuyerHome';
 
 // end
 function App() {
@@ -83,6 +91,15 @@ function App() {
 
             <Route path="/auth/customer/book-service" element={< BookServices />} />
             <Route path="/auth/customer/book-history" element={< HistoryPage />} />
+            
+            <Route path="/auth/artisan/dashboard/home" element={<ArtitsanHome />} />
+
+
+            <Route path="/auth/buyer/dashboard/home" element={<BuyerHome/>} />
+            
+            <Route path="/auth/dashboard" element={<Dashboard />} />
+
+          
           </>
 
         ) : (

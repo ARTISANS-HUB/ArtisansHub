@@ -73,25 +73,7 @@ return (
     <p><input placeholder="First name..." value={formData.fname} onChange={handleChange}  oninput="this.className = ''" name="fname" /></p>
     <p><input placeholder="Last name..." value={formData.lname} onChange={handleChange} oninput="this.className = ''" name="lname" /></p>
   </div>
-  <div className="tab">Contact Info:
-    <p><input placeholder="E-mail..." value={formData.userName} oninput="this.className = ''" name="email" / ></p>
-    <p><input placeholder="Phone..." onChange={handleChange} value={formData.userName}oninput="this.className = ''" name="phone" / ></p>
-  </div>
-  <div className="tab">Birthday:
-    <p><input placeholder="dd" onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="dd" /></p>
-    <p><input placeholder="mm" onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="nn" /></p>
-    <p><input placeholder="yyyy" onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="yyyy" /></p>
-  </div>
-  <div className="tab">Login Info:
-    <p><input placeholder="Username..." onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="uname" /></p>
-    <p><input placeholder="Password..." onChange={handleChange} value={formData.userName} oninput="this.className = ''" name="pword" type="password" /></p>
-  </div>
-  <div className="btns-container" >   
-    <div>
-      <button type="button" id="prevBtn">Previous</button>
-      <button type="button" id="nextBtn" >Next</button>
-    </div>
-  </div>
+
     
 </form>
 

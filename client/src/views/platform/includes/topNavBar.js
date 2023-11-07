@@ -51,6 +51,20 @@ const TopNavBar = () => {
                               <i> contact</i>
                         </Link>
 
+                        <Link to="/auth/artisan/dashboard/home" >
+                              <i> My Artisan Dashoard</i>
+                        </Link>
+
+                        <Link to="/auth/buyer/dashboard/home" >
+                              <i> My Buyer Dashoard</i>
+                        </Link>
+
+                        <Link to="/auth/buyer/dashboard/home" >
+                        <i> My Buyer Dashoard</i>
+                        </Link>
+
+
+
                         <Link to="/auth/customer/book-history" >
                               <i> Booking history</i>
                         </Link>
