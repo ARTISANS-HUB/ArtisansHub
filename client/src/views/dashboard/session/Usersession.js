@@ -1,15 +1,15 @@
 
-const Usersession = async ( ) => {
+const Usersession = async () => {
 
- //checking user authentication
-  let isAuthenticated =localStorage.getItem('isAuthenticated');
+	//checking user authentication
+	let isAuthenticated = localStorage.getItem('isAuthenticated');
 
-	if (isAuthenticated==="false") {
-	window.location.href = '/login';
-	}      
- 
-   }
+	if (isAuthenticated === "false") {
+		window.location.href = '/login';
+	}
 
- 
+}
 
-export default  Usersession 
+
+
+export default Usersession 

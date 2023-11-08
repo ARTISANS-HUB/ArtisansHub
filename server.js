@@ -1,7 +1,7 @@
-const express = require('express'); 
+const express = require('express');
 const app = express();
 const multer = require("multer");
-const mongodbconfig= require('./config/mongodbconfig');
+const mongodbconfig = require('./config/mongodbconfig');
 const db_con = mongodbconfig.connectToDB;
 //db_con();
 const passport = require('passport');
@@ -19,7 +19,7 @@ dotenv.config();
 // create application/x-www-form-urlencoded parser
 var urlencodedParser = bodyParser.urlencoded({ extended: true })
 const session = require('express-session');
-const EventEmitter = require('events'); 
+const EventEmitter = require('events');
 // Increase the event listener limit for Express (change 15 to your desired limit)
 EventEmitter.setMaxListeners(200);
 //path
@@ -37,14 +37,16 @@ app.use(express.urlencoded({ extended: true }));
 
 
 // time to live for cookies
-const oneDay=100*60*60*24;
+const oneDay = 100 * 60 * 60 * 24;
 app.use(session({
   secret: process.env.SESSION_SECRET,
   saveUninitialized: true,
   resave: false,
-    cookie:{name: 'google-auth-session',
+  cookie: {
+    name: 'google-auth-session',
     keys: ['key1', 'key2'],
-    maxAge:oneDay},
+    maxAge: oneDay
+  },
 }));
 
 //global files
@@ -53,26 +55,26 @@ app.use(express.static(path.join(__dirname, 'assets', 'files')));
 app.use(express.static(path.join(__dirname, 'build')));
 
 //middlewares
-const Middlewares  = require('./http/middlewares/authMiddleware');
+const Middlewares = require('./http/middlewares/authMiddleware');
 
 
 //controllers
 //index conrollers
-const  IndexController  = require('./http/controllers/IndexController');
+const IndexController = require('./http/controllers/IndexController');
 
 //auth
-const AuthController  = require('./http/controllers/AuthController');
+const AuthController = require('./http/controllers/AuthController');
 
 
 //update user profile
-const UpdateUserController  = require('./http/controllers/UpdateUserController');
+const UpdateUserController = require('./http/controllers/UpdateUserController');
 
 
 //Add users
-const AddUserController  = require('./http/controllers/AddUserController');
+const AddUserController = require('./http/controllers/AddUserController');
 
 // users
-const UsersContoller  = require('./http/controllers/UsersContoller');
+const UsersContoller = require('./http/controllers/UsersContoller');
 
 const UserOverviewController = require('./http/controllers/UserOverviewController');
 const ArtisansOverviewController = require('./http/controllers/ArtisansOverviewController');
@@ -87,13 +89,13 @@ BuyersController = require('./http/controllers/BuyersController');
 FeedBackController = require('./http/controllers/FeedBackController');
 
 //support
-const SupportController  = require('./http/controllers/SupportController');
+const SupportController = require('./http/controllers/SupportController');
 
 const PlatformServicesController = require('./http/controllers/PlatformServicesController')
 
 
 //services
-const ServicesController  = require('./http/controllers/ServicesController');
+const ServicesController = require('./http/controllers/ServicesController');
 
 //error_404
 //const error_404_PNF  = require('./http/controllers/error_404');
@@ -117,33 +119,33 @@ const storage2 = multer.diskStorage({
     callback(null, "assets/files"); // Folder where the uploaded file will be stored
   },
   filename: (req, file, callback) => {
-    const { 
-    username,
-    usermail,
-    userID,
-} = req.body.formData;
+    const {
+      username,
+      usermail,
+      userID,
+    } = req.body.formData;
     const fileName = file.originalname
 
-    callback(null, userID+"-"+fileName);
+    callback(null, userID + "-" + fileName);
   },
 });
 
 const storage3 = multer.diskStorage({
   destination: (req, file, callback) => {
-  callback(null, "assets/files"); 
+    callback(null, "assets/files");
     // Folder where the uploaded file will be stored
   },
   filename: (req, file, callback) => {
-  //const userID = UpdateUserController.randomstring;
-  const fileName = file.originalname
+    //const userID = UpdateUserController.randomstring;
+    const fileName = file.originalname
 
-let now = new Date();
-let hours = now.getHours();
-let year = now.getFullYear();
+    let now = new Date();
+    let hours = now.getHours();
+    let year = now.getFullYear();
 
-let timestamp = hours+""+year;
-  
-    callback(null,timestamp+"-"+fileName);
+    let timestamp = hours + "" + year;
+
+    callback(null, timestamp + "-" + fileName);
   },
 });
 
@@ -155,14 +157,14 @@ app.use(passport.initialize());
 app.use(passport.session());
 
 passport.use(new GoogleStrategy({
-  clientID:  process.env.CLIENT_ID_LOGIN,
+  clientID: process.env.CLIENT_ID_LOGIN,
   clientSecret: process.env.CLIENT_SECRET_LOGIN,
 
   //developing
   //callbackURL: process.env.SERVER_APP_URL_CALLBACK_DEV+'/auth/callback',
-  
+
   //production
-  callbackURL: process.env.SERVER_APP_URL_CALLBACK_PRO+'/auth/callback',
+  callbackURL: process.env.SERVER_APP_URL_CALLBACK_PRO + '/auth/callback',
 
 }, (accessToken, refreshToken, profile, done) => {
   // 'profile' contains user information, including the email
@@ -179,12 +181,12 @@ passport.deserializeUser((obj, done) => {
 
 // Auth 
 app.get('/google/auth', passport.authenticate('google', {
-  scope: ['https://www.googleapis.com/auth/userinfo.email' ],
+  scope: ['https://www.googleapis.com/auth/userinfo.email'],
 }));
 
 app.get('/auth/callback',
   passport.authenticate('google', { failureRedirect: '/auth/callback/failure' }),
-AuthController.googleUthCallback
+  AuthController.googleUthCallback
 );
 
 //end
@@ -198,104 +200,104 @@ app.get('/auth/callback/failure',
 app.use('/auth', Middlewares.AuthMiddleware);
 
 //login / authenticate users
-app.post('/login/admin',AuthController.admin);
-app.post('/login/artisan',AuthController.ArtisanAuth);
-app.post('/login/buyer',AuthController.BuyerAuth);
+app.post('/login/admin', AuthController.admin);
+app.post('/login/artisan', AuthController.ArtisanAuth);
+app.post('/login/buyer', AuthController.BuyerAuth);
 //update user details
-app.post('/auth/update/user-profile-picture',profileUploadpic.single("file"),UpdateUserController.UpdateUserProfile);
+app.post('/auth/update/user-profile-picture', profileUploadpic.single("file"), UpdateUserController.UpdateUserProfile);
 
 //update user details
-app.post('/auth/edit/edit-user-profile-picture',profileUploadpic.single("file"),UpdateUserController.EditUserProfile);
+app.post('/auth/edit/edit-user-profile-picture', profileUploadpic.single("file"), UpdateUserController.EditUserProfile);
 
 
 //update user details
-app.post('/auth/update/user-details',UpdateUserController.UpdateUserData);
+app.post('/auth/update/user-details', UpdateUserController.UpdateUserData);
 
 //fetch user details
-app.get('/auth/fetch-user-profile/:profile',UpdateUserController.fetchUserProfile);
+app.get('/auth/fetch-user-profile/:profile', UpdateUserController.fetchUserProfile);
 
 //overview
-app.get('/auth/fetch-users/active',UserOverviewController.fetchActiveUsers);
-app.get('/auth/fetch-users/inactive',UserOverviewController.fetchInActiveUsers);
+app.get('/auth/fetch-users/active', UserOverviewController.fetchActiveUsers);
+app.get('/auth/fetch-users/inactive', UserOverviewController.fetchInActiveUsers);
 
 
 //add user details
-app.post('/auth/add-new-user',profileUpload.single("file"),AddUserController.AddUser);
+app.post('/auth/add-new-user', profileUpload.single("file"), AddUserController.AddUser);
 
 //UsersContoller
-app.get('/auth/fetch-users',UsersContoller.Users);
+app.get('/auth/fetch-users', UsersContoller.Users);
 
 //deleteUsers
-app.delete('/auth/delete-users/:userID',UsersContoller.deleteUsers);
+app.delete('/auth/delete-users/:userID', UsersContoller.deleteUsers);
 //edit user
 
-app.post('/auth/edit/edit-user-details',UsersContoller.EditUsersDetails);
+app.post('/auth/edit/edit-user-details', UsersContoller.EditUsersDetails);
 
 
 //artisans controller 
-app.get('/auth/fetch-artisans',ArtisansController.artisans);
-app.delete('/auth/delete-artisan/:artisanId',ArtisansController.deleteArtisan);
-app.get('/auth/fetch-artisans/active',ArtisansOverviewController.fetchActiveArtisans);
-app.get('/auth/fetch-artisans/inactive',ArtisansOverviewController.fetchInActiveArtisans);
-app.get('/auth/fetch-artisans/verified',ArtisansOverviewController.fetchVerfiedArtisans);
+app.get('/auth/fetch-artisans', ArtisansController.artisans);
+app.delete('/auth/delete-artisan/:artisanId', ArtisansController.deleteArtisan);
+app.get('/auth/fetch-artisans/active', ArtisansOverviewController.fetchActiveArtisans);
+app.get('/auth/fetch-artisans/inactive', ArtisansOverviewController.fetchInActiveArtisans);
+app.get('/auth/fetch-artisans/verified', ArtisansOverviewController.fetchVerfiedArtisans);
 
 
-app.get('/auth/artisan-action/:artisanId/:action',ArtisansController.VerifyArtisans);
-app.post('/auth/create-artisan',ArtisansController.CreateArtisan);
+app.get('/auth/artisan-action/:artisanId/:action', ArtisansController.VerifyArtisans);
+app.post('/auth/create-artisan', ArtisansController.CreateArtisan);
 
 
-app.get('/auth/fetch-feebacks',FeedBackController.feedbacks);
+app.get('/auth/fetch-feebacks', FeedBackController.feedbacks);
 
 
-app.get('/auth/fetch-buyers',BuyersController.buyers);
-app.post('/auth/create-buyer',BuyersController.CreateBuyer);
+app.get('/auth/fetch-buyers', BuyersController.buyers);
+app.post('/auth/create-buyer', BuyersController.CreateBuyer);
 
 //SupportController
-app.get('/auth/fetch-supports',SupportController.supports);
-app.post('/auth/add-support-message',upload.single("file"),SupportController.AddSuport);
+app.get('/auth/fetch-supports', SupportController.supports);
+app.post('/auth/add-support-message', upload.single("file"), SupportController.AddSuport);
 
 
 //dashboard
-app.get('/auth/fetch-services-platform-all',PlatformServicesController.Services);
+app.get('/auth/fetch-services-platform-all', PlatformServicesController.Services);
 
 //services ARTISAN platform
-app.get('/auth/fetch-services-completed-artisan/:artisanId',PlatformServicesController.ServicesCompleted);
-app.get('/auth/fetch-services-cancelled-artisan/:artisanId',PlatformServicesController.ServicesCancelled);
-app.get('/auth/fetch-services-pending-artisan/:artisanId',PlatformServicesController.ServicesPending);
+app.get('/auth/fetch-services-completed-artisan/:artisanId', PlatformServicesController.ServicesCompleted);
+app.get('/auth/fetch-services-cancelled-artisan/:artisanId', PlatformServicesController.ServicesCancelled);
+app.get('/auth/fetch-services-pending-artisan/:artisanId', PlatformServicesController.ServicesPending);
 
 
 //services BUYER platform
-app.get('/auth/fetch-services-completed-buyer/:buyerId',PlatformServicesController.ServicesCompletedBuyer);
-app.get('/auth/fetch-services-cancelled-buyer/:buyerId',PlatformServicesController.ServicesCancelledBuyer);
-app.get('/auth/fetch-services-pending-buyer/:buyerId',PlatformServicesController.ServicesPendingBuyer);
+app.get('/auth/fetch-services-completed-buyer/:buyerId', PlatformServicesController.ServicesCompletedBuyer);
+app.get('/auth/fetch-services-cancelled-buyer/:buyerId', PlatformServicesController.ServicesCancelledBuyer);
+app.get('/auth/fetch-services-pending-buyer/:buyerId', PlatformServicesController.ServicesPendingBuyer);
 
 
 //dasboard services
-app.get('/auth/fetch-services-dashboard',ServicesController.DashboardServices);
-app.get('/auth/fetch-services-completed',ServicesController.DashboardServicesCompleted);
-app.get('/auth/fetch-services-cancelled',ServicesController.DashboardServicesCancelled);
-app.get('/auth/fetch-services-pending',ServicesController.DashboardServicesPending);
+app.get('/auth/fetch-services-dashboard', ServicesController.DashboardServices);
+app.get('/auth/fetch-services-completed', ServicesController.DashboardServicesCompleted);
+app.get('/auth/fetch-services-cancelled', ServicesController.DashboardServicesCancelled);
+app.get('/auth/fetch-services-pending', ServicesController.DashboardServicesPending);
 
 
 //verify user mail
-app.post('/auth/user/verify-usermailorTel',VerificationController.VerifyUsermail);
+app.post('/auth/user/verify-usermailorTel', VerificationController.VerifyUsermail);
 //update forgot passord 
-app.post('/auth/user/update-forgot-password',VerificationController.UpdateForgotPassword);
+app.post('/auth/user/update-forgot-password', VerificationController.UpdateForgotPassword);
 
 //logout
-app.get('/logout/users',AuthController.logout);
+app.get('/logout/users', AuthController.logout);
 
 //end
 //serve client
-app.get('*',IndexController.index); 
+app.get('*', IndexController.index);
 
 
 
 
-app.listen(PORT, (error) =>{ 
-  if(!error)
-        console.log("Server is Running on port "+ PORT) 
+app.listen(PORT, (error) => {
+  if (!error)
+    console.log("Server is Running on port " + PORT)
   else
-    console.log("Error occurred, server can't start", error); 
-  } 
+    console.log("Error occurred, server can't start", error);
+}
 ); 

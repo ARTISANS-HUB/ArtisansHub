@@ -3,16 +3,30 @@ import { Link } from 'react-router-dom';
 import  {LogoutController}  from '../../../../controllers/LogoutController';
 import  { useState ,useEffect} from 'react';
 import {Api_connect_server} from '../../../../APIs/Api_connect_server'
+import swal from 'sweetalert';
 
 const BuyerdashboardTopNavBar = () => {
    const api_connect =  Api_connect_server();
 
 const [username, ] = useState(localStorage.getItem('username'));
 
-    const handleLogout = async () =>{
-		await LogoutController();
-		return;
-	}
+
+
+const handleLogout = async () =>{
+  swal({
+    title: "Are you sure?",
+    text: "Once clicked, you will be loggged out from your dashboard",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+  })
+  .then( (yes) => {
+    if (yes) {
+       LogoutController();
+    } 
+  });
+  return;
+}
 
   const profile = localStorage.getItem('profile');
  

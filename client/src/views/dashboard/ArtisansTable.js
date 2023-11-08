@@ -224,7 +224,7 @@ const ArtisansTable = (props) => {
 
 
   return (
-		    <>
+    <>
       <div className="title" id="top-button-table">
         <div className="tab-controll">
           <i className="uil uil-user"></i>
@@ -277,14 +277,14 @@ const ArtisansTable = (props) => {
                   <tr key={artisan._id}>
 
                     {
-                      artisan.status == 0 &&
+                      artisan.status === 0 &&
 
                       <td><div class="user-status offline"></div> </td>
 
                     }
 
                     {
-                      artisan.status == 1 &&
+                      artisan.status === 1 &&
 
                       <td><div class="user-status online"></div>
                       </td>
@@ -298,20 +298,20 @@ const ArtisansTable = (props) => {
 
 
                     {
-                      artisan.verified == 0 &&
+                      artisan.verified === 0 &&
 
                       <td style={{ color: 'yellow' }}> Pending </td>
 
                     }
 
                     {
-                      artisan.verified == 1 &&
+                      artisan.verified === 1 &&
                       <td style={{ color: 'green' }}>Yes</td>
 
                     }
 
                     {
-                      artisan.verified == 2 &&
+                      artisan.verified === 2 &&
                       <td style={{ color: 'red' }}>Rejected</td>
 
                     }
@@ -392,7 +392,7 @@ const ArtisansTable = (props) => {
         </div>
       </div>
 
-      {!getResponseMsg == "" && reponse_message_code == 200 && (
+      {!getResponseMsg === "" && reponse_message_code === 200 && (
 
         <div class="notification-success" id="notification-success">
           <span class="inner-notifications" >
@@ -405,16 +405,16 @@ const ArtisansTable = (props) => {
       }
 
 
-      {!getResponseMsg == "" && reponse_message_code == 501 && (
+      {!getResponseMsg === "" && reponse_message_code === 501 && (
         <div class="notification-error" id="notification-error">
           <span class="inner-notifications" >
             <div> {getResponseMsg}</div>
             <div class="close-button" id="error_close_btn" title="Close" >x</div>
           </span>
-          < /div>
-)  }
-        </>
-      )
-  }
+        </div>
+      )}
+    </>
+  )
+}
 
-      export default ArtisansTable
+export default ArtisansTable

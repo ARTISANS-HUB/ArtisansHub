@@ -1,136 +1,136 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as XLSX from 'xlsx'; 
+import * as XLSX from 'xlsx';
 import { DeleteUserController } from "../../controllers/DeleteController";
 
-const ServicesTable = ( props ) => {
-   const getResponseMsg = localStorage.getItem('message');
-   const reponse_message_code = localStorage.getItem('reponse_message_code');
-   
-// handle delete , send id to controller
-const handleDelete = async (userId) => {
-   //pass userid as param to controller
+const ServicesTable = (props) => {
+  const getResponseMsg = localStorage.getItem('message');
+  const reponse_message_code = localStorage.getItem('reponse_message_code');
+
+  // handle delete , send id to controller
+  const handleDelete = async (userId) => {
+    //pass userid as param to controller
     await DeleteUserController(userId);
     return;
- };
+  };
 
 
-//clear message after effect
- useEffect(() => {
-
-    
-setTimeout(()=>{
- localStorage.removeItem('message');
- localStorage.removeItem('reponse_message_code');
+  //clear message after effect
+  useEffect(() => {
 
 
-},6000)
+    setTimeout(() => {
+      localStorage.removeItem('message');
+      localStorage.removeItem('reponse_message_code');
 
-   
+
+    }, 6000)
+
+
   }, [reponse_message_code]);
 
 
- useEffect(() => {
+  useEffect(() => {
 
     //handle notifications
- function closeNotificationSuccess() {
-            const notification = document.getElementById('notification-success');
-            notification.style.display = 'none';
- }
-
-  function closeNotificationError() {
-            const notification = document.getElementById('notification-error');
-            notification.style.display = 'none';
-        }
-
-const sucess_close_btn =  document.getElementById('sucess_close_btn');
-
-const error_close_btn =  document.getElementById('error_close_btn');
-
-
-//add listeners sucess
-if (sucess_close_btn) {
-sucess_close_btn.addEventListener('click',closeNotificationSuccess);   
-}
-
-
-if (error_close_btn) {
-  error_close_btn.addEventListener('click',closeNotificationError);
-}
-
-
-///remove listeners after 
-return (()=>{
-
-if (sucess_close_btn) {
-sucess_close_btn.removeEventListener('click',closeNotificationSuccess);  
-}
-
-
-if (error_close_btn) {
-  error_close_btn.removeEventListener('click',closeNotificationError);
-}
-
-});
-
- }, [reponse_message_code])
-
-
-//delete modal
-    const [  userId , setuserId ] = useState('');
-    const tabledeleteUsersModal = document.getElementById("tabledeleteUsersModal");
-    let usernamedelete = document.getElementById("username-delete");
-      let temp_userId ;
-
-    function handleuserIdBtn(event) {
-      tabledeleteUsersModal.style.display = "block";
-      temp_userId = event.target.getAttribute("datauserid");
-      usernamedelete.textContent = event.target.getAttribute("datausername");
-      setuserId(temp_userId);
-      //alert(userId);
-      //alert(usernamedelete);
+    function closeNotificationSuccess() {
+      const notification = document.getElementById('notification-success');
+      notification.style.display = 'none';
     }
 
-      function handleconfirmDelete(event) {
-
-      tabledeleteUsersModal.style.display = "none";
-      //alert('logged out');
-      handleDelete(userId);
-      //alert(userId);
+    function closeNotificationError() {
+      const notification = document.getElementById('notification-error');
+      notification.style.display = 'none';
     }
 
-    function handlecancelDelete() {
-      tabledeleteUsersModal.style.display = "none";
-      //alert('cancelled');
-    }
+    const sucess_close_btn = document.getElementById('sucess_close_btn');
 
-    //edit
-     const handleuserEditBtn = async (event)=>{
+    const error_close_btn = document.getElementById('error_close_btn');
 
-      let editdatauserid = event.target.getAttribute("datauserid");
-      let editusername = event.target.getAttribute("datausername");
-      let edituserusermail = event.target.getAttribute("userusermail");
-      let edituserprofile = event.target.getAttribute("userprofile");
-      let editusertel = event.target.getAttribute("usertel");
-      let editusereole = event.target.getAttribute("userrole");
-      let editusercreated_at= event.target.getAttribute("usercreated_at");
-      let edituserupdated_at= event.target.getAttribute("edituserupdated_at");
 
-      localStorage.setItem('editdatauserid',editdatauserid);
-      localStorage.setItem('editusername',editusername);
-      localStorage.setItem('edituserusermail',edituserusermail);
-      localStorage.setItem('edituserprofile',edituserprofile);
-      localStorage.setItem('editusertel',editusertel);
-      localStorage.setItem('editusereole',editusereole);
-      localStorage.setItem('editusercreated_at',editusercreated_at);
-      localStorage.setItem('edituserupdated_at',edituserupdated_at);
-   
-
+    //add listeners sucess
+    if (sucess_close_btn) {
+      sucess_close_btn.addEventListener('click', closeNotificationSuccess);
     }
 
 
-  useEffect( () => {
-      function SearchTable() {
+    if (error_close_btn) {
+      error_close_btn.addEventListener('click', closeNotificationError);
+    }
+
+
+    ///remove listeners after 
+    return (() => {
+
+      if (sucess_close_btn) {
+        sucess_close_btn.removeEventListener('click', closeNotificationSuccess);
+      }
+
+
+      if (error_close_btn) {
+        error_close_btn.removeEventListener('click', closeNotificationError);
+      }
+
+    });
+
+  }, [reponse_message_code])
+
+
+  //delete modal
+  const [userId, setuserId] = useState('');
+  const tabledeleteUsersModal = document.getElementById("tabledeleteUsersModal");
+  let usernamedelete = document.getElementById("username-delete");
+  let temp_userId;
+
+  function handleuserIdBtn(event) {
+    tabledeleteUsersModal.style.display = "block";
+    temp_userId = event.target.getAttribute("datauserid");
+    usernamedelete.textContent = event.target.getAttribute("datausername");
+    setuserId(temp_userId);
+    //alert(userId);
+    //alert(usernamedelete);
+  }
+
+  function handleconfirmDelete(event) {
+
+    tabledeleteUsersModal.style.display = "none";
+    //alert('logged out');
+    handleDelete(userId);
+    //alert(userId);
+  }
+
+  function handlecancelDelete() {
+    tabledeleteUsersModal.style.display = "none";
+    //alert('cancelled');
+  }
+
+  //edit
+  const handleuserEditBtn = async (event) => {
+
+    let editdatauserid = event.target.getAttribute("datauserid");
+    let editusername = event.target.getAttribute("datausername");
+    let edituserusermail = event.target.getAttribute("userusermail");
+    let edituserprofile = event.target.getAttribute("userprofile");
+    let editusertel = event.target.getAttribute("usertel");
+    let editusereole = event.target.getAttribute("userrole");
+    let editusercreated_at = event.target.getAttribute("usercreated_at");
+    let edituserupdated_at = event.target.getAttribute("edituserupdated_at");
+
+    localStorage.setItem('editdatauserid', editdatauserid);
+    localStorage.setItem('editusername', editusername);
+    localStorage.setItem('edituserusermail', edituserusermail);
+    localStorage.setItem('edituserprofile', edituserprofile);
+    localStorage.setItem('editusertel', editusertel);
+    localStorage.setItem('editusereole', editusereole);
+    localStorage.setItem('editusercreated_at', editusercreated_at);
+    localStorage.setItem('edituserupdated_at', edituserupdated_at);
+
+
+  }
+
+
+  useEffect(() => {
+    function SearchTable() {
       var input, filter, table, tr, td, i, j, txtValue, noResultsRow;
       input = document.getElementById("searchInput-table");
       filter = input.value.toUpperCase();
@@ -182,11 +182,11 @@ if (error_close_btn) {
 
     searchInputtable.addEventListener("keyup", SearchTable);
 
-   
+
     //remove effect
     return () => {
       searchInputtable.removeEventListener("keyup", SearchTable);
-       };
+    };
   }, []);
 
   //consert table to xlsx data
@@ -218,7 +218,7 @@ if (error_close_btn) {
       <input
         type="text"
         id="searchInput-table"
-         className="searchInput-table"
+        className="searchInput-table"
         placeholder="Search for anything.."
         title="Type in anything..."
       />
@@ -227,11 +227,11 @@ if (error_close_btn) {
         <table id="myTable">
           <thead>
             <tr className="header">
-               <th data-sort="id">ID</th>
+              <th data-sort="id">ID</th>
               <th data-sort="type">Type</th>
               <th data-sort="completed">Completed</th>
               <th data-sort="location">location</th>
-               <th data-sort="completed_at">Completed_at</th>
+              <th data-sort="completed_at">Completed_at</th>
               <th data-sort="created_at">Created_at</th>
 
               <th></th>
@@ -243,17 +243,17 @@ if (error_close_btn) {
               <td colSpan="3">No results found</td>
             </tr>
 
-         {
+            {
 
-props.services.length > 0 && props.services  ? ( 
-props.services.map( ( service , index) => (
-<tr key={service._id}>
-        
-               <td>{index}</td>
-             <td>{service.type}</td>
+              props.services.length > 0 && props.services ? (
+                props.services.map((service, index) => (
+                  <tr key={service._id}>
+
+                    <td>{index}</td>
+                    <td>{service.type}</td>
 
 
-					{
+                    {
                       service.completed == 0 &&
 
                       <td style={{ color: 'yellow' }}> Pending </td>
@@ -269,56 +269,56 @@ props.services.map( ( service , index) => (
                     {
                       service.completed == 2 &&
                       <td style={{ color: 'red' }}>Rejected</td>
-                    }      
+                    }
 
 
-              <td>{service.location}</td>
-              <td>{service.completed_at}</td>
-              <td>{service.created_at}</td>
-              <td className="menu-icon">
-                <span className="menu-icon-content">&#8942;</span>
-                <div className="table-dropdown dropdown-1">
-                  <Link to="/auth/dashboard/edit-user-profile">
-                    <i className="fas fa-edit edit-icon" title="Edit"
-                     datauserid={service.userID}
-                     datausername={service.username}
-                     onClick={handleuserEditBtn}
-                     userusermail={service.usermail}
-                     userprofile={service.profile}
-                     usertel={service.tel}
-                     userrole={service.role}
-                     usercreated_at={service.created_at}
-                     edituserupdated_at={service.updated_at}
+                    <td>{service.location}</td>
+                    <td>{service.completed_at}</td>
+                    <td>{service.created_at}</td>
+                    <td className="menu-icon">
+                      <span className="menu-icon-content">&#8942;</span>
+                      <div className="table-dropdown dropdown-1">
+                        <Link to="/auth/dashboard/edit-user-profile">
+                          <i className="fas fa-edit edit-icon" title="Edit"
+                            datauserid={service.userID}
+                            datausername={service.username}
+                            onClick={handleuserEditBtn}
+                            userusermail={service.usermail}
+                            userprofile={service.profile}
+                            usertel={service.tel}
+                            userrole={service.role}
+                            usercreated_at={service.created_at}
+                            edituserupdated_at={service.updated_at}
 
-                    ></i>
-                  </Link>
-                  <Link to="#">
-                    <i
-                      className="fas fa-trash delete-icon"
-                      title="Delete"
-                      id="userIdBtn"
-                      datauserid={service.userID}
-                      datausername={service.username}
-                      onClick={handleuserIdBtn}
-                    ></i>
-                  </Link>
-                </div>
-              </td>
-            </tr> ))
+                          ></i>
+                        </Link>
+                        <Link to="#">
+                          <i
+                            className="fas fa-trash delete-icon"
+                            title="Delete"
+                            id="userIdBtn"
+                            datauserid={service.userID}
+                            datausername={service.username}
+                            onClick={handleuserIdBtn}
+                          ></i>
+                        </Link>
+                      </div>
+                    </td>
+                  </tr>))
 
-            ):(
+              ) : (
 
-            <tr className="">
-              <td colSpan="3">Loading data...</td>
-            </tr>
+                <tr className="">
+                  <td colSpan="3">Loading data...</td>
+                </tr>
 
-            )
+              )
 
 
-}
+            }
 
-          
-        </tbody>
+
+          </tbody>
         </table>
       </div>
 
@@ -330,34 +330,34 @@ props.services.map( ( service , index) => (
 
           <div className="action-buttons">
             <button id="confirmDelete" onClick={handleconfirmDelete} >Yes</button>
-            <button id="cancelDelete"  onClick={handlecancelDelete} >Cancel</button>
+            <button id="cancelDelete" onClick={handlecancelDelete} >Cancel</button>
           </div>
         </div>
       </div>
 
-      { !getResponseMsg == ""  && reponse_message_code == 200 && ( 
+      {!getResponseMsg == "" && reponse_message_code == 200 && (
 
-<div class="notification-success" id="notification-success">
-        <span  class="inner-notifications" >
-        <div> {getResponseMsg}</div>
-        <div class="close-button" id="sucess_close_btn" title="Close" >x</div> 
-        </span>
- </div>
-)
+        <div class="notification-success" id="notification-success">
+          <span class="inner-notifications" >
+            <div> {getResponseMsg}</div>
+            <div class="close-button" id="sucess_close_btn" title="Close" >x</div>
+          </span>
+        </div>
+      )
 
-}
+      }
 
 
-{ !getResponseMsg == "" && reponse_message_code == 501  &&  (
-      <div class="notification-error" id="notification-error">
-        <span  class="inner-notifications" >
-        <div> {getResponseMsg}</div>
-        <div class="close-button" id="error_close_btn" title="Close" >x</div> 
-        </span>
-    < /div>
+      {!getResponseMsg == "" && reponse_message_code == 501 && (
+        <div class="notification-error" id="notification-error">
+          <span class="inner-notifications" >
+            <div> {getResponseMsg}</div>
+            <div class="close-button" id="error_close_btn" title="Close" >x</div>
+          </span>
+          </div>
 )  }
-    </>
-  );
+        </>
+      );
 };
 
-export default ServicesTable
+      export default ServicesTable

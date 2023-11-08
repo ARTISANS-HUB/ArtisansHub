@@ -1,6 +1,6 @@
 //file system
 const fs = require("fs");
-const {connectToDB ,closeDB }= require('../../config/mongodbconfig');
+const { connectToDB, closeDB } = require('../../config/mongodbconfig');
 //path
 const path = require("path");
 let db;
@@ -11,274 +11,276 @@ var transporter = mailHelper.transporter;
 var SERVER_NAME = process.env.SERVER_NAME;
 var EMAIL_USERNAME = process.env.EMAIL_USERNAME;
 
-const artisans  = async (req , res , next) => {
-	
-try{
+const artisans = async (req, res, next) => {
+
+  try {
 
 
-//query
-db = await connectToDB();
+    //query
+    db = await connectToDB();
 
-const collection = db.collection('artisans');
+    const collection = db.collection('artisans');
 
-//fetching user password,empty
- const artisans = await collection.find().toArray();
- res.json(artisans);
+    //fetching user password,empty
+    const artisans = await collection.find().toArray();
+    res.json(artisans);
 
-// artisanId: 'dddswew',
-//     username: 'Daniel Say',
-//     password: 'k22',
-//     usermail: 'f@gmail.com',
-//     created_at: '2023-11-23',
-//     updated_at: '2032-10-32',
-//     last_seen: '2034-12-12',
-//     expertise: 'Carpenter',
-//     location: 'Effia Kuma No.3',
-//     work_days: 'Monday-Saturday',
-//     profile: 'b.jpg',
-//     status: '1',
-//     tel: '0269554646'
-    
+    // artisanId: 'dddswew',
+    //     username: 'Daniel Say',
+    //     password: 'k22',
+    //     usermail: 'f@gmail.com',
+    //     created_at: '2023-11-23',
+    //     updated_at: '2032-10-32',
+    //     last_seen: '2034-12-12',
+    //     expertise: 'Carpenter',
+    //     location: 'Effia Kuma No.3',
+    //     work_days: 'Monday-Saturday',
+    //     profile: 'b.jpg',
+    //     status: '1',
+    //     tel: '0269554646'
 
- if (artisans.length < 0) {
 
- res.status(200).json({ statusCode : 404 });
+    if (artisans.length < 0) {
 
+      res.status(200).json({ statusCode: 404 });
+
+    }
+
+
+  }
+  catch (error) {
+    logger.log('error', '[' + Date() + '] can not fetch artisans.. / internal eror', error);
   }
 
 
 }
-catch(error){
-logger.log('error','['+Date()+'] can not fetch artisans.. / internal eror',error);
-}
 
 
-}
+const deleteArtisan = async (req, res, next) => {
+
+  const artisanId = req.params.artisanId;
+
+  try {
+    //query
+    db = await connectToDB();
 
 
-const deleteArtisan = async ( req , res , next )=>{
+    const collection = db.collection('artisans');
 
-const artisanId = req.params.artisanId;
+    //fetching user password,empty
+    const artisan_del = await collection.deleteOne({ artisanId: artisanId });
 
-try{
-//query
-db = await connectToDB();
+    if (artisan_del.deletedCount === 1) {
 
-
-const collection = db.collection('artisans');
-
-//fetching user password,empty
-const artisan_del = await collection.deleteOne({artisanId:artisanId});
-
-if ( artisan_del.deletedCount===1) {
-	
-res.status(200).json({message : "Artisan deleted successfully..", statusCode : 200 });
+      res.status(200).json({ message: "Artisan deleted successfully..", statusCode: 200 });
 
 
-}else{
+    } else {
 
-res.status(200).json({ message : "Failed deleting artisan..",statusCode : 501 });
-	
+      res.status(200).json({ message: "Failed deleting artisan..", statusCode: 501 });
+
+    }
+
   }
-
-}
-catch(error){
-logger.log('error','['+Date()+'] can not delete artisan.. / internal eror',error);
-}
+  catch (error) {
+    logger.log('error', '[' + Date() + '] can not delete artisan.. / internal eror', error);
+  }
 }
 
 
 
 
 
-const VerifyArtisans = async ( req , res , next )=>{
-// Create a new Date object
-var currentDate = new Date();
+const VerifyArtisans = async (req, res, next) => {
+  // Create a new Date object
+  var currentDate = new Date();
 
-// Get the day, month, and year
-var day = currentDate.getDate();
-var month = currentDate.getMonth() + 1; 
-var year = currentDate.getFullYear();
+  // Get the day, month, and year
+  var day = currentDate.getDate();
+  var month = currentDate.getMonth() + 1;
+  var year = currentDate.getFullYear();
 
-// Create a formatted string
-var formattedDate = day + '/' + month + '/' + year;
-try{
-
-
-const artisanId = req.params.artisanId;
-const action = req.params.action;
-let HtmlMsg = ``;
-//query
-db = await connectToDB();
+  // Create a formatted string
+  var formattedDate = day + '/' + month + '/' + year;
+  try {
 
 
-const collection = db.collection('artisans');
+    const artisanId = req.params.artisanId;
+    const action = req.params.action;
+    let HtmlMsg = ``;
+    //query
+    db = await connectToDB();
+
+
+    const collection = db.collection('artisans');
 
     const userUpdateResult = await collection.updateOne(
       //find user with id
-      { artisanId : artisanId},
-      { $set: { 
+      { artisanId: artisanId },
+      {
+        $set: {
 
-        verified : action,
-        updated_at : formattedDate,
+          verified: action,
+          updated_at: formattedDate,
 
-      }}
-      );
+        }
+      }
+    );
 
 
     if (userUpdateResult.modifiedCount === 1) {
 
-  const userData = await collection.find({artisanId:artisanId}).toArray();
+      const userData = await collection.find({ artisanId: artisanId }).toArray();
 
 
-  if(action == 1){
+      if (action == 1) {
 
-    res.status(200).json({ message: "Artisan verified successfully", statusCode : 200 });
-   
+        res.status(200).json({ message: "Artisan verified successfully", statusCode: 200 });
 
 
-   HtmlMsg = `<h1>Hi</h1><p>,${userData.usermail},</p> 
+
+        HtmlMsg = `<h1>Hi</h1><p>,${userData.usermail},</p> 
                       Support Message : Your artisan account verified successfully  <br>
                       <p> Cheers</p>
                        <br> <h1>${SERVER_NAME} <h1>`
-  }else{
+      } else {
 
-    res.status(200).json({ message: "Artisan rejected successfully", statusCode : 200 });
-  HtmlMsg = `<h1>Hi</h1><p>,${userData.usermail},</p> 
+        res.status(200).json({ message: "Artisan rejected successfully", statusCode: 200 });
+        HtmlMsg = `<h1>Hi</h1><p>,${userData.usermail},</p> 
                       Support Message : Your artisan account was rejected  <br>
                       <p> Hmmm..</p>
                        <br> <h1>${SERVER_NAME} <h1>`
-  }
+      }
 
-  // Function to send an email
-                            async function sendEmailWithRefreshedToken() {
-                                try {
-                                    //send token after verifying password
-                                    const mailConfigurations = {
-                                        // It should be a string of sender/server email
-                                        from: EMAIL_USERNAME,
-                                        to: userData.usermail,
-                                        // Subject of Email
-                                        subject: 'Account Notifcation',
-                                      
-                                     html: HtmlMsg
-                                    };
-                                    transporter.sendMail(mailConfigurations, function(error, info) {
-                                        
-                                        if (error) {
-                                            logger.log('error','['+Date()+'no internet to send mail');
-                                        }
-                                    });
-                                } catch (error) {
-                                    logger.log('error','['+Date()+'An error occurred when sending mail:', error);
-                                }
-                            }
-                            // Initialize by sending an email
-                            sendEmailWithRefreshedToken();
+      // Function to send an email
+      async function sendEmailWithRefreshedToken() {
+        try {
+          //send token after verifying password
+          const mailConfigurations = {
+            // It should be a string of sender/server email
+            from: EMAIL_USERNAME,
+            to: userData.usermail,
+            // Subject of Email
+            subject: 'Account Notifcation',
+
+            html: HtmlMsg
+          };
+          transporter.sendMail(mailConfigurations, function (error, info) {
+
+            if (error) {
+              logger.log('error', '[' + Date() + 'no internet to send mail');
+            }
+          });
+        } catch (error) {
+          logger.log('error', '[' + Date() + 'An error occurred when sending mail:', error);
+        }
+      }
+      // Initialize by sending an email
+      sendEmailWithRefreshedToken();
 
 
-    
-    }else{
 
-    res.status(200).json({ message: "Verification failed , Please try again ", statusCode : 501 });
-    logger.log('error','['+Date()+'] artisan Verification update failed..');
-   
+    } else {
+
+      res.status(200).json({ message: "Verification failed , Please try again ", statusCode: 501 });
+      logger.log('error', '[' + Date() + '] artisan Verification update failed..');
+
     }
 
 
+  }
+
+
+  catch (error) {
+    res.status(501).json({ message: "Verification failed , Please try again ", statusCode: 501 });
+    logger.log('error', '[' + Date() + '] can not delete artisan.. / internal eror', error);
+
+  }
+
 }
 
 
-catch(error){
-res.status(501).json({ message: "Verification failed , Please try again ", statusCode : 501 });
-logger.log('error','['+Date()+'] can not delete artisan.. / internal eror',error);
+const CreateArtisan = async (req, res, next) => {
+  // Create a new Date object
+  var currentDate = new Date();
 
-}
+  // Get the day, month, and year
+  var day = currentDate.getDate();
+  var month = currentDate.getMonth() + 1;
+  var year = currentDate.getFullYear();
 
-}
+  // Create a formatted string
+  var formattedDate = day + '/' + month + '/' + year;
 
+  try {
 
-const CreateArtisan = async ( req ,res , next)=>{
-// Create a new Date object
-var currentDate = new Date();
+    db = await connectToDB();
+    const collection = db.collection('artisans');
 
-// Get the day, month, and year
-var day = currentDate.getDate();
-var month = currentDate.getMonth() + 1; 
-var year = currentDate.getFullYear();
-
-// Create a formatted string
-var formattedDate = day + '/' + month + '/' + year;
-
-try{
-
-db = await connectToDB();
-const collection = db.collection('artisans');
-
-const { 
-    artisanId,
-    username,
-    password,
-    role,
-    created_at,
-    usermail,
-    created_by,
-    file,
-    tel,
-} = req.body.formData;
+    const {
+      artisanId,
+      username,
+      password,
+      role,
+      created_at,
+      usermail,
+      created_by,
+      file,
+      tel,
+    } = req.body.formData;
 
 
-  //Get the uploaded file name
- const fileName = req.file.originalname;
+    //Get the uploaded file name
+    const fileName = req.file.originalname;
 
-// Function to hash the password
-const hashPassword = async (password) => {
- const saltRounds = 10; // The number of salt rounds
-  return bcrypt.hash(password, saltRounds);
-}
-const hashedPassword = await hashPassword(password);
+    // Function to hash the password
+    const hashPassword = async (password) => {
+      const saltRounds = 10; // The number of salt rounds
+      return bcrypt.hash(password, saltRounds);
+    }
+    const hashedPassword = await hashPassword(password);
 
-   const newUser = {
-    artisanId:artisanId,
-    username: username,
-    password: hashedPassword,
-    profile:userID+"-"+fileName,
-    usermail : usermail,
-    role:role,
-    tel:tel,
-    created_at : created_at,
-    created_by : created_by,
-    last_visit:formattedDate,
-    updated_at: formattedDate,
-    status:0,
+    const newUser = {
+      artisanId: artisanId,
+      username: username,
+      password: hashedPassword,
+      profile: userID + "-" + fileName,
+      usermail: usermail,
+      role: role,
+      tel: tel,
+      created_at: created_at,
+      created_by: created_by,
+      last_visit: formattedDate,
+      updated_at: formattedDate,
+      status: 0,
 
-   };
+    };
 
 
     //results
     const results = await collection.insertOne(newUser);
     if (results) {
-    res.status(200).json({message:"Account created successfully.. ",statusCode:200});
-    }else{
-    res.status(200).json({message:"Account not created successfully.. ",statusCode:200});
+      res.status(200).json({ message: "Account created successfully.. ", statusCode: 200 });
+    } else {
+      res.status(200).json({ message: "Account not created successfully.. ", statusCode: 200 });
     }
-    
-}
 
-catch(error){
- if (error) {
-    logger.log('error',"can not create artisan account /  internal error", error);
-    res.status(501).json({message : "Internal error... "});
-    } 
-}
+  }
+
+  catch (error) {
+    if (error) {
+      logger.log('error', "can not create artisan account /  internal error", error);
+      res.status(501).json({ message: "Internal error... " });
+    }
+  }
 
 
 }
 
 module.exports = {
 
-artisans:artisans,
-VerifyArtisans:VerifyArtisans,
-deleteArtisan:deleteArtisan,
-CreateArtisan:CreateArtisan
+  artisans: artisans,
+  VerifyArtisans: VerifyArtisans,
+  deleteArtisan: deleteArtisan,
+  CreateArtisan: CreateArtisan
 };

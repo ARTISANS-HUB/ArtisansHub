@@ -10,7 +10,7 @@ import { Link } from 'react-router-dom';
 
 
 const ArtisanLogin = () => {
-    let message = localStorage.getItem('message');
+  let message = localStorage.getItem('message');
   let password_update_success = localStorage.getItem('password_update_success');
   const [error,] = useState(false);
 
@@ -56,7 +56,7 @@ const ArtisanLogin = () => {
       setTimeout(() => {
         setIsLoading(false);
       }, 7000);
-      
+
       //send data to controller
       authArtisanController(formData);
 
@@ -64,7 +64,7 @@ const ArtisanLogin = () => {
 
   }
 
-   //redirect google login
+  //redirect google login
   const handleLoginWithGoogle = () => {
 
     //dev
@@ -75,16 +75,16 @@ const ArtisanLogin = () => {
 
   };
 
-return (
+  return (
     <div className="login-view">
 
       <div className="container">
         <div className="left">
-          <img src="../../uploads/bg224.jpeg"  alt="" />
+          <img src="../../uploads/bg224.jpeg" alt="" />
         </div>
         <div className="right">
           <div className="login-form">
-            <h2 className="login-title" >Login</h2>
+            <h2 className="login-title" >Artisans Login</h2>
             <form id="login-form" action="" onSubmit={handleSubmit}  >
               <div className="form-group">
                 <label for="email"  >Username</label>
@@ -115,11 +115,11 @@ return (
 
               <div className="login-options" >
 
-                <button type="button" title="login" className="login-options-submit-btn button-60"  onClick={handleLoginWithGoogle}>
-               <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
+                <button type="button" title="login" className="login-options-submit-btn button-60" onClick={handleLoginWithGoogle}>
+                  <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
                 </button>
 
-                 
+
 
               </div>
 
@@ -129,18 +129,18 @@ return (
 
               </div>
 
-              <Link to="/forgot-password-artisan" > Forgot Password ? </Link> Or 
+              <Link to="/forgot-password-artisan" > Forgot Password ? </Link> Or
               <Link to="/" > Go Home? </Link>
 
             </form>
 
-            {!message == "" && localStorage.getItem('isAuthenticated') == false && (
+            {!message === "" && localStorage.getItem('isAuthenticated') === false && (
               <div className="login-alert">
                 {message}
               </div>
             )}
 
-            {!message == "" && error == false && password_update_success && (
+            {!message === "" && error === false && password_update_success && (
               <div className="login-alert" style={{ backGround: 'green' }}>
                 {message}
               </div>
