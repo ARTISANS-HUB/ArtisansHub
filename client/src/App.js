@@ -30,6 +30,7 @@ import ServicesProviders from './views/platform/servicesProviders';
 import HistoryPage from './views/platform/HistoryPage'; 
 import CreateArtisan from './views/platform/CreateArtisan';
 import CreateBuyer from './views/platform/CreateBuyer';
+import Booking from './views/platform/Booking';
 
 
 // end
@@ -57,6 +58,7 @@ function App() {
         <Route path="/create-artisan" element={< CreateArtisan />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/services-provider" element={< ServicesProviders />} />
+        <Route path="/booking" element={< Booking />} />
 
 
         { isAuthenticated ? (
