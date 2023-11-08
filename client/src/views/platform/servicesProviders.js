@@ -2,7 +2,10 @@ import React from 'react';
 import "../../css/serviceProviders.css"
 import profilePicture from '../../uploads/bg.jpeg'; 
 import TopNavBar from "./includes/topNavBar";
-import PlatformFooter from "./includes/platformFooter"
+import PlatformFooter from "./includes/platformFooter";
+
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faBook, faPhone } from "@fortawesome/free-solid-svg-icons";
 
 const ArtisanProfile = (props) => {
   const { name = "John Doe", email = "johndoe123@example.com", services } = props;
@@ -18,6 +21,10 @@ const ArtisanProfile = (props) => {
         <h2>{name}</h2>
         <p>{email}</p>
       </div>
+      <div className="buttons animated-fade-in">
+         <FontAwesomeIcon icon={faPhone} className='book-button'/>
+          <FontAwesomeIcon icon={faBook} className='call-button'/>
+        </div>
       <div className="services animated-slide-in">
         <h3>Services</h3>
         <div className="service-grid">
@@ -31,10 +38,7 @@ const ArtisanProfile = (props) => {
             ))
           )}
         </div>
-        <div className="buttons animated-fade-in">
-          <button className="book-button">Book</button>
-          <button className="call-button">Call</button>
-        </div>
+        
       </div>
     </div>
     <PlatformFooter/>
