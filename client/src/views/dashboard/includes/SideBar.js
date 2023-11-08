@@ -83,12 +83,7 @@ const SideBar = () => {
                     <i className="uil uil-comments"></i>
                     <span className="link-name">Comments</span>
                 </Link></li>
-                <li>
-                    <Link to="#">
-                    <i className="uil uil-comments"></i>
-                    <span className="link-name">Feebacks</span>
-                </Link>
-                </li>
+               
                  <li>
                     <Link to="#">
                     <i className="uil uil-share"></i>

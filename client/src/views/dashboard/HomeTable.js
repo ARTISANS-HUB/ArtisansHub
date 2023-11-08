@@ -1,10 +1,11 @@
 import { Link} from 'react-router-dom';
-import { useEffect, useState} from 'react'
+import { Api_connect_server } from "../../APIs/Api_connect_server";
+import { useEffect,useState} from 'react'
+import * as XLSX from 'xlsx'; // Import all functions and objects from xlsx
 
-
-const HomeTable = () => {
-
-
+const HomeTable =  () => {
+let api_connect =  Api_connect_server();
+const [activities, setActivities] = useState([]);
 
 useEffect(() => {
 
@@ -71,15 +72,55 @@ searchInputtable.removeEventListener("keyup", SearchTable );
 }, [])
 
 
+useEffect(() => {
+  api_connect.get('/auth/fetch-services-dashboard')
+  .then((response) => {
+    if (response.status == 200) { 
+      setActivities(response.data);
+     } else {
+      setActivities([]);
+     }
+  })
+  .catch((error) => {
+    console.error('Error fetching services:', error);
+  });
+
+}, [api_connect])
+
+
+
+  //consert table to xlsx data
+  const exportToExcel = () => {
+    const tableid = document.getElementById('myTable');
+    const ws = XLSX.utils.table_to_sheet(tableid);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'Recent-Activities.xlsx');
+  };
+
+
 	return (
 
  
 <>
 
- <div className="title">
-      <i className="uil uil-clock-three"></i>
-        <span className="text">Recent Activity</span>
-</div>
+
+
+
+      <div className="title" id="top-button-table">
+        <div className="tab-controll">
+          <i className="uil uil-clock-three"></i>
+          <span className="text"> Recent Activity ( {activities.length})</span>
+        </div>
+
+        <div className="add-user">
+          <button onClick={exportToExcel} className="link-export-data" >
+            <i className="fa fa-download" title="export data"></i> <span></span>  </button>
+        </div>
+      </div>
+
+
+
 
 
 <input type="text" id="searchInput-table" className="searchInput-table" placeholder="Search for anything.." title="Type in anything..." />
@@ -89,9 +130,12 @@ searchInputtable.removeEventListener("keyup", SearchTable );
 
 <thead>
     <tr className="header">
-        <th data-sort="name">Name</th>
+        <th data-sort="id">ID</th>
+        <th data-sort="type">Type</th>
 
         <th data-sort="location">Location</th>
+        <th data-sort="location">Charge</th>
+
 
         
     </tr>
@@ -104,79 +148,32 @@ searchInputtable.removeEventListener("keyup", SearchTable );
  </tr>
 
 
-<tr>
-  <td>John Forson</td>
-  <td>Kumasi</td>
-  
-</tr>
+            {
 
-<tr>
-  <td>Paul Marts</td>
-  <td>Accra</td>
- 
-</tr>
-<tr>
-  <td>Esi Tom</td>
-  <td>Cape Coast</td>
-  
-</tr>
-<tr>
-  <td>Hariet Sam </td>
-  <td>Takoradi</td>
-  
-</tr>
-<tr>
-  <td>Abigail Sarpomah</td>
-  <td>Tarkwa</td>
- 
-</tr>
-<tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
-  
-</tr><tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
-  
-</tr><tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
- 
-</tr><tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
-  <td className="menu-icon">
-    
-  </td>
-</tr><tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
- 
-</tr><tr>
-  <td>Berglunds snabbkop</td>
-  <td>Sweden</td>
- 
-</tr>
-            
- 
+              activities.length > 0 && activities ? (
+                activities.map((activity, index) => (
+                  <tr key={activity._id}>
+                    <td>{index}</td>
+                    <td>{activity.type}</td>
+                    <td>{activity.location}</td>
+                    <td>GHS {activity.charge}</td>
+                    
+                  </tr>))
+
+              ) : (
+
+                <tr className="">
+                  <td colSpan="3">Loading data...</td>
+                </tr>
+
+              )
+            }
   </tbody>
 
 </table>
          </div>
 
 
-<div className="action-modal" id="deleteModal">
-  <div className="action-modal-content">
-    <h2>Delete User</h2>
-    <p>Are you sure you want to delete this user ? </p>
-    <p className="username" id="username-delete"></p>
-
-    <div className="action-buttons">
-      <button id="confirmDelete" >Yes</button>
-      <button id="cancelDelete">Cancel</button>
-    </div>
-  </div>
-</div>
 
 </>
 	)

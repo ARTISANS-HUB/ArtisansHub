@@ -251,6 +251,7 @@ const ArtisansTable = (props) => {
           <thead>
             <tr className="header">
               <th style={{ width: '10px' }}></th>
+              <th data-sort="id">ID</th>
               <th data-sort="name">Name</th>
               <th data-sort="expertise">Expertise</th>
               <th data-sort="">Verfified</th>
@@ -291,7 +292,7 @@ const ArtisansTable = (props) => {
                     }
 
 
-
+                    <td>{index}</td>
                     <td>{artisan.username}</td>
                     <td>{artisan.expertise}</td>
 

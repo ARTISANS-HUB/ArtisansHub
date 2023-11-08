@@ -122,7 +122,7 @@ const statusCode = response.data.statusCode;
                         <span className="number">{artisans}</span>
                     </div>
                     <div className="box box2">
-                        <i className="uil uil-comments"></i>
+                        <i className="uil uil-home"></i>
                         <span className="text">Services</span>
                         <span className="number">{services}</span>
                     </div>
@@ -132,7 +132,7 @@ const statusCode = response.data.statusCode;
                         <span className="number">{buyers}</span>
                     </div>
                     <div className="box box3">
-                        <i className="uil uil-user"></i>
+                        <i class="fa fa-question-circle" aria-hidden="true"></i>
                         <span className="text">Supports</span>
                         <span className="number">{supports}</span>
                     </div>

@@ -21,7 +21,7 @@ var urlencodedParser = bodyParser.urlencoded({ extended: true })
 const session = require('express-session');
 const EventEmitter = require('events'); 
 // Increase the event listener limit for Express (change 15 to your desired limit)
-EventEmitter.setMaxListeners(100);
+EventEmitter.setMaxListeners(200);
 //path
 const path = require("path");
 // Initialization cookie
@@ -90,6 +90,10 @@ FeedBackController = require('./http/controllers/FeedBackController');
 const SupportController  = require('./http/controllers/SupportController');
 
 const PlatformServicesController = require('./http/controllers/PlatformServicesController')
+
+
+//services
+const ServicesController  = require('./http/controllers/ServicesController');
 
 //error_404
 //const error_404_PNF  = require('./http/controllers/error_404');
@@ -200,7 +204,6 @@ app.post('/login/buyer',AuthController.BuyerAuth);
 //update user details
 app.post('/auth/update/user-profile-picture',profileUploadpic.single("file"),UpdateUserController.UpdateUserProfile);
 
-
 //update user details
 app.post('/auth/edit/edit-user-profile-picture',profileUploadpic.single("file"),UpdateUserController.EditUserProfile);
 
@@ -229,8 +232,6 @@ app.delete('/auth/delete-users/:userID',UsersContoller.deleteUsers);
 app.post('/auth/edit/edit-user-details',UsersContoller.EditUsersDetails);
 
 
-
-
 //artisans controller 
 app.get('/auth/fetch-artisans',ArtisansController.artisans);
 app.delete('/auth/delete-artisan/:artisanId',ArtisansController.deleteArtisan);
@@ -238,12 +239,16 @@ app.get('/auth/fetch-artisans/active',ArtisansOverviewController.fetchActiveArti
 app.get('/auth/fetch-artisans/inactive',ArtisansOverviewController.fetchInActiveArtisans);
 app.get('/auth/fetch-artisans/verified',ArtisansOverviewController.fetchVerfiedArtisans);
 
+
 app.get('/auth/artisan-action/:artisanId/:action',ArtisansController.VerifyArtisans);
+app.post('/auth/create-artisan',ArtisansController.CreateArtisan);
 
 
 app.get('/auth/fetch-feebacks',FeedBackController.feedbacks);
-app.get('/auth/fetch-buyers',BuyersController.buyers);
 
+
+app.get('/auth/fetch-buyers',BuyersController.buyers);
+app.post('/auth/create-buyer',BuyersController.CreateBuyer);
 
 //SupportController
 app.get('/auth/fetch-supports',SupportController.supports);
@@ -263,6 +268,13 @@ app.get('/auth/fetch-services-pending-artisan/:artisanId',PlatformServicesContro
 app.get('/auth/fetch-services-completed-buyer/:buyerId',PlatformServicesController.ServicesCompletedBuyer);
 app.get('/auth/fetch-services-cancelled-buyer/:buyerId',PlatformServicesController.ServicesCancelledBuyer);
 app.get('/auth/fetch-services-pending-buyer/:buyerId',PlatformServicesController.ServicesPendingBuyer);
+
+
+//dasboard services
+app.get('/auth/fetch-services-dashboard',ServicesController.DashboardServices);
+app.get('/auth/fetch-services-completed',ServicesController.DashboardServicesCompleted);
+app.get('/auth/fetch-services-cancelled',ServicesController.DashboardServicesCancelled);
+app.get('/auth/fetch-services-pending',ServicesController.DashboardServicesPending);
 
 
 //verify user mail

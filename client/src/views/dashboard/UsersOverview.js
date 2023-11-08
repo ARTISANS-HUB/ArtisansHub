@@ -49,7 +49,7 @@ const statusCode = response.data.statusCode;
                         <span className="number">{activeUsers}</span>
                     </div>
                     <div className="box box2">
-                        <i className="uil fas fa-users"></i>
+                        <i className="uil fas fa-exclamation-circle"></i>
                         <span className="text">Inactive Users</span>
                         <span className="number">{inActiveUsers}</span>
                     </div>

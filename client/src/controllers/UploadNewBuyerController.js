@@ -5,7 +5,7 @@ const UploadNewBuyerController = async ( formData , file ) => {
 const api_connect =  Api_connect_server();
 
 
-let message;api_connect.post('/auth/add-new-user',
+let message;api_connect.post('/auth/create-buyer',
  { formData , file }, {headers: { 'Content-Type': 'multipart/form-data' },})
 
 .then((response)=>{

@@ -1,15 +1,9 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
-import * as XLSX from 'xlsx'; // Import all functions and objects from xlsx
-
+import * as XLSX from 'xlsx'; 
 import { DeleteUserController } from "../../controllers/DeleteController";
-//importing session
-import Usersession from '../dashboard/session/Usersession'
-const HomeTable = ( props ) => {
 
- //initiate  to check user session
-Usersession();
-
+const ServicesTable = ( props ) => {
    const getResponseMsg = localStorage.getItem('message');
    const reponse_message_code = localStorage.getItem('reponse_message_code');
    
@@ -209,7 +203,7 @@ if (error_close_btn) {
       <div className="title" id="top-button-table">
         <div className="tab-controll">
           <i className="uil uil-user"></i>
-          <span className="text"> USERS ( {props.users.length})</span>
+          <span className="text"> SERVICES ( {props.services.length})</span>
         </div>
 
         <div className="add-user">
@@ -233,13 +227,12 @@ if (error_close_btn) {
         <table id="myTable">
           <thead>
             <tr className="header">
-              <th style={{width:'10px'}}></th>
-              <th data-sort="id">ID</th>
-              <th data-sort="name">Name</th>
-              <th data-sort="Mail">Mail</th>
-              <th data-sort="Tel">Tel</th>
+               <th data-sort="id">ID</th>
+              <th data-sort="type">Type</th>
+              <th data-sort="completed">Completed</th>
+              <th data-sort="location">location</th>
+               <th data-sort="completed_at">Completed_at</th>
               <th data-sort="created_at">Created_at</th>
-              <th data-sort="updated_at">Updated_at</th>
 
               <th></th>
             </tr>
@@ -252,39 +245,50 @@ if (error_close_btn) {
 
          {
 
-props.users.length > 0 && props.users  ? ( 
-            props.users.map( ( user , index) => (
-<tr key={user._id}>
-
-             {
-              user.status==1 ?
-              (
-<td><div class="user-status online"></div>
-       </td>
-                ):(
-<td><div class="user-status offline"></div> </td>
-                )
-             } 
+props.services.length > 0 && props.services  ? ( 
+props.services.map( ( service , index) => (
+<tr key={service._id}>
+        
                <td>{index}</td>
-             <td>{user.username}</td>
-              <td>{user.usermail}</td>
-              <td>{user.tel}</td>
-              <td>{user.created_at}</td>
-              <td>{user.updated_at}</td>
+             <td>{service.type}</td>
+
+
+					{
+                      service.completed == 0 &&
+
+                      <td style={{ color: 'yellow' }}> Pending </td>
+
+                    }
+
+                    {
+                      service.completed == 1 &&
+                      <td style={{ color: 'green' }}>Yes</td>
+
+                    }
+
+                    {
+                      service.completed == 2 &&
+                      <td style={{ color: 'red' }}>Rejected</td>
+                    }      
+
+
+              <td>{service.location}</td>
+              <td>{service.completed_at}</td>
+              <td>{service.created_at}</td>
               <td className="menu-icon">
                 <span className="menu-icon-content">&#8942;</span>
                 <div className="table-dropdown dropdown-1">
                   <Link to="/auth/dashboard/edit-user-profile">
                     <i className="fas fa-edit edit-icon" title="Edit"
-                     datauserid={user.userID}
-                     datausername={user.username}
+                     datauserid={service.userID}
+                     datausername={service.username}
                      onClick={handleuserEditBtn}
-                     userusermail={user.usermail}
-                     userprofile={user.profile}
-                     usertel={user.tel}
-                     userrole={user.role}
-                     usercreated_at={user.created_at}
-                     edituserupdated_at={user.updated_at}
+                     userusermail={service.usermail}
+                     userprofile={service.profile}
+                     usertel={service.tel}
+                     userrole={service.role}
+                     usercreated_at={service.created_at}
+                     edituserupdated_at={service.updated_at}
 
                     ></i>
                   </Link>
@@ -293,8 +297,8 @@ props.users.length > 0 && props.users  ? (
                       className="fas fa-trash delete-icon"
                       title="Delete"
                       id="userIdBtn"
-                      datauserid={user.userID}
-                      datausername={user.username}
+                      datauserid={service.userID}
+                      datausername={service.username}
                       onClick={handleuserIdBtn}
                     ></i>
                   </Link>
@@ -356,4 +360,4 @@ props.users.length > 0 && props.users  ? (
   );
 };
 
-export default HomeTable;
+export default ServicesTable

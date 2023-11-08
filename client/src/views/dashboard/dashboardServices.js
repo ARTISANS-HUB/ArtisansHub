@@ -5,35 +5,37 @@ import Footer from '../dashboard/includes/Footer'
 import { useEffect ,useState} from 'react'
 
 import SideBar from '../dashboard/includes/SideBar'
-import ArtisansOverview from '../dashboard/ArtisansOverview'
+import ServicesOverview from '../dashboard/ServicesOverview'
 
-import ArtisansTable from '../dashboard/ArtisansTable'
+import ServicesTable from '../dashboard/ServicesTable'
 import Usersession from '../dashboard/session/Usersession'
 import { Api_connect_server } from "../../APIs/Api_connect_server";
 const DashboardServices = () => {
 
 const api_connect = Api_connect_server();
-const [ artisans , setArtisans]=useState([]);
+const [ services , setservices]=useState([]);
 
 //initiate  to check user session
 Usersession();
 
 
 // Fetch the image from the server
-api_connect.get('/auth/fetch-artisans')
+api_connect.get('/auth/fetch-services-dashboard')
   .then((response) => {
-const statusCode = response.data.statusCode;
 
     if (response.status === 200) { 
      // Check the status code for success (200 OK)
-      setArtisans(response.data);
+      setservices(response.data);
 
-     } else if (statusCode===404) {
-      setArtisans([]);
+
+      
+
+     } else {
+      setservices([]);
     }
   })
   .catch((error) => {
-    console.error('Error fetching users:', error);
+    console.error('Error fetching services:', error);
   });
 
   
@@ -49,12 +51,12 @@ const statusCode = response.data.statusCode;
     <div className="dash-content">
 
     {   /*over view*/ }
-    <div className="ArtisansOverview">
-        <ArtisansOverview />
+    <div className="servicesOverview">
+        <ServicesOverview />
  </div>
 
 <div className="activity">
-  <ArtisansTable artisans={artisans} />
+  <ServicesTable services={services} />
 </div>
 
        </div>
