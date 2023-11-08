@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../css/serviceProviders.css'; // Create a CSS file for styling
+import '../../css/serviceProviders.css'; 
 
 const serviceProvider = () => {
   return (
