@@ -9,8 +9,6 @@ const updateUserInfoController = (formData) => {
   let api_connect;
   api_connect = Api_connect_server();
 
-  //alert("data reciveved at controller" + formData.userID);
-
   //make post request to databse
   api_connect.post('/auth/update/user-details', { formData })
     .then((response) => {
@@ -54,7 +52,9 @@ const updateUserInfoController = (formData) => {
     })
     .catch((error) => {
 
-      console.log("update response error user " + error);
+        window.location.reload();
+        localStorage.setItem('reponse_message_code', 501);
+        localStorage.setItem('message', 'Please try again..');
 
     });
   //end fetch

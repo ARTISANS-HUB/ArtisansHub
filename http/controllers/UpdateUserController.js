@@ -8,7 +8,6 @@ const path = require("path");
 const multer = require("multer");
 
 const bcrypt = require('bcryptjs');
-const session = require('express-session');
 let db;
 const logger = require('../../logger');
 

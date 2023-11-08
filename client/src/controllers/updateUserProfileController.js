@@ -26,25 +26,20 @@ const updateUserProfileController = async (file_data, userID) => {
 					localStorage.setItem('message', message);
 					localStorage.setItem('reponse_message_code', 200);
 					localStorage.setItem('profile', Userdata.profile);
-					console.log("file changed successfully..")
 
 				} else if (statusCode === 501) {
 					message = response.data.message;
 					localStorage.setItem('message', message);
 					localStorage.setItem('reponse_message_code', 501);
-					console.log(message)
+					 
 				}
 
 			})
 			.catch((error) => {
 
-				//error 
-				console.log(file_data);
-				//alert('internal error...can not update user profile',+error);
-				console.log(error)
 				localStorage.setItem('reponse_message_code', 501);
 				localStorage.setItem('message', "Couldnt update Please, try again");
-				alert('error');
+				 
 
 
 			})

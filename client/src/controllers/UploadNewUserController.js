@@ -36,9 +36,7 @@ const UploadNewUserController = async (formData, file) => {
 			localStorage.setItem('reponse_message_code', 501);
 			localStorage.setItem('message', "Couldnt create new user Please, try again");
 
-			//alert('server error');
-			console.log('file received at controller error ');
-
+			 
 		})
 
 }

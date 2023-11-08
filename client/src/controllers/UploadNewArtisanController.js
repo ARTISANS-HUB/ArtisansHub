@@ -19,7 +19,7 @@ const UploadNewArtisanController = async (formData, file) => {
 				localStorage.setItem('reponse_message_code', 200);
 			} else if (response.data.statusCode === 501) {
 				message = response.data.message;
-				console.log(message)
+				
 				window.location.reload();
 				localStorage.setItem('message', message);
 				localStorage.setItem('reponse_message_code', 501);
@@ -29,13 +29,9 @@ const UploadNewArtisanController = async (formData, file) => {
 		.catch((error) => {
 
 			//error 
-			console.log(error)
 			window.location.reload();
 			localStorage.setItem('reponse_message_code', 501);
 			localStorage.setItem('message', "Couldnt create new user Please, try again");
-
-			//alert('server error');
-			console.log('file received at controller error ');
 
 		})
 }
