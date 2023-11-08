@@ -28,6 +28,8 @@ import Services from './views/platform/services';
 import BookServices from './views/platform/bookServices'; 
 import ServicesProviders from './views/platform/servicesProviders'; 
 import HistoryPage from './views/platform/HistoryPage'; 
+import CreateArtisan from './views/platform/CreateArtisan';
+import CreateBuyer from './views/platform/CreateBuyer';
 
 
 // end
@@ -51,6 +53,9 @@ function App() {
         <Route path="/about" element={< About />} />
         <Route path="/contact" element={< Contact />} />
         <Route path="/services" element={< Services />} />
+        <Route path="/services" element={< Services />} />
+        <Route path="/create-artisan" element={< CreateArtisan />} />
+        <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/services-provider" element={< ServicesProviders />} />
 
 
