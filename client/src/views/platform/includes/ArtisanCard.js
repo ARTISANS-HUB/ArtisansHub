@@ -1,6 +1,8 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import "../../../css/artisanCard.css";
+import  "../../../css/artisanCard.css";
+import ArtisanProfile from '../servicesProviders'
+
 
 
 const ArtisanCard = ({name,description,link,img}) => {
@@ -15,7 +17,7 @@ const ArtisanCard = ({name,description,link,img}) => {
            <p>{description}</p>
         </div>
         <div className='artisan-card-bottom'>
-           <Link to='./serviceProviders' style={{textDecoration:"none"}}>
+           <Link to={link} style={{textDecoration:"none"}}>
                 <button className='artisan-card-btn'>More</button>
            </Link>
         </div>

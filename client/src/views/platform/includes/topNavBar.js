@@ -26,7 +26,7 @@ const TopNavBar = () => {
     <nav>
       <div className="navbar">
         <Link to="/" className="title">
-          DiGiHaven
+          DIGIHAVEN
         </Link>
         <FontAwesomeIcon
           icon={faBars}
@@ -65,11 +65,32 @@ const TopNavBar = () => {
                 </Link>
               </option>
 
-              <option value="admin">
+             
+            </select>
+          </li>
+          <li>
+            <select
+              id="selectOption"
+              onChange={handleChange}
+              className="become-button"
+            >
+              <option value="" selected disabled>
                 <Link to="#">
-                  <i> Admin Login </i>
+                  <i> Login As</i>
                 </Link>
               </option>
+              <option value="buyer">
+                <Link to="/become-buyer">
+                  <i> Buyer</i>
+                </Link>
+              </option>
+              <option value="artisan">
+                <Link to="/become-artisan">
+                  <i> Artisan</i>
+                </Link>
+              </option>
+
+             
             </select>
           </li>
           <li>

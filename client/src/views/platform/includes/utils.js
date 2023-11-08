@@ -95,7 +95,7 @@ export const cartCategories = [
     {
       name:"Daniel",
       description:"Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-      link:"#",
+      link:"/service-provider",
       img:"../../../uploads/bg.jpeg"
     },
     {
