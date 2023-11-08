@@ -74,7 +74,8 @@ const PreviewArtisan = () => {
 
 
           <div className="profile-container">
-            <span className="title-top"><i className="fas fa-tachometer"></i> Dashbaord {'>'} <i className="fas fa-user"></i>  Edit User ( {username} )</span>
+            <span className="title-top"><i className="fas fa-tachometer"></i> Dashbaord {'>'} 
+            <i className="fas fa-user"></i>  Preview Artisans ( {username} )</span>
 
             <div className="container-left">
 

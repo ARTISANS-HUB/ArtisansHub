@@ -48,6 +48,7 @@ import CreateArtisan from './views/platform/CreateArtisan';
 //artisan dashboard
 import ArtitsanHome from './views/platform/ArtisansDashbaord/ArtitsanHome';
 import BuyerHome from './views/platform/BuyerDashboard/BuyerHome';
+import PreviewBuyer from './views/dashboard/PreviewBuyer';
 
 // end
 function App() {
@@ -94,6 +95,7 @@ function App() {
 
             <Route path="/auth/dashboard/artisans" element={<Artisans />} />
             <Route path="/auth/dashboard/preview-artisan" element={<PreviewArtisan />} />
+            <Route path="/auth/dashboard/preview-buyer" element={<PreviewBuyer />} />
             <Route path="/auth/dashboard/buyers" element={<Buyers />} />
             <Route path="/auth/dashboard/services" element={<DashboardServices />} />
 

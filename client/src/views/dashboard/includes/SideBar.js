@@ -45,7 +45,7 @@ const SideBar = () => {
             
             <ul className="dashboard-nav-links">
                 <li><Link to="/auth/dashboard">
-                    <i className="uil uil-estate"></i>
+                    <i className="uil fas fa-home"></i>
                     <span className="link-name">Dahsboard</span>
                 </Link></li>
                 <li><Link to="/auth/dashboard/users">

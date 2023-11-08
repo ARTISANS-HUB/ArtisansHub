@@ -85,14 +85,14 @@ const ArtisansController = require('./http/controllers/ArtisansController');
 VerificationController = require('./http/controllers/VerificationController');
 
 
-BuyersController = require('./http/controllers/BuyersController');
-FeedBackController = require('./http/controllers/FeedBackController');
+const BuyersController = require('./http/controllers/BuyersController');
+const FeedBackController = require('./http/controllers/FeedBackController');
 
 //support
 const SupportController = require('./http/controllers/SupportController');
 
 const PlatformServicesController = require('./http/controllers/PlatformServicesController')
-
+const BuyersOverviewController = require('./http/controllers/BuyersOverviewController');
 
 //services
 const ServicesController = require('./http/controllers/ServicesController');
@@ -251,6 +251,12 @@ app.get('/auth/fetch-feebacks', FeedBackController.feedbacks);
 
 app.get('/auth/fetch-buyers', BuyersController.buyers);
 app.post('/auth/create-buyer', BuyersController.CreateBuyer);
+app.delete('/auth/delete-buyer/:buyerId',BuyersController.DeleteBuyer);
+
+app.get('/auth/fetch-buyers/active', BuyersOverviewController.fetchActiveBuyers);
+app.get('/auth/fetch-buyers/inactive', BuyersOverviewController.fetchInActiveBuyers);
+app.get('/auth/fetch-buyers/verified', BuyersOverviewController.fetchVerfiedBuyers);
+
 
 //SupportController
 app.get('/auth/fetch-supports', SupportController.supports);

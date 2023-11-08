@@ -254,20 +254,20 @@ const ServicesTable = (props) => {
 
 
                     {
-                      service.completed == 0 &&
+                      service.completed === 0 &&
 
                       <td style={{ color: 'yellow' }}> Pending </td>
 
                     }
 
                     {
-                      service.completed == 1 &&
+                      service.completed === 1 &&
                       <td style={{ color: 'green' }}>Yes</td>
 
                     }
 
                     {
-                      service.completed == 2 &&
+                      service.completed === 2 &&
                       <td style={{ color: 'red' }}>Rejected</td>
                     }
 
@@ -335,7 +335,7 @@ const ServicesTable = (props) => {
         </div>
       </div>
 
-      {!getResponseMsg == "" && reponse_message_code == 200 && (
+      {!getResponseMsg === "" && reponse_message_code === 200 && (
 
         <div class="notification-success" id="notification-success">
           <span class="inner-notifications" >
@@ -348,7 +348,7 @@ const ServicesTable = (props) => {
       }
 
 
-      {!getResponseMsg == "" && reponse_message_code == 501 && (
+      {!getResponseMsg === "" && reponse_message_code === 501 && (
         <div class="notification-error" id="notification-error">
           <span class="inner-notifications" >
             <div> {getResponseMsg}</div>

@@ -42,13 +42,13 @@ const EditUserProfilePageFormPartial = () => {
 
     //check for empty input
     if (
-      formData.username == "" ||
-      // formData.password == ''||
-      formData.usermail == "" ||
-      formData.tel == "" ||
-      formData.role == "" ||
-      formData.created_at == "" ||
-      formData.updated_at == ""
+      formData.username === "" ||
+      // formData.password === ''||
+      formData.usermail === "" ||
+      formData.tel === "" ||
+      formData.role === "" ||
+      formData.created_at === "" ||
+      formData.updated_at === ""
     ) {
       alert("all input are required..");
     } else {

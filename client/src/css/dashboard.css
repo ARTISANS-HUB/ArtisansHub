@@ -914,9 +914,9 @@ color: red;
             position: absolute;
             background-color: var(--panel-color);
             border: 1px solid #ccc;
-            padding: 8px;
+            padding: 11px;
             z-index: 1;
-            left: -56px; /* Position inline with the menu icon */
+            left: -45px; /* Position inline with the menu icon */
             top: 3px; /* Position below the menu icon */
             border-radius: 3px;
             box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px;         
@@ -968,8 +968,6 @@ color: red;
   }
 
 
-
-/*  */
 #form-control-container  .uploads-drop .{
     padding: 20px;
     text-align: center;

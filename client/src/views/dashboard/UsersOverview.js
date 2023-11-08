@@ -56,7 +56,7 @@ const UsersOverview = () => {
         <div className="box box3">
           <i className="uil fas fa-users"></i>
           <span className="text">Last Visits</span>
-          <span className="number">10</span>
+          <span className="number">3</span>
         </div>
 
       </div>

@@ -101,7 +101,43 @@ const CreateBuyer = async (req, res, next) => {
 
 }
 
+
+
+const DeleteBuyer = async (req , res , next )=>{
+
+  const buyerId = req.params.buyerId;
+
+  try {
+    //query
+    db = await connectToDB();
+
+
+    const collection = db.collection('buyers');
+
+    //fetching user password,empty
+    const users_del = await collection.deleteOne({ buyerId: buyerId });
+  
+    if (users_del.deletedCount === 1) {
+
+      res.status(200).json({ message: "Buyer deleted successfully..", statusCode: 200 });
+ 
+    } else {
+
+      res.status(200).json({ message: "Failed deleting buyer....", statusCode: 501 });
+ 
+    }
+
+  }
+  catch (error) {
+    logger.log('error', '[' + Date() + ']can not delete  Users...' + error);
+    res.status(501).json({ message: "Failed to delete buyer....", statusCode: 501 });
+
+  }
+
+}
+
 module.exports = {
   buyers: buyers,
-  CreateBuyer: CreateBuyer
+  CreateBuyer: CreateBuyer,
+  DeleteBuyer:DeleteBuyer,
 };

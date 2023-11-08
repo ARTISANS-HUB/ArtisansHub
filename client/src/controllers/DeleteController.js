@@ -78,4 +78,44 @@ const deleteArtisanController = async (artisanId) => {
         })
 }
 
-export { DeleteUserController, deleteArtisanController }
+
+const deleteBuyerController = async (buyerId) => {
+
+    let api_connect = Api_connect_server();
+
+    //send respond to delete artisan 
+    api_connect.delete('/auth/delete-buyer/' + buyerId)
+        .then((response) => {
+
+            if (response) {
+                if (response.data.statusCode === 200) {
+                    message = response.data.message;
+                    localStorage.setItem('message', message);
+                    localStorage.setItem('reponse_message_code', response.data.statusCode);
+                    //window.location.reload();
+                } else if (response.data.statusCode === 501) {
+                    message = response.data.message;
+                    localStorage.setItem('message', message);
+                    localStorage.setItem('reponse_message_code', response.data.statusCode);
+                    //window.location.reload();
+
+                }
+            }
+
+
+        })
+        .catch((error) => {
+            if (error) {
+                message = error.data.message;
+                localStorage.setItem('message', message);
+                localStorage.setItem('reponse_message_code', error.data.statusCode);
+
+            }
+        })
+}
+
+
+
+export { DeleteUserController,
+    deleteBuyerController, 
+    deleteArtisanController }
