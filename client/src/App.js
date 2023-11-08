@@ -58,7 +58,6 @@ function App() {
         <Route path="/create-artisan" element={< CreateArtisan />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/services-provider" element={< ServicesProviders />} />
-        <Route path="/booking" element={< Booking />} />
 
 
         { isAuthenticated ? (
