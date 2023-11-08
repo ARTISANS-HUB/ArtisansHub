@@ -12,6 +12,7 @@ import {Link } from 'react-router-dom';
 
 const ServiceCategory = () => {
   const [filteredCards, setFilteredCards] = useState(categoryData);
+  const [filter, setFilter] = useState('');
   const [filteredCategory, setFilteredCategory] = useState(cartCategories);
 
   const filterCards = (buttonValue) => {
@@ -23,6 +24,11 @@ const ServiceCategory = () => {
   const handleFilterChange = (e) => {
     const buttonValue = e.target.value;
     filterCards(buttonValue);
+  };
+
+  const handleShowAll = () => {
+    setFilter('');
+    setFilteredCards(categoryData);
   };
 
   const settings = {
@@ -65,9 +71,12 @@ const ServiceCategory = () => {
    
   return (
     <div className='service-container'>
+    
         <h2 className='service-title'>
                 service category
         </h2>
+  
+
         {/* <div className='category-card'> */}
         <div className='card'>
             <Slider {...settings}>
@@ -81,17 +90,21 @@ const ServiceCategory = () => {
         {/* </div> */}
 
      <div>
-     <div className='featured-category'>featured category</div>
-     <Link to={"#"} className='category-filter' style={{textDecoration:"none"}}>
- 
- {
- 
-    filteredCards.map((cat)=>{
-      return <FilterCategory name={cat.name} img={myImage}/>
-    })
-  }
+     <div className='featured-category'>
+        <div className='featured-category-title'>featured category</div>
+        <Link to={"#"} style={{textDecoration:"none"}} onClick={handleShowAll}>See All</Link>
+     </div>
 
-</Link>
+
+     <Link to={"#"}  className='category-filter' style={{textDecoration:"none"}}>
+          {
+          
+              filteredCards.map((cat)=>{
+                return <FilterCategory name={cat.category} img={myImage} link={cat.link}/>
+              })
+            }
+
+    </Link>
      </div>
     </div>
   )
