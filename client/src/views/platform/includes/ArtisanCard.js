@@ -4,6 +4,7 @@ import "../../../css/artisanCard.css";
 
 
 const ArtisanCard = ({name,description,link,img}) => {
+  
   return (
     <div className='artisan-card'>
         <div className='artisan-card-upper'>
@@ -14,7 +15,7 @@ const ArtisanCard = ({name,description,link,img}) => {
            <p>{description}</p>
         </div>
         <div className='artisan-card-bottom'>
-           <Link to={link} style={{textDecoration:"none"}}>
+           <Link to='./serviceProviders' style={{textDecoration:"none"}}>
                 <button className='artisan-card-btn'>More</button>
            </Link>
         </div>

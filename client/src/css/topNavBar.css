@@ -149,9 +149,9 @@ nav .search-bar input {
 
   
 }
-
-
 /* Add these styles to your topNavBar.css */
+
+/* User Profile Picture */
 .user-dropdown {
   position: relative;
   cursor: pointer;
@@ -161,6 +161,7 @@ nav .search-bar input {
   font-size: 1.5rem;
 }
 
+/* User Menu Dropdown */
 .dropdown {
   display: none;
   position: absolute;

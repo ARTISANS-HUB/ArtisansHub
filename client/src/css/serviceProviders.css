@@ -1,9 +1,13 @@
 .artisan-profile {
   width: 90%;
   margin: 10% auto;
-  padding: 10px;
-  border-radius: 10px;
+  padding: 20px;
   text-align: center;
+  background-color: #FFF1E2;
+}
+.profile-header p{
+  color: #979493;
+  font-size: 0.8rem;
 }
 
 /* Responsive styles for screens with a maximum width of 768px */
