@@ -5,7 +5,7 @@ import Banner from "./includes/Banner";
 import ServiceCategory from "./includes/ServiceCategory";
 import FilterCategory from "./includes/FilterCategory";
 import ArtisansCard from "./includes/ArtisansCard";
-import serviceProvider from "./servicesProviders"
+import ArtisanProfile from './servicesProviders'
 
 
 const Index = () => {
@@ -16,7 +16,7 @@ const Index = () => {
 		<Banner/>
 		<ServiceCategory/>
 		<ArtisansCard/>
-		<serviceProvider/>
+		<ArtisanProfile/>
 	
 
 	

@@ -26,7 +26,7 @@ const TopNavBar = () => {
     <nav>
       <div className="navbar">
         <Link to="/" className="title">
-          DiGiHaven
+          DIGIHAVEN
         </Link>
         <FontAwesomeIcon
           icon={faBars}
