@@ -1,6 +1,7 @@
 import React from 'react'
 import "../../../css/booking.css";
 import {useFormik} from 'formik';
+import myImage from "../../../uploads/booking.jpg";
 
 
 const validate = values => {
@@ -35,38 +36,42 @@ const BookingForm = () => {
   return (
     <div className='booking-form-container'>
         <h2 className='booking-form-heading'>Booking Form</h2>
+            <div className='booking-form'>
 
-        <form className='booking-form' onSubmit={formik.handleSubmit}>
-           
-           <div className='booking-form-fields'>
-                <div class="input-field">
-                        <label>Date</label>
-                        <input type="date" id="date" name="date" placeholder="Select Date" onChange={formik.handleChange}/>
-                        <div className='input-field-error'>
-                        {formik.errors.date ? <div>{formik.errors.date}</div> : null}
-                        </div>
+                <div className='booking-form-image'>
+                    <img src={myImage}/>
                 </div>
-                <div class="input-field">
-                        <label>Time</label>
-                        <input type="time" id="time" name="time" placeholder="Select time" onChange={formik.handleChange} />
-                        <div className='input-field-error'>
-                        {formik.errors.time ? <div>{formik.errors.time}</div> : null}
+                <form  onSubmit={formik.handleSubmit}>
+                <div className='booking-form-fields'>
+                        <div class="input-field">
+                                <label>Date</label>
+                                <input type="date" id="date" name="date" placeholder="Select Date" onChange={formik.handleChange}/>
+                                <div className='input-field-error'>
+                                {formik.errors.date ? <div>{formik.errors.date}</div> : null}
+                                </div>
                         </div>
-                </div>
-                <div class="input-field">
-                        <label>Service Charge</label>
-                        <input type="text" placeholder="Service Charge" name="charge" id="charge" onChange={formik.handleChange}/>
-                        <div className='input-field-error'>
-                        {formik.errors.charge ? <div>{formik.errors.charge}</div> : null}
+                        <div class="input-field">
+                                <label>Time</label>
+                                <input type="time" id="time" name="time" placeholder="Select time" onChange={formik.handleChange} />
+                                <div className='input-field-error'>
+                                {formik.errors.time ? <div>{formik.errors.time}</div> : null}
+                                </div>
                         </div>
-                </div>
+                        <div class="input-field">
+                                <label>Service Charge</label>
+                                <input type="text" placeholder="Service Charge" name="charge" id="charge" onChange={formik.handleChange}/>
+                                <div className='input-field-error'>
+                                {formik.errors.charge ? <div>{formik.errors.charge}</div> : null}
+                                </div>
+                        </div>
 
-                <button type="submit">
-                            <span class="btnText">Book</span>
-                </button>
-           </div>
-        
-        </form>
+                        <button type="submit">
+                                    <span class="btnText">Book</span>
+                        </button>
+                </div>
+                
+                </form>
+            </div>
     </div>
   )
 }

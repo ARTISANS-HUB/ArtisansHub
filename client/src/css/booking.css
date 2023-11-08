@@ -9,16 +9,39 @@
     font-weight: 600;
     color: #333;
     margin-bottom: 16px;
-    text-align: center;
+    /* text-align: center; */
+    text-transform: uppercase;
 
 }
 .booking-form{
     /* background: #000; */
+    display: flex;
+    gap: 20px;
+    margin-top: 40px;
+    /* justify-content: space-between; */
 }
 
+.booking-form .booking-form-image{
+width: 50%;
+background: #000;
+}
+
+.booking-form-image img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+} 
+
+form{
+
+    width: 35%;
+    margin: 20px auto;
+}
 .booking-form-fields{
-    width: 30%;
-    margin: 4px auto;
+    /* width: 30%; */
+    /* margin: 4px auto; */
+    /* background: #000; */
+    margin-top: 20%;
 }
 
 .booking-form-fields .input-field{
