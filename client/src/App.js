@@ -58,7 +58,7 @@ function App() {
         <Route path="/create-artisan" element={< CreateArtisan />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/service-provider" element={< ServicesProviders />} />
-
+        {/* <Route path="/auth/customer/book-service" element={< Booking />} /> */}
 
         { isAuthenticated ? (
 
@@ -75,7 +75,7 @@ function App() {
           <Route path="/auth/dashboard/buyers" element={<Buyers />} />
           <Route path="/auth/dashboard/services" element={<DashboardServices />} />
 
-          <Route path="/auth/customer/book-service" element={< BookServices />} />
+          <Route path="/auth/customer/book-service" element={< Booking />} />
           <Route path="/auth/customer/book-history" element={< HistoryPage  />} />
           </>
 
