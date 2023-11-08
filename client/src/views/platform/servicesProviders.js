@@ -1,14 +1,18 @@
 import React from 'react';
 import "../../css/serviceProviders.css"
 import profilePicture from '../../uploads/bg.jpeg'; 
+import TopNavBar from "./includes/topNavBar";
+import PlatformFooter from "./includes/platformFooter"
 
 const ArtisanProfile = (props) => {
-  const { name = "John Doe", email = "example@mail.com", services } = props;
-  // Use the same profile image as a placeholder for services
+  const { name = "John Doe", email = "johndoe123@example.com", services } = props;
+  
   const placeholderServiceImages = Array(4).fill(profilePicture);
 
   return (
-    <div className="artisan-profile animated-fade-in">
+  <div>
+    <TopNavBar/>
+      <div className="artisan-profile animated-fade-in">
       <div className="profile-header animated-bounce">
         <img src={profilePicture} alt={`${name}'s Profile`} className="profile-picture" />
         <h2>{name}</h2>
@@ -33,6 +37,8 @@ const ArtisanProfile = (props) => {
         </div>
       </div>
     </div>
+    <PlatformFooter/>
+  </div>
   );
 };
 
