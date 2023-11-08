@@ -4,12 +4,13 @@
     flex-wrap: wrap;
     justify-content: center;
     /* gap: 1rem; */
-    padding: 3% 5%;
+    /* padding: 3% 5%; */
     width: 90%;
     margin: 0 auto;
-    background-color: #fe9931;
+    background-color: #f0f0f0;
     margin-top: -5rem;
     overflow-x: scroll;
+    padding-bottom: 20px;
 
 }
 
@@ -25,10 +26,10 @@
     height: 10px;
 }
 .artisans-card-container::-webkit-scrollbar-track{
-   background: #fe9931
+   background: #fff
 }
 .artisans-card-container::-webkit-scrollbar-thumb{
-    background: #fe9931
+    background: #fff
 }
 
  .artisans-card-header{
@@ -37,7 +38,7 @@
     justify-content: start;
     align-items: center;
     padding: 20px 0;
-    color: #fff;
+    color: #000;
     font-size: 1.3rem;
     text-transform: uppercase;
     margin: 0 auto;
@@ -54,6 +55,7 @@
     /* background: #000; */
     overflow: hidden;
     margin-top: 5rem;
+    padding: 10px 5px;
 }
 
 
