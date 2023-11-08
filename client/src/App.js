@@ -4,6 +4,11 @@ import { useState } from 'react';
 
 import Login from './views/auths/login';
 import Forgotpassword from './views/auths/Forgotpassword';
+import ForgotpasswordArtisan from './views/auths/ForgotpasswordArtisan';
+import ForgotpasswordBuyer from './views/auths/ForgotpasswordBuyer';
+
+
+
 import ArtisanLogin from './views/auths/ArtisanLogin';
 import BuyerLogin from './views/auths/BuyerLogin';
 
@@ -43,6 +48,7 @@ import CreateArtisan from './views/platform/CreateArtisan';
 //artisan dashboard
 import ArtitsanHome from './views/platform/ArtisansDashbaord/ArtitsanHome';
 import BuyerHome from './views/platform/BuyerDashboard/BuyerHome';
+import PreviewBuyer from './views/dashboard/PreviewBuyer';
 
 // end
 function App() {
@@ -61,7 +67,10 @@ function App() {
         <Route path="/login-artisan" element={<ArtisanLogin />} />
 
         <Route path="/forgot-password" element={<Forgotpassword />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/forgot-password-artisan" element={<ForgotpasswordArtisan />} />
+        <Route path="/forgot-password-buyer" element={<ForgotpasswordBuyer />} />
+
+
         <Route path="/auth/google/callback" element={<GoogleAuthLogin />} />
 
 
@@ -73,7 +82,7 @@ function App() {
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
 
-
+        <Route path="*" element={<ErrorPage />} />
         {isAuthenticated ? (
 
           <>
@@ -86,6 +95,7 @@ function App() {
 
             <Route path="/auth/dashboard/artisans" element={<Artisans />} />
             <Route path="/auth/dashboard/preview-artisan" element={<PreviewArtisan />} />
+            <Route path="/auth/dashboard/preview-buyer" element={<PreviewBuyer />} />
             <Route path="/auth/dashboard/buyers" element={<Buyers />} />
             <Route path="/auth/dashboard/services" element={<DashboardServices />} />
 

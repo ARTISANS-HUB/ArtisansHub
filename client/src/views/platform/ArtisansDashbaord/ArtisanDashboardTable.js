@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx'; // Import all functions and objects from xlsx
-import {Api_connect_server} from '../../../APIs/Api_connect_server';
+import { Api_connect_server } from '../../../APIs/Api_connect_server';
 
 function ArtisanDashboardTable(props) {
 
-  const api_connect =  Api_connect_server();
+  const api_connect = Api_connect_server();
 
   const [activeTab, setActiveTab] = useState(0);
   const [data, setData] = useState({
@@ -16,12 +16,22 @@ function ArtisanDashboardTable(props) {
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
 
+  const [totalComplete, settotalComplete] = useState(0);
+  const [totalPending, settotalPending] = useState(0);
+  const [totalCancelled, settotalCancelled] = useState(0);
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const completedResponse = await api_connect.get('/auth/fetch-services-completed-artisan/wqeq');
-        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-artisan/qqwqw');
-        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-artisan/qwwqw');
+        const completedResponse = await api_connect.get('/auth/fetch-services-completed-artisan/awsw11232');
+        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-artisan/awsw11232');
+        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-artisan/awsw11232');
+
+
+
+        settotalCancelled(cancelledResponse.data.length);
+        settotalPending(pendingResponse.data.length);
+        settotalComplete(completedResponse.data.length);
 
         setData({
           completed: completedResponse.data,
@@ -38,16 +48,16 @@ function ArtisanDashboardTable(props) {
 
   const getCategoryData = (category) => {
 
-      if(data){
-    return data[category].filter((item) =>
-      item.name.toLowerCase().includes(searchText.toLowerCase()) &&
-      (startDate === '' || item.date >= startDate) && // Filter by start date
-      (endDate === '' || item.date <= endDate) // Filter by end date
-    );
-      }else{
+    if (data && category && Array.isArray(data[category]) && data[category]) {
+      return data[category].filter((item) =>
+        item.type.toLowerCase().includes(searchText.toLowerCase()) &&
+        (startDate === '' || item.created_at >= startDate) && // Filter by start date
+        (endDate === '' || item.created_at <= endDate) // Filter by end date
+      );
+    } else {
 
-        return null;
-      }
+      return null;
+    }
 
 
 
@@ -70,26 +80,26 @@ function ArtisanDashboardTable(props) {
           className={activeTab === 0 ? 'active' : ''}
           onClick={() => setActiveTab(0)}
         >
-          Completed
+          Completed <span className="total-tag">{totalComplete}</span>
         </button>
         <button
           className={activeTab === 1 ? 'active' : ''}
           onClick={() => setActiveTab(1)}
         >
-          Pending
+          Pending <span className="total-tag">{totalPending}</span>
         </button>
         <button
           className={activeTab === 2 ? 'active' : ''}
           onClick={() => setActiveTab(2)}
         >
-          Cancelled
+          Cancelled <span className="total-tag">{totalCancelled}</span>
         </button>
-        
+
         <div className='export-btn'>
-        
-        <button onClick={exportToExcel} className="link-export-data-artisan" >
-           <span>Export</span>   <i className="fa fa-download" title="export data"></i> 
-        </button>
+
+          <button onClick={exportToExcel} className="link-export-data-artisan" >
+            <span>Export</span>   <i className="fa fa-download" title="export data"></i>
+          </button>
         </div>
       </div>
 
@@ -102,32 +112,34 @@ function ArtisanDashboardTable(props) {
         className='platformTableSearch'
       />
 
-      <div  className='date-filter'>
-              <input
-        type="date"
-        value={startDate}
-        onChange={(e) => setStartDate(e.target.value)}
-        placeholder="Start Date"
-      />
-      <input
-        type="date"
-        value={endDate}
-        onChange={(e) => setEndDate(e.target.value)}
-        placeholder="End Date"
-      />
+      <div className='date-filter'>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          placeholder="Start Date"
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          placeholder="End Date"
+        />
       </div>
 
       <h2>
         {activeTab === 0
           ? 'Completed Services'
           : activeTab === 1
-          ? 'Pending Services'
-          : 'Cancelled Services'}
+            ? 'Pending Services'
+            : 'Cancelled Services'}
       </h2>
       <table className="data-table" id="myTable">
         <thead>
           <tr>
-            <th>Name</th>
+            <th>Type</th>
+            <th>Charge</th>
+            <th>Loc</th>
             <th>Date</th>
           </tr>
         </thead>
@@ -135,8 +147,10 @@ function ArtisanDashboardTable(props) {
           {getCategoryData(activeTab === 0 ? 'completed' : activeTab === 1 ? 'pending' : 'cancelled').map(
             (item, index) => (
               <tr key={index}>
-                <td>{item.name}</td>
-                <td>{item.date}</td>
+                <td>{item.type}</td>
+                <td>{item.charge}</td>
+                <td>{item.location}</td>
+                <td>{item.created_at}</td>
               </tr>
             )
           )}

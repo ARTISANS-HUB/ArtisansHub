@@ -2,71 +2,73 @@
 import Topnav from '../dashboard/includes/TopNav'
 import Footer from '../dashboard/includes/Footer'
 // importing components
-import { useEffect ,useState} from 'react'
+import { useState } from 'react'
 
 import SideBar from '../dashboard/includes/SideBar'
-import ArtisansOverview from '../dashboard/ArtisansOverview'
+import ServicesOverview from '../dashboard/ServicesOverview'
 
-import ArtisansTable from '../dashboard/ArtisansTable'
+import ServicesTable from '../dashboard/ServicesTable'
 import Usersession from '../dashboard/session/Usersession'
 import { Api_connect_server } from "../../APIs/Api_connect_server";
 const DashboardServices = () => {
 
-const api_connect = Api_connect_server();
-const [ artisans , setArtisans]=useState([]);
+  const api_connect = Api_connect_server();
+  const [services, setservices] = useState([]);
 
-//initiate  to check user session
-Usersession();
+  //initiate  to check user session
+  Usersession();
 
 
-// Fetch the image from the server
-api_connect.get('/auth/fetch-artisans')
-  .then((response) => {
-const statusCode = response.data.statusCode;
+  // Fetch the image from the server
+  api_connect.get('/auth/fetch-services-dashboard')
+    .then((response) => {
 
-    if (response.status === 200) { 
-     // Check the status code for success (200 OK)
-      setArtisans(response.data);
+      if (response.status === 200) {
+        // Check the status code for success (200 OK)
+        setservices(response.data);
 
-     } else if (statusCode===404) {
-      setArtisans([]);
-    }
-  })
-  .catch((error) => {
-    console.error('Error fetching users:', error);
-  });
 
-  
-		return (
-		<div className="dashboard-body">	
+
+
+      } else {
+        setservices([]);
+      }
+    })
+    .catch((error) => {
+      console.error('Error fetching services:', error);
+    });
+
+
+  return (
+    <div className="dashboard-body">
 
       <SideBar />
-      
-    <section className="dashboard">
 
-	<Topnav />
+      <section className="dashboard">
 
-    <div className="dash-content">
+        <Topnav />
 
-    {   /*over view*/ }
-    <div className="ArtisansOverview">
-        <ArtisansOverview />
- </div>
+        <div className="dash-content">
 
-<div className="activity">
-  <ArtisansTable artisans={artisans} />
-</div>
+          {   /*over view*/}
+          <div className="servicesOverview">
+            <ServicesOverview />
+          </div>
 
-       </div>
+          <div className="activity">
+            <ServicesTable services={services} />
+          </div>
 
-
-</section>
-		
-< Footer />
-</div>
+        </div>
 
 
-	)
+      </section>
+
+      < Footer />
+    </div>
+
+
+  )
 }
 
 export default DashboardServices

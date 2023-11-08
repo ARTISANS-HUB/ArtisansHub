@@ -45,54 +45,49 @@ const SideBar = () => {
             
             <ul className="dashboard-nav-links">
                 <li><Link to="/auth/dashboard">
-                    <i className="uil uil-estate"></i>
+                    <i className="uil fas fa-home"></i>
                     <span className="link-name">Dahsboard</span>
                 </Link></li>
                 <li><Link to="/auth/dashboard/users">
-                    <i className="uil uil-user"></i>
+                <i className="uil fas fa-user-friends"></i>
                     <span className="link-name">Users</span>
                 </Link>
                  </li>
                 <li>
                 <Link to="/auth/dashboard/artisans">
-                    <i className="uil uil-user"></i>
+                <i className="uil fas fa-user-tie"></i>
                     <span className="link-name">Artisans</span>
                 </Link>
                 </li>
                 <li><Link to="/auth/dashboard/services">
-                    <i className="uil uil-user"></i>
+                <i className="uil fas fa-building"></i>
                     <span className="link-name">Services</span>
                 </Link>
                 </li>
                 <li>
                 <Link to="/auth/dashboard/buyers">
-                    <i className="uil uil-user"></i>
+                <i className="uil fas fa-user-friends"></i>
                     <span className="link-name">Buyers</span>
                 </Link>
                 </li>
 
                 <li><Link to="#">
-                    <i className="uil uil-chart"></i>
+                    <i className="uil fas fa-chart-line"></i>
                     <span className="link-name">Analytics</span>
                 </Link></li>
                 <li><Link to="#">
-                    <i className="uil uil-thumbs-up"></i>
+                    <i className="uil fas fa-thumbs-up"></i>
                     <span className="link-name">Favorites</span>
                 </Link></li>
                 <li><Link to="#">
-                    <i className="uil uil-comments"></i>
+                <i className="uil fas fa-comment"></i>
                     <span className="link-name">Comments</span>
                 </Link></li>
-                <li>
-                    <Link to="#">
-                    <i className="uil uil-comments"></i>
-                    <span className="link-name">Feebacks</span>
-                </Link>
-                </li>
+               
                  <li>
                     <Link to="#">
-                    <i className="uil uil-share"></i>
-                    <span className="link-name">Share</span>
+                    <i class="fas fa-people-carry" aria-hidden="true"></i>
+                    <span className="link-name">Support</span>
                 </Link>
                 </li> 
 

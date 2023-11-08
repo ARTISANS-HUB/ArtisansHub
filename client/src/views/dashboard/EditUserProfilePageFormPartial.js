@@ -5,19 +5,17 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 const EditUserProfilePageFormPartial = () => {
   //user data
-  
+
   const usermail = localStorage.getItem("edituserusermail");
   const username = localStorage.getItem("editusername");
-  const password = localStorage.getItem("password");
   const userID = localStorage.getItem("editdatauserid");
-  const profile = localStorage.getItem("edituserprofile");
   const tel = localStorage.getItem("editusertel");
   const role = localStorage.getItem("editusereole");
   const created_at = localStorage.getItem("editusercreated_at");
   const updated_at = localStorage.getItem("edituserupdated_at");
   let getResponseMsg = localStorage.getItem("message");
   let reponse_message_code = localStorage.getItem("reponse_message_code");
-   
+
 
   const [formData, setformData] = useState({
     username: username,
@@ -44,13 +42,13 @@ const EditUserProfilePageFormPartial = () => {
 
     //check for empty input
     if (
-      formData.username == "" ||
-      // formData.password == ''||
-      formData.usermail == "" ||
-      formData.tel == "" ||
-      formData.role == "" ||
-      formData.created_at == "" ||
-      formData.updated_at == ""
+      formData.username === "" ||
+      // formData.password === ''||
+      formData.usermail === "" ||
+      formData.tel === "" ||
+      formData.role === "" ||
+      formData.created_at === "" ||
+      formData.updated_at === ""
     ) {
       alert("all input are required..");
     } else {
@@ -68,25 +66,25 @@ const EditUserProfilePageFormPartial = () => {
   };
 
 
- //clear message after effect
+  //clear message after effect
   useEffect(() => {
 
-//handle notifications
+    //handle notifications
     function closeNotificationSuccess() {
       const notification = document.getElementById("notification-success");
-      if(notification!==null){
-      notification.style.display = "none";
-    }
+      if (notification !== null) {
+        notification.style.display = "none";
+      }
       localStorage.removeItem("message");
       localStorage.removeItem("reponse_message_code");
     }
 
     function closeNotificationError() {
       const notification = document.getElementById("notification-error");
-      
-      if(notification!==null){
-      notification.style.display = "none";
-    }
+
+      if (notification !== null) {
+        notification.style.display = "none";
+      }
       localStorage.removeItem("message");
       localStorage.removeItem("reponse_message_code");
     }
@@ -104,17 +102,17 @@ const EditUserProfilePageFormPartial = () => {
       error_close_btn.addEventListener("click", closeNotificationError);
     }
 
-setTimeout(() => {
+    setTimeout(() => {
 
-  if (sucess_close_btn) {
-  closeNotificationSuccess();
+      if (sucess_close_btn) {
+        closeNotificationSuccess();
 
-}
-if (error_close_btn) {
+      }
+      if (error_close_btn) {
 
-  closeNotificationError();
-}
-}, 6000);
+        closeNotificationError();
+      }
+    }, 6000);
 
 
     ///remove listeners after
@@ -236,7 +234,7 @@ if (error_close_btn) {
         </button>
 
 
-        {!getResponseMsg == "" && reponse_message_code == 200 && (
+        {!getResponseMsg === "" && reponse_message_code === 200 && (
           <div className="notification-success" id="notification-success">
             <span className="inner-notifications">
               <div> {getResponseMsg}</div>
@@ -247,7 +245,7 @@ if (error_close_btn) {
           </div>
         )}
 
-        {!getResponseMsg == "" && reponse_message_code == 501 && (
+        {!getResponseMsg === "" && reponse_message_code === 501 && (
           <div className="notification-error" id="notification-error">
             <span className="inner-notifications">
               <div> {getResponseMsg}</div>

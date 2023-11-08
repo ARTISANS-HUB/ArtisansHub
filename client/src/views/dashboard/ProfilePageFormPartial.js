@@ -8,16 +8,14 @@ const ProfilePageFormPartial = () => {
 
   const usermail_session = localStorage.getItem("usermail");
   const username = localStorage.getItem("username");
-  const password = localStorage.getItem("password");
   const userID = localStorage.getItem("userID");
-  const profile = localStorage.getItem("profile");
   const tel = localStorage.getItem("tel");
   const role = localStorage.getItem("role");
   const created_at = localStorage.getItem("created_at");
   const updated_at = localStorage.getItem("updated_at");
   let getResponseMsg = localStorage.getItem("message");
   let reponse_message_code = localStorage.getItem("reponse_message_code");
-   
+
 
   const [formData, setformData] = useState({
     username: username,
@@ -68,10 +66,10 @@ const ProfilePageFormPartial = () => {
   };
 
 
- //clear message after effect
+  //clear message after effect
   useEffect(() => {
 
-//handle notifications
+    //handle notifications
     function closeNotificationSuccess() {
       const notification = document.getElementById("notification-success");
 
@@ -86,9 +84,9 @@ const ProfilePageFormPartial = () => {
 
     function closeNotificationError() {
       const notification = document.getElementById("notification-error");
-       if (notification) {
-      
-      notification.style.display = "none";
+      if (notification) {
+
+        notification.style.display = "none";
       }
       localStorage.removeItem("message");
       localStorage.removeItem("reponse_message_code");
@@ -107,17 +105,17 @@ const ProfilePageFormPartial = () => {
       error_close_btn.addEventListener("click", closeNotificationError);
     }
 
-setTimeout(() => {
+    setTimeout(() => {
 
-  if (sucess_close_btn) {
-  closeNotificationSuccess();
+      if (sucess_close_btn) {
+        closeNotificationSuccess();
 
-}
-if (error_close_btn) {
+      }
+      if (error_close_btn) {
 
-  closeNotificationError();
-}
-}, 6000);
+        closeNotificationError();
+      }
+    }, 6000);
 
 
     ///remove listeners after

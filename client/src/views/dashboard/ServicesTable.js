@@ -1,20 +1,16 @@
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import * as XLSX from 'xlsx';
+import { DeleteUserController } from "../../controllers/DeleteController";
 
-import { deleteArtisanController } from "../../controllers/DeleteController";
-//importing session
-import Usersession from '../dashboard/session/Usersession'
-const ArtisansTable = (props) => {
-
-  //initiate  to check user session
-  Usersession();
-
+const ServicesTable = (props) => {
   const getResponseMsg = localStorage.getItem('message');
   const reponse_message_code = localStorage.getItem('reponse_message_code');
+
   // handle delete , send id to controller
-  const handleDelete = async (artisanId) => {
-    await deleteArtisanController(artisanId);
+  const handleDelete = async (userId) => {
+    //pass userid as param to controller
+    await DeleteUserController(userId);
     return;
   };
 
@@ -26,10 +22,13 @@ const ArtisansTable = (props) => {
     setTimeout(() => {
       localStorage.removeItem('message');
       localStorage.removeItem('reponse_message_code');
+
+
     }, 6000)
 
 
   }, [reponse_message_code]);
+
 
   useEffect(() => {
 
@@ -78,17 +77,17 @@ const ArtisansTable = (props) => {
 
 
   //delete modal
-  const [artisanId, setartisanId] = useState('');
+  const [userId, setuserId] = useState('');
   const tabledeleteUsersModal = document.getElementById("tabledeleteUsersModal");
   let usernamedelete = document.getElementById("username-delete");
-  let temp_artisanId;
+  let temp_userId;
 
-  function handleartisanIdBtn(event) {
+  function handleuserIdBtn(event) {
     tabledeleteUsersModal.style.display = "block";
-    temp_artisanId = event.target.getAttribute("dataartisanId");
-    usernamedelete.textContent = event.target.getAttribute("artisanUsername");
-    setartisanId(temp_artisanId);
-    //alert(artisanId);
+    temp_userId = event.target.getAttribute("datauserid");
+    usernamedelete.textContent = event.target.getAttribute("datausername");
+    setuserId(temp_userId);
+    //alert(userId);
     //alert(usernamedelete);
   }
 
@@ -96,8 +95,8 @@ const ArtisansTable = (props) => {
 
     tabledeleteUsersModal.style.display = "none";
     //alert('logged out');
-    handleDelete(artisanId);
-    //alert(artisanId);
+    handleDelete(userId);
+    //alert(userId);
   }
 
   function handlecancelDelete() {
@@ -106,48 +105,25 @@ const ArtisansTable = (props) => {
   }
 
   //edit
-  const handleArtisanPrevBtn = async (event) => {
+  const handleuserEditBtn = async (event) => {
 
-    let previewArtisanId = event.target.getAttribute("dataartisanId");
-    let artisanUsername = event.target.getAttribute("artisanUsername");
-    let artisanusermail = event.target.getAttribute("userusermail");
-    let artisanprofile = event.target.getAttribute("artisanprofile");
-    let artisanTel = event.target.getAttribute("usertel");
-    let work_exp = event.target.getAttribute("work_exp");
-    let work_ref_1 = event.target.getAttribute("work_ref_1");
-    let work_ref_2 = event.target.getAttribute("work_ref_2");
-    let verified = event.target.getAttribute("verified");
+    let editdatauserid = event.target.getAttribute("datauserid");
+    let editusername = event.target.getAttribute("datausername");
+    let edituserusermail = event.target.getAttribute("userusermail");
+    let edituserprofile = event.target.getAttribute("userprofile");
+    let editusertel = event.target.getAttribute("usertel");
+    let editusereole = event.target.getAttribute("userrole");
+    let editusercreated_at = event.target.getAttribute("usercreated_at");
+    let edituserupdated_at = event.target.getAttribute("edituserupdated_at");
 
-    let artisanlocation = event.target.getAttribute("artisanlocation");
-    let last_seen = event.target.getAttribute("last_seen");
-    let work_days = event.target.getAttribute("work_days_from") + '-' + event.target.getAttribute("work_days_to");
-    let ready_for_work = event.target.getAttribute('ready_for_work');
-    let artisanExpt = event.target.getAttribute("artisanExpt");
-    let artisanRole = event.target.getAttribute("artisanRole");
-    let work_tel = event.target.getAttribute("work_tel");
-
-    let artisanupdated_at = event.target.getAttribute("artisanupdated_at");
-
-    localStorage.setItem('previewArtisanId', previewArtisanId);
-    localStorage.setItem('artisanUsername', artisanUsername);
-    localStorage.setItem('artisanusermail', artisanusermail);
-    localStorage.setItem('artisanprofile', artisanprofile);
-    localStorage.setItem('work_exp', work_exp);
-    localStorage.setItem('work_ref_1', work_ref_1);
-    localStorage.setItem('work_ref_2', work_ref_2);
-    localStorage.setItem('work_tel', work_tel);
-    localStorage.setItem('verified', verified);
-
-    localStorage.setItem('artisanlocation', artisanlocation);
-    localStorage.setItem('last_seen', last_seen);
-    localStorage.setItem('work_days', work_days);
-    localStorage.setItem('ready_for_work', ready_for_work);
-
-    localStorage.setItem('artisanTel', artisanTel);
-    localStorage.setItem('artisanExpt', artisanExpt);
-    localStorage.setItem('artisanRole', artisanRole);
-    localStorage.setItem('artisanupdated_at', artisanupdated_at);
-
+    localStorage.setItem('editdatauserid', editdatauserid);
+    localStorage.setItem('editusername', editusername);
+    localStorage.setItem('edituserusermail', edituserusermail);
+    localStorage.setItem('edituserprofile', edituserprofile);
+    localStorage.setItem('editusertel', editusertel);
+    localStorage.setItem('editusereole', editusereole);
+    localStorage.setItem('editusercreated_at', editusercreated_at);
+    localStorage.setItem('edituserupdated_at', edituserupdated_at);
 
 
   }
@@ -219,20 +195,21 @@ const ArtisansTable = (props) => {
     const ws = XLSX.utils.table_to_sheet(tableid);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'ARTISANS.xlsx');
+    XLSX.writeFile(wb, 'USERS.xlsx');
   };
-
 
   return (
     <>
       <div className="title" id="top-button-table">
         <div className="tab-controll">
           <i className="uil uil-user"></i>
-          <span className="text"> ARTISANS ( {props.artisans ? props.artisans.length : 0})</span>
+          <span className="text"> SERVICES ( {props.services.length})</span>
         </div>
 
         <div className="add-user">
-
+          <Link to="/auth/dashboard/create-users" className="link-add-user">
+            <i className="fa fa-user-plus" title="Add User"></i>
+          </Link>
           <button onClick={exportToExcel} className="link-export-data" >
             <i className="fa fa-download" title="export data"></i> <span></span>  </button>
         </div>
@@ -250,16 +227,12 @@ const ArtisansTable = (props) => {
         <table id="myTable">
           <thead>
             <tr className="header">
-              <th style={{ width: '10px' }}></th>
               <th data-sort="id">ID</th>
-              <th data-sort="name">Name</th>
-              <th data-sort="expertise">Expertise</th>
-              <th data-sort="">Verfified</th>
-              <th data-sort="location">Loc</th>
-              <th data-sort="Mail">Mail</th>
-              <th data-sort="Tel">Tel</th>
+              <th data-sort="type">Type</th>
+              <th data-sort="completed">Completed</th>
+              <th data-sort="location">location</th>
+              <th data-sort="completed_at">Completed_at</th>
               <th data-sort="created_at">Created_at</th>
-              <th data-sort="updated_at">Updated_at</th>
 
               <th></th>
             </tr>
@@ -272,80 +245,50 @@ const ArtisansTable = (props) => {
 
             {
 
-              props.artisans.length > 0 && props.artisans ? (
-                props.artisans.map((artisan, index) => (
-                  <tr key={artisan._id}>
-
-                    {
-                      artisan.status === 0 &&
-
-                      <td><div class="user-status offline"></div> </td>
-
-                    }
-
-                    {
-                      artisan.status === 1 &&
-
-                      <td><div class="user-status online"></div>
-                      </td>
-
-                    }
-
+              props.services.length > 0 && props.services ? (
+                props.services.map((service, index) => (
+                  <tr key={service._id}>
 
                     <td>{index}</td>
-                    <td>{artisan.username}</td>
-                    <td>{artisan.expertise}</td>
+                    <td>{service.type}</td>
 
 
                     {
-                      artisan.verified === 0 &&
+                      service.completed === 0 &&
 
                       <td style={{ color: 'yellow' }}> Pending </td>
 
                     }
 
                     {
-                      artisan.verified === 1 &&
+                      service.completed === 1 &&
                       <td style={{ color: 'green' }}>Yes</td>
 
                     }
 
                     {
-                      artisan.verified === 2 &&
+                      service.completed === 2 &&
                       <td style={{ color: 'red' }}>Rejected</td>
-
                     }
 
-                    <td>{artisan.location}</td>
-                    <td>{artisan.usermail}</td>
-                    <td>{artisan.tel}</td>
-                    <td>{artisan.created_at}</td>
-                    <td>{artisan.updated_at}</td>
+
+                    <td>{service.location}</td>
+                    <td>{service.completed_at}</td>
+                    <td>{service.created_at}</td>
                     <td className="menu-icon">
                       <span className="menu-icon-content">&#8942;</span>
                       <div className="table-dropdown dropdown-1">
-                        <Link to="/auth/dashboard/preview-artisan">
-                          <i className="fas fa-eye edit-icon" title="Preview"
-                            dataartisanId={artisan.artisanId}
-                            artisanUsername={artisan.username}
-                            onClick={handleArtisanPrevBtn}
-                            userusermail={artisan.usermail}
-                            artisanprofile={artisan.profile}
-                            usertel={artisan.tel}
-                            work_days_from={artisan.work_days_from}
-                            work_days_to={artisan.work_days_to}
-                            ready_for_work={artisan.ready_for_work}
-                            last_seen={artisan.last_seen}
-                            artisanlocation={artisan.location}
-                            artisanExpt={artisan.expertise}
-                            artisanRole={artisan.role}
-                            work_exp={artisan.work_exp}
-                            work_ref_2={artisan.work_ref_2}
-                            work_ref_1={artisan.work_ref_1}
-                            work_tel={artisan.work_tel}
-                            verified={artisan.verified}
-                            artisancreated_at={artisan.created_at}
-                            artisanupdated_at={artisan.updated_at}
+                        <Link to="/auth/dashboard/edit-user-profile">
+                          <i className="fas fa-edit edit-icon" title="Edit"
+                            datauserid={service.userID}
+                            datausername={service.username}
+                            onClick={handleuserEditBtn}
+                            userusermail={service.usermail}
+                            userprofile={service.profile}
+                            usertel={service.tel}
+                            userrole={service.role}
+                            usercreated_at={service.created_at}
+                            edituserupdated_at={service.updated_at}
 
                           ></i>
                         </Link>
@@ -353,10 +296,10 @@ const ArtisansTable = (props) => {
                           <i
                             className="fas fa-trash delete-icon"
                             title="Delete"
-                            id="artisanIdBtn"
-                            dataartisanId={artisan.artisanId}
-                            artisanUsername={artisan.username}
-                            onClick={handleartisanIdBtn}
+                            id="userIdBtn"
+                            datauserid={service.userID}
+                            datausername={service.username}
+                            onClick={handleuserIdBtn}
                           ></i>
                         </Link>
                       </div>
@@ -382,7 +325,7 @@ const ArtisansTable = (props) => {
       <div className="action-modal" id="tabledeleteUsersModal">
         <div className="action-modal-content">
           <h2>Delete User</h2>
-          <p>Are you sure you want to delete this artisan ? </p>
+          <p>Are you sure you want to delete this user ? </p>
           <p className="username" id="username-delete"></p>
 
           <div className="action-buttons">
@@ -411,10 +354,10 @@ const ArtisansTable = (props) => {
             <div> {getResponseMsg}</div>
             <div class="close-button" id="error_close_btn" title="Close" >x</div>
           </span>
-        </div>
-      )}
-    </>
-  )
-}
+          </div>
+)  }
+        </>
+      );
+};
 
-export default ArtisansTable
+      export default ServicesTable

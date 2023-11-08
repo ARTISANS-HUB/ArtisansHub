@@ -4,25 +4,24 @@ import UploadNewUserController from "../../controllers/UploadNewUserController";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSpinner } from "@fortawesome/free-solid-svg-icons";
 
-const ProfilePageFormPartial = (props) => { 
+const ProfilePageFormPartial = (props) => {
 
-   //user data
+  //user data
   const { onFileChange } = props;
   const created_by = localStorage.getItem("username");
-  const userID = localStorage.getItem("userID");
   const [isLoading, setIsLoading] = useState(false);
   const [file, setFile] = useState(null);
 
 
   let getResponseMsg = localStorage.getItem("message");
   let reponse_message_code = localStorage.getItem("reponse_message_code");
- 
+
 
   //get props
 
   const [dragOver, setDragOver] = useState(false);
   const [formData, setformData] = useState({
-    userID:Math.random().toString(36).substr(2 ,50),
+    userID: Math.random().toString(36).substr(2, 50),
     profile: "",
     username: "",
     password: "",
@@ -61,7 +60,7 @@ const ProfilePageFormPartial = (props) => {
     setFile(file);
   };
 
- //send file to parenet props
+  //send file to parenet props
   onFileChange(file);
 
   localStorage.setItem("username_new_user", formData.username);
@@ -72,26 +71,26 @@ const ProfilePageFormPartial = (props) => {
 
     //check for empty input
     if (
-      formData.username == "" ||
-      formData.password == ''||
-      formData.usermail == "" ||
-      formData.tel == "" ||
-      formData.role == "" ||
-      formData.created_at == "" ||
-      file == "" 
-     ) {
+      formData.username === "" ||
+      formData.password === "" ||
+      formData.usermail === "" ||
+      formData.tel === "" ||
+      formData.role === "" ||
+      formData.created_at === "" ||
+      file === ""
+    ) {
       alert("all input are required..");
     } else {
       setIsLoading(true);
       //send data to controller when auth..
       //send drag file
 
-      UploadNewUserController(formData , file);
+      UploadNewUserController(formData, file);
 
- 
+
       //simulate the loader to hide
-        setTimeout(() => {
-       setIsLoading(false);
+      setTimeout(() => {
+        setIsLoading(false);
       }, 9000);
     }
 
@@ -99,29 +98,29 @@ const ProfilePageFormPartial = (props) => {
   };
 
 
- //clear message after effect
+  //clear message after effect
   useEffect(() => {
 
-//handle notifications
+    //handle notifications
     function closeNotificationSuccess() {
       const notification = document.getElementById("notification-success");
       if (notification) {
-      notification.style.display = "none";
-      localStorage.removeItem("message");
-      localStorage.removeItem("reponse_message_code");
-   
+        notification.style.display = "none";
+        localStorage.removeItem("message");
+        localStorage.removeItem("reponse_message_code");
+
       }
-      }
+    }
 
     function closeNotificationError() {
       const notification = document.getElementById("notification-error");
       if (notification) {
-          notification.style.display = "none";
-      localStorage.removeItem("message");
-      localStorage.removeItem("reponse_message_code");
-   
+        notification.style.display = "none";
+        localStorage.removeItem("message");
+        localStorage.removeItem("reponse_message_code");
+
       }
-     }
+    }
 
     const sucess_close_btn = document.getElementById("sucess_close_btn");
 
@@ -136,17 +135,17 @@ const ProfilePageFormPartial = (props) => {
       error_close_btn.addEventListener("click", closeNotificationError);
     }
 
-setTimeout(() => {
+    setTimeout(() => {
 
-if (sucess_close_btn !=null) {
-  closeNotificationSuccess();
+      if (sucess_close_btn != null) {
+        closeNotificationSuccess();
 
-}
-if (error_close_btn !=null) {
+      }
+      if (error_close_btn != null) {
 
-  closeNotificationError();
-}
-}, 6000);
+        closeNotificationError();
+      }
+    }, 6000);
 
 
     ///remove listeners after
@@ -174,7 +173,7 @@ if (error_close_btn !=null) {
         className="form-control-container"
         onSubmit={handleSubmit}
       >
-       
+
         <div className="form-group-control">
           <input
             type="hidden"
@@ -273,7 +272,7 @@ if (error_close_btn !=null) {
             border: dragOver ? "3px dashed #333" : "2px dashed #ccc",
           }}
           className="uploads-drop"
-         >
+        >
           <input
             type="file"
             className="input-text-new-user"
@@ -295,7 +294,7 @@ if (error_close_btn !=null) {
         >
           {isLoading ? <FontAwesomeIcon icon={faSpinner} spin /> : "Save"}
         </button>
-                {!getResponseMsg == "" && reponse_message_code == 200 && (
+        {!getResponseMsg === "" && reponse_message_code === 200 && (
           <div className="notification-success" id="notification-success">
             <span className="inner-notifications">
               <div> {getResponseMsg}</div>
@@ -306,7 +305,7 @@ if (error_close_btn !=null) {
           </div>
         )}
 
-        {!getResponseMsg == "" && reponse_message_code == 501 && (
+        {!getResponseMsg === "" && reponse_message_code === 501 && (
           <div className="notification-error" id="notification-error">
             <span className="inner-notifications">
               <div> {getResponseMsg}</div>

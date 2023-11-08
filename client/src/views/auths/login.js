@@ -1,5 +1,4 @@
-import React from 'react'
-import { authUserController } from '../../controllers/authUserController';
+import { authUserAdminController } from '../../controllers/authUserController';
 
 import '../../css/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,7 +59,7 @@ const Login = () => {
         setIsLoading(false);
       }, 7000);
 
-      authUserController(formData);
+      authUserAdminController(formData);
 
     }
 
@@ -83,11 +82,11 @@ const Login = () => {
 
       <div className="container">
         <div className="left">
-          <img src="../../uploads/bg224.jpeg"  alt="" />
+          <img src="../../uploads/bg224.jpeg" alt="" />
         </div>
         <div className="right">
           <div className="login-form">
-            <h2 className="login-title" >Login</h2>
+            <h2 className="login-title" >Admin Login</h2>
             <form id="login-form" action="" onSubmit={handleSubmit}  >
               <div className="form-group">
                 <label for="email"  >Username</label>
@@ -118,11 +117,11 @@ const Login = () => {
 
               <div className="login-options" >
 
-                <button type="button" title="login" className="login-options-submit-btn button-60"  onClick={handleLoginWithGoogle}>
-               <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
+                <button type="button" title="login" className="login-options-submit-btn button-60" onClick={handleLoginWithGoogle}>
+                  <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
                 </button>
 
-                 
+
 
               </div>
 
@@ -132,18 +131,18 @@ const Login = () => {
 
               </div>
 
-              <Link to="/forgot-password" > Forgot Password ? </Link> Or 
+              <Link to="/forgot-password" > Forgot Password ? </Link> Or
               <Link to="/" > Go Home? </Link>
 
             </form>
 
-            {!message == "" && localStorage.getItem('isAuthenticated') == false && (
+            {!message === "" && localStorage.getItem('isAuthenticated') === false && (
               <div className="login-alert">
                 {message}
               </div>
             )}
 
-            {!message == "" && error == false && password_update_success && (
+            {!message === "" && error === false && password_update_success && (
               <div className="login-alert" style={{ backGround: 'green' }}>
                 {message}
               </div>

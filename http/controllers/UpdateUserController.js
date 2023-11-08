@@ -1,124 +1,125 @@
 
 //file system
 const fs = require("fs");
-const {connectToDB ,closeDB }= require('../../config/mongodbconfig');
+const { connectToDB, closeDB } = require('../../config/mongodbconfig');
 //path
 const path = require("path");
 //multer and upload location
 const multer = require("multer");
-  
+
 const bcrypt = require('bcryptjs');
-const session = require('express-session');
 let db;
 const logger = require('../../logger');
 
-const genRandomStr =  () => {
+const genRandomStr = () => {
 
-return  Math.random().toString(36).substr(2 ,20);
+  return Math.random().toString(36).substr(2, 20);
 
 }
 
 //updating databse with id
-let randomstring =  genRandomStr();
+let randomstring = genRandomStr();
 
-const UpdateUserData = async (  req, res , next ) => {
+const UpdateUserData = async (req, res, next) => {
 
-//update user datails here
+  //update user datails here
 
-try{
+  try {
 
-  const { 
-    userID,
-    username,
-    password,
-    role,
-    created_at,
-    usermail,
-    tel,
-     } = req.body.formData;
+    const {
+      userID,
+      username,
+      password,
+      role,
+      created_at,
+      usermail,
+      tel,
+    } = req.body.formData;
 
-// Create a new Date object
-var currentDate = new Date();
+    // Create a new Date object
+    var currentDate = new Date();
 
-// Get the day, month, and year
-var day = currentDate.getDate();
-var month = currentDate.getMonth() + 1; 
-var year = currentDate.getFullYear();
+    // Get the day, month, and year
+    var day = currentDate.getDate();
+    var month = currentDate.getMonth() + 1;
+    var year = currentDate.getFullYear();
 
-// Create a formatted string
-var formattedDate = day + '/' + month + '/' + year;
+    // Create a formatted string
+    var formattedDate = day + '/' + month + '/' + year;
 
 
- //query
+    //query
     db = await connectToDB();
-   //conncet to table
-     let Userdata;
-    
-const collection = db.collection('users');
-let hashedPassword ='';
+    //conncet to table
+    let Userdata;
+
+    const collection = db.collection('users');
+    let hashedPassword = '';
 
 
- //fetching user password,empty
-  const userDataPassword = await collection.findOne({
+    //fetching user password,empty
+    const userDataPassword = await collection.findOne({
       $or: [
         { username: username },
         { usermail: usermail },
       ],
-  });
+    });
 
 
-if (password=='') {
+    if (password == '') {
 
-hashedPassword=userDataPassword.password;
- 
-}else{
-// Function to hash the password
-const hashPassword = async (password) => {
- const saltRounds = 10; // The number of salt rounds
-  return bcrypt.hash(password, saltRounds);
-}
+      hashedPassword = userDataPassword.password;
 
-hashedPassword = await hashPassword(password);
+    } else {
+      // Function to hash the password
+      const hashPassword = async (password) => {
+        const saltRounds = 10; // The number of salt rounds
+        return bcrypt.hash(password, saltRounds);
+      }
 
-}
+      hashedPassword = await hashPassword(password);
+
+    }
 
 
 
     const userUpdateResult = await collection.updateOne(
       //find user with id
-      { userID : userID},
+      { userID: userID },
       //update user profile with the new file name...
-      { $set: { 
+      {
+        $set: {
 
-        username : username,
-        tel:tel,
-        password : hashedPassword,
-        usermail : usermail,
-        updated_at : formattedDate,
+          username: username,
+          tel: tel,
+          password: hashedPassword,
+          usermail: usermail,
+          updated_at: formattedDate,
 
-      }}
-      );
+        }
+      }
+    );
 
 
     if (userUpdateResult.modifiedCount === 1) {
-    // Handle the uploaded file here, save it, or perform any required processing
-  
+      // Handle the uploaded file here, save it, or perform any required processing
 
-  const userData = await collection.findOne({
-      $or: [
-        { username: username },
-        { usermail: usermail },
-      ],
-     });
 
-  
+      const userData = await collection.findOne({
+        $or: [
+          { username: username },
+          { usermail: usermail },
+        ],
+      });
 
-  res.status(200).json({ message: "User updated successfully", userData, statusCode : 200 });
-   
-    }else{
 
-    res.status(200).json({ message: "Update failed , Please try again ", statusCode : 501 });
-    logger.log('error','['+Date()+'] user update failed..');
+
+      res.status(200).json({ message: "User updated successfully", userData, statusCode: 200 });
+
+    } else {
+
+      res.status(200).json({ message: "Update failed , Please try again ", statusCode: 501 });
+      logger.log('error', '[' + Date() + '] user update failed..');
 
     }
 
@@ -126,77 +127,77 @@ hashedPassword = await hashPassword(password);
 
 
 
-}
+  }
 
-catch(error){
+  catch (error) {
 
-	logger.log('error','['+Date()+'] can not update user profile/ Internal error' + error)
-}
+    logger.log('error', '[' + Date() + '] can not update user profile/ Internal error' + error)
+  }
 
 }
 
 // end
 
 //upload user file
-const UpdateUserProfile = async ( req ,res ,next ) => {
- //update user datails here
-   
-  try{
-// Get the uploaded file name
-  const fileName = req.file.originalname;
-  const userID = req.body.userID;
-   
-let now = new Date();
-let hours = now.getHours();
-let year = now.getFullYear();
+const UpdateUserProfile = async (req, res, next) => {
+  //update user datails here
 
-let timestamp = hours+""+year;
+  try {
+    // Get the uploaded file name
+    const fileName = req.file.originalname;
+    const userID = req.body.userID;
+
+    let now = new Date();
+    let hours = now.getHours();
+    let year = now.getFullYear();
+
+    let timestamp = hours + "" + year;
 
 
     //query
     db = await connectToDB();
-   //conncet to table
+    //conncet to table
     const collection = db.collection('users');
 
     const userUpdateResult = await collection.updateOne(
-    	//find user with id
-    	{ userID : userID},
-    	//update user profile with the new file name...
-    	 { $set: { profile : timestamp+"-"+fileName }}
+      //find user with id
+      { userID: userID },
+      //update user profile with the new file name...
+      { $set: { profile: timestamp + "-" + fileName } }
       //{ $set: { profile : fileName }}
 
-    	);
-  if (userUpdateResult.modifiedCount === 1) {
-  // Handle the uploaded file here, save it, or perform any required processing
-  const userData = await collection.findOne({
-      $or: [
-        { userID: userID },
-      ],
-     });
+    );
+    if (userUpdateResult.modifiedCount === 1) {
+      // Handle the uploaded file here, save it, or perform any required processing
+      const userData = await collection.findOne({
+        $or: [
+          { userID: userID },
+        ],
+      });
 
 
 
-  res.status(200).json({ userData ,message: "Profile updated successfully", statusCode : 200 }); 
-   
-    }else{
+      res.status(200).json({ userData, message: "Profile updated successfully", statusCode: 200 });
 
-    res.status(200).json({ message: "Update failed , Please try again ", statusCode : 501 });
-    logger.log('error','['+Date()+'] user profile update failed..fileName : '+timestamp+"-"+fileName);
+    } else {
+
+      res.status(200).json({ message: "Update failed , Please try again ", statusCode: 501 });
+      logger.log('error', '[' + Date() + '] user profile update failed..fileName : ' + timestamp + "-" + fileName);
     }
 
   }
 
-catch(error){
-	logger.log('error','['+Date()+'] can not update user credentials' + error)
-}
+  catch (error) {
+    logger.log('error', '[' + Date() + '] can not update user credentials' + error)
+  }
 
 
 }
 
 
 //server user profile
-const fetchUserProfile = async ( req ,res , next )=>{
- 
+const fetchUserProfile = async (req, res, next) => {
+
   const profile_url = req.params.profile;
 
   let profile;
@@ -204,18 +205,18 @@ const fetchUserProfile = async ( req ,res , next )=>{
 
   if (profile_url) {
 
-  	 profile = profile_url;
+    profile = profile_url;
 
-  	//console.log(profile)
-   }else{
+    //console.log(profile)
+  } else {
     //default user picture
-  	profile ="user.png"
+    profile = "user.png"
   }
 
 
   try {
     // path to the image on the server
-    const imagePath = path.join(process.cwd(), 'assets/files', ''+profile);
+    const imagePath = path.join(process.cwd(), 'assets/files', '' + profile);
     const imageBuffer = fs.readFileSync(imagePath);
 
     // Set the response header to indicate it's an image
@@ -226,88 +227,88 @@ const fetchUserProfile = async ( req ,res , next )=>{
 
   } catch (error) {
 
-    logger.log('error','['+Date()+']Error sending image , either dir not found or error '+error);
+    logger.log('error', '[' + Date() + ']Error sending image , either dir not found or error ' + error);
     res.status(500).end('Internal Server Error');
   }
 
-} 
-  
+}
+
 
 
 //edit user file
-const EditUserProfile = async ( req ,res ,next ) => {
- //update user datails here
-   
-  try{
-// Get the uploaded file name
-  const fileName = req.file.originalname;
-  const userID = req.body.userID;
-  //console.log("User ID from frontend " +userID);
-   
+const EditUserProfile = async (req, res, next) => {
+  //update user datails here
 
-let now = new Date();
-let hours = now.getHours();
-let year = now.getFullYear();
+  try {
+    // Get the uploaded file name
+    const fileName = req.file.originalname;
+    const userID = req.body.userID;
+    //console.log("User ID from frontend " +userID);
 
-let timestamp = hours+""+year;
+
+    let now = new Date();
+    let hours = now.getHours();
+    let year = now.getFullYear();
+
+    let timestamp = hours + "" + year;
 
 
     //query
     db = await connectToDB();
-   //conncet to table
+    //conncet to table
     const collection = db.collection('users');
 
     const userUpdateResult = await collection.updateOne(
       //find user with id
-      { userID : userID},
+      { userID: userID },
       //update user profile with the new file name...
-       { $set: { profile : timestamp+"-"+fileName }}
+      { $set: { profile: timestamp + "-" + fileName } }
       //{ $set: { profile : fileName }}
 
-      );
-  if (userUpdateResult.modifiedCount === 1) {
-  // Handle the uploaded file here, save it, or perform any required processing
-  const userData = await collection.findOne({
-      $or: [
-        { userID: userID },
-      ],
-     });
+    );
+    if (userUpdateResult.modifiedCount === 1) {
+      // Handle the uploaded file here, save it, or perform any required processing
+      const userData = await collection.findOne({
+        $or: [
+          { userID: userID },
+        ],
+      });
 
 
 
-  res.status(200).json({ userData ,message: "Profile updated successfully", statusCode : 200 });
-   
-    }else{
+      res.status(200).json({ userData, message: "Profile updated successfully", statusCode: 200 });
 
-    res.status(200).json({ message: "Editing failed , Please try again ", statusCode : 501 });
- 
+    } else {
+
+      res.status(200).json({ message: "Editing failed , Please try again ", statusCode: 501 });
+
     }
 
   }
 
-catch(error){
- logger.log('error' , '['+Date()+'] can not update user credentials' + error)
-  res.status(200).json({ message: "Editing failed , Please try again ", statusCode : 501 });
+  catch (error) {
+    logger.log('error', '[' + Date() + '] can not update user credentials' + error)
+    res.status(200).json({ message: "Editing failed , Please try again ", statusCode: 501 });
 
-}
-//close db con
-// finally {
-//     if (db) {
-//      closeDB();
-//     }
+  }
+  //close db con
+  // finally {
+  //     if (db) {
+  //      closeDB();
+  //     }
 
-//   }
+  //   }
 
 
 }
 
 module.exports = {
-  UpdateUserData:UpdateUserData,
-  UpdateUserProfile:UpdateUserProfile,
-  fetchUserProfile:fetchUserProfile,
-  EditUserProfile:EditUserProfile,
+  UpdateUserData: UpdateUserData,
+  UpdateUserProfile: UpdateUserProfile,
+  fetchUserProfile: fetchUserProfile,
+  EditUserProfile: EditUserProfile,
 
-  randomstring:randomstring,
+  randomstring: randomstring,
 
 
 

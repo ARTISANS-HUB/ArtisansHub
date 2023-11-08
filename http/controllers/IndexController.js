@@ -1,27 +1,24 @@
 //essentials
-const bcrypt = require("bcryptjs");
-//files upload to storage
-//multer and upload location
-const multer = require("multer");
-//file system
-const fs = require("fs");
+const logger = require('../../logger');
 //path
 const path = require("path");
 
 const index = async (req, res, next) => {
 
-  try{
-  
-  res.sendFile(path.join(__dirname,'../../build','index.html'));
+  try {
 
-  }catch(error){
+    res.sendFile(path.join(__dirname, '../../build', 'index.html'));
 
-    //console.log("index error ",e)
+  } catch (error) {
+
+    logger.log('error', '[' + Date() + '] can not serve static files...' + error);
+
+
   }
 
 };
 
 
-module.exports= {
+module.exports = {
   index: index,
 };

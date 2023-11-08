@@ -8,7 +8,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { useEffect, useState } from 'react'
 
-const Forgotpassword = () => {
+const ForgotpasswordBuyer = () => {
 	const [usermailorTel, setusermailorTel] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	let message = localStorage.getItem('message');
@@ -47,12 +47,6 @@ const Forgotpassword = () => {
 		setuseSingleCode(event.target.value);
 
 	}
-
-
-	// localStorage.setItem("reponse_message_code",'');
-	// localStorage.setItem("user_response_type",'');
-	// localStorage.setItem("single_use_code_suc",'')
-
 
 
 	//cancel forgot session
@@ -162,8 +156,6 @@ const Forgotpassword = () => {
 					setIsLoading(false);
 					setverified_suc(true);
 					seterrorState(false);
-
-					//alert(''+localStorage.getItem('suc_verified'));
 					localStorage.setItem('message', 'Single-use code verified,You can change ur password now');
 
 				}, 2000);
@@ -286,7 +278,7 @@ const Forgotpassword = () => {
 					)}
 
 
-					<h2>Account Recovery</h2>
+					<h2>Account Recovery Buyer</h2>
 					<div className="forget-password-form-controll" >
 
 						<input type="text"
@@ -311,7 +303,7 @@ const Forgotpassword = () => {
 
 
 					<div className="login-tag">
-						<Link to="/login" className="href-link">Login here</Link>
+						<Link to="/login-artisan" className="href-link">Login here</Link>
 					</div>
 
 				</form>
@@ -439,4 +431,4 @@ const Forgotpassword = () => {
 	)
 }
 
-export default Forgotpassword
+export default ForgotpasswordBuyer

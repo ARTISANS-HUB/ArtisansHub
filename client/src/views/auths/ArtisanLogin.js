@@ -1,5 +1,4 @@
-import React from 'react'
-import { authUserController } from '../../controllers/authUserController';
+import { authArtisanController } from '../../controllers/authUserController';
 
 import '../../css/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -9,9 +8,8 @@ import { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom';
 
-const ArtisanLogin = async () => {
 
-
+const ArtisanLogin = () => {
   let message = localStorage.getItem('message');
   let password_update_success = localStorage.getItem('password_update_success');
   const [error,] = useState(false);
@@ -41,7 +39,6 @@ const ArtisanLogin = async () => {
     });
 
   }
-
   const handleSubmit = async (event) => {
 
     event.preventDefault();
@@ -60,7 +57,8 @@ const ArtisanLogin = async () => {
         setIsLoading(false);
       }, 7000);
 
-      authUserController(formData);
+      //send data to controller
+      authArtisanController(formData);
 
     }
 
@@ -68,20 +66,25 @@ const ArtisanLogin = async () => {
 
   //redirect google login
   const handleLoginWithGoogle = () => {
-    // Redirect the user to your server for Google authentication
-    window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
+
+    //dev
+    //window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
+
+    //pro
+    window.location.href = process.env.REACT_APP_API_URL_PRO + '/google/auth';
 
   };
-
 
   return (
     <div className="login-view">
 
       <div className="container">
-        <div className="left"></div>
+        <div className="left">
+          <img src="../../uploads/bg224.jpeg" alt="" />
+        </div>
         <div className="right">
           <div className="login-form">
-            <h2 className="login-title" >Login</h2>
+            <h2 className="login-title" >Artisans Login</h2>
             <form id="login-form" action="" onSubmit={handleSubmit}  >
               <div className="form-group">
                 <label for="email"  >Username</label>
@@ -112,34 +115,32 @@ const ArtisanLogin = async () => {
 
               <div className="login-options" >
 
-                <button type="button" title="login" className="login-options-submit-btn" onClick={handleLoginWithGoogle}>
-                  Login with Google
+                <button type="button" title="login" className="login-options-submit-btn button-60" onClick={handleLoginWithGoogle}>
+                  <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
                 </button>
 
-                <button type="submit" title="login" className="login-options-submit-btn" onClick={handleSubmit}>
-                  Login with Facebook
-                </button>
+
 
               </div>
 
               <div className="createAc-container" >
 
-                <Link to="/signup"> Create account here</Link>
+                <Link to="/create-artisa"> Create account here</Link>
 
               </div>
 
-              <Link to="/forgot-password" > Forgot Password ? </Link> Or 
+              <Link to="/forgot-password-artisan" > Forgot Password ? </Link> Or
               <Link to="/" > Go Home? </Link>
 
             </form>
 
-            {!message == "" && localStorage.getItem('isAuthenticated') == false && (
+            {!message === "" && localStorage.getItem('isAuthenticated') === false && (
               <div className="login-alert">
                 {message}
               </div>
             )}
 
-            {!message == "" && error == false && password_update_success && (
+            {!message === "" && error === false && password_update_success && (
               <div className="login-alert" style={{ backGround: 'green' }}>
                 {message}
               </div>

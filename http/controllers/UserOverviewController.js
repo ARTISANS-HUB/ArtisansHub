@@ -1,48 +1,48 @@
 
-const {connectToDB ,closeDB }= require('../../config/mongodbconfig');
+const { connectToDB, closeDB } = require('../../config/mongodbconfig');
 const logger = require('../../logger');
 let db;
-const fetchActiveUsers = async  (req ,res , next)=>{
+const fetchActiveUsers = async (req, res, next) => {
 
-try{
-//query
-db = await connectToDB();
+	try {
+		//query
+		db = await connectToDB();
 
-const collection = db.collection('users');
+		const collection = db.collection('users');
 
- const users = await collection.find({status:1}).toArray();
- res.json({total : users.length});
+		const users = await collection.find({ status: 1 }).toArray();
+		res.json({ total: users.length });
 
 
+	}
+	catch (error) {
+		res.status(501).json({ statusCode: 501 });
+		logger.log('error', '[' + Date() + ']can not fetch all Users...' + error);
+	}
 }
-catch(error){
-	 res.status(501).json({ statusCode : 501 });
-	logger.log('error','['+Date()+']can not fetch all Users...'+ error);
-}
-}
 
 
-const fetchInActiveUsers = async ( req, res ,next)=>{
-try{
-//query
-db = await connectToDB();
+const fetchInActiveUsers = async (req, res, next) => {
+	try {
+		//query
+		db = await connectToDB();
 
-const collection = db.collection('users');
+		const collection = db.collection('users');
 
-//fetching user password,empty
- const users = await collection.find({status:0}).toArray();
- res.json({total : users.length});
+		//fetching user password,empty
+		const users = await collection.find({ status: 0 }).toArray();
+		res.json({ total: users.length });
 
 
-}
-catch(error){
-	 res.status(501).json({ statusCode : 501 });
-	logger.log('error','['+Date()+']can not fetch all Users...'+ error);
-}
+	}
+	catch (error) {
+		res.status(501).json({ statusCode: 501 });
+		logger.log('error', '[' + Date() + ']can not fetch all Users...' + error);
+	}
 }
 
 
 module.exports = {
-fetchActiveUsers:fetchActiveUsers,
-fetchInActiveUsers:fetchInActiveUsers
+	fetchActiveUsers: fetchActiveUsers,
+	fetchInActiveUsers: fetchInActiveUsers
 };

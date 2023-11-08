@@ -8,7 +8,7 @@ import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
 import { useEffect, useState } from 'react'
 
-const Forgotpassword = () => {
+const ForgotpasswordArtisan = () => {
 	const [usermailorTel, setusermailorTel] = useState("");
 	const [isLoading, setIsLoading] = useState(false);
 	let message = localStorage.getItem('message');
@@ -286,7 +286,7 @@ const Forgotpassword = () => {
 					)}
 
 
-					<h2>Account Recovery</h2>
+					<h2>Account Recovery artisan</h2>
 					<div className="forget-password-form-controll" >
 
 						<input type="text"
@@ -311,7 +311,7 @@ const Forgotpassword = () => {
 
 
 					<div className="login-tag">
-						<Link to="/login" className="href-link">Login here</Link>
+						<Link to="/login-buyer" className="href-link">Login here</Link>
 					</div>
 
 				</form>
@@ -439,4 +439,4 @@ const Forgotpassword = () => {
 	)
 }
 
-export default Forgotpassword
+export default ForgotpasswordArtisan

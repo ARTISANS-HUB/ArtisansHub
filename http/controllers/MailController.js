@@ -29,7 +29,7 @@ const getAccessToken = async () => {
     const accessToken = await oauth2Client.getAccessToken();
     return accessToken;
   } catch (error) {
-  logger.log('error','['+Date()+'] Network Error getting access token,net not conncted or '+error);
+    logger.log('error', '[' + Date() + '] Network Error getting access token,net not conncted or ' + error);
   }
 };
 
@@ -65,7 +65,7 @@ async function sendEmailWithRefreshedToken() {
     //   }
     // });
   } catch (error) {
-    logger.log('error','['+Date()+'] An error occurred sending mail:', error);
+    logger.log('error', '[' + Date() + '] An error occurred sending mail:', error);
   }
 }
 
@@ -75,4 +75,4 @@ async function sendEmailWithRefreshedToken() {
 // Export transporter and token
 module.exports = {
   transporter: transporter,
- };
+};
