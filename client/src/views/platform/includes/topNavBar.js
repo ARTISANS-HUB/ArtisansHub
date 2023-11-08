@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link,useNavigate } from "react-router-dom";
 // import "../../../css/createBuyer.css";
 import "../../../css/topNavBar.css";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -6,15 +6,28 @@ import { faBars, faBell } from "@fortawesome/free-solid-svg-icons";
 import { useState } from "react";
 
 const TopNavBar = () => {
+  const navigate = useNavigate();
+  
   const handleChange = async (event) => {
     event.preventDefault();
 
     if (event.target.value === "buyer") {
-      window.location.href = "/create-buyer";
+      navigate("/create-buyer")
     } else if (event.target.value === "artisan") {
-      window.location.href = "/create-artisan";
+      navigate("/create-artisan")
     } else if (event.target.value === "admin") {
-      window.location.href = "/login";
+      navigate("/login")
+    }
+  };
+  const handleLoginChange = async (event) => {
+    event.preventDefault();
+
+    if (event.target.value === "buyer") {
+      navigate("/login")
+    } else if (event.target.value === "artisan") {
+      navigate("/login")
+    } else if (event.target.value === "admin") {
+      navigate("/login")
     }
   };
 
@@ -71,7 +84,7 @@ const TopNavBar = () => {
           <li>
             <select
               id="selectOption"
-              onChange={handleChange}
+              onChange={handleLoginChange}
               className="become-button"
             >
               <option value="" selected disabled>
@@ -80,12 +93,12 @@ const TopNavBar = () => {
                 </Link>
               </option>
               <option value="buyer">
-                <Link to="/become-buyer">
+                <Link to="/login">
                   <i> Buyer</i>
                 </Link>
               </option>
               <option value="artisan">
-                <Link to="/become-artisan">
+                <Link to="/login">
                   <i> Artisan</i>
                 </Link>
               </option>

@@ -46,7 +46,7 @@ const TopNavBar = () => {
           <li>
             <select
               id="selectOption"
-              onChange={handleChange}
+              // onChange={handleChange}
               className="become-button"
             >
               <option value="" selected disabled>
@@ -71,21 +71,21 @@ const TopNavBar = () => {
           <li>
             <select
               id="selectOption"
-              onChange={handleChange}
+              // onChange={handleChange}
               className="become-button"
             >
               <option value="" selected disabled>
                 <Link to="#">
-                  <i> Login As</i>
+                  <i> Login </i>
                 </Link>
               </option>
               <option value="buyer">
-                <Link to="/become-buyer">
+                <Link to="/login">
                   <i> Buyer</i>
                 </Link>
               </option>
               <option value="artisan">
-                <Link to="/become-artisan">
+                <Link to="/login">
                   <i> Artisan</i>
                 </Link>
               </option>
