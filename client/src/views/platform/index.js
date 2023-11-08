@@ -6,6 +6,7 @@ import ServiceCategory from "./includes/ServiceCategory";
 import FilterCategory from "./includes/FilterCategory";
 import ArtisansCard from "./includes/ArtisansCard";
 import ArtisanProfile from './servicesProviders'
+import platformFooter from "../platform/includes/platformFooter";
 
 
 const Index = () => {
@@ -17,6 +18,7 @@ const Index = () => {
 		<ServiceCategory/>
 		<ArtisansCard/>
 		<ArtisanProfile/>
+		<platformFooter/>
 	
 
 	
