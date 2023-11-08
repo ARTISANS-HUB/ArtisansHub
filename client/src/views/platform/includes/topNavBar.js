@@ -118,7 +118,10 @@ const TopNavBar = () => {
             </select>
           </li>
           <li>
-            <FontAwesomeIcon icon={faBell} />
+            <FontAwesomeIcon icon={faBell} className="notification-bell" />
+          </li>
+          <li>
+            
           </li>
         </ul>
       </div>
