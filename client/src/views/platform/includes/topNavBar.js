@@ -40,7 +40,7 @@ const TopNavBar = () => {
         </div>
         <ul className={menuOpen ? "open" : ""}>
           <li>
-            <Link to="./contact">Contact</Link>
+            <Link to="/contact">Contact</Link>
           </li>
           
           <li>
