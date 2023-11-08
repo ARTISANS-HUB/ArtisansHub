@@ -57,7 +57,7 @@ function App() {
         <Route path="/services" element={< Services />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
-        <Route path="/services-provider" element={< ServicesProviders />} />
+        <Route path="/service-provider" element={< ServicesProviders />} />
 
 
         { isAuthenticated ? (
