@@ -1,163 +1,12 @@
-/* nav .TopNavBar-platform {
-  width: 90%;
-  margin: 30px auto;
-  box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
-  padding: 20px;
-}
-nav .TopNavBar-platform-inner {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  width: 80%;
-  margin: 0 auto;
-}
-nav .logo {
-  width: 20%;
-}
-
-nav .logo {
-  text-decoration: none;
-  border: 1px solid red;
-  font-size: 20px;
-  font-weight: bold;
-  color: #000;
-  text-decoration: none;
-  border: none;
-}
-nav .search-bar {
-  width: 40%;
-  text-align: center;
-}
-nav .search-bar input {
-  border-radius: 10px;
-  height: 5vh;
-}
-nav .navbar {
-  display: flex;
-  width: 30%;
-  justify-content: space-between;
-}
-nav .navbar .contact {
-  text-decoration: none;
-  font-weight: bold;
-  color: #000;
-  text-decoration-line: none;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-}
-nav .navbar .become-button {
-  width: 75%;
-  padding: 5px;
-  border: none;
-  font-weight: bold;
-  font-size: 1.2rem;
-  cursor: pointer;
-}
-nav .navbar .become-button:hover {
-  color: orange;
-}
-nav .navbar .notification {
-  font-size: 1.5rem;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: orange;
-  cursor: pointer;
-}
-nav .navbar .notification:hover {
-  color: #000;
-}
-nav .bars{
-    display: none;
-}
-
-@media screen and (min-width: 320px) and (max-width: 480px) {
-  nav .TopNavBar-platform {
-    width: 100%;
-    margin: 0px auto;
-    height: 50vh;
-    box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
-    
-  }
-  nav .TopNavBar-platform-inner {
-    display: flex;
-    justify-content: space-evenly;
-    flex-direction: column;
-    text-align: center;
-  }
-  nav .TopNavBar-platform-inner .logo {
-    width: 100%;
-    margin: 20px auto;
-  }
-  nav .TopNavBar-platform-inner .logo i {
-    text-decoration: none;
-    font-size: 1.4rem;
-    font-weight: bold;
-    color: #000;
-  }
-
-  nav .TopNavBar-platform-inner .search-bar {
-    width: 100%;
-    text-align: center;
-    margin: 0 auto;
-    border: 1px soild red;
-  }
-  
-  nav .TopNavBar-platform-inner .navbar {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-  }
-  nav .TopNavBar-platform-inner .navbar .contact {
-    text-align: center;
-    width: 100%;
-    margin: 0 auto;
-  }
-  nav .TopNavBar-platform-inner .navbar .contact i{
-    font-size: 0.9rem;
-  }
-  nav .navbar .become-button {
-    font-size: 1rem;
-    font-weight: normal;
-    width: 120%;
-    margin: 20px auto;
-    text-align: center;
-  }
- nav .navbar .notification{
-    width: 100;
-    margin: 10px auto;
-  }
-  nav .bars{
-    display: block;
-    float: right;
-    font-size: 2rem;
-    margin: 20px;
-    cursor: pointer;
-  }
-}
 
 
-
-
- */
-
-
-
-
-
-
-
-
-
-
-
-
- nav{
+nav{
   
   box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
   width: 90%;
   margin: 0 auto;
+  
+  transition: transform 0.2s ease-in-out;
 
 }
 .navbar {
@@ -167,6 +16,7 @@ nav .bars{
     width: 90%;
     margin: 0 auto;
    
+    transition: transform 0.2s ease-in-out;
     padding: 20px;
     margin: 2% auto;
     position: sticky;
@@ -188,12 +38,16 @@ nav .search-bar input {
   height: 5vh;
   width: 70%;
   padding: 20px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid rgb(200, 190, 190);
 }
 
 .navbar ul {
     display: flex;
     justify-content: space-between;
     width: 20%;
+    align-items: center;
 }
 
 .navbar ul li {
@@ -203,8 +57,22 @@ nav .search-bar input {
   text-decoration: none;
   color: black;
   font-size: 1rem;
+  font-weight: bold;
 }
-
+.navbar ul li a:hover{
+  color: orange;
+}
+.navbar ul li select{
+  font-weight: bold;
+  background-color: transparent;
+}
+.navbar ul li .notification-bell{
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.navbar ul li .notification-bell:hover{
+  color: orange;
+}
 .navbar .become-button{
   border: none;
   font-size: 1rem;
@@ -226,12 +94,12 @@ nav .search-bar input {
 .navbar .menu span {
     height: 0.4rem;
     width: 100%;
-    background-color: #fff;
+    background-color: #000;
     border-radius: 0.2rem;
 }
 
 
-@media (max-width: 480px) {
+@media screen and (max-width: 768px) {
   nav{
     box-shadow: none;
   }
@@ -246,7 +114,9 @@ nav .search-bar input {
         flex-direction: column;
         align-items: flex-start;
         box-shadow: none;
-        background-color: orange;
+        width: 100%;
+        
+    transition: transform 0.2s ease-in-out;
     }
     nav .search-bar{
       width: 80%;
@@ -254,7 +124,7 @@ nav .search-bar input {
     }
     nav .search-bar input {
       width: 100%;
-      height: 3vh;
+      height: 1vh;
 
       text-align: center;
     }
@@ -272,8 +142,45 @@ nav .search-bar input {
 
     .navbar ul li {
         width: 100%;
+        margin-top: 20px;
         text-align: center;
     }
+    
 
   
+}
+
+
+/* Add these styles to your topNavBar.css */
+.user-dropdown {
+  position: relative;
+  cursor: pointer;
+}
+
+.user-icon {
+  font-size: 1.5rem;
+}
+
+.dropdown {
+  display: none;
+  position: absolute;
+  top: 100%;
+  right: 0;
+  background-color: #fff;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown.open {
+  display: block;
+}
+
+.dropdown li {
+  padding: 10px;
+  text-align: left;
+  border-bottom: 1px solid #ccc;
+}
+
+.dropdown li:last-child {
+  border-bottom: none;
 }
