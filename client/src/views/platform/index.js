@@ -17,7 +17,7 @@ const Index = () => {
 		<ArtisansCard/>
 	
 	
-
+		<PlatformFooter/>
 	
 			
 		</div>
