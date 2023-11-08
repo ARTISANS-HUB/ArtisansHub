@@ -1,6 +1,6 @@
 
 
- nav{
+nav{
   
   box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
   width: 90%;
@@ -47,6 +47,7 @@ nav .search-bar input {
     display: flex;
     justify-content: space-between;
     width: 20%;
+    align-items: center;
 }
 
 .navbar ul li {

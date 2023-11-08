@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../css/serviceProviders.css'; // Create a CSS file for styling
 
-const serviceProviders = () => {
+const serviceProvider = () => {
   return (
     <div className="user-profile">
       <div className="profile-image">
@@ -18,4 +18,4 @@ const serviceProviders = () => {
   );
 }
 
-export default serviceProviders;
+export default serviceProvider;
