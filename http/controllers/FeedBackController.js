@@ -12,7 +12,7 @@ db = await connectToDB();
 
 const collection = db.collection('feedbacks');
 
- const feebacksData = await collection.find().toArray();
+ const feebacksData = await collection.find({}).toArray();
  res.json(feebacksData);
 }
 catch(error){

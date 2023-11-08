@@ -14,7 +14,6 @@ var year = currentDate.getFullYear();
 // Create a formatted string
 var formattedDate = day + '/' + month + '/' + year;
 
-
 try{
 
 db = await connectToDB();

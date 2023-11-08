@@ -17,12 +17,31 @@ const TopNavBar = () => {
 
             }
 
-            else if (event.target.value === "admin") {
-                  window.location.href = '/login';
+           
+      }
 
+
+//login
+            const handleChangeLogin = async (event) => {
+            event.preventDefault();
+
+            if (event.target.value === "buyer") {
+
+            window.location.href = '/login-buyer';
+
+            } else if (event.target.value === "artisan") {
+            
+            window.location.href = '/login-artisan';
+
+            }
+
+            else if (event.target.value === "admin") {
+
+              window.location.href = '/login';
 
             }
       }
+
       return (
             <div className="TopNavBar-platform" >
                   <div className="TopNavBar-platform-inner">
@@ -89,12 +108,34 @@ const TopNavBar = () => {
                                     </Link>
                               </option>
 
-                              <option value="admin">
+                              
+                        </select>
+
+
+                        <select id="selectOption" onChange={handleChangeLogin} >
+                              <option value="" selected disabled >
                                     <Link to="#" >
-                                          <i> Admin Login </i>
+                                          <i> Login As</i>
+                                    </Link></option>
+                              <option value="buyer">
+                                    <Link to="#" >
+                                          <i> Buyer</i>
+                                    </Link>
+                              </option>
+                              <option value="artisan">
+                                    <Link to="#" >
+                                          <i> Artisan</i>
+                                    </Link>
+                              </option>
+
+                              <option value="admin">
+                                    <Link to="/auth-admin" >
+                                          <i> Admin</i>
                                     </Link>
                               </option>
                         </select>
+
+
                   </div>
             </div>
       )

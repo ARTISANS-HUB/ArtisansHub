@@ -11,7 +11,7 @@ db = await connectToDB();
 const collection = db.collection('artisans');
 
 //fetching user password,empty
- const artisans = await collection.find({status:1}).toArray();
+ const artisans = await collection.find({status:"1"}).toArray();
  res.json({total : artisans.length});
 
 
@@ -31,7 +31,7 @@ db = await connectToDB();
 const collection = db.collection('artisans');
 
 //fetching user password,empty
- const artisans = await collection.find({status:0}).toArray();
+ const artisans = await collection.find({status:"0"}).toArray();
  res.json({total : artisans.length});
 
 
@@ -51,7 +51,7 @@ db = await connectToDB();
 const collection = db.collection('artisans');
 
 //fetching user password,empty
- const artisans = await collection.find({verified:1}).toArray();
+ const artisans = await collection.find({verified:"1"}).toArray();
  res.json({total : artisans.length});
 
 

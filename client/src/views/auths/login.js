@@ -1,5 +1,4 @@
-import React from 'react'
-import { authUserController } from '../../controllers/authUserController';
+import { authUserAdminController } from '../../controllers/authUserController';
 
 import '../../css/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -60,7 +59,7 @@ const Login = () => {
         setIsLoading(false);
       }, 7000);
 
-      authUserController(formData);
+      authUserAdminController(formData);
 
     }
 

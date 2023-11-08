@@ -14,14 +14,28 @@ const BuyerDashboardTable = () => {
     const [searchText, setSearchText] = useState('');
     const [startDate, setStartDate] = useState('');
     const [endDate, setEndDate] = useState('');
+
+
+
+    const [totalComplete, settotalComplete] = useState(0);
+    const [totalPending, settotalPending] = useState(0);
+    const [totalCancelled, settotalCancelled] = useState(0);
+
   
     useEffect(() => {
       const fetchData = async () => {
         try {
-          const completedResponse = await api_connect.get('/auth/fetch-services-completed-buyer/wqeq');
-          const pendingResponse = await api_connect.get('/auth/fetch-services-pending-buyer/qqwqw');
-          const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-buyer/qwwqw');
-  
+          const completedResponse = await api_connect.get('/auth/fetch-services-completed-buyer/buyerass');
+          const pendingResponse = await api_connect.get('/auth/fetch-services-pending-buyer/buyerass');
+          const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-buyer/buyerass');
+          
+
+          settotalCancelled(cancelledResponse.data.length);
+          settotalPending(pendingResponse.data.length);
+          settotalComplete(completedResponse.data.length);
+
+
+
           setData({
             completed: completedResponse.data,
             pending: pendingResponse.data,
@@ -37,20 +51,17 @@ const BuyerDashboardTable = () => {
   
     const getCategoryData = (category) => {
   
-        if(data !== undefined){
+        if(data && category && Array.isArray(data[category]) && data[category]){
       return data[category].filter((item) =>
-        item.name.toLowerCase().includes(searchText.toLowerCase()) &&
-        (startDate === '' || item.date >= startDate) && // Filter by start date
-        (endDate === '' || item.date <= endDate) // Filter by end date
+        item.type.toLowerCase().includes(searchText.toLowerCase()) &&
+        (startDate === '' || item.created_at >= startDate) && // Filter by start date
+        (endDate === '' || item.created_at <= endDate) // Filter by end date
       );
         }else{
   
           return null;
         }
-  
-  
-  
-  
+
     };
   
     //consert table to xlsx data
@@ -69,19 +80,19 @@ const BuyerDashboardTable = () => {
             className={activeTab === 0 ? 'active' : ''}
             onClick={() => setActiveTab(0)}
           >
-            Completed
+            Completed <span className="total-tag">{totalComplete}</span>
           </button>
           <button
             className={activeTab === 1 ? 'active' : ''}
             onClick={() => setActiveTab(1)}
           >
-            Pending
+            Pending <span className="total-tag">{totalPending}</span>
           </button>
           <button
             className={activeTab === 2 ? 'active' : ''}
             onClick={() => setActiveTab(2)}
           >
-            Cancelled
+            Cancelled <span className="total-tag">{totalCancelled}</span>
           </button>
           
           <div className='export-btn'>
@@ -126,7 +137,9 @@ const BuyerDashboardTable = () => {
         <table className="data-table" id="myTable">
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Type</th>
+              <th>Charge</th>
+              <th>Loc</th>
               <th>Date</th>
             </tr>
           </thead>
@@ -134,8 +147,10 @@ const BuyerDashboardTable = () => {
             {getCategoryData(activeTab === 0 ? 'completed' : activeTab === 1 ? 'pending' : 'cancelled').map(
               (item, index) => (
                 <tr key={index}>
-                  <td>{item.name}</td>
-                  <td>{item.date}</td>
+                  <td>{item.type}</td>
+                  <td>{item.charge}</td>
+                  <td>{item.location}</td>
+                <td>{item.created_at}</td>
                 </tr>
               )
             )}

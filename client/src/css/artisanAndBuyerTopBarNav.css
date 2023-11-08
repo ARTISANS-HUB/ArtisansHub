@@ -48,6 +48,7 @@
   font-size: 16px;
   border-radius: 7px;
   transition: all ease-in 0.3s;
+
 }
 .tab-buttons button:hover{
  background-color: #ddd;
@@ -60,7 +61,14 @@
     padding: 9px 11px;
     cursor: pointer;
     font-size: 12px;
+    gap: 10px;
+
   }
+
+ .total-tag {
+top: 10px;
+}
+
 }
 
 .tab-buttons button.active {
@@ -81,7 +89,7 @@
 }
 
 .data-table thead{
-  background-color: #333;
+  background-color: #333  !important;
 }
 .data-table th,
 .data-table td {
@@ -129,6 +137,12 @@
   padding: 20px;
 }
 
+.t2{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 .link-export-data-artisan{
   margin-left: 40px;
   
@@ -137,3 +151,75 @@
 .export-btn{
   float: right;
 }
+
+.tab-buttons .total-tag {
+background-color: #ccc;
+padding: 5px 15px;
+width: 10px;
+height: 10px;
+border-radius: 100px;
+margin: 5px;
+}
+
+.actionsbtnAprove{
+  background-color: green;
+  color: white;
+  font-weight: 900;
+
+}
+
+.actionsbtnreject{
+  background-color: red;
+  color: white;
+  font-weight: 900;
+}
+
+
+.title-top-platform{
+position: fixed;
+background: white;
+width: 100%;
+z-index: 2;
+font-size: 12px !important;
+margin-top: -20px;
+box-shadow: rgba(33, 35, 38, 0.22) 0px 10px 10px -10px;
+}
+.title-top-platform i {
+    color: gray;
+}
+.topnav-home .userprofile{
+width: 30px;
+height: 30px;
+border-radius: 100px;
+}
+
+
+/* Style the top navigation bar */
+.top-nav-plaform {
+    background-color: #333;
+    display: flex;
+    justify-content: flex-end;
+    padding: 10px;
+}
+
+/* Style the profile section */
+.profile {
+    position: relative;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.profile-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+    border: 1px solid #ccc;
+}
+
+.profile-name {
+    color: white;
+    text-transform: uppercase;
+}
+

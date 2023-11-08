@@ -4,6 +4,11 @@ import { useState } from 'react';
 
 import Login from './views/auths/login';
 import Forgotpassword from './views/auths/Forgotpassword';
+import ForgotpasswordArtisan from './views/auths/ForgotpasswordArtisan';
+import ForgotpasswordBuyer from './views/auths/ForgotpasswordBuyer';
+
+
+
 import ArtisanLogin from './views/auths/ArtisanLogin';
 import BuyerLogin from './views/auths/BuyerLogin';
 
@@ -61,7 +66,10 @@ function App() {
         <Route path="/login-artisan" element={<ArtisanLogin />} />
 
         <Route path="/forgot-password" element={<Forgotpassword />} />
-        <Route path="*" element={<ErrorPage />} />
+        <Route path="/forgot-password-artisan" element={<ForgotpasswordArtisan />} />
+        <Route path="/forgot-password-buyer" element={<ForgotpasswordBuyer />} />
+
+
         <Route path="/auth/google/callback" element={<GoogleAuthLogin />} />
 
 
@@ -73,7 +81,7 @@ function App() {
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
 
-
+        <Route path="*" element={<ErrorPage />} />
         {isAuthenticated ? (
 
           <>

@@ -37,9 +37,6 @@ if (statusCode===200){
       localStorage.setItem('updated_at',Userdata.updated_at);
       localStorage.setItem('isAuthenticated', true);
 
-      
-      console.log(Userdata.userID)
-
       window.location.href = '/auth/dashboard';
 
      //alert(message);
@@ -51,7 +48,7 @@ else if (statusCode===404) {
 message = response.data.message;
 localStorage.setItem('message',message );
 localStorage.setItem('isAuthenticated', false);
-//alert(message);
+
 
 return false;
 

@@ -5,6 +5,11 @@ const {connectToDB ,closeDB }= require('../../config/mongodbconfig');
 const path = require("path");
 let db;
 const logger = require('../../logger');
+//node mailer
+const mailHelper = require('../controllers/MailController');
+var transporter = mailHelper.transporter;
+var SERVER_NAME = process.env.SERVER_NAME;
+var EMAIL_USERNAME = process.env.EMAIL_USERNAME;
 
 const artisans  = async (req , res , next) => {
 	
@@ -87,9 +92,22 @@ logger.log('error','['+Date()+'] can not delete artisan.. / internal eror',error
 
 
 const VerifyArtisans = async ( req , res , next )=>{
+// Create a new Date object
+var currentDate = new Date();
 
+// Get the day, month, and year
+var day = currentDate.getDate();
+var month = currentDate.getMonth() + 1; 
+var year = currentDate.getFullYear();
+
+// Create a formatted string
+var formattedDate = day + '/' + month + '/' + year;
 try{
+
+
 const artisanId = req.params.artisanId;
+const action = req.params.action;
+let HtmlMsg = ``;
 //query
 db = await connectToDB();
 
@@ -101,8 +119,8 @@ const collection = db.collection('artisans');
       { artisanId : artisanId},
       { $set: { 
 
-        verified : 1,
-        updated_at : Date(),
+        verified : action,
+        updated_at : formattedDate,
 
       }}
       );
@@ -110,13 +128,61 @@ const collection = db.collection('artisans');
 
     if (userUpdateResult.modifiedCount === 1) {
 
-     res.status(200).json({ message: "Artisan verified successfully", statusCode : 200 });
+  const userData = await collection.find({artisanId:artisanId}).toArray();
+
+
+  if(action == 1){
+
+    res.status(200).json({ message: "Artisan verified successfully", statusCode : 200 });
    
+
+
+   HtmlMsg = `<h1>Hi</h1><p>,${userData.usermail},</p> 
+                      Support Message : Your artisan account verified successfully  <br>
+                      <p> Cheers</p>
+                       <br> <h1>${SERVER_NAME} <h1>`
+  }else{
+
+    res.status(200).json({ message: "Artisan rejected successfully", statusCode : 200 });
+  HtmlMsg = `<h1>Hi</h1><p>,${userData.usermail},</p> 
+                      Support Message : Your artisan account was rejected  <br>
+                      <p> Hmmm..</p>
+                       <br> <h1>${SERVER_NAME} <h1>`
+  }
+
+  // Function to send an email
+                            async function sendEmailWithRefreshedToken() {
+                                try {
+                                    //send token after verifying password
+                                    const mailConfigurations = {
+                                        // It should be a string of sender/server email
+                                        from: EMAIL_USERNAME,
+                                        to: userData.usermail,
+                                        // Subject of Email
+                                        subject: 'Account Notifcation',
+                                      
+                                     html: HtmlMsg
+                                    };
+                                    transporter.sendMail(mailConfigurations, function(error, info) {
+                                        
+                                        if (error) {
+                                            logger.log('error','['+Date()+'no internet to send mail');
+                                        }
+                                    });
+                                } catch (error) {
+                                    logger.log('error','['+Date()+'An error occurred when sending mail:', error);
+                                }
+                            }
+                            // Initialize by sending an email
+                            sendEmailWithRefreshedToken();
+
+
+    
     }else{
 
     res.status(200).json({ message: "Verification failed , Please try again ", statusCode : 501 });
     logger.log('error','['+Date()+'] artisan Verification update failed..');
-
+   
     }
 
 
@@ -124,12 +190,15 @@ const collection = db.collection('artisans');
 
 
 catch(error){
+res.status(501).json({ message: "Verification failed , Please try again ", statusCode : 501 });
 logger.log('error','['+Date()+'] can not delete artisan.. / internal eror',error);
+
 }
 
 }
 module.exports = {
 
 artisans:artisans,
+VerifyArtisans:VerifyArtisans,
 deleteArtisan:deleteArtisan,
 };

@@ -26,11 +26,7 @@ const Services = async ( req ,res , next )=>{
 
 const ServicesCompleted = async ( req ,res , next )=>{
 
-
     const artisanId = req.params.artisanId;
-
-    console.log(artisanId);
-
      
     try{
         //query
@@ -38,9 +34,8 @@ const ServicesCompleted = async ( req ,res , next )=>{
         
         const collection = db.collection('services');
         
-         const services = await collection.find({artisanId:artisanId}).toArray();
-         res.json({total : services.length});
-        
+         const services = await collection.find({artisanId:artisanId , completed:1}).toArray();
+        res.json(services);        
         }
         catch(error){
              res.status(501).json({ statusCode : 501 });
@@ -53,18 +48,15 @@ const ServicesCancelled = async ( req ,res , next )=>{
 
     const artisanId = req.params.artisanId;
 
-    console.log(artisanId);
-
-     
     try{
         //query
         db = await connectToDB();
         
         const collection = db.collection('services');
         
-         const services = await collection.find({artisanId:artisanId}).toArray();
-         res.json({total : services.length});
-        
+         const services = await collection.find({artisanId:artisanId,completed:2}).toArray();
+         res.json(services);
+
         }
         catch(error){
              res.status(501).json({ statusCode : 501 });
@@ -76,8 +68,6 @@ const ServicesCancelled = async ( req ,res , next )=>{
 const ServicesPending = async ( req ,res , next )=>{
     const artisanId = req.params.artisanId;
 
-    console.log(artisanId);
-
      
     try{
         //query
@@ -85,9 +75,10 @@ const ServicesPending = async ( req ,res , next )=>{
         
         const collection = db.collection('services');
         
-         const services = await collection.find({artisanId:artisanId}).toArray();
-         res.json({total : services.length});
-        
+         const services = await collection.find({artisanId:artisanId,completed:0}).toArray();
+        res.json(services);
+
+    
         }
         catch(error){
              res.status(501).json({ statusCode : 501 });
@@ -103,10 +94,7 @@ const ServicesPending = async ( req ,res , next )=>{
 const ServicesCompletedBuyer = async ( req ,res , next )=>{
 
 
-    const artisanId = req.params.artisanId;
-
-    console.log(artisanId);
-
+    const buyerId = req.params.buyerId;
      
     try{
         //query
@@ -114,8 +102,8 @@ const ServicesCompletedBuyer = async ( req ,res , next )=>{
         
         const collection = db.collection('services');
         
-         const services = await collection.find({artisanId:artisanId}).toArray();
-         res.json({total : services.length});
+         const services = await collection.find({buyerId:buyerId , completed:1}).toArray();
+         res.json(services);
         
         }
         catch(error){
@@ -127,9 +115,7 @@ const ServicesCompletedBuyer = async ( req ,res , next )=>{
 
 const ServicesCancelledBuyer = async ( req ,res , next )=>{
 
-    const artisanId = req.params.artisanId;
-
-    console.log(artisanId);
+    const buyerId = req.params.buyerId;
 
      
     try{
@@ -138,9 +124,9 @@ const ServicesCancelledBuyer = async ( req ,res , next )=>{
         
         const collection = db.collection('services');
         
-         const services = await collection.find({artisanId:artisanId}).toArray();
-         res.json({total : services.length});
-        
+         const services = await collection.find({buyerId:buyerId,completed:2}).toArray();
+         res.json(services);
+         
         }
         catch(error){
              res.status(501).json({ statusCode : 501 });
@@ -150,9 +136,7 @@ const ServicesCancelledBuyer = async ( req ,res , next )=>{
 
 
 const ServicesPendingBuyer = async ( req ,res , next )=>{
-    const artisanId = req.params.artisanId;
-
-    console.log(artisanId);
+    const buyerId = req.params.buyerId;
 
      
     try{
@@ -161,8 +145,8 @@ const ServicesPendingBuyer = async ( req ,res , next )=>{
         
         const collection = db.collection('services');
         
-         const services = await collection.find({artisanId:artisanId}).toArray();
-         res.json({total : services.length});
+         const services = await collection.find({buyerId:buyerId,completed:0}).toArray();
+         res.json(services);
         
         }
         catch(error){

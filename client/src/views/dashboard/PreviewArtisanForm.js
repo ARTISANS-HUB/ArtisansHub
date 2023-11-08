@@ -1,11 +1,16 @@
 import { ApproveArtisanController , RejectArtisanController } from "../../controllers/ArtisanActionController";
+import { useEffect } from "react";
 
 const PreviewArtisanForm = () => {
+   const getResponseMsg = localStorage.getItem('message');
+   const reponse_message_code = localStorage.getItem('reponse_message_code');
+  
+
 
   const usermail = localStorage.getItem("artisanusermail");
   const username = localStorage.getItem("artisanUsername");
   const password = localStorage.getItem("password");
-  const artisanId = localStorage.getItem("artisanI");
+  const artisanId = localStorage.getItem("previewArtisanId");
 
   const work_days = localStorage.getItem("work_days");
   const last_seen = localStorage.getItem("last_seen");
@@ -17,27 +22,38 @@ const PreviewArtisanForm = () => {
   const created_at = localStorage.getItem("artisancreated_at");
   const updated_at = localStorage.getItem("artisanupdated_at");
   const ready_for_work = localStorage.getItem("ready_for_work");
-  
+  const verified = localStorage.getItem('verified');
 
-
+let action;
 //approve artisan
 const handleApproveArtisan = (event) =>{
-event.preventDefault();
+action= 1;
 
-ApproveArtisanController(artisanId)
+ApproveArtisanController(artisanId , action)
 
 }
 
 
 //reject artisan
 const handleRejectArtisan = (event)=>{
+action= 2;
+RejectArtisanController(artisanId , action )
 
-  event.preventDefault();
-RejectArtisanController(artisanId)
-
-  
 }
 
+//clear message after effect
+ useEffect(() => {
+
+    
+setTimeout(()=>{
+ localStorage.removeItem('message');
+ localStorage.removeItem('reponse_message_code');
+
+
+},6000)
+
+   
+  }, [reponse_message_code]);
 
   return (
     <>
@@ -168,13 +184,42 @@ RejectArtisanController(artisanId)
         
         <div className="artisan-action-btn">
 
-        <button style={{backGround:'Green'}} onClick={handleApproveArtisan} >Approve</button>
-        <button  style={{backGround:'red'}} onClick={handleRejectArtisan} >Reject</button>
+<button className="actionsbtnAprove" type="button"  onClick={handleApproveArtisan} >Approve</button>
+ 
+        
+
+        <button className="actionsbtnreject" type="button" onClick={handleRejectArtisan} >Reject</button>
 
         </div>
 
         
       </form>
+
+
+            { !getResponseMsg == ""  && reponse_message_code == 200 && ( 
+
+<div class="notification-success" id="notification-success">
+        <span  class="inner-notifications" >
+        <div> {getResponseMsg}</div>
+        <div class="close-button" id="sucess_close_btn" title="Close" >x</div> 
+        </span>
+ </div>
+)
+
+}
+
+
+
+      { !getResponseMsg == "" && reponse_message_code == 501  &&  (
+      <div class="notification-error" id="notification-error">
+        <span  class="inner-notifications" >
+        <div> {getResponseMsg}</div>
+        <div class="close-button" id="error_close_btn" title="Close" >x</div> 
+        </span>
+    < /div>
+)  }
+
+
     </>
   );
 }

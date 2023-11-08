@@ -6,7 +6,11 @@ const BuyerHome = () => {
 
     < div >
     <BuyerdashboardTopNavBar />
-    <h1 className="artitablehome">Buyer Dashboard</h1>
+    <h1 className="artitablehome">     
+    <span className="title-top-platform"  >
+    <i className="fas fa-tachometer"></i> Dashbaord > <i className="fas fa-home"></i> 
+      Home</span>
+</h1>
     < BuyerDashboardTable  />
 
     </div>

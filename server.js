@@ -194,8 +194,9 @@ app.get('/auth/callback/failure',
 app.use('/auth', Middlewares.AuthMiddleware);
 
 //login / authenticate users
-app.post('/login/users',AuthController.auth);
-
+app.post('/login/admin',AuthController.admin);
+app.post('/login/artisan',AuthController.ArtisanAuth);
+app.post('/login/buyer',AuthController.BuyerAuth);
 //update user details
 app.post('/auth/update/user-profile-picture',profileUploadpic.single("file"),UpdateUserController.UpdateUserProfile);
 
@@ -237,6 +238,8 @@ app.get('/auth/fetch-artisans/active',ArtisansOverviewController.fetchActiveArti
 app.get('/auth/fetch-artisans/inactive',ArtisansOverviewController.fetchInActiveArtisans);
 app.get('/auth/fetch-artisans/verified',ArtisansOverviewController.fetchVerfiedArtisans);
 
+app.get('/auth/artisan-action/:artisanId/:action',ArtisansController.VerifyArtisans);
+
 
 app.get('/auth/fetch-feebacks',FeedBackController.feedbacks);
 app.get('/auth/fetch-buyers',BuyersController.buyers);
@@ -260,8 +263,6 @@ app.get('/auth/fetch-services-pending-artisan/:artisanId',PlatformServicesContro
 app.get('/auth/fetch-services-completed-buyer/:buyerId',PlatformServicesController.ServicesCompletedBuyer);
 app.get('/auth/fetch-services-cancelled-buyer/:buyerId',PlatformServicesController.ServicesCancelledBuyer);
 app.get('/auth/fetch-services-pending-buyer/:buyerId',PlatformServicesController.ServicesPendingBuyer);
-
-
 
 
 //verify user mail
