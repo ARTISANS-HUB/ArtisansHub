@@ -48,15 +48,13 @@ const ArtisansCard = () => {
     <>
       <h2 className='artisans-card-header'>
             Artisans
-        </h2>
+      </h2>
     <div className='artisans-card-container'>
-    {/* <h2 className='artisans-card-header'>
-            Artisans
-        </h2> */}
+ 
         <div className='artisans-card-bottom'>
 
        <div className='artisans-card-list'>
-                {/* <Slider {...settings}> */}
+              
 
                         {
                                 artisanData.map((artisan) => 
@@ -70,7 +68,7 @@ const ArtisansCard = () => {
                                     )
                                 
                             }
-                {/* </Slider> */}
+           
        </div>
         </div>
 

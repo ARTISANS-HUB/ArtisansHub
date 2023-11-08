@@ -3,6 +3,7 @@ export const categoryData = [
     {
         name:"Worker1",
         category:"cleaner",
+        link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
@@ -10,24 +11,28 @@ export const categoryData = [
     {
         name:"Worker2",
         category:"welder",
+        link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker3",
         category:"carpenter",
+        link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker4",
         category:"shoemaker",
+        link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker5",
         category:"shoemaker",
+        link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
