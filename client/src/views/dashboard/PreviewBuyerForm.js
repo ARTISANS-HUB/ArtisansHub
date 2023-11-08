@@ -88,7 +88,7 @@ const PreviewBuyerForm = () => {
             <div className="form-group">
               <label className="lbl-text">Created_at:</label>
               <input
-                type="date"
+                type="text"
                 className="input-text"
                 value={created_at}
   
