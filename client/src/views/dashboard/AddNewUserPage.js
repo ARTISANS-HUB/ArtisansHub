@@ -106,7 +106,7 @@ const AddNewUserPage = () => {
         <div className="dash-content">
           <div className="profile-container">
             <span className="title-top">
-              <i className="fas fa-tachometer"></i> Dashbaord >
+              <i className="fas fa-tachometer"></i> Dashbaord
               <i className="fas fa-user-plus"></i> Add New User
             </span>
 
