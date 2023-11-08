@@ -78,7 +78,10 @@ function App() {
         <Route path="/about" element={< About />} />
         <Route path="/contact" element={< Contact />} />
         <Route path="/services" element={< Services />} />
-        <Route path="/services-provider" element={< ServicesProviders />} />
+        
+        
+        
+        <Route path="/service-provider" element={< ServicesProviders />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
 

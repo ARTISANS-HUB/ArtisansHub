@@ -1,0 +1,165 @@
+
+
+nav{
+  
+  box-shadow: rgba(65, 65, 231, 0.2) 0px 7px 29px 0px;
+  width: 90%;
+  margin: 0 auto;
+  transition: transform 0.2s ease-in-out;
+
+}
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin: 0 auto;
+
+    transition: transform 0.2s ease-in-out;
+    padding: 20px;
+    margin: 2% auto;
+    position: sticky;
+}
+
+.navbar .title {
+    font-size: 1.5rem;
+    margin: 1rem;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+}
+nav .search-bar {
+  width: 50%;
+  text-align: center;
+}
+nav .search-bar input {
+  border-radius: 10px;
+  height: 5vh;
+  width: 70%;
+  padding: 20px;
+  background-color: transparent;
+  outline: none;
+  border: 1px solid rgb(200, 190, 190);
+}
+
+.navbar ul {
+    display: flex;
+    justify-content: space-between;
+    width: 30%;
+    align-items: center;
+}
+
+.navbar ul li {
+   list-style: none;
+}
+.navbar ul li a{
+  text-decoration: none;
+  color: black;
+  font-size: 1rem;
+  font-weight: bold;
+}
+.navbar ul li a:hover{
+  color: orange;
+}
+.navbar ul li select{
+  font-weight: bold;
+  background-color: transparent;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  text-indent: 1px;
+  text-overflow: '';
+}
+.navbar ul li select:hover{
+  color: orange;
+}
+
+.navbar ul li select::-ms-expand {
+  display: none;
+}
+.navbar ul li .notification-bell{
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+.navbar ul li .notification-bell:hover{
+  color: orange;
+}
+.navbar .become-button{
+  border: none;
+  font-size: 1rem;
+}
+
+
+
+.navbar .menu {
+    display: none;
+    position: absolute;
+    top: 0.75rem;
+    right: 0.5rem;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 2.25rem;
+    height: 2rem;
+}
+
+.navbar .menu span {
+    height: 0.4rem;
+    width: 100%;
+    background-color: #000;
+    border-radius: 0.2rem;
+}
+
+
+@media screen and (max-width: 768px) {
+  nav{
+    box-shadow: none;
+  }
+    .navbar .menu {
+        display: flex;
+    }
+    .navbar .title{
+        margin: 0rem;
+    }
+
+    .navbar {
+        flex-direction: column;
+        align-items: flex-start;
+        box-shadow: none;
+        width: 100%;
+        
+    transition: transform 0.2s ease-in-out;
+    }
+    nav .search-bar{
+      width: 80%;
+      margin: 10px auto;
+    }
+    nav .search-bar input {
+      width: 100%;
+      height: 1vh;
+
+      text-align: center;
+    }
+
+    .navbar ul {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        margin-bottom: 2rem;
+    }
+
+    .navbar ul.open {
+        display: flex;
+    }
+
+    .navbar ul li {
+        width: 100%;
+        margin-top: 20px;
+        text-align: center;
+    }
+    .navbar ul li select {
+      text-align: center;
+      margin-top: 1px;
+    }
+    
+
+  
+}

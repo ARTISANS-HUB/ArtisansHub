@@ -1,16 +1,15 @@
 import TopNavBar from "../platform/includes/topNavBar";
 import PlatformFooter from "../platform/includes/platformFooter";
-import ContactForm from "./includes/ContactForm";
-// import "../../css/contactForm.css"
 
-const Contact = () => {
+const BookServices = () => {
 	return (
 		<div>
 		< TopNavBar/>
-			<ContactForm/>
+		<h1> BookServices </h1>
+			
 		< PlatformFooter />
 		</div>
 	)
 }
 
-export default Contact
+export default BookServices

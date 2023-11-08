@@ -1,16 +1,13 @@
 import TopNavBar from "../platform/includes/topNavBar";
 import PlatformFooter from "../platform/includes/platformFooter";
-import ContactForm from "./includes/ContactForm";
-// import "../../css/contactForm.css"
-
-const Contact = () => {
+const HistoryPage = () => {
 	return (
 		<div>
 		< TopNavBar/>
-			<ContactForm/>
+		<h1>Transaction page</h1>
 		< PlatformFooter />
 		</div>
 	)
 }
 
-export default Contact
+export default HistoryPage
