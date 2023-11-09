@@ -38,9 +38,10 @@ const Contact = async (req, res, next) => {
 const AddContact = async (req, res, next) => {
     try {
 
+
+        console.log("contact")
         db = await connectToDB();
         const collection = db.collection('contacts');
-        let contactId = Date();
         const {
             lname,
             fname,
@@ -50,13 +51,11 @@ const AddContact = async (req, res, next) => {
 
 
         const newContact = {
-            contactId: contactId,
+            contactId: Date(),
             fname: fname,
             lname: lname,
-            username: username,
             usermail: usermail,
             tel: tel,
-            created_by: created_by,
             created_at:formattedDate,
         };
         //results
@@ -69,7 +68,7 @@ const AddContact = async (req, res, next) => {
 
     } catch (error) {
         logger.log('error', '[' + Date() + '] can not add contact / Internal error' + error)
-
+        console.log(error)
     }
 }
 

@@ -22,9 +22,6 @@ const artisans = async (req, res, next) => {
     const collection = db.collection('artisans');
 
     const artisans = await collection.find({}).toArray();
-    console.log(artisans)
-
-    console.log("gi")
     
 
     if (artisans.length === 0) {

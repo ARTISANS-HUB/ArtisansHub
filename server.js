@@ -97,6 +97,9 @@ const BuyersOverviewController = require('./http/controllers/BuyersOverviewContr
 //services
 const ServicesController = require('./http/controllers/ServicesController');
 const ArtisansPlatformDashboardController = require('./http/controllers/ArtisansPlatformDashboardController');
+const UploadNewContactController = require('./http/controllers/UploadNewContactController');
+
+
 
 //error_404
 //const error_404_PNF  = require('./http/controllers/error_404');
@@ -293,6 +296,9 @@ app.get('/auth/fetch-services-completed', ServicesController.DashboardServicesCo
 app.get('/auth/fetch-services-cancelled', ServicesController.DashboardServicesCancelled);
 app.get('/auth/fetch-services-pending', ServicesController.DashboardServicesPending);
 
+//contact
+app.get('/auth/fetch-services-pending', UploadNewContactController.Contact);
+app.post('/auth/upload-contact',upload.single("file"), UploadNewContactController.AddContact);
 
 
 

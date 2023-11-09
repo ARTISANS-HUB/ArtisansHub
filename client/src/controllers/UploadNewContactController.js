@@ -34,12 +34,12 @@ const UploadNewContactController = ( formData ) => {
 
         swal({
             title: "Hmmm..!",
-            text: "Try again.",
+            text: "Something happened, Try again.",
             icon: "warning",
             dangerMode: true,
             button: "Aww yiss!",
         });
-         
+         alert(error);
     })
 }
 

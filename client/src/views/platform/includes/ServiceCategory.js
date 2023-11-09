@@ -160,7 +160,7 @@ const ServiceCategory = () => {
      <div>
      <div className='featured-category'>
         <div className='featured-category-title'>featured category</div>
-        <Link to={"#"} style={{textDecoration:"none"}} onClick={handleShowAll}>See All</Link>
+        <Link to={"#"} style={{textDecoration:"none"}} onClick={handleShowAll}>See All <i className="fas fa-refresh ref-button" title="Refresh Table"></i></Link>
      </div>
 
      <Link to={"#"}  className='category-filter' style={{textDecoration:"none"}}>
