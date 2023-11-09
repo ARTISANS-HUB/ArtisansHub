@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 const TopNavBar = () => {
    const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  let isAuthenticated = true
+  let isAuthenticated = localStorage.getItem('isAuthenticated')
 
   const api_connect =  Api_connect_server();
 
