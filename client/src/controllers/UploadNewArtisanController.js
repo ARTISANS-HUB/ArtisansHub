@@ -51,7 +51,7 @@ const UploadNewArtisanController = async (formData, file) => {
 
 		})
 		.catch((error) => {
-            alert(error)
+            // alert(error)
 			//error 
 			// window.location.reload();
 			localStorage.setItem('reponse_message_code', 501);
