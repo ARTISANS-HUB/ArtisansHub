@@ -22,6 +22,27 @@ const Services = async (req, res, next) => {
 }
 
 
+// ServicesCategory
+const ServicesCategory = async (req, res, next) => {
+
+    try {
+        //query
+        db = await connectToDB();
+
+        const collection = db.collection('services');
+
+        const services = await collection.find().toArray();
+        res.json(services.type);
+
+    }
+    catch (error) {
+        res.status(501).json({ statusCode: 501 });
+        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+    }
+
+}
+
+
 
 
 const ServicesCompleted = async (req, res, next) => {
@@ -159,6 +180,7 @@ const ServicesPendingBuyer = async (req, res, next) => {
 
 module.exports = {
     Services: Services,
+    ServicesCategory:ServicesCategory,
     ServicesCompleted: ServicesCompleted,
     ServicesCancelled: ServicesCancelled,
     ServicesPending: ServicesPending,

@@ -267,6 +267,8 @@ app.post('/auth/add-support-message', upload.single("file"), SupportController.A
 
 //dashboard
 app.get('/auth/fetch-services-platform-all', PlatformServicesController.Services);
+//category
+app.get('/auth/fetch-services-category-platform-all', PlatformServicesController.ServicesCategory);
 
 //services ARTISAN platform
 app.get('/auth/fetch-services-completed-artisan/:artisanId', PlatformServicesController.ServicesCompleted);

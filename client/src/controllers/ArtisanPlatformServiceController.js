@@ -3,7 +3,7 @@ import { Api_connect_server } from '../APIs/Api_connect_server'
 const UploadNewServiceArtisan = (formData , file) => {
 	const api_connect = Api_connect_server();
 	let message; 
-	api_connect.post('/auth/add-new-service',
+	api_connect.post('/auth/artisan/add-new-service',
 		{ formData, file }, { headers: { 'Content-Type': 'multipart/form-data' }, })
 
 		.then((response) => {
@@ -31,7 +31,7 @@ const UploadNewServiceArtisan = (formData , file) => {
 			console.log(error)
 			window.location.reload();
 			localStorage.setItem('reponse_message_code', 501);
-			localStorage.setItem('message', "Couldnt create new user Please, try again");
+			localStorage.setItem('message', "Couldnt create new artisan Please, try again");
 
 			 
 		})
