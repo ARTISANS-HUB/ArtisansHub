@@ -78,7 +78,7 @@ const CreateArtisanForm = () => {
 
 
   return (
-  
+            <div className="create-artisan-container">
             <div className="container">
             <h1>Artisan Registration</h1>
 
@@ -199,6 +199,9 @@ const CreateArtisanForm = () => {
                     </div>
                 </div>
             </form>
+            </div>
+
+
             </div>
   
   )

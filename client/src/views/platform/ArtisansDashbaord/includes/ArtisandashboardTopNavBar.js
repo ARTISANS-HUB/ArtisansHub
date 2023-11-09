@@ -46,25 +46,21 @@ function ArtisandashboardTopNavBar() {
       .then((yes) => {
         if (yes) {
           LogoutController();
-         
+
         }
       });
-    return;
+    
   }
 
   return (
-    <div className="topnav-home">
+    <div className="topnav-home-platform">
       <div className="left-profile">
        <Link to="/auth/artisan/dashboard/home"> <span  >DIGIHAVEN</span></Link>
       </div>
       <div className="right-nav-dashboad-platform">
                 
         <Link to="/auth/artisan/dashboard/create-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
-        <Link to="/auth/artisan/dashboard/statistics-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-chart-line"></i></Link>
         
-
-
-
         <nav class="top-nav-platform-dashboard">
           <div class="profile-platform-pic">
             {imageSrc ? (

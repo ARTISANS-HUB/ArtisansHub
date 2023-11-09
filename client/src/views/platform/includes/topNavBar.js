@@ -87,7 +87,9 @@ const TopNavBar = () => {
   }, [imageSrc, profile, api_connect]);
 
   return (
-    <nav>
+
+    <div className="top-nav-container">
+    <nav >
       <div className="navbar">
         <Link to="/" className="title">
           <span className="logo">D/H</span>
@@ -247,6 +249,8 @@ const TopNavBar = () => {
         </ul>
       </div>
     </nav>
+
+    </div>
   );
 };
 

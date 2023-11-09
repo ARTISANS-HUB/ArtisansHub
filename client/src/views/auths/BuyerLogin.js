@@ -117,9 +117,9 @@ const BuyerLogin = () => {
 
               <div className="login-options" >
 
-                <button type="button" title="login" className="login-options-submit-btn button-60" onClick={handleLoginWithGoogle}>
+               {/* <button type="button" title="login" className="login-options-submit-btn button-60" onClick={handleLoginWithGoogle}>
                   <img src="../../uploads/search.png" className="login-google" alt="" />  Login with Google
-                </button>
+                </button>*/}
 
 
 

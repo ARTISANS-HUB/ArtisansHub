@@ -1,5 +1,4 @@
-Styles for the top navigation bar
-.topnav-home {
+.topnav-home-platform {
   background-color: #333;
   overflow: hidden;
   padding: 2px 0;
@@ -183,7 +182,7 @@ box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 .title-top-platform i {
     color: gray;
 }
-.topnav-home .userprofile{
+.topnav-home-platform .userprofile{
 width: 30px;
 height: 30px;
 border-radius: 100px;

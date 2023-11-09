@@ -1,4 +1,4 @@
-.container{
+.create-artisan-container .container{
     position: relative;
     /* max-width: 900px; */
     width: 90%;
@@ -10,13 +10,13 @@
    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     /* overflow-y: auto; */
 }
-.container h1{
+.create-artisan-container .container h1{
     position: relative;
     font-size: 20px;
     font-weight: 600;
     color: #333;
 }
-.container h1::before{
+.create-artisan-container .container h1::before{
     content: "";
     position: absolute;
     left: 0;
@@ -26,7 +26,7 @@
     border-radius: 8px;
     background-color: #fe9931;
 }
-.container form{
+.create-artisan-container .container form{
     position: relative;
     margin-top: 30px;
     min-height: 490px;
@@ -39,14 +39,14 @@
   
 
 }
-.container form .first{
+.create-artisan-container .container form .first{
    padding: 0 10px;
    display: flex;
    justify-content: space-between;
    /* background: #000; */
 }
 
-.container form .first .personal{
+.create-artisan-container .container form .first .personal{
     padding: 0 10px;
     /* display: flex;
     flex-direction: column; */
@@ -58,16 +58,16 @@
     /* border-radius: 5px; */
     
 }
-.container form::-webkit-scrollbar-track{
+.create-artisan-container .container form::-webkit-scrollbar-track{
     background-color: #ccc;
     
 }
-.container form .form{
+.create-artisan-container .container form .form{
     /* position: absolute; */
     background-color: #fff;
     transition: 0.3s ease;
 }
-.container form .title{
+.create-artisan-container .container form .title{
     display: block;
     margin-bottom: 8px;
     font-size: 16px;
@@ -75,7 +75,7 @@
     margin: 6px 0;
     color: #333;
 }
-.container form .fields{
+.create-artisan-container .container form .fields{
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -84,18 +84,18 @@
     width: 100%;
     /* background: #000; */
 }
-form .fields .input-field{
+.create-artisan-container form .fields .input-field{
     display: flex;
     width: 100%;
     flex-direction: column;
     margin: 4px 0;
 }
-.input-field label{
+.create-artisan-container .input-field label{
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
-.input-field input{
+.create-artisan-container .input-field input{
     outline: none;
     font-size: 14px;
     font-weight: 400;
@@ -106,19 +106,19 @@ form .fields .input-field{
     height: 42px;
     margin: 8px 0;
 }
-.input-field input :focus{
+ .create-artisan-container .input-field input :focus{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
-.input-field select:focus{
+ .create-artisan-container .input-field select:focus{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
-.input-field select,
-.input-field input[type="date"]{
+.create-artisan-container .input-field select,
+.create-artisan-container .input-field input[type="date"]{
     color: #707070;
 }
 
-.input-field-select-container{
+.create-artisan-container .input-field-select-container{
     display: flex;
     width: 100%;
     margin: 4px 0;
@@ -128,7 +128,7 @@ form .fields .input-field{
 }
 
 
-select{
+.create-artisan-container select{
     outline: none;
     font-size: 14px;
     font-weight: 400;
@@ -141,13 +141,13 @@ select{
     width: 100%;
 }
 
-.input-field-error{
+.create-artisan-container .input-field-error{
     font-size: 0.8rem;
     color: #fe3131;
     margin-bottom: 5px;
 }
 
-.container form button, .backBtn{
+.create-artisan-container .container form button, .backBtn{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -163,11 +163,11 @@ select{
     transition: all 0.3s linear;
     cursor: pointer;
 }
-.container form .btnText{
+.create-artisan-container .container form .btnText{
     font-size: 14px;
     font-weight: 400;
 }
-form button:hover{
+.create-artisan-container form button:hover{
     background-color: #fe9931;
 }
 /* form button i,
@@ -177,22 +177,22 @@ form .backBtn i{
 form .backBtn i{
     transform: rotate(180deg);
 } */
-form .buttons{
+.create-artisan-container form .buttons{
     display: flex;
     align-items: center;
 }
-form .buttons button , .backBtn{
+.create-artisan-container form .buttons button , .backBtn{
     margin-right: 14px;
 }
 
 
-.profile-icon{
+.create-artisan-container .profile-icon{
     /* background: #000; */
     width: 50%;
     display: flex;
     justify-content: center;
 }
-.profile-icon-upload {
+.create-artisan-container .profile-icon-upload {
     position: relative;
     width: 250px;
     height: 250px;
@@ -201,14 +201,14 @@ form .buttons button , .backBtn{
     box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
   }
   
-  .profile-icon-upload img {
+.create-artisan-container  .profile-icon-upload img {
     width: 100%;
     height: 100%;
     object-fit: cover;
     border-radius: 50%;
   }
   
-  .upload-button {
+.create-artisan-container  .upload-button {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -221,14 +221,14 @@ form .buttons button , .backBtn{
     cursor: pointer;
   }
   
-  .upload-button label {
+ .create-artisan-container .upload-button label {
     display: block;
     margin-top: 20px;
     font-size: 14px;
     color: #666;
   }
   
-  .upload-button input {
+ .create-artisan-container .upload-button input {
     position: absolute;
     top: 0;
     left: 0;
@@ -239,14 +239,14 @@ form .buttons button , .backBtn{
   }
 
 @media (max-width: 750px) {
-    .container form{
+ .create-artisan-container   .container form{
         overflow-y: scroll;
     }
 
-    .container form .first{
+ .create-artisan-container   .container form .first{
        flex-direction: column;
      }
-    .container form::-webkit-scrollbar{
+    .create-artisan-container .container form::-webkit-scrollbar{
        display: none;
     }
     form .fields .input-field{
