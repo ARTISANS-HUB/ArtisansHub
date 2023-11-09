@@ -22,7 +22,7 @@ const UploadNewContactController = ( formData ) => {
             message = response.data.message;
             swal({
                 title: "Hmmm..!",
-                text: "Try again.",
+                text: message,
                 icon: "warning",
                 dangerMode: true,
                 button: "Aww yiss!",
@@ -39,8 +39,7 @@ const UploadNewContactController = ( formData ) => {
             dangerMode: true,
             button: "Aww yiss!",
         });
-         alert(error);
-    })
+     })
 }
 
 export default UploadNewContactController

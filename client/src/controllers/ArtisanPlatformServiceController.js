@@ -1,7 +1,10 @@
 import { Api_connect_server } from '../APIs/Api_connect_server'
+import swal from 'sweetalert';
 
 const UploadNewServiceArtisan = async (formData , file) => {
 
+
+    console.log(formData)
 	const api_connect = Api_connect_server();
 	let message; 
 	api_connect.post('/auth/artisan-create-service',
@@ -17,23 +20,46 @@ const UploadNewServiceArtisan = async (formData , file) => {
 				//window.location.reload();
 				localStorage.setItem('message', message);
 				localStorage.setItem('reponse_message_code', 200);
+
+                swal({
+                    title: "Good job!",
+                    text: message,
+                    icon: "success",
+                    button: "Aww yiss!",
+                });
+
+                window.location.href='/';
+
+
 			} else if (response.data.statusCode === 501) {
 				message = response.data.message;
 				
-				//window.location.reload();
+				
 				localStorage.setItem('message', message);
 				localStorage.setItem('reponse_message_code', 501);
+                swal({
+                    title: "Hmmm..!",
+                    text: message,
+                    icon: "warning",
+                    dangerMode: true,
+                    button: "Aww yiss!",
+                });
 			}
 
 		})
 		.catch((error) => {
 
-			//error 
-			console.log(error)
 			//window.location.reload();
 			localStorage.setItem('reponse_message_code', 501);
 			localStorage.setItem('message', "Couldnt create new artisan Please, try again");
 
+            swal({
+                title: "Hmmm..!",
+                text: "Something happened, Try again.",
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
 			 
 		})
 }
