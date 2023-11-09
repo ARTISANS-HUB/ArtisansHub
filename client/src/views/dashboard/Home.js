@@ -10,6 +10,8 @@ import Overview from "../dashboard/Overview";
 
 import HomeTable from "../dashboard/HomeTable";
 import "../../css/dashboard.css";
+import "../../css/artisanAndBuyerTopBarNav.css";
+
 import { useEffect } from "react";
 
 //importing session
