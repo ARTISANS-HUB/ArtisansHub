@@ -48,7 +48,7 @@ const handleLogout = async () =>{
     setImageSrc(src);
   })
   .catch((error) => {
-    console.error('Error fetching image:', error);
+    //console.error('Error fetching image:', error);
   });
 
       //check

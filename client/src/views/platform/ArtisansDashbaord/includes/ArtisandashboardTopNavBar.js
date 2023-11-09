@@ -28,7 +28,7 @@ function ArtisandashboardTopNavBar() {
         setImageSrc(src);
       })
       .catch((error) => {
-        console.error('Error fetching image:', error);
+        //console.error('Error fetching image:', error);
       });
 
 
@@ -46,6 +46,7 @@ function ArtisandashboardTopNavBar() {
       .then((yes) => {
         if (yes) {
           LogoutController();
+         
         }
       });
     return;
