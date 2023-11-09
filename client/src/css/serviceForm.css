@@ -10,11 +10,13 @@
 
 .serviceFormContainer .formContainer Form {
   width: 100%;
+
 }
 .serviceFormContainer .form-group {
   margin: 0 auto;
   border: 1px;
-  width: 80%;
+  width: 100%;
+  
 }
 
 .serviceFormContainer label {
