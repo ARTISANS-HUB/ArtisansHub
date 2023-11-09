@@ -117,7 +117,7 @@
   overflow-y: auto;
   overflow-x: hidden; /* Hide horizontal scrolling on both desktop and mobile */
   height: 500px;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 2px 1px 0px inset;
+  box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 
@@ -959,7 +959,7 @@ color: red;
     border: 1px solid #ccc;
     outline: none;
      cursor: pointer;
-    transition: var(--tran-04);
+    transition: all ease-in 0.3s;
   }
 
   .add-user .link-add-user{

@@ -7,7 +7,7 @@
     padding: 30px;
     /* margin: 0 15px; */
     background-color: #fff;
-    box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+   box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
     /* overflow-y: auto; */
 }
 .container h1{
@@ -107,11 +107,11 @@ form .fields .input-field{
     margin: 8px 0;
 }
 .input-field input :focus{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 .input-field select:focus{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 .input-field select,
 .input-field input[type="date"]{

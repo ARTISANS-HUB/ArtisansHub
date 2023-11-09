@@ -68,11 +68,11 @@ form{
     margin: 8px 0;
 }
 .input-field input :focus{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 .input-field select:focus{
-    box-shadow: 0 3px 6px rgba(0,0,0,0.13);
+    box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
 .input-field input[type="date"]{
