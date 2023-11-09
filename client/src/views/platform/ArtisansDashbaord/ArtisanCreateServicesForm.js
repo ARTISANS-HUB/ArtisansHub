@@ -1,6 +1,6 @@
 import React from 'react'
 import ArtisandashboardTopNavBar from "./includes/ArtisandashboardTopNavBar"
-import CreateServiceForm from './CreateServiceForm';
+import CreateServiceForm from "./CreateServiceForm"
 
 const ArtisanCreateServicesForm = () => {
   return (
