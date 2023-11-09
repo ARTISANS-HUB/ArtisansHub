@@ -19,12 +19,12 @@ const ServiceCategory = () => {
 
   useEffect(() => {
     try {
-      api_connect.get("/auth/fetch-artisans")
+      api_connect.get("/auth/fetch-services-platform-all")
       .then((response) => {
         if (response.status === 200) {
           setFilteredCards(response.data)
           console.log(filteredCards);
-     
+          
         } else if (response.data.statusCode === 501) {
           setFilteredCards([])
         }
@@ -157,7 +157,7 @@ const handleShowAll = () => {
              {
              
                  filteredCards.map((cat)=>{
-                   return <FilterCategory type={cat.type} img={myImage} bookId={cat.serviceId}/>
+                   return <FilterCategory key={cat.type} type={cat.type} img={myImage} bookId={cat.serviceId}/>
                  })
                }
             </Link>
