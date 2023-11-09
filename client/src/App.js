@@ -47,8 +47,10 @@ import CreateArtisan from './views/platform/CreateArtisan';
 
 //artisan dashboard
 import ArtitsanHome from './views/platform/ArtisansDashbaord/ArtitsanHome';
+import ArtisanCreateServicesForm from './views/platform/ArtisansDashbaord/ArtisanCreateServicesForm'
 import BuyerHome from './views/platform/BuyerDashboard/BuyerHome';
 import PreviewBuyer from './views/dashboard/PreviewBuyer';
+
 
 // end
 function App() {
@@ -106,7 +108,7 @@ function App() {
             <Route path="/auth/customer/book-history" element={< HistoryPage />} />
             
             <Route path="/auth/artisan/dashboard/home" element={<ArtitsanHome />} />
-            <Route path="/auth/artisan/dashboard/create-service-artisan" element={<ArtitsanHome />} />
+            <Route path="/auth/artisan/dashboard/create-service-artisan" element={< ArtisanCreateServicesForm/>} />
 
 
             <Route path="/auth/buyer/dashboard/home" element={<BuyerHome/>} />

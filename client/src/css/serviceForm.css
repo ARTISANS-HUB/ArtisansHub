@@ -1,5 +1,5 @@
 .formContainer {
-    max-width: 70%;
+    max-width: 50%;
     margin: 0 auto;
     padding: 20px;
     background-color: #fff;
@@ -7,7 +7,7 @@
     border-radius: 8px;
     animation: fadeInUp 0.5s ease-in-out;
   }
-  
+
   .form-group {
     margin: 0 auto;
   }
@@ -20,27 +20,28 @@
   
   input,
   textarea {
-    width: 80%;
+    width: 100%;
     padding: 8px;
     font-size: 16px;
-    margin-bottom: 30px;
+    margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
   }
   
   button {
-    background-color: #4caf50;
+    background-color: orange;
     color: #fff;
     padding: 10px 15px;
     font-size: 16px;
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    width: 100%;
     transition: background-color 0.3s ease-in-out;
   }
   
   button:hover {
-    background-color: #45a049;
+    background-color: orangered;
   }
   
   .error {
