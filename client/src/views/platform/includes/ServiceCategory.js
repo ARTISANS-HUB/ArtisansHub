@@ -52,16 +52,17 @@ const [artisans, setArtisans] = useState([]);
 
 useEffect(() => {
   try {
-    api_connect.get("/auth/fetch-artisans")
+    api_connect.get("/auth/fetch-services-platform-all")
     .then((response) => {
       if (response.status === 200) {
         setArtisans(response.data);
         setFilteredCards(response.data);
+        console.log(response.data);
       } else if (response.data.statusCode === 501) {
         setFilteredCards([]);
       }
     }).catch((error) => {
-      console.log(error);
+      // console.log(error);
     })
   } catch (error) {
     console.log(error);
@@ -69,7 +70,7 @@ useEffect(() => {
 }, []);
 
 const filterCards = (buttonValue) => {
-  const filtered = artisans.filter((card) => card.expertise === buttonValue);
+  const filtered = artisans.filter((card) => card.type === buttonValue);
   setFilteredCards(filtered);
 };
 
@@ -156,7 +157,7 @@ const handleShowAll = () => {
              {
              
                  filteredCards.map((cat)=>{
-                   return <FilterCategory username={cat.username} img={myImage} bookId={cat.artisanId}/>
+                   return <FilterCategory type={cat.type} img={myImage} bookId={cat.serviceId}/>
                  })
                }
             </Link>
