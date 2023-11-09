@@ -80,7 +80,7 @@ const BuyerLogin = () => {
   return (
     <div className="login-view">
 
-      <div className="container">
+      <div className="container-login">
         <div className="left">
           <img src="../../uploads/bg224.jpeg" alt="" />
         </div>
