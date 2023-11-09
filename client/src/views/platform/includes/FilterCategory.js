@@ -5,15 +5,15 @@ import { Link } from 'react-router-dom'
 
 
 
-const FilterCategory = ({name,img,link}) => {
+const FilterCategory = ({username,img,id}) => {
   return (
     <div className='filter-category-container'>
       
        <div className='filter-category-card'>
-            <img className='filter-category-card-img' src={img} alt={name} />
+            <img className='filter-category-card-img' src={img} alt={username} />
             <div className='filter-category-card-info'>
-                <h3>{name}</h3>
-                <Link to={link} style={{textDecoration:"none"}}>Book</Link>
+                <h3>{username}</h3>
+                <Link to={`/auth/customer/book-service/${id}`} style={{textDecoration:"none"}}>Book</Link>
             </div>
        </div>
 

@@ -14,77 +14,94 @@ import { Api_connect_server } from '../../../APIs/Api_connect_server';
 const api_connect = Api_connect_server();
 
 const ServiceCategory = () => {
-  const [filteredCards, setFilteredCards] = useState(categoryData);
+  // const [filteredCards, setFilteredCards] = useState(categoryData);
   const [filter, setFilter] = useState('');
   const [filteredCategory, setFilteredCategory] = useState(cartCategories);
   const [category, setCategory] = useState([])
 
 
 
+
+  //fetch all artisans
+  const [artisans, setArtisans] = useState([])
+
   useEffect(() => {
     try {
-      api_connect.get("/auth/fetch-services-platform-all")
+      api_connect.get("/auth/fetch-artisans")
       .then((response) => {
         if (response.status === 200) {
-          const categories = response.data.map(item => item.type);
-          setCategory(categories);
-          console.log(categories);
+          setArtisans(response.data)
+          console.log(artisans);
+     
         } else if (response.data.statusCode === 501) {
-          setCategory([])
+          setArtisans([])
         }
       }).catch((error) => {
-        console.log(error);
+        // alert("not connected to server")
+        console.log(error) 
       })
     } catch (error) {
-      console.log(error);
-    }
-  }, []);
-
-  console.log(category);
-
-  
-
-  const filterCards = (buttonValue) => {
-    console.log(buttonValue);
-    const filteredCards = categoryData.filter((card) => card.category === buttonValue);
-    setFilteredCards(filteredCards);
-  };
-
-  const handleFilterChange = (e) => {
-    const buttonValue = e.target.value;
-    filterCards(buttonValue);
-  };
-
-  const handleShowAll = () => {
-    setFilter('');
-    setFilteredCards(categoryData);
-  };
-
-
-  // useEffect(() => {
-  //   try {
-  //     api_connect.get("/auth/fetch-services-platform-all")
-  //     .then((response) => {
-  //       if (response.status === 200) {
-  //         setCategory(response.data)
-          
-  //       } else if (response.data.statusCode === 501) {
-  //         setCategory([])
-  //       }
-  //     }).catch((error) => {
-  //       // alert("not connected to server")
-  //       console.log(error) 
-  //     })
-  //   } catch (error) {
-  //     // alert("not connected ")
+      // alert("not connected ")
       
-  //   }
-  // },[])
+    }
+  },[])
+  // console.log(artisans);
+
+
+    //fetch all categories type
+
+    // useEffect(() => {
+    //   try {
+    //     api_connect.get("/auth/fetch-services-category-platform-all")
+    //     .then((response) => {
+    //       if (response.status === 200) {
+    //         setCategory(response.data)
+    //         console.log(category + " category");
+            
+    //       } else if (response.data.statusCode === 501) {
+    //         setCategory([])
+    //       }
+    //     }).catch((error) => {
+    //       // alert("not connected to server")
+    //       console.log(error) 
+    //     })
+    //   } catch (error) {
+    //     // alert("not connected ")
+        
+    //   }
+    // },[])
+
+    // console.log(category);
+
+    const [filteredCards, setFilteredCards] = useState(artisans);
+
+    const filterCards = (buttonValue) => {
+      console.log(buttonValue);
+      const filteredCards = artisans.filter((card) => card.type === buttonValue);
+      setFilteredCards(filteredCards);
+    };
+  
+    const handleFilterChange = (e) => {
+      const buttonValue = e.target.value;
+      filterCards(buttonValue);
+    };
+  
+    const handleShowAll = () => {
+      setFilter('');
+      setFilteredCards(artisans);
+    };
+
+
+
+
+
+
+
 
 
 
   const settings = {
-    dots: true,
+    dots: false,
     infinite: true,
     speed: 500,
     slidesToShow: 7,
@@ -132,9 +149,8 @@ const ServiceCategory = () => {
         {/* <div className='category-card'> */}
         <div className='card'>
             <Slider {...settings}>
-                {category.map((cat,index) => {
-              
-                  return <Categories key={index}  icon={cat.icon} title={cat.title} cat={cat} handleFilterChange={handleFilterChange} bgColor={category.bgColor} />
+                {cartCategories.map((cat,index) => {
+                  return <Categories key={index}  icon={cat.icon} title={cat.title} cat={cat.type} handleFilterChange={handleFilterChange} bgColor={cat.bgColor} />
                 })
               }
             </Slider>
@@ -147,16 +163,17 @@ const ServiceCategory = () => {
         <Link to={"#"} style={{textDecoration:"none"}} onClick={handleShowAll}>See All</Link>
      </div>
 
-
      <Link to={"#"}  className='category-filter' style={{textDecoration:"none"}}>
           {
           
               filteredCards.map((cat)=>{
-                return <FilterCategory name={cat.category} img={myImage} link={cat.link}/>
+                return <FilterCategory name={cat.type} img={myImage} link={cat.link}/>
               })
             }
 
     </Link>
+       
+ 
      </div>
     </div>
   )

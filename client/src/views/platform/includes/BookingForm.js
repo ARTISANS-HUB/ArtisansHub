@@ -1,7 +1,7 @@
 import React from 'react'
 import "../../../css/booking.css";
 import {useFormik} from 'formik';
-import myImage from "../../../uploads/booking.jpg";
+import myImage from "../../../uploads/bg.jpeg";
 
 
 const validate = values => {

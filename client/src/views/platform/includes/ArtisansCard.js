@@ -8,7 +8,7 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { Api_connect_server } from '../../../APIs/Api_connect_server';
 import { useAsyncError } from 'react-router-dom';
-import {myImage} from "../../../uploads/bg.jpeg"
+
 
 const api_connect = Api_connect_server();
 
@@ -36,6 +36,8 @@ const ArtisansCard = () => {
       // alert("not connected ")
       
     }
+
+
     // Fetch the image from the server
     api_connect.get('/auth/fetch-user-profile/' + artisans.profile, { responseType: "blob" })
   .then((response) => {
@@ -102,8 +104,6 @@ const ArtisansCard = () => {
         <div className='artisans-card-bottom'>
 
        <div className='artisans-card-list'>
-              
-
                         {
                                 artisans.map((artisan) => 
                                         <ArtisanCard
@@ -111,12 +111,11 @@ const ArtisansCard = () => {
                                             username={artisan.username}
                                             location={artisan.description}
                                             link={artisan.link}
-                                            img={imageSrc}
+                                            img={process.env.REACT_APP_API_URL_DEV + "/auth/fetch-user-profile/" + artisan.profile}
                                         />
                                     )
                                 
                             }
-           
        </div>
         </div>
 

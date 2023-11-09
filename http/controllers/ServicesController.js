@@ -61,7 +61,7 @@ const DashboardServicesCancelled = async (req, res, next) => {
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + 'can not fetch all services for platform...' + error);
     }
 }
 
@@ -83,7 +83,7 @@ const DashboardServicesPending = async (req, res, next) => {
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + 'can not fetch all services for platform...' + error);
     }
 
 }

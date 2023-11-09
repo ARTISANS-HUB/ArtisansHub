@@ -1,7 +1,7 @@
 import React from 'react'
-import TopNavBar from './includes/topNavBar'
-import PlatformFooter from "../platform/includes/platformFooter";
-import BookingForm from './includes/BookingForm';
+import TopNavBar from '../includes/topNavBar'
+import BookingForm from '../includes/BookingForm';
+import PlatformFooter from '../includes/platformFooter';
 
 const Booking = () => {
   return (

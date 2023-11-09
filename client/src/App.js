@@ -51,6 +51,7 @@ import ArtisanCreateServicesForm from './views/platform/ArtisansDashbaord/Artisa
 import BuyerHome from './views/platform/BuyerDashboard/BuyerHome';
 import PreviewBuyer from './views/dashboard/PreviewBuyer';
 import ArtisanStatisticServices from './views/platform/ArtisansDashbaord/ArtisanStatisticServices'
+import Booking from './views/platform/includes/Booking';
 
 
 // end
@@ -87,6 +88,7 @@ function App() {
         <Route path="/service-provider" element={< ServicesProviders />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
+        <Route path="/auth/customer/book-service" element={< Booking/>} />
 
         <Route path="*" element={<ErrorPage />} />
         {isAuthenticated ? (

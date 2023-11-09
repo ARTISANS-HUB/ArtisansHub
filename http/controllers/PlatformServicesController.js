@@ -27,20 +27,44 @@ const ServicesCategory = async (req, res, next) => {
 
     try {
         //query
+        // db = await connectToDB();
+
+        // const collection = db.collection('services');
+
+        // const services = await collection.find().toArray();
+       
+        // res.json(services);
+
         db = await connectToDB();
 
         const collection = db.collection('services');
 
         const services = await collection.find().toArray();
-        res.json(services.type);
+
+        const types = services.map(service => service.type);
+
+        res.json(types);
+
 
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + '] can not fetch all services for platform...' + error);
     }
 
 }
+
+// const ServicesCat= async (req, res, next) => {
+//     try {
+//         db = await connectToDB();
+
+//         const collection = db.collection('services');
+
+//         const services = await collection.find({type}).toArray();
+//     } catch (error) {
+        
+//     }
+// }
 
 
 
