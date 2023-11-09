@@ -1,7 +1,7 @@
 import React from 'react'
 import { Formik, Field, Form, ErrorMessage } from 'formik';
 import  '../../../css/serviceForm.css';
-import UploadNewUserController from "../../../controllers/UploadNewUserController";
+import {UploadNewServiceArtisan} from "../../../controllers/ArtisanPlatformServiceController";
 import { useState } from "react";
 
 const CreateServiceForm = () => {
@@ -9,31 +9,29 @@ const CreateServiceForm = () => {
 
   const [formData, setformData] = useState({
     userID: Math.random().toString(36).substr(2, 50),
-    profile: "",
-    username: "",
-    password: "",
-    usermail: "",
-    tel: "",
-    role: "",
-    created_at: "",
-    updated_at: "",
+    file: "",
+    description: "",
+    phone: "",
+    type: "",
+    location: "",
+    updated_by: "",
   });
 
 const handleSubmit = (values) => {
 //check for empty input
 if (
-  formData.username === "" ||
-  formData.password === "" ||
-  formData.usermail === "" ||
-  formData.tel === "" ||
-  formData.role === "" ||
-  formData.created_at === "" 
+  formData.description === "" ||
+  formData.charge === "" ||
+  formData.phone === "" ||
+  formData.type === "" ||
+  formData.file === "" ||
+  formData.location === "" 
  
 ) {
   alert("all input are required..");
 } else {
 
-  UploadNewUserController(formData);
+  UploadNewServiceArtisan(formData);
 
 }
 
@@ -45,6 +43,8 @@ if (
 
 const handleChange = (event) => {
   setformData({ ...formData, [event.target.name]: event.target.value });
+
+  console.log(formData.description)
 };
   return (
     <div className='formContainer'>
@@ -71,7 +71,7 @@ const handleChange = (event) => {
         </div>
         <div>
           <label htmlFor="name">Phone:</label>
-          <Field type="tel" id="phone" name="phone" value={formData.phone} placeholder="Phone" />
+          <Field type="type" id="phone" name="phone" value={formData.phone} placeholder="Phone" />
           <ErrorMessage name="name" component="div" className="error" />
         </div>
         <div>

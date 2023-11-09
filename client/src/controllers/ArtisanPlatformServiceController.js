@@ -37,11 +37,11 @@ const UploadNewServiceArtisan = (formData , file) => {
 		})
 }
 
-const DeeletServiceArtisan = (serviceId) => {
+const DeletServiceArtisan = (serviceId) => {
  
 
 }
 
 
 
-export {  UploadNewServiceArtisan ,DeeletServiceArtisan } 
+export {  UploadNewServiceArtisan ,DeletServiceArtisan } 
