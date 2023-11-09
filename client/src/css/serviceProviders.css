@@ -4,6 +4,10 @@
   padding: 20px;
   text-align: center;
 }
+.profile-header h2{
+  font-size: 1.5rem;
+  font-weight: normal;
+}
 .profile-header p{
   color: #979493;
   font-size: 0.8rem;
@@ -20,6 +24,7 @@
 
 .profile-header {
   text-align: center;
+  
 }
 
 .profile-picture {

@@ -95,6 +95,7 @@ const handleLogout = async () =>{
     <nav>
       <div className="navbar">
         <Link to="/" className="title">
+          <span className="logo">DG</span>
           DIGIHAVEN
         </Link>
         <FontAwesomeIcon

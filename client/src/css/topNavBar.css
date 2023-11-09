@@ -8,38 +8,47 @@ nav{
   transition: transform 0.2s ease-in-out;
 
 }
+.navbar .logo{
+  font-weight: bold;
+  color: blue;
+}
  .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
     width: 90%;
     margin: 0 auto;
-
     transition: transform 0.2s ease-in-out;
     padding: 20px;
     margin: 2% auto;
-    position: sticky;
 }
 
 .navbar .title {
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     margin: 1rem;
-    font-weight: bold;
+    font-weight: normal;
     text-decoration: none;
     color: black;
 }
 nav .search-bar {
   width: 50%;
+  align-content: center;
+  align-items: center;
+  margin: 0 auto;
   text-align: center;
+ 
+ 
 }
 nav .search-bar input {
-  border-radius: 10px;
+  border-radius: 5px;
   height: 5vh;
   width: 70%;
-  padding: 20px;
+  padding: 15px;
   background-color: transparent;
-  outline: none;
   border: 1px solid rgb(200, 190, 190);
+  margin: 5px;
+  
+
 }
 
 .navbar ul {
@@ -55,14 +64,14 @@ nav .search-bar input {
 .navbar ul li a{
   text-decoration: none;
   color: black;
-  font-size: 1rem;
-  font-weight: bold;
+  font-size: 0.9rem;
+  font-weight: normal;
 }
 .navbar ul li a:hover{
   color: orange;
 }
 .navbar ul li select{
-  font-weight: bold;
+  font-weight: normal;
   background-color: transparent;
   -webkit-appearance: none;
   -moz-appearance: none;

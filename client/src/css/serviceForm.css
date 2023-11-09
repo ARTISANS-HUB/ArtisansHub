@@ -17,7 +17,10 @@
     display: block;
     margin-bottom: 8px;
     font-weight: bold;
+    font-size: 0.8rem;
+    font-weight: normal;
   }
+ 
   
   input,
   textarea {
@@ -27,6 +30,9 @@
     margin-bottom: 20px;
     border: 1px solid #ccc;
     border-radius: 4px;
+  }
+  input,textarea::placeholder{
+    font-size: 0.8rem;
   }
   
   button {
