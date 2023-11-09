@@ -82,7 +82,7 @@ const ArtisansOverviewController = require('./http/controllers/ArtisansOverviewC
 const ArtisansController = require('./http/controllers/ArtisansController');
 
 //VerificationController
-VerificationController = require('./http/controllers/VerificationController');
+const VerificationController = require('./http/controllers/VerificationController');
 
 
 const BuyersController = require('./http/controllers/BuyersController');
@@ -96,6 +96,7 @@ const BuyersOverviewController = require('./http/controllers/BuyersOverviewContr
 
 //services
 const ServicesController = require('./http/controllers/ServicesController');
+const ArtisansPlatformDashboardController = require('./http/controllers/ArtisansPlatformDashboardController');
 
 //error_404
 //const error_404_PNF  = require('./http/controllers/error_404');
@@ -205,14 +206,12 @@ app.post('/login/artisan', AuthController.ArtisanAuth);
 app.post('/login/buyer', AuthController.BuyerAuth);
 //update user details
 app.post('/auth/update/user-profile-picture', profileUploadpic.single("file"), UpdateUserController.UpdateUserProfile);
-
 //update user details
 app.post('/auth/edit/edit-user-profile-picture', profileUploadpic.single("file"), UpdateUserController.EditUserProfile);
 
 
 //update user details
 app.post('/auth/update/user-details', UpdateUserController.UpdateUserData);
-
 //fetch user details
 app.get('/auth/fetch-user-profile/:profile', UpdateUserController.fetchUserProfile);
 
@@ -250,11 +249,12 @@ app.post('/auth/create-artisan', ArtisansController.CreateArtisan);
 
 app.get('/auth/fetch-feebacks', FeedBackController.feedbacks);
 
-
+//dashboard
 app.get('/auth/fetch-buyers', BuyersController.buyers);
 app.post('/auth/create-buyer',upload.single("file"), BuyersController.CreateBuyer);
 app.delete('/auth/delete-buyer/:buyerId',BuyersController.DeleteBuyer);
 
+//daashboard stats
 app.get('/auth/fetch-buyers/active', BuyersOverviewController.fetchActiveBuyers);
 app.get('/auth/fetch-buyers/inactive', BuyersOverviewController.fetchInActiveBuyers);
 app.get('/auth/fetch-buyers/verified', BuyersOverviewController.fetchVerfiedBuyers);
@@ -275,6 +275,11 @@ app.get('/auth/fetch-services-completed-artisan/:artisanId', PlatformServicesCon
 app.get('/auth/fetch-services-cancelled-artisan/:artisanId', PlatformServicesController.ServicesCancelled);
 app.get('/auth/fetch-services-pending-artisan/:artisanId', PlatformServicesController.ServicesPending);
 
+//artisan create
+app.post('/auth/artisan-create-service',storage3.single("file"), ArtisansPlatformDashboardController.createServiceArtisan);
+app.post('/auth/artisan-update-service',storage3.single("file"), ArtisansPlatformDashboardController.updateServiceArtisan);
+app.get('/auth/artisan-delete-service/:serviceId', ArtisansPlatformDashboardController.deleteServiceArtisan);
+
 
 //services BUYER platform
 app.get('/auth/fetch-services-completed-buyer/:buyerId', PlatformServicesController.ServicesCompletedBuyer);
@@ -287,6 +292,10 @@ app.get('/auth/fetch-services-dashboard', ServicesController.DashboardServices);
 app.get('/auth/fetch-services-completed', ServicesController.DashboardServicesCompleted);
 app.get('/auth/fetch-services-cancelled', ServicesController.DashboardServicesCancelled);
 app.get('/auth/fetch-services-pending', ServicesController.DashboardServicesPending);
+
+
+
+
 
 
 //verify user mail

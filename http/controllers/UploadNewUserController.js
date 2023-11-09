@@ -57,6 +57,7 @@ const AddContact = async (req, res, next) => {
             usermail: usermail,
             tel: tel,
             created_by: created_by,
+            created_at:formattedDate,
         };
         //results
         const results = await collection.insertOne(newContact);

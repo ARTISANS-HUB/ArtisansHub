@@ -218,7 +218,6 @@ const CreateArtisan = async (req, res, next) => {
     } = req.body.formData;
 
 
-    console.log(req.body.formData)
     
 
     //Get the uploaded file name
@@ -262,7 +261,7 @@ const CreateArtisan = async (req, res, next) => {
     if (error) {
       logger.log('error', "can not create artisan account /  internal error", error);
       res.status(501).json({ message: "internal error... " });
-      console.log(error)
+     
     }
   }
 
@@ -275,4 +274,5 @@ module.exports = {
   VerifyArtisans: VerifyArtisans,
   deleteArtisan: deleteArtisan,
   CreateArtisan: CreateArtisan
+ 
 };
