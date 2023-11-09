@@ -54,11 +54,11 @@ function ArtisandashboardTopNavBar() {
   return (
     <div className="topnav-home">
       <div className="left-profile">
-        <span>DIGIHAVEN</span>
+       <Link to="/auth/artisan/dashboard/home"> <span  >DIGIHAVEN</span></Link>
       </div>
       <div className="right-nav-dashboad-platform">
                 
-        <Link to="/auth/artisan/dashboard/create-service-artisan"   ><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
+        <Link to="/auth/artisan/dashboard/create-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
         
 
 
