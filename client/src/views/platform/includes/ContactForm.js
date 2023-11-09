@@ -1,8 +1,61 @@
-import React from 'react'
-import myImage from "../../../uploads/bg.jpeg"
+ import myImage from "../../../uploads/bg.jpeg"
 import "../../../css/contactForm.css"
-
+import { useEffect ,useState} from 'react'
+import {Api_connect_server} from '../../../APIs/Api_connect_server'
+import UploadNewContactController from '../../../controllers/UploadNewContactController'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+import swal from 'sweetalert';
 const ContactForm = () => {
+const api_connect =  Api_connect_server();
+
+ const [formData, setformData] = useState({
+    usermail: '',
+    fname: '',
+    lname: '',
+    message: '',
+    phone: '',
+  });
+
+
+  const handleChange = async (event) => {
+    // Update the state when user types in the input fields
+    setformData({
+      ...formData,
+      [event.target.name]: event.target.value
+    });
+
+  }
+
+
+  const handleSubmit = async (event) => {
+
+    event.preventDefault();
+    // Call the userAuthController and pass the user input
+    if (formData.usermail === '' || formData.lname === ''
+        || formData.fname === '' || formData.phone === ''
+        || formData.message === '') {
+
+    swal({
+    title: "Form Data",
+    text: "All input are required",
+    icon: "warning",
+    buttons: true,
+    dangerMode: true,
+    });
+      //alert('all input are required ');
+      return;
+    }
+
+    else {
+      //send data to controller
+      UploadNewContactController(formData);
+
+    }
+
+  }
+
+
   return (
     <div className='contact-form-container'>
         <div className='contact-form-left'>
@@ -20,22 +73,45 @@ const ContactForm = () => {
                 Get in touch
             </h2>
 
-            <form className='contact-form'>
+            <form className='contact-form' action="" onSubmit={handleSubmit}>
                 <div className='contact-form-double-field'>
-                    <input type='text' placeholder='First Name' className='contact-form-input'/>
-                    <input type='text' placeholder='Last Name' className='contact-form-input'/>
+                    <input type='text' placeholder='First Name'
+                    id="fname"
+                    name="fname"
+                     onChange={handleChange} className='contact-form-input'/>
+                    <input type='text' placeholder='Last Name'
+                    name="lname" id="lname" 
+                    value={formData.lname}
+                    onChange={handleChange} className='contact-form-input'/>
                 </div>
                 <div className='contact-form-single-field'>
-                    <input type='text' placeholder='Email' className='contact-form-input'/>
+                    <input type='text' placeholder='Email' 
+                    id="usermail"
+                    name="usermail"
+                    value={formData.usermail}
+                    onChange={handleChange} className='contact-form-input'/>
                 </div>
                 <div className='contact-form-single-field'>
-                    <input type='text' placeholder='Phone' className='contact-form-input'/>
+
+                    <input type='text' placeholder='Phone'
+                    id="phone"
+                    name="phone"
+                    value={formData.phone}
+                    onChange={handleChange} className='contact-form-input'/>
                 </div>
                 <div className='contact-form-single-field-full'>
-                    <textarea placeholder='Message' className='contact-form-input contact-form-textarea'></textarea>
+                    <textarea placeholder='Message' 
+                    id="message"
+                    name="message"
+                    value={formData.message}
+                    onChange={handleChange} className='contact-form-input contact-form-textarea'></textarea>
                 </div>
                 <div className='contact-form-single-field-button'>
-                    <button className='contact-form-button'>Send Message</button>
+                    <button className='contact-form-button'
+                    type="submit" onClick={handleSubmit}>
+                    Send Message
+
+                    </button>
                 </div>
             </form>
         </div>
