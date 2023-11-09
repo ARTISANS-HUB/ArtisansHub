@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import ArtisanCard from './ArtisanCard'
 import "../../../css/artisansCard.css";
 import { artisanData } from './utils';
@@ -6,8 +6,56 @@ import { artisanData } from './utils';
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
+import { Api_connect_server } from '../../../APIs/Api_connect_server';
+import { useAsyncError } from 'react-router-dom';
+import {myImage} from "../../../uploads/bg.jpeg"
+
+const api_connect = Api_connect_server();
 
 const ArtisansCard = () => {
+
+  const [artisans, setArtisans] = useState([])
+  //fetch user profile
+  const [imageSrc, setImageSrc] = useState('');
+
+  useEffect(() => {
+    try {
+      api_connect.get("/auth/fetch-artisans")
+      .then((response) => {
+        if (response.status === 200) {
+          setArtisans(response.data)
+     
+        } else if (response.data.statusCode === 501) {
+          setArtisans([])
+        }
+      }).catch((error) => {
+        // alert("not connected to server")
+        console.log(error) 
+      })
+    } catch (error) {
+      // alert("not connected ")
+      
+    }
+    // Fetch the image from the server
+    api_connect.get('/auth/fetch-user-profile/' + artisans.profile, { responseType: "blob" })
+  .then((response) => {
+    if (response.status === 200) { // Check the status code for success (200 OK)
+      return response.data; // Use response.data for Axios, not response.blob()
+    } else {
+      throw new Error('Network response was not ok');
+    }
+  })
+  .then((imageData) => {
+    const src = URL.createObjectURL(new Blob([imageData]));
+    setImageSrc(src);
+  })
+  .catch((error) => {
+    console.error('Error fetching image:', error);
+  });
+
+  },[imageSrc ,api_connect ]);
+
+
 
     const settings = {
         dots: true,
@@ -57,13 +105,13 @@ const ArtisansCard = () => {
               
 
                         {
-                                artisanData.map((artisan) => 
+                                artisans.map((artisan) => 
                                         <ArtisanCard
-                                            key={artisan.name}
-                                            name={artisan.name}
-                                            description={artisan.description}
+                                            key={artisan.artisanId}
+                                            username={artisan.username}
+                                            location={artisan.description}
                                             link={artisan.link}
-                                            img={artisan.img}
+                                            img={imageSrc}
                                         />
                                     )
                                 

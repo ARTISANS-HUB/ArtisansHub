@@ -12,9 +12,9 @@ const logger = require('../logger');
 const dbName = process.env.dbNameOffline;
 const onlinedbName = process.env.MongoDbOnlineDbname;
 // MongoDB connection to local URL
-const url = 'mongodb://localhost:27017/'+dbName; 
+// const url = 'mongodb://localhost:27017/'+dbName; 
 
-//const url = `mongodb+srv://${username}:${password}@${clusterName}.uzkrp1a.mongodb.net/${onlinedbName}?retryWrites=true&w=majority`;
+const url = `mongodb+srv://${username}:${password}@${clusterName}.uzkrp1a.mongodb.net/${onlinedbName}?retryWrites=true&w=majority`;
 
 // Create a Mongoose connection
 mongoose.connect(url, { useNewUrlParser: true, useUnifiedTopology: true })

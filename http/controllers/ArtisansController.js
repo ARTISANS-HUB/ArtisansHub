@@ -21,14 +21,19 @@ const artisans = async (req, res, next) => {
 
     const collection = db.collection('artisans');
 
-    const artisans = await collection.find().toArray();
-    res.json(artisans);
+    const artisans = await collection.find({}).toArray();
+    console.log(artisans)
 
-    if (artisans.length < 0) {
+    console.log("gi")
+    
+
+    if (artisans.length === 0) {
 
       res.status(200).json({ statusCode: 404 });
 
     }
+
+    return res.json(artisans);
 
 
   }

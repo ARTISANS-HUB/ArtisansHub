@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import "../../../css/serviceCategory.css";
 import Categories from './Categories';
 import "slick-carousel/slick/slick.css"; 
@@ -9,11 +9,40 @@ import { cartCategories, categoryData } from './utils';
 import FilterCategory from './FilterCategory';
 import myImage from "../../../uploads/bg.jpeg"
 import {Link } from 'react-router-dom'; 
+import { Api_connect_server } from '../../../APIs/Api_connect_server';
+
+const api_connect = Api_connect_server();
 
 const ServiceCategory = () => {
   const [filteredCards, setFilteredCards] = useState(categoryData);
   const [filter, setFilter] = useState('');
   const [filteredCategory, setFilteredCategory] = useState(cartCategories);
+  const [category, setCategory] = useState([])
+
+
+
+  useEffect(() => {
+    try {
+      api_connect.get("/auth/fetch-services-platform-all")
+      .then((response) => {
+        if (response.status === 200) {
+          const categories = response.data.map(item => item.type);
+          setCategory(categories);
+          console.log(categories);
+        } else if (response.data.statusCode === 501) {
+          setCategory([])
+        }
+      }).catch((error) => {
+        console.log(error);
+      })
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
+
+  console.log(category);
+
+  
 
   const filterCards = (buttonValue) => {
     console.log(buttonValue);
@@ -30,6 +59,29 @@ const ServiceCategory = () => {
     setFilter('');
     setFilteredCards(categoryData);
   };
+
+
+  // useEffect(() => {
+  //   try {
+  //     api_connect.get("/auth/fetch-services-platform-all")
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         setCategory(response.data)
+          
+  //       } else if (response.data.statusCode === 501) {
+  //         setCategory([])
+  //       }
+  //     }).catch((error) => {
+  //       // alert("not connected to server")
+  //       console.log(error) 
+  //     })
+  //   } catch (error) {
+  //     // alert("not connected ")
+      
+  //   }
+  // },[])
+
+
 
   const settings = {
     dots: true,
@@ -80,9 +132,9 @@ const ServiceCategory = () => {
         {/* <div className='category-card'> */}
         <div className='card'>
             <Slider {...settings}>
-                {cartCategories.map((category,index) => {
+                {category.map((cat,index) => {
               
-                  return <Categories key={index}  icon={category.icon} title={category.title} category={category.category} handleFilterChange={handleFilterChange} bgColor={category.bgColor} />
+                  return <Categories key={index}  icon={cat.icon} title={cat.title} cat={cat} handleFilterChange={handleFilterChange} bgColor={category.bgColor} />
                 })
               }
             </Slider>
