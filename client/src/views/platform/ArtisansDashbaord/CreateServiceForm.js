@@ -3,18 +3,21 @@ import { Formik, Field, Form, ErrorMessage } from "formik";
 import "../../../css/serviceForm.css";
 import UploadNewUserController from "../../../controllers/UploadNewUserController";
 import { useState } from "react";
+import swal from 'sweetalert';
 
 const CreateServiceForm = () => {
+  const [file, setFile] = useState(null);
+
+  
   const [formData, setformData] = useState({
-    userID: Math.random().toString(36).substr(2, 50),
-    profile: "",
-    username: "",
-    password: "",
-    usermail: "",
-    tel: "",
-    role: "",
-    created_at: "",
-    updated_at: "",
+    serviceId: Math.random().toString(36).substr(2, 50),
+    description:'',
+    charge:'',
+    phone:'',
+    type:'',
+    location:'',
+    created_by:'',
+    tel:'',
   });
 
   const handleSubmit = (values) => {
@@ -27,15 +30,25 @@ const CreateServiceForm = () => {
       formData.role === "" ||
       formData.created_at === ""
     ) {
-      alert("all input are required..");
+      swal({
+        title: "Form Data",
+        text: "All input are required",
+        icon: "warning",
+        buttons: true,
+        dangerMode: true,
+        });
     } else {
-      UploadNewUserController(formData);
+      UploadNewUserController(formData , file);
     }
 
     return;
   };
 
   const handleChange = (event) => {
+    //check input type
+    if (event.target.type === "file") {
+      setFile(event.target.files[0]);
+    }
     setformData({ ...formData, [event.target.name]: event.target.value });
   };
 
@@ -49,7 +62,7 @@ const CreateServiceForm = () => {
           <Form>
             <div className="form-group">
               <label htmlFor="name">Name:</label>
-              <Field type="text" id="name" name="name" placeholder="Name" />
+              <Field type="text" id="name" value={formData.name} name="name" handleChange={handleChange}    placeholder="Name" />
               <ErrorMessage name="name" component="div" className="error" />
             </div>
             <div className="form-group">
@@ -57,8 +70,8 @@ const CreateServiceForm = () => {
               <Field
                 type="text"
                 id="Charge"
-                name="Charge"
-                placeholder="Charge"
+                name="charge"
+                handleChange={handleChange}  value={formData.charge}  placeholder="Charge"
               />
               <ErrorMessage name="name" component="div" className="error" />
             </div>
@@ -68,14 +81,14 @@ const CreateServiceForm = () => {
                 type="text"
                 as="textarea"
                 id="Description"
-                name="Description"
-                placeholder="Description"
+                name="description"
+                handleChange={handleChange}  value={formData.description}  placeholder="Description"
               />
               <ErrorMessage name="name" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Phone:</label>
-              <Field type="text" id="Phone" name="Phone" placeholder="Phone" />
+              <Field type="text" id="tel" name="tel" handleChange={handleChange}  value={formData.tel}  placeholder="Phone" />
               <ErrorMessage name="name" component="div" className="error" />
             </div>
             <div className="form-group">
@@ -83,25 +96,25 @@ const CreateServiceForm = () => {
               <Field
                 type="text"
                 id="Location"
-                name="Location"
-                placeholder="Location"
+                name="location"
+                handleChange={handleChange}  value={formData.location}  placeholder="Location"
               />
-              <ErrorMessage name="name" component="div" className="error" />
+              <ErrorMessage name="location" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Profile:</label>
               <Field
                 type="text"
                 id="Profile"
-                name="Profile"
-                placeholder="Profile"
+                name="file"
+                handleChange={handleChange}  value={formData.name}  placeholder="Profile"
               />
-              <ErrorMessage name="name" component="div" className="error" />
+              <ErrorMessage name="file" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Email:</label>
-              <Field type="text" id="email" name="email" placeholder="Email" />
-              <ErrorMessage name="name" component="div" className="error" />
+              <Field type="email" id="email" name="usermal" handleChange={handleChange}  value={formData.usermail}  placeholder="Email" />
+              <ErrorMessage name="email" component="div" className="error" />
             </div>
 
             {/* ... other fields */}

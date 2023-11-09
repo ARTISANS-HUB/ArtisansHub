@@ -35,7 +35,8 @@ const SideBar = () => {
         <div className="logo-name">
 
             <div className="logo-image">
-                <img src="" alt="" / >
+               
+                <span className="logo">D/H</span>
             </div>
 
             <span className="logo_name">DigiHaven</span>
