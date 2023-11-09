@@ -55,34 +55,34 @@ const handleLogout = async () =>{
 
 
   }, [imageSrc ,profile,api_connect ]);
-  return (
+ return (
     <div className="topnav-home">
-    <div className="left-profile">
-      <span>DIGIHAVEN</span>
+      <div className="left-profile">
+        <span>DIGIHAVEN</span>
+      </div>
+      <div className="right-nav-dashboad-platform">
+
+        <nav class="top-nav-platform-dashboard">
+          <div class="profile-platform-pic">
+            {imageSrc ? (
+              <img src={imageSrc} alt="" className="profile-image-dashboard" />
+            ) : (
+
+              <img src="../../../uploads/Iphone-spinner-2.gif" alt="" className="profile-image-dashboard" />
+
+            )
+            }
+            <span class="profile-name-dashbaord-plaform">{username || 'User'}</span>
+
+          </div>
+        </nav>
+
+
+        <Link to="#" onClick={handleLogout}   ><i title="Logout" className="fas fa-sign-out"></i></Link>
+      </div>
+
     </div>
-    <div className="right-nav">
-<nav class="top-nav">
-        <div class="profile">
-        { imageSrc ? (  
-    <img src={imageSrc} alt="" className="profile-image" />
- ):(
-
-    <img src="../../../uploads/Iphone-spinner-2.gif" alt="" className="profile-image" />
-
- )
-  }
-            <span class="profile-name">{username}</span>
-            
-        </div>
-    </nav>
- 
-      
-
-      <Link to="#" onClick={handleLogout}><i className="fas fa-sign-out"></i> Logout</Link>
-    </div>
-   
-  </div>
-  )
+  );
 }
 
 export default BuyerdashboardTopNavBar

@@ -29,9 +29,9 @@ const handleChangeLogin = async (event) => {
             event.preventDefault();
 
       if (event.target.value === "buyer") {
-      navigate("/login")
+      navigate("/login-buyer")
     } else if (event.target.value === "artisan") {
-      navigate("/login")
+      navigate("/login-artisan")
     } else if (event.target.value === "admin") {
       navigate("/login")
     }
@@ -40,7 +40,6 @@ const handleChangeLogin = async (event) => {
 // check user state
 
 const [userType, setuserType] = useState("artisan");
-
 
 const handleLogout = async () =>{
   swal({
@@ -165,7 +164,7 @@ const handleLogout = async () =>{
           </li>
 
 
-{ isAuthenticated &&
+{ isAuthenticated === true &&
 
 <li>
 <FontAwesomeIcon icon={faBell} className="notification-bell" />
@@ -174,23 +173,23 @@ const handleLogout = async () =>{
 }
 
 
-{ isAuthenticated &&
+{ isAuthenticated === true &&
 
 
 <li>
 <div className="account-container .platform-profile">
 { imageSrc ? (  
-    <img src={imageSrc} alt="" className="userprofile" />
+    <img src={imageSrc} alt="" className="platform-profil-pic-home" />
  ):(
 
-    <img src="../../uploads/Iphone-spinner-2.gif" alt="" className="platform-profil-ic" />
+    <img src="../../uploads/Iphone-spinner-2.gif" alt="" className="platform-profil-pic-home" />
  )
   }
 
     <div className="account-dropdown">
 
       <div className="account-item"  id="username">
-        Daniel
+        {username}
       </div>
 
 

@@ -8,8 +8,6 @@ function ArtisandashboardTopNavBar() {
   const [username,] = useState(localStorage.getItem('username'));
 
   const api_connect = Api_connect_server();
-
-
   const profile = localStorage.getItem('profile');
 
   //fetch user profile
@@ -58,25 +56,29 @@ function ArtisandashboardTopNavBar() {
       <div className="left-profile">
         <span>DIGIHAVEN</span>
       </div>
-      <div className="right-nav">
+      <div className="right-nav-dashboad-platform">
+                
+        <Link to="/auth/artisan/dashboard/create-service-artisan"   ><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
+        
 
-        <nav class="top-nav">
-          <div class="profile">
+
+        <nav class="top-nav-platform-dashboard">
+          <div class="profile-platform-pic">
             {imageSrc ? (
-              <img src={imageSrc} alt="" className="profile-image" />
+              <img src={imageSrc} alt="" className="profile-image-dashboard" />
             ) : (
 
-              <img src="../../../uploads/Iphone-spinner-2.gif" alt="" className="profile-image" />
+              <img src="../../../uploads/Iphone-spinner-2.gif" alt="" className="profile-image-dashboard" />
 
             )
             }
-            <span class="profile-name">{username}</span>
+            <span class="profile-name-dashbaord-plaform">{username || 'User'}</span>
 
           </div>
         </nav>
 
 
-        <Link to="#" onClick={handleLogout}><i className="fas fa-sign-out"></i> Logout</Link>
+        <Link to="#" onClick={handleLogout}   ><i title="Logout" className="fas fa-sign-out"></i></Link>
       </div>
 
     </div>

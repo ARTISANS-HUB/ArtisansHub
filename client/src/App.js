@@ -106,6 +106,7 @@ function App() {
             <Route path="/auth/customer/book-history" element={< HistoryPage />} />
             
             <Route path="/auth/artisan/dashboard/home" element={<ArtitsanHome />} />
+            <Route path="/auth/artisan/dashboard/create-service-artisan" element={<ArtitsanHome />} />
 
 
             <Route path="/auth/buyer/dashboard/home" element={<BuyerHome/>} />

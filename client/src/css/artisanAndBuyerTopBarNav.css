@@ -14,14 +14,14 @@
 }
 
 /* Styles for the right navigation links */
-.right-nav {
+.right-nav-dashboad-platform {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
 /* Styles for the navigation links */
-.topnav a , .right-nav a {
+.topnav a , .right-nav-dashboad-platform a {
   color: white;
   text-decoration: none;
   padding: 14px 16px;
@@ -197,14 +197,14 @@ border-radius: 100px;
 }
 
 /* Style the profile section */
-.profile {
+.profile-platform-pic {
     position: relative;
     display: flex;
     align-items: center;
     cursor: pointer;
 }
 
-.profile-image {
+.profile-image-dashboard{
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -212,8 +212,24 @@ border-radius: 100px;
     border: 1px solid #ccc;
 }
 
-.profile-name {
+.profile-name-dashbaord-plaform {
     color: white;
     text-transform: uppercase;
 }
 
+
+.platform-profil-pic-home{
+
+width: 30px;
+height: 30px;
+border-radius: 200px;
+}
+
+
+.create-services-icon{
+
+  padding: 7px 9px;
+  border-radius: 100px;
+  background-color: #ddd;
+  color: black;
+}

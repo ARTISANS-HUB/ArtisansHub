@@ -18,7 +18,7 @@ const LogoutController = async () => {
 				console.log("user logged out")
 				localStorage.setItem('isAuthenticated', false);
 				// Perform a full page reload to ensure redirection
-				window.location.href = '/login';
+				window.location.href = '/';
 			} else if (response.data.statusCode === 501) {
 
 				message = response.data.message;
