@@ -13,7 +13,7 @@ const ArtisanProfile = (props) => {
   const placeholderServiceImages = Array(4).fill(profilePicture);
 
   return (
-  <div>
+  <div className='artisanProfileContainer'>
     <TopNavBar/>
       <div className="artisan-profile animated-fade-in">
       <div className="profile-header animated-bounce">

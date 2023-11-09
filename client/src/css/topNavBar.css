@@ -8,13 +8,13 @@ nav{
   transition: transform 0.2s ease-in-out;
 
 }
-.navbar .logo{
+nav .navbar .logo{
   font-weight: bold;
   color: orange;
   margin-right: 10px;
   font-family:;
 }
- .navbar {
+nav .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -25,7 +25,7 @@ nav{
     margin: 2% auto;
 }
 
-.navbar .title {
+nav .navbar .title {
     font-size: 1.3rem;
     margin: 1rem;
     font-weight: normal;
@@ -53,26 +53,26 @@ nav .search-bar input {
 
 }
 
-.navbar ul {
+nav .navbar ul {
     display: flex;
     justify-content: space-between;
-    width: 60%;
+    width: 50%;
     align-items: center;
 }
 
-.navbar ul li {
+nav .navbar ul li {
    list-style: none;
 }
-.navbar ul li a{
+nav .navbar ul li a{
   text-decoration: none;
   color: black;
   font-size: 0.9rem;
   font-weight: normal;
 }
-.navbar ul li a:hover{
+nav .navbar ul li a:hover{
   color: orange;
 }
-.navbar ul li select{
+nav .navbar ul li select{
   font-weight: normal;
   background-color: transparent;
   -webkit-appearance: none;
@@ -80,28 +80,28 @@ nav .search-bar input {
   text-indent: 1px;
   text-overflow: '';
 }
-.navbar ul li select:hover{
+nav .navbar ul li select:hover{
   color: orange;
 }
 
-.navbar ul li select::-ms-expand {
+nav .navbar ul li select::-ms-expand {
   display: none;
 }
-.navbar ul li .notification-bell{
+nav .navbar ul li .notification-bell{
   font-size: 1.5rem;
   cursor: pointer;
 }
-.navbar ul li .notification-bell:hover{
+nav .navbar ul li .notification-bell:hover{
   color: orange;
 }
-.navbar .become-button{
+nav .navbar .become-button{
   border: none;
   font-size: 1rem;
 }
 
 
 
-.navbar .menu {
+nav .navbar .menu {
     display: none;
     position: absolute;
     top: 0.75rem;
@@ -112,7 +112,7 @@ nav .search-bar input {
     height: 2rem;
 }
 
-.navbar .menu span {
+nav .navbar .menu span {
     height: 0.4rem;
     width: 100%;
     background-color: #000;

@@ -40,7 +40,7 @@ const CreateServiceForm = () => {
   };
 
   return (
-    <div className="formContainer">
+    <div className="serviceFormContainer">
       <div className="formwrapper">
         <Formik
           initialValues={{ name: "", description: "" }}
