@@ -37,6 +37,7 @@ import ServicesProviders from './views/platform/servicesProviders';
 import HistoryPage from './views/platform/HistoryPage';
 
 
+
 //artisan dashboar
 
 
@@ -85,10 +86,11 @@ function App() {
         
         
         
-        <Route path="/service-provider" element={< ServicesProviders />} />
+        <Route path="/service-provider/:artisanId" element={< ServicesProviders />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
-        <Route path="/auth/customer/book-service/:id" element={< Booking/>} />
+        <Route path="/auth/customer/book-service/:bookId" element={< Booking/>} />
+
 
         <Route path="*" element={<ErrorPage />} />
         {isAuthenticated ? (
@@ -112,6 +114,7 @@ function App() {
             
             <Route path="/auth/artisan/dashboard/home" element={<ArtitsanHome />} />
             <Route path="/auth/artisan/dashboard/create-service-artisan" element={< ArtisanCreateServicesForm/>} />
+            <Route path="/auth/artisan/dashboard/statistics-service-artisan" element={< ArtisanStatisticServices/>} />
             <Route path="/auth/artisan/dashboard/statistics-service-artisan" element={< ArtisanStatisticServices/>} />
 
 

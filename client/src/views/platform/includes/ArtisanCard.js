@@ -5,7 +5,7 @@ import ArtisanProfile from '../servicesProviders'
 
 
 
-const ArtisanCard = ({username,location,link,img}) => {
+const ArtisanCard = ({username,location,artisanId,img}) => {
   
   return (
     <div className='artisan-card' >
@@ -17,7 +17,7 @@ const ArtisanCard = ({username,location,link,img}) => {
            <p>{location}</p>
         </div>
         <div className='artisan-card-bottom'>
-           <Link to={link} style={{textDecoration:"none"}}>
+           <Link to={`/service-provider/${artisanId}`} style={{textDecoration:"none"}}>
                 <button className='artisan-card-btn'>More</button>
            </Link>
         </div>

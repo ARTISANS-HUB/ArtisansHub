@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom'
 
 
 
-const FilterCategory = ({username,img,id}) => {
+const FilterCategory = ({username,img,bookId}) => {
   return (
     <div className='filter-category-container'>
       
@@ -13,7 +13,7 @@ const FilterCategory = ({username,img,id}) => {
             <img className='filter-category-card-img' src={img} alt={username} />
             <div className='filter-category-card-info'>
                 <h3>{username}</h3>
-                <Link to={`/auth/customer/book-service/${id}`} style={{textDecoration:"none"}}>Book</Link>
+                <Link to={`/auth/customer/book-service/${bookId}`} style={{textDecoration:"none"}}>Book</Link>
             </div>
        </div>
 

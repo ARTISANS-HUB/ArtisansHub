@@ -182,7 +182,7 @@ const handleShowAll = () => {
              
                  filteredCards.map((cat)=>{
                   console.log(cat.username);
-                   return <FilterCategory username={cat.username} img={myImage} id={cat.artisanId}/>
+                   return <FilterCategory username={cat.username} img={myImage} bookId={cat.artisanId}/>
                  })
                }
    

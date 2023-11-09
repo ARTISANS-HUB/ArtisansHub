@@ -105,12 +105,12 @@ const ArtisansCard = () => {
 
        <div className='artisans-card-list'>
                         {
-                                artisans.map((artisan) => 
+                                artisans.map((artisan) =>
                                         <ArtisanCard
                                             key={artisan.artisanId}
                                             username={artisan.username}
                                             location={artisan.description}
-                                            link={artisan.link}
+                                            artisanId={artisan.artisanId}
                                             img={process.env.REACT_APP_API_URL_DEV + "/auth/fetch-user-profile/" + artisan.profile}
                                         />
                                     )

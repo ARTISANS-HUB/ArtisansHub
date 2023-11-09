@@ -4,7 +4,7 @@
     margin: 5rem auto;
 }
 
-.booking-form-heading{
+.booking-form-container .booking-form-heading{
     font-size: 20px;
     font-weight: 600;
     color: #333;
@@ -13,7 +13,7 @@
     text-transform: uppercase;
 
 }
-.booking-form{
+ .booking-form-container .booking-form{
     /* background: #000; */
     display: flex;
     gap: 20px;
@@ -21,9 +21,9 @@
     /* justify-content: space-between; */
 }
 
-.booking-form .booking-form-image{
+ .booking-form-container .booking-form .booking-form-image{
 width: 50%;
-background: #000;
+/* background: #000; */
 }
 
 .booking-form-image img{
@@ -32,7 +32,7 @@ background: #000;
     object-fit: cover;
 } 
 
-form{
+.booking-form-container form{
 
     width: 35%;
     margin: 20px auto;
