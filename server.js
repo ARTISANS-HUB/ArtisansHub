@@ -247,7 +247,7 @@ app.get('/auth/fetch-artisans/verified', ArtisansOverviewController.fetchVerfied
 
 
 app.get('/auth/artisan-action/:artisanId/:action', ArtisansController.VerifyArtisans);
-app.post('/auth/create-artisan', ArtisansController.CreateArtisan);
+app.post('/auth/create-artisan',upload.single("file"), ArtisansController.CreateArtisan);
 
 
 app.get('/auth/fetch-feebacks', FeedBackController.feedbacks);

@@ -8,10 +8,10 @@ const api_connect = Api_connect_server();
 
 const CreateArtisanForm = () => {
     const [isLoading, setIsLoading] = useState(false);
-    const [file, setFile] = useState(null);
+    const [file, setFileBlog] = useState(null);
+    const [ serverFile , setserverFile]= useState(null);
     const [formData, setformData] = useState({
       // userID: Math.random().toString(36).substr(2, 50),
-      file: "",
       username: "",
       password: "",
       usermail: "",
@@ -25,10 +25,12 @@ const CreateArtisanForm = () => {
     const handleChange = (event) => {
       //check input type
       if (event.target.type === "file") {
-        // setFile(event.target.files[0]);
+        
         const file = event.target.files[0];
+        setserverFile(file)
         const imageURL = URL.createObjectURL(file);
-        setFile(imageURL);
+
+        setFileBlog(imageURL);
       }
   
      
@@ -62,7 +64,7 @@ const CreateArtisanForm = () => {
         //send data to controller when auth..
         //send drag file
   
-        UploadNewArtisanController(formData, file);
+        UploadNewArtisanController(formData, serverFile);
   
   
         //simulate the loader to hide
@@ -84,9 +86,13 @@ const CreateArtisanForm = () => {
                 <div className="form first">
                     <div className='profile-icon'>
                         <div className="profile-icon-upload">
-                            {file ? (
+                            {  file && 
                                 <img src={file} alt="Profile icon" />
-                            ) : (
+                              }
+                              {!file &&
+
+
+                            
                                 <div className="upload-button">
                                 <label htmlFor="profileImageUpload">
                                     <i className="fas fa-upload"></i> Upload Profile Picture
@@ -94,10 +100,12 @@ const CreateArtisanForm = () => {
                                 <input
                                     type="file"
                                     id="profileImageUpload"
+                                    name="file"
+                                    value={serverFile}
                                     onChange={handleChange}
                                 />
                         </div>
-                            )}
+                            }
                     </div>
                 </div>
                     <div className="details personal">

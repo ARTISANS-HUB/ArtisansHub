@@ -4,6 +4,8 @@ const { connectToDB, closeDB } = require('../../config/mongodbconfig');
 //path
 const path = require("path");
 let db;
+const bcrypt = require('bcrypt');
+
 const logger = require('../../logger');
 //node mailer
 const mailHelper = require('../controllers/MailController');
@@ -203,22 +205,16 @@ const CreateArtisan = async (req, res, next) => {
     const collection = db.collection('artisans');
 
     const {
-      artisanId,
       username,
       password,
       role,
       created_at,
       usermail,
       created_by,
-      file,
       tel,
     } = req.body.formData;
-
-
-    
-
-    //Get the uploaded file name
-    const fileName = req.file.originalname;
+ //Get the uploaded file name
+ const fileName = req.file.originalname;
 
     // Function to hash the password
     const hashPassword = async (password) => {
@@ -228,10 +224,10 @@ const CreateArtisan = async (req, res, next) => {
     const hashedPassword = await hashPassword(password);
 
     const newUser = {
-      artisanId: artisanId,
+      artisanId: Math.random().toString(36).substr(2, 50),
       username: username,
       password: hashedPassword,
-      profile: userID + "-" + fileName,
+      profile: fileName,
       usermail: usermail,
       role: role,
       tel: tel,
@@ -257,8 +253,8 @@ const CreateArtisan = async (req, res, next) => {
   catch (error) {
     if (error) {
       logger.log('error', "can not create artisan account /  internal error", error);
-      res.status(501).json({ message: "internal error... " });
-     
+      res.status(501).json({ message: "internal error... " + error, statusCode: 501 });
+     console.log(error)
     }
   }
 

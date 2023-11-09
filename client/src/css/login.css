@@ -4,6 +4,9 @@
             border-radius: 8px;
            box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
             flex-direction: row;
+            width: 90%;
+            margin: 40px auto;
+            height: 100%;
 
         }
 
@@ -12,7 +15,7 @@
 /* background-image: url('../uploads/bg2.webp'); /* Change to your image URL */
             background-size: cover;
             border-radius: 8px 0 0 8px;
-            height: 100vh;
+            /* height: 100vh; */
         }
 
         .login-view .left img{
@@ -89,15 +92,22 @@
            
             cursor: pointer;
             padding: 10px 20px;
-            border: 1px solid #ccc;
+            /* border: 1px solid #ccc; */
+            border-style: solid;
+            border: none;
+            outline: none;
             border-radius: 5px;
             outline: none;
-            transition: all ease-in-out 0.3s;
+            /* transition: all ease-in-out 0.3s; */
             margin-bottom: 10px;
+            background-color: #fff;
         }
-
+        .login-view .submit-btn:focus{
+           outline: none;
+        }
         .login-view .submit-btn:hover{
-            background-color: #ccc;
+          background-color: #fe9931;
+          color: #fff;
         }
 
         .login-view .login-title{
@@ -128,10 +138,24 @@ margin: 30px auto;
 
 .login-view .createAc-container  a {
 
-color: green;
+  background-color: #fff;
+  color: #353535;
+padding: 10px 20px;
 text-decoration: none;
 cursor: pointer;
 font-size: 15px;
+
+border-radius: 10px;
+}
+.login-view .createAc-container  a:hover {
+  background-color: #fe9931;
+  color: #fff;
+padding: 10px 20px;
+text-decoration: none;
+cursor: pointer;
+font-size: 15px;
+
+border-radius: 10px;
 }
 
 .login-view .login-options{
@@ -154,7 +178,9 @@ border-radius: 500px;
   align-items: center;
   appearance: none;
   background-color: #fff;
-  border: 1px solid #dbdbdb;
+  /* border: 1px solid #dbdbdb; */
+  outline: none;
+  border: none;
   border-radius: .375em;
   box-shadow: none;
   box-sizing: border-box;
@@ -186,7 +212,7 @@ border-radius: 500px;
 }
 
 .button-60:focus {
-  border-color: #485fc7;
+  border-color: #fe9931;
   outline: 0;
 }
 
@@ -196,4 +222,13 @@ border-radius: 500px;
 
 .button-60:focus:not(:active) {
   box-shadow: rgba(72, 95, 199, .25) 0 0 0 .125em;
+}
+
+.login-view  a{
+text-decoration: none;
+color: #353535;
+}
+.login-view  a:hover{
+text-decoration: none;
+color: #fe9931;
 }
