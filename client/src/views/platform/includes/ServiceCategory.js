@@ -15,57 +15,34 @@ import spin from "../../../uploads/spin.gif"
 const api_connect = Api_connect_server();
 
 const ServiceCategory = () => {
-//   const [filteredCards, setFilteredCards] = useState([]);
-//   const [filter, setFilter] = useState('');
-//   // const [category, setCategory] = useState([])
 
 
-
-
-//   //fetch all artisans
-//   const [artisans, setArtisans] = useState([])
-
-//   useEffect(() => {
-//     try {
-//       api_connect.get("/auth/fetch-artisans")
-//       .then((response) => {
-//         if (response.status === 200) {
-//           setFilteredCards(response.data)
-//           console.log(filteredCards);
+  useEffect(() => {
+    try {
+      api_connect.get("/auth/fetch-artisans")
+      .then((response) => {
+        if (response.status === 200) {
+          setFilteredCards(response.data)
+          console.log(filteredCards);
      
-//         } else if (response.data.statusCode === 501) {
-//           setFilteredCards([])
-//         }
-//       }).catch((error) => {
-//         // alert("not connected to server")
-//         console.log(error) 
-//       })
-//     } catch (error) {
-//       // alert("not connected ")
+        } else if (response.data.statusCode === 501) {
+          setFilteredCards([])
+        }
+      }).catch((error) => {
+        // alert("not connected to server")
+        console.log(error) 
+      })
+    } catch (error) {
+      // alert("not connected ")
       
-//     }
-//   },[])
-//   // console.log(artisans);
+    }
+  },[])
+  // console.log(artisans);
 
 
 
 
 
-// const filterCards = (buttonValue) => {
-//   console.log(buttonValue);
-//   const filterdCards = artisans.filter((card) => card.type === buttonValue);
-//   setFilteredCards(filterdCards);
-// };
-
-// const handleFilterChange = (e) => {
-//   const buttonValue = e.target.value;
-//   filterCards(buttonValue);
-// };
-
-// const handleShowAll = () => {
-//   setFilter('');
-//   setFilteredCards(filteredCards);
-// };
 
 
 
