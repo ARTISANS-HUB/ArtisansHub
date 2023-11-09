@@ -1,3 +1,5 @@
+import swal from 'sweetalert';
+
 import { Api_connect_server } from '../APIs/Api_connect_server'
 
 const LogoutController = async () => {
@@ -15,22 +17,25 @@ const LogoutController = async () => {
 				localStorage.removeItem('Userdagetta');
 				localStorage.removeItem('username');
 				localStorage.removeItem('profile');
-				console.log("user logged out")
-				localStorage.setItem('isAuthenticated', false);
-				// Perform a full page reload to ensure redirection
+				localStorage.removeItem('isAuthenticated');
+				localStorage.removeItem('user_type');
 				window.location.href = '/';
 			} else if (response.data.statusCode === 501) {
 
 				message = response.data.message;
-				localStorage.setItem('message', message);
+				swal({
+                title: "Hmmm..!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
+
 			}
 
 		})
 		.catch((error) => {
 
-			//error 
-			//console.log(error);
-			//alert('internal error...');
 			localStorage.setItem('message', 'Try again..');
 
 

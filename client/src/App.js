@@ -32,7 +32,6 @@ import Platform from './views/platform/index';
 import About from './views/platform/about';
 import Contact from './views/platform/contact';
 import Services from './views/platform/services';
-import BookServices from './views/platform/bookServices';
 import ServicesProviders from './views/platform/servicesProviders';
 import HistoryPage from './views/platform/HistoryPage';
 
@@ -54,11 +53,10 @@ import PreviewBuyer from './views/dashboard/PreviewBuyer';
 import ArtisanStatisticServices from './views/platform/ArtisansDashbaord/ArtisanStatisticServices'
 import Booking from './views/platform/includes/Booking';
 
-
 // end
 function App() {
 
-  const [isAuthenticated,] = useState(localStorage.getItem('isAuthenticated'));
+  const isAuthenticated = localStorage.getItem('isAuthenticated');
 
   return (
     <Router>
@@ -89,7 +87,7 @@ function App() {
         <Route path="/service-provider/:artisanId" element={< ServicesProviders />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
-        <Route path="/auth/customer/book-service/:bookId" element={< Booking/>} />
+        <Route path="/auth/customer/book-service/:artisanId" element={< Booking/>} />
 
 
         <Route path="*" element={<ErrorPage />} />
@@ -109,7 +107,6 @@ function App() {
             <Route path="/auth/dashboard/buyers" element={<Buyers />} />
             <Route path="/auth/dashboard/services" element={<DashboardServices />} />
 
-            <Route path="/auth/customer/book-service" element={< BookServices />} />
             <Route path="/auth/customer/book-history" element={< HistoryPage />} />
             
             <Route path="/auth/artisan/dashboard/home" element={<ArtitsanHome />} />
@@ -126,7 +123,7 @@ function App() {
           </>
 
         ) : (
-          <Route path="/auth/dashboard" element={<Navigate to="/login" />} />
+          <Route path="/auth/dashboard" element={<Navigate to="/" />} />
         )}
 
 

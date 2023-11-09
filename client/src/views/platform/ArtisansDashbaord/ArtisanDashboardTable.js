@@ -3,6 +3,7 @@ import * as XLSX from 'xlsx'; // Import all functions and objects from xlsx
 import { Api_connect_server } from '../../../APIs/Api_connect_server';
 
 function ArtisanDashboardTable(props) {
+  const artisanId = localStorage.getItem('artisanId');
 
   const api_connect = Api_connect_server();
 
@@ -23,9 +24,9 @@ function ArtisanDashboardTable(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const completedResponse = await api_connect.get('/auth/fetch-services-completed-artisan/awsw11232');
-        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-artisan/awsw11232');
-        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-artisan/awsw11232');
+        const completedResponse = await api_connect.get('/auth/fetch-services-completed-artisan/'+artisanId);
+        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-artisan/'+artisanId);
+        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-artisan/'+artisanId);
 
 
 

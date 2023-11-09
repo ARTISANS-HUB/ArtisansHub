@@ -4,7 +4,7 @@ import { Api_connect_server } from '../../../APIs/Api_connect_server';
 
 const BuyerDashboardTable = () => {
   const api_connect = Api_connect_server();
-
+  const buyerId = localStorage.getItem('buyerId');
   const [activeTab, setActiveTab] = useState(0);
   const [data, setData] = useState({
     completed: [],
@@ -25,9 +25,9 @@ const BuyerDashboardTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const completedResponse = await api_connect.get('/auth/fetch-services-completed-buyer/buyerass');
-        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-buyer/buyerass');
-        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-buyer/buyerass');
+        const completedResponse = await api_connect.get('/auth/fetch-services-completed-buyer/'+buyerId);
+        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-buyer/'+buyerId);
+        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-buyer/'+buyerId);
 
 
         settotalCancelled(cancelledResponse.data.length);

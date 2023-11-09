@@ -173,3 +173,31 @@
 
   
 }
+
+/* Style the select element */
+#selectOption {
+  width: 120px; /* Set the width as needed */
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  background-color: #fff;
+  border: 1px solid orange;
+}
+
+/* Style the options */
+#selectOption option {
+  padding: 8px;
+}
+
+/* Style the options on hover */
+#selectOption option:hover {
+  background-color: #f0f0f0;
+}
+
+/* Style the selected option */
+#selectOption option:checked {
+  background-color: #e0e0e0;
+  font-weight: bold;
+}

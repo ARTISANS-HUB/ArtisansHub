@@ -3,8 +3,14 @@ import { LogoutController } from '../../../../controllers/LogoutController';
 import { useState, useEffect } from 'react';
 import { Api_connect_server } from '../../../../APIs/Api_connect_server'
 import swal from 'sweetalert';
+import Usersession from '../../../dashboard/session/Usersession'
+import {artisan} from '../../../dashboard/session/userType'
 
 function ArtisandashboardTopNavBar() {
+  //initiate  to check user session
+  Usersession();
+  artisan();
+
   const [username,] = useState(localStorage.getItem('username'));
 
   const api_connect = Api_connect_server();

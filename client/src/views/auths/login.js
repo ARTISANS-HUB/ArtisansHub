@@ -8,8 +8,14 @@ import { useEffect, useState } from 'react'
 
 import { Link } from 'react-router-dom';
 
+import {buyer , artisan , admin } from '../dashboard/session/userType'
 
-const Login = () => {
+  const Login = () => {
+  //checkuser type
+  buyer();
+  artisan();
+  admin();
+
 
   let message = localStorage.getItem('message');
   let password_update_success = localStorage.getItem('password_update_success');
@@ -18,11 +24,6 @@ const Login = () => {
   // Function to clear the notification
   // Regular expression for email validation
   const [isLoading, setIsLoading] = useState(false);
-
-  // Use useEffect to clear the message in localStorage on component load
-  useEffect(() => {
-    localStorage.removeItem('message');
-  }, []);
 
 
   //manage user data state 
@@ -125,29 +126,20 @@ const Login = () => {
 
               </div>
 
-              <div className="createAc-container" >
+              {/*<div className="createAc-container" >
 
                 <Link to="/signup"> Create account here</Link>
 
-              </div>
-
+              </div>*/}
+              
+              <div style={{paddingTop:'30px',fontSize:'15px'}}>
               <Link to="/forgot-password" > Forgot Password ? </Link> Or
               <Link to="/" > Go Home? </Link>
+              </div>
 
             </form>
 
-            {!message == "" && localStorage.getItem('isAuthenticated') == false && (
-              <div className="login-alert">
-                {message}
-              </div>
-            )}
-
-            {!message == "" && error == false && password_update_success && (
-              <div className="login-alert" style={{ backGround: 'green' }}>
-                {message}
-              </div>
-            )}
-
+           
 
           </div>
         </div>

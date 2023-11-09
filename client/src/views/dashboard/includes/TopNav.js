@@ -3,8 +3,18 @@ import  {LogoutController}  from '../../../controllers/LogoutController';
 import { useEffect ,useState} from 'react'
 import {Api_connect_server} from '../../../APIs/Api_connect_server'
 
+import {admin} from '../../dashboard/session/userType'
+
+
 const TopNav = () => {
+
+//check user type
+admin();
+
+
  const api_connect =  Api_connect_server();
+  
+
 
    // handle logout
 

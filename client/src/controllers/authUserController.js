@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 
 import { Api_connect_server } from '../APIs/Api_connect_server'
 let Userdata = [];
@@ -36,6 +37,8 @@ const authUserAdminController = (formData) => {
                         localStorage.setItem('created_at', Userdata.created_at);
                         localStorage.setItem('updated_at', Userdata.updated_at);
                         localStorage.setItem('isAuthenticated', true);
+                        localStorage.setItem('user_type', 'admin');
+
 
                         window.location.href = '/auth/dashboard';
 
@@ -46,29 +49,41 @@ const authUserAdminController = (formData) => {
                   else if (statusCode === 404) {
                         //not found
                         message = response.data.message;
-                        localStorage.setItem('message', message);
-                        localStorage.setItem('isAuthenticated', false);
-
-
+               swal({
+                title: "Hmmm..!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
                         return false;
 
                   }
                   else if (statusCode === 401) {
                         //not found
-                        message = response.data.message;
-                        localStorage.setItem('message', message);
-                        localStorage.setItem('isAuthenticated', false);
-                        //alert(message);
-
+                message = response.data.message;
+                swal({
+                title: "Hmmm..!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
                         return false;
 
                   }
             })
             .catch((error) => {
 
-                  console.log("cannot fetch user " + error);
-                  localStorage.setItem('message', "Please , Try again");
-                  localStorage.setItem('isAuthenticated', false);
+                 swal({
+                title: "Hmmm..!",
+                text: "Please , Try again..",
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
+
+
             });
 
 
@@ -98,13 +113,14 @@ const authArtisanController = (formData) => {
                         localStorage.setItem('usermail', Userdata.usermail);
                         localStorage.setItem('password', Userdata.password);
                         localStorage.setItem('username', Userdata.username);
-                        localStorage.setItem('userID', Userdata.userID);
+                        localStorage.setItem('artisanId', Userdata.artisanId);
                         localStorage.setItem('profile', Userdata.profile);
                         localStorage.setItem('tel', Userdata.tel);
                         localStorage.setItem('role', Userdata.role);
                         localStorage.setItem('created_at', Userdata.created_at);
                         localStorage.setItem('updated_at', Userdata.updated_at);
                         localStorage.setItem('isAuthenticated', true);
+                        localStorage.setItem('user_type', 'artisan');
 
                         window.location.href = '/auth/artisan/dashboard/home';
 
@@ -112,32 +128,44 @@ const authArtisanController = (formData) => {
                         return true;
 
                   }
-                  else if (statusCode === 404) {
+  else if (statusCode === 404) {
                         //not found
                         message = response.data.message;
-                        localStorage.setItem('message', message);
-                        localStorage.setItem('isAuthenticated', false);
-
-
+               swal({
+                title: "Hmmm..!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
                         return false;
 
                   }
                   else if (statusCode === 401) {
                         //not found
-                        message = response.data.message;
-                        localStorage.setItem('message', message);
-                        localStorage.setItem('isAuthenticated', false);
-                        //alert(message);
-
+                message = response.data.message;
+                swal({
+                title: "Hmmm..!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
                         return false;
 
                   }
             })
             .catch((error) => {
 
-                  console.log("cannot fetch user " + error);
-                  localStorage.setItem('message', "Please , Try again");
-                  localStorage.setItem('isAuthenticated', false);
+                 swal({
+                title: "Hmmm..!",
+                text: "Please , Try again..",
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
+
+
             });
 
 
@@ -168,13 +196,15 @@ const authBuyerController = (formData) => {
                         localStorage.setItem('usermail', Userdata.usermail);
                         localStorage.setItem('password', Userdata.password);
                         localStorage.setItem('username', Userdata.username);
-                        localStorage.setItem('userID', Userdata.userID);
+                        localStorage.setItem('buyerId', Userdata.buyerId);
+
                         localStorage.setItem('profile', Userdata.profile);
                         localStorage.setItem('tel', Userdata.tel);
                         localStorage.setItem('role', Userdata.role);
                         localStorage.setItem('created_at', Userdata.created_at);
                         localStorage.setItem('updated_at', Userdata.updated_at);
                         localStorage.setItem('isAuthenticated', true);
+                        localStorage.setItem('user_type', 'buyer');
 
                         window.location.href = '/auth/buyer/dashboard/home';
 
@@ -182,32 +212,44 @@ const authBuyerController = (formData) => {
                         return true;
 
                   }
-                  else if (statusCode === 404) {
+   else if (statusCode === 404) {
                         //not found
                         message = response.data.message;
-                        localStorage.setItem('message', message);
-                        localStorage.setItem('isAuthenticated', false);
-
-
+               swal({
+                title: "Hmmm..!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
                         return false;
 
                   }
                   else if (statusCode === 401) {
                         //not found
-                        message = response.data.message;
-                        localStorage.setItem('message', message);
-                        localStorage.setItem('isAuthenticated', false);
-                        //alert(message);
-
+                message = response.data.message;
+                swal({
+                title: "Hmmm..!",
+                text: message,
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
                         return false;
 
                   }
             })
             .catch((error) => {
 
-                  console.log("cannot fetch user " + error);
-                  localStorage.setItem('message', "Please , Try again");
-                  localStorage.setItem('isAuthenticated', false);
+                 swal({
+                title: "Hmmm..!",
+                text: "Please , Try again..",
+                icon: "warning",
+                dangerMode: true,
+                button: "Aww yiss!",
+            });
+
+
             });
 
 

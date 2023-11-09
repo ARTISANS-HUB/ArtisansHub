@@ -4,9 +4,15 @@ import  {LogoutController}  from '../../../../controllers/LogoutController';
 import  { useState ,useEffect} from 'react';
 import {Api_connect_server} from '../../../../APIs/Api_connect_server'
 import swal from 'sweetalert';
+import Usersession from '../../../dashboard/session/Usersession'
+import {buyer} from '../../../dashboard/session/userType'
 
 const BuyerdashboardTopNavBar = () => {
-   const api_connect =  Api_connect_server();
+  //checkuser type
+buyer();
+//initiate  to check user session
+Usersession();
+const api_connect =  Api_connect_server();
 
 const [username, ] = useState(localStorage.getItem('username'));
 
@@ -55,13 +61,15 @@ const handleLogout = async () =>{
 
 
   }, [imageSrc ,profile,api_connect ]);
- return (
-    <div className="topnav-home">
+return (
+    <div className="topnav-home-platform">
       <div className="left-profile">
-        <span>DIGIHAVEN</span>
+       <Link to="/auth/artisan/dashboard/home"> <span  >DIGIHAVEN</span></Link>
       </div>
       <div className="right-nav-dashboad-platform">
-
+                
+        <Link to="/auth/artisan/dashboard/create-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
+        
         <nav class="top-nav-platform-dashboard">
           <div class="profile-platform-pic">
             {imageSrc ? (

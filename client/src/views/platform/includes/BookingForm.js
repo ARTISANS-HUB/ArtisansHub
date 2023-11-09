@@ -1,8 +1,33 @@
-import React from 'react'
+import {useState} from 'react'
 import "../../../css/booking.css";
 import {useFormik} from 'formik';
+import BuyerBookingController from '../../../controllers/BuyerBookingController';
+
+
 import myImage from "../../../uploads/booking.jpg";
 
+const BookingForm = () => {
+
+
+
+// Extract the token from the URL's query parameters
+    const searchParams = new URLSearchParams(window.location.search);
+    const artisanId = searchParams.get('artisanId');
+
+   alert(artisanId);
+
+
+
+ const [formData, setformData] = useState({
+      bookId: Math.random().toString(36).substr(2, 50),
+      artisanId: artisanId,
+      password: "",
+      usermail: "",
+    });
+
+const handleChange = (event) => {
+setformData({ ...formData, [event.target.name]: event.target.value });
+};
 
 const validate = values => {
     const errors = {};
@@ -20,7 +45,7 @@ const validate = values => {
   };
 
 
-const BookingForm = () => {
+
 
     const formik = useFormik({
         initialValues : {
@@ -30,7 +55,8 @@ const BookingForm = () => {
           },
           validate,
     onSubmit: values => {
-      alert(JSON.stringify(values, null, 2));
+      //alert(JSON.stringify(values, null, 2));
+    BuyerBookingController(formData);
     },
   });
   return (
@@ -60,6 +86,14 @@ const BookingForm = () => {
                         <div class="input-field">
                                 <label>Service Charge</label>
                                 <input type="text" placeholder="Service Charge" name="charge" id="charge" onChange={formik.handleChange}/>
+                                <div className='input-field-error'>
+                                {formik.errors.charge ? <div>{formik.errors.charge}</div> : null}
+                                </div>
+                        </div>
+
+                        <div class="input-field">
+                                <label>Telephone</label>
+                                <input type="tel" placeholder="Telephone" name="tel" id="tel" onChange={formik.handleChange}/>
                                 <div className='input-field-error'>
                                 {formik.errors.charge ? <div>{formik.errors.charge}</div> : null}
                                 </div>

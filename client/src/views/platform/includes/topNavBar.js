@@ -10,7 +10,8 @@ import swal from "sweetalert";
 const TopNavBar = () => {
   const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  let isAuthenticated = localStorage.getItem("isAuthenticated");
+  let isAuthenticated = localStorage.getItem('isAuthenticated');
+  let userType = localStorage.getItem('user_type');
 
   const api_connect = Api_connect_server();
 
@@ -38,8 +39,6 @@ const TopNavBar = () => {
   };
 
   // check user state
-
-  const [userType, setuserType] = useState("artisan");
 
   const handleLogout = async () => {
     swal({
@@ -108,6 +107,7 @@ const TopNavBar = () => {
             <Link to="/contact">Contact</Link>
           </li>
 
+{isAuthenticated == 'false' && (
           <li>
             <select
               id="selectOption"
@@ -131,6 +131,8 @@ const TopNavBar = () => {
               </option>
             </select>
           </li>
+)}
+{isAuthenticated == 'false' && (
           <li>
             <select
               id="selectOption"
@@ -154,16 +156,16 @@ const TopNavBar = () => {
               </option>
             </select>
           </li>
-
-          {isAuthenticated === true && (
+ )}
+          {isAuthenticated == 'true' && (
             <li>
               <FontAwesomeIcon icon={faBell} className="notification-bell" />
             </li>
           )}
 
-          {isAuthenticated === true && (
+          {isAuthenticated === 'true' && (
             <li>
-              <div className="account-container .platform-profile">
+              <div className="account-container .platform-profile" style={{backGround:'white'}} >
                 {imageSrc ? (
                   <img
                     src={imageSrc}
