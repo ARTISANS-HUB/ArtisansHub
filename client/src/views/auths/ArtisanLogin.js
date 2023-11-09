@@ -134,13 +134,13 @@ const ArtisanLogin = () => {
 
             </form>
 
-            {!message === "" && localStorage.getItem('isAuthenticated') === false && (
+            {!message == "" && localStorage.getItem('isAuthenticated') == false && (
               <div className="login-alert">
                 {message}
               </div>
             )}
 
-            {!message === "" && error === false && password_update_success && (
+            {!message == "" && error == false && password_update_success && (
               <div className="login-alert" style={{ backGround: 'green' }}>
                 {message}
               </div>
