@@ -2,7 +2,7 @@
 export const categoryData = [
     {
         name:"Worker1",
-        type:"cleaner",
+        expertise:"cleaner",
         link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
@@ -10,28 +10,28 @@ export const categoryData = [
 
     {
         name:"Worker2",
-        type:"welder",
+        expertise:"welder",
         link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker3",
-        type:"carpenter",
+        expertise:"carpenter",
         link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker4",
-        type:"shoemaker",
+        expertise:"shoemaker",
         link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
     },
     {
         name:"Worker5",
-        type:"shoemaker",
+        expertise:"shoemaker",
         link:"/booking",
         img:"../../../uploads/bg.jpeg",
         desc:"This command will add the library to your project."
@@ -44,73 +44,73 @@ export const cartCategories = [
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'Cleaning',
-      type:"Cleaning",
+      expertise:"Cleaning",
       bgColor:"#f5f0ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'welder',
-      type:"welder",
+      expertise:"welder",
       bgColor:"#e5eee5"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'cooking',
-      type:"cooking",
+      title: 'Cooking',
+      expertise:"Cooking",
       bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'coding',
-      type:"coding",
+      title: 'Coding',
+      expertise:"Coding",
       bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'reading',
-      type:"reading",
+      expertise:"reading",
       bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'carpenter',
-      type:"carpenter",
+      expertise:"Carpenter",
       bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'electrician',
-      type: 'electrician',
+      expertise: 'electrician',
       bgColor:"#f7f7ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'washing',
-      type: 'washing',
+      expertise: 'washing',
       bgColor:"#f1f4ff"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'plumber',
-      type: 'plumber',
+      expertise: 'plumber',
       bgColor:"#f1f4ff"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'shoe maker',
-      type: 'shoe maker',
+      expertise: 'shoe maker',
       bgColor:"#f5f0ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'tailor',
-      type: 'tailor',
+      expertise: 'tailor',
       bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
       title: 'Tv Repairer',
-      type: 'Tv Repairer'
+      expertise: 'Tv Repairer'
     },
   ]
 
