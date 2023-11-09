@@ -60,7 +60,9 @@ function ArtisandashboardTopNavBar() {
       <div className="right-nav-dashboad-platform">
                 
         <Link to="/auth/artisan/dashboard/create-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
+        <Link to="/auth/artisan/dashboard/statistics-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-chart-line"></i></Link>
         
+
 
 
         <nav class="top-nav-platform-dashboard">

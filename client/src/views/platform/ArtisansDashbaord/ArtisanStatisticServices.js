@@ -1,15 +1,15 @@
 import ArtisandashboardTopNavBar from "./includes/ArtisandashboardTopNavBar"
-import CreateServiceForm from "./CreateServiceForm"
+import ArtisanServiceTable from "./ArtisanServiceTable"
 
-const ArtisanCreateServicesForm = () => {
+const ArtisanStatisticServices = () => {
   return (
     <div>
-       <ArtisandashboardTopNavBar />
+      <ArtisandashboardTopNavBar />
       <h1 className="artitablehome">     <span className="title-top-platform"><i className="fas fa-tachometer"></i> Dashbaord {'>'} <i className="fas line-chart"></i>  Statistics</span>
       </h1>
-      < CreateServiceForm />
+      < ArtisanServiceTable />
     </div>
   )
-  }
-export default ArtisanCreateServicesForm;
+}
 
+export default ArtisanStatisticServices
