@@ -10,7 +10,9 @@ nav{
 }
 .navbar .logo{
   font-weight: bold;
-  color: blue;
+  color: orange;
+  margin-right: 10px;
+  font-family:;
 }
  .navbar {
     display: flex;
@@ -19,7 +21,7 @@ nav{
     width: 90%;
     margin: 0 auto;
     transition: transform 0.2s ease-in-out;
-    padding: 20px;
+    padding: 10px;
     margin: 2% auto;
 }
 
@@ -54,7 +56,7 @@ nav .search-bar input {
 .navbar ul {
     display: flex;
     justify-content: space-between;
-    width: 30%;
+    width: 60%;
     align-items: center;
 }
 

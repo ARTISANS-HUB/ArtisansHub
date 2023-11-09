@@ -10,7 +10,7 @@ import swal from 'sweetalert';
 const TopNavBar = () => {
    const navigate = useNavigate();
   const [menuOpen, setMenuOpen] = useState(false);
-  let isAuthenticated = localStorage.getItem('isAuthenticated');
+  let isAuthenticated = true
 
   const api_connect =  Api_connect_server();
 
@@ -95,7 +95,7 @@ const handleLogout = async () =>{
     <nav>
       <div className="navbar">
         <Link to="/" className="title">
-          <span className="logo">DG</span>
+          <span className="logo">D/H</span>
           DIGIHAVEN
         </Link>
         <FontAwesomeIcon

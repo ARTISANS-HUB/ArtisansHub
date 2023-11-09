@@ -1,16 +1,23 @@
 .formContainer {
-    max-width: 50%;
-    margin: 0 auto;
-    padding: 20px;
+    max-width: 80%;
+    margin: 20px auto;
+    padding: 50px;
     background-color: #fff;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border-radius: 8px;
     animation: fadeInUp 0.5s ease-in-out;
-    margin-top: 20px;
   }
-
+.formwrapper{
+  width: 80%;
+  margin: 0 auto;
+}
+.formContainer Form{
+  width: 100%;
+}
   .form-group {
     margin: 0 auto;
+    border: 1px;
+    width: 60%;
   }
   
   label {
@@ -28,14 +35,15 @@
     padding: 8px;
     font-size: 16px;
     margin-bottom: 20px;
-    border: 1px solid #ccc;
+    border: 1px solid #d3cfcf;
     border-radius: 4px;
+    background-color: rgb(246, 247, 255);
   }
   input,textarea::placeholder{
     font-size: 0.8rem;
   }
   
-  button {
+  .formContainer button {
     background-color: orange;
     color: #fff;
     padding: 10px 15px;
@@ -43,7 +51,8 @@
     border: none;
     border-radius: 4px;
     cursor: pointer;
-    width: 100%;
+    width: 60%;
+    margin: 20px auto;
     transition: background-color 0.3s ease-in-out;
   }
   
