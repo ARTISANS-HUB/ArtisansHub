@@ -18,6 +18,7 @@ const CreateArtisanForm = () => {
       tel: "",
       other_tel: "",
       location: "",
+      expertise: "",
       work_days_from: "",
       work__days_end: "",
     });
@@ -56,6 +57,7 @@ const CreateArtisanForm = () => {
         formData.location === "" ||
         // formData.work_days_from === "" ||
         // formData.work__days_end === "" ||
+        // formData.expertise === "" ||
         file === ""
       ) {
         alert("all input are required..");
@@ -130,7 +132,7 @@ const CreateArtisanForm = () => {
 
                             <div className="input-field">
                                 <label htmlFor='usermail'>Email</label>
-                                <input type="email" id="usermail" name="usermail" onChange={handleChange} value={formData.usermail} placeholder="Enter password" />
+                                <input type="email" id="usermail" name="usermail" onChange={handleChange} value={formData.usermail} placeholder="Enter email" />
                        
                                 {/* <div className='input-field-error'>
                                 {errors.usermail ? <div>{errors.usermail}</div> : null}
@@ -150,6 +152,21 @@ const CreateArtisanForm = () => {
                                 {/* <div className='input-field-error'>
                                 {errors.other_tel ? <div>{errors.other_tel}</div> : null}
                                 </div> */}
+                            </div>
+                            <div className="input-field">
+                                <label htmlFor='expertise'>Occupation</label>
+                                {/* <input type="text" id='expertise' name='expertise' onChange={handleChange} value={formData.expertise} placeholder="Enter your occupation " /> */}
+
+                                <select name='work_days_from' required>
+                                                <option onChange={handleChange} value={formData.expertise} disabled selected>Select Occupation</option>
+                                                <option value="cleaning">Cleaning</option>
+                                                <option value="washing">Washing</option>
+                                                <option value="plumber">Plumber</option>
+                                                <option value="carpenter">Carpenter</option>
+                                                <option value="reading">Reading</option>
+                                                <option value="welder">Welder</option>
+                                                <option value="shoe-maker">shoe-maker</option>
+                                </select>
                             </div>
 
                                 <div className="input-field">

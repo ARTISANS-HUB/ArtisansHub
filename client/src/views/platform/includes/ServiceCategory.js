@@ -133,8 +133,6 @@ const handleShowAll = () => {
                 service category
         </h2>
   
-
-        {/* <div className='category-card'> */}
         <div className='card'>
             <Slider {...settings}>
                 {cartCategories.map((cat,index) => {
@@ -158,11 +156,9 @@ const handleShowAll = () => {
              {
              
                  filteredCards.map((cat)=>{
-                  console.log(cat.username);
                    return <FilterCategory username={cat.username} img={myImage} bookId={cat.artisanId}/>
                  })
                }
-   
             </Link>
         }
 
