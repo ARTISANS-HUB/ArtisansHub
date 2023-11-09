@@ -2,47 +2,9 @@ import React, {useState} from 'react'
 import "../../../css/createArtisans.css";
 import { useFormik } from 'formik';
 import { Api_connect_server } from '../../../APIs/Api_connect_server';
-import UploadNewBuyerController from '../../../controllers/UploadNewBuyerController';
+import UploadNewArtisanController from '../../../controllers/UploadNewArtisanController';
 
 const api_connect = Api_connect_server();
-
-// const validate = values => {
-//     const errors = {};
-//     if (!values.username) {
-//       errors.username = 'Required';
-//     } else if (values.username.length > 15) {
-//       errors.username = 'Must be 15 characters or less';
-//     }
-  
-//     if (!values.password) {
-//       errors.password = 'Required';
-//     } else if (values.password.length <= 8) {
-//       errors.password = 'Must be 8 characters or more';
-//     }
-  
-//     if (!values.usermail) {
-//       errors.usermail = 'Required';
-//     } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.usermail)) {
-//       errors.usermail = 'Invalid email address';
-//     }
-
-//     if (!values.tel) {
-//         errors.tel = 'Required';
-//       } else if (values.tel.length < 10) {
-//         errors.tel = 'Must be 10 characters';
-//       }
-//        else if (values.tel.length > 10) {
-//         errors.tel = 'Must be 10 characters';
-//       }
-//     if (values.other_tel.length === 10) {
-//         errors.other_tel = 'Must be 10 characters';
-//       }
-//     if (!values.location) {
-//         errors.location = 'Required';
-//       }
-  
-//     return errors;
-//   };
 
 const CreateArtisanForm = () => {
     const [isLoading, setIsLoading] = useState(false);
@@ -63,9 +25,14 @@ const CreateArtisanForm = () => {
     const handleChange = (event) => {
       //check input type
       if (event.target.type === "file") {
-        setFile(event.target.files[0]);
+        // setFile(event.target.files[0]);
+        const file = event.target.files[0];
+        const imageURL = URL.createObjectURL(file);
+        setFile(imageURL);
       }
   
+     
+
       setformData({ ...formData, [event.target.name]: event.target.value });
     };
 
@@ -85,6 +52,8 @@ const CreateArtisanForm = () => {
         formData.tel === "" ||
         formData.other_tel === "" ||
         formData.location === "" ||
+        // formData.work_days_from === "" ||
+        // formData.work__days_end === "" ||
         file === ""
       ) {
         alert("all input are required..");
@@ -93,7 +62,7 @@ const CreateArtisanForm = () => {
         //send data to controller when auth..
         //send drag file
   
-        UploadNewBuyerController(formData, file);
+        UploadNewArtisanController(formData, file);
   
   
         //simulate the loader to hide
@@ -104,48 +73,6 @@ const CreateArtisanForm = () => {
   
       //end if
     };
-
-
-    // const handleImageUpload = (event) => {
-    //   const file = event.target.files[0];
-    //   const imageURL = URL.createObjectURL(file);
-    //   setProfileImage(imageURL);
-    // };
-
-  //   const formik = useFormik({
-  //       initialValues : {
-  //           username: '',
-  //           usermail: '',
-  //           password: '',
-  //           tel: '',
-  //           other_tel: '',
-  //           location: '',
-  //         },
-  //         validate,
-  //   onSubmit: formData => {
-  //     // alert(JSON.stringify(values, null, 2));
-
-  //     try {
-  //       api_connect.post("/auth/create-artisan", formData ,{ headers: { 'Content-Type': 'multipart/form-data' }, })
-  //       .then((response) => {
-  //         if (response.status === 200) {
-  //           // Handle successful submission
-  //           alert('Form submitted successfully!');
-  //         } else {
-  //           // Handle error submission
-  //           alert('There was an error submitting the form.');
-  //         }
-  //       })
-  //       .catch((error) => {
-  //         console.error(error.response.data);
-  //       });
-  //     } catch (error) {
-  //       console.log(error);
-  //     }
-   
-  //   },
-  // });
-
 
 
   return (
@@ -220,7 +147,7 @@ const CreateArtisanForm = () => {
                                 <div className="input-field">
                                         <label>Working Days</label>
                                        <div className='input-field-select-container'>
-                                            <select name='work_day' required>
+                                            <select name='work_days_from' required>
                                                 <option disabled selected>Start From</option>
                                                 <option value="monday">Monday</option>
                                                 <option value="tuesday">Tuesday</option>
@@ -230,7 +157,7 @@ const CreateArtisanForm = () => {
                                                 <option value="saturday">Saturday</option>
                                                 <option value="sunday">Sunday</option>
                                             </select>
-                                            <select name='work_day' required>
+                                            <select name='work_days_end' required>
                                                 <option disabled selected>To</option>
                                                 <option value="monday">Monday</option>
                                                 <option value="tuesday">Tuesday</option>
