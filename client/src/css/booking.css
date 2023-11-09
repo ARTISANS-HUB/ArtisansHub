@@ -4,7 +4,7 @@
     margin: 5rem auto;
 }
 
-.booking-form-heading{
+.booking-form-container .booking-form-heading{
     font-size: 20px;
     font-weight: 600;
     color: #333;
@@ -13,7 +13,7 @@
     text-transform: uppercase;
 
 }
-.booking-form{
+.booking-form-container .booking-form{
     /* background: #000; */
     display: flex;
     gap: 20px;
@@ -21,7 +21,7 @@
     /* justify-content: space-between; */
 }
 
-.booking-form .booking-form-image{
+.booking-form-container .booking-form .booking-form-image{
 width: 50%;
 background: #000;
 }
@@ -32,31 +32,31 @@ background: #000;
     object-fit: cover;
 } 
 
-form{
+.booking-form-container form{
 
     width: 35%;
     margin: 20px auto;
 }
-.booking-form-fields{
+.booking-form-container .booking-form-fields{
     /* width: 30%; */
     /* margin: 4px auto; */
     /* background: #000; */
     margin-top: 20%;
 }
 
-.booking-form-fields .input-field{
+.booking-form-container .booking-form-fields .input-field{
     display: flex;
 
 
     flex-direction: column;
  
 }
-.input-field label{
+.booking-form-container .input-field label{
     font-size: 12px;
     font-weight: 500;
     color: #2e2e2e;
 }
-.input-field input{
+ .booking-form-container.input-field input{
     outline: none;
     font-size: 14px;
     font-weight: 400;
@@ -67,28 +67,28 @@ form{
     height: 42px;
     margin: 8px 0;
 }
-.input-field input :focus{
+.booking-form-container .input-field input :focus{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
-.input-field select:focus{
+.booking-form-container .input-field select:focus{
     box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
 }
 
-.input-field input[type="date"]{
+.booking-form-container .input-field input[type="date"]{
     color: #707070;
 }
-.input-field input[type="date"]:valid{
+.booking-form-container .input-field input[type="date"]:valid{
     color: #333;
 }
-.input-field input[type="time"]{
+.booking-form-container .input-field input[type="time"]{
     color: #707070;
 }
-.input-field input[type="time"]:valid{
+.booking-form-container .input-field input[type="time"]:valid{
     color: #333;
 }
 
- form button{
+.booking-form-container form button{
     display: flex;
     align-items: center;
     justify-content: center;
@@ -104,10 +104,10 @@ form{
     transition: all 0.3s linear;
     cursor: pointer;
 }
-form .btnText{
+.booking-form-container form .btnText{
     font-size: 14px;
     font-weight: 400;
 }
-form button:hover{
+.booking-form-container form button:hover{
     background-color: #f4871a;
 }
