@@ -13,22 +13,20 @@ const CreateServiceForm = () => {
     serviceId: Math.random().toString(36).substr(2, 50),
     description:'',
     charge:'',
-    phone:'',
     type:'',
     location:'',
-    created_by:'',
+    created_by:localStorage.getItem('username'),
     tel:'',
+    created_at:Date.now(),
   });
 
   const handleSubmit = (values) => {
     //check for empty input
     if (
-      formData.username === "" ||
-      formData.password === "" ||
-      formData.usermail === "" ||
-      formData.tel === "" ||
-      formData.role === "" ||
-      formData.created_at === ""
+      formData.description === "" ||
+      formData.charge === "" ||
+      formData.location === "" ||
+      formData.type === "" 
     ) {
       swal({
         title: "Form Data",
@@ -60,11 +58,6 @@ const CreateServiceForm = () => {
           onSubmit={handleSubmit}
         >
           <Form>
-            <div className="form-group">
-              <label htmlFor="name">Name:</label>
-              <Field type="text" id="name" value={formData.name} name="name" handleChange={handleChange}    placeholder="Name" />
-              <ErrorMessage name="name" component="div" className="error" />
-            </div>
             <div className="form-group">
               <label htmlFor="name">Charge:</label>
               <Field
@@ -104,16 +97,16 @@ const CreateServiceForm = () => {
             <div className="form-group">
               <label htmlFor="name">Profile:</label>
               <Field
-                type="text"
+                type="file"
                 id="Profile"
                 name="file"
-                handleChange={handleChange}  value={formData.name}  placeholder="Profile"
+                handleChange={handleChange}  value={formData.file}  placeholder="Profile"
               />
               <ErrorMessage name="file" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Email:</label>
-              <Field type="email" id="email" name="usermal" handleChange={handleChange}  value={formData.usermail}  placeholder="Email" />
+              <Field type="email" id="email" name="usermail" handleChange={handleChange}  value={formData.usermail}  placeholder="Email" />
               <ErrorMessage name="email" component="div" className="error" />
             </div>
 

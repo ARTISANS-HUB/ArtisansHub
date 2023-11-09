@@ -22,11 +22,10 @@ try{
         
         description,
         charge,
-        phone,
+        tel,
         type,
         location,
         created_by,
-        tel,
       } = req.body.formData;
 //Get the uploaded file name
     const fileName = req.file.originalname;
@@ -39,7 +38,7 @@ try{
         charge: hashedcharge,
         profile: fileName,
         location: location,
-        phone: phone,
+        tel: tel,
         type: type,
         charge: charge,
         tel: tel,
