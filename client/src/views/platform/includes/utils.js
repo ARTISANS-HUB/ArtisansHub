@@ -129,3 +129,44 @@ export const cartCategories = [
       img:"../../../uploads/bg.jpeg"
     },
   ]
+
+
+
+export const buyerValidate = values => {
+    const errors = {};
+    if (!values.username) {
+      errors.username = 'Required';
+    } else if (values.username.length > 15) {
+      errors.username = 'Must be 15 characters or less';
+    }
+  
+    if (!values.password) {
+      errors.password = 'Required';
+    } else if (values.password.length <= 8) {
+      errors.password = 'Must be 8 characters or more';
+    }
+  
+    if (!values.usermail) {
+      errors.usermail = 'Required';
+    } else if (!/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i.test(values.usermail)) {
+      errors.usermail = 'Invalid email address';
+    }
+
+    if (!values.tel) {
+        errors.tel = 'Required';
+      } else if (values.tel.length = 10) {
+        errors.tel = 'Must be 10 characters';
+      }
+    if (!values.other_tel) {
+        errors.other_tel = 'Required';
+      } else if (values.other_tel.length = 10) {
+        errors.other_tel = 'Must be 10 characters';
+      }
+    if (!values.location) {
+        errors.location = 'Required';
+      } else if (values.location.length = 0) {
+        errors.location = 'Must not be empty';
+      }
+  
+    return errors;
+  };

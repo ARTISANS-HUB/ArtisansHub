@@ -250,7 +250,7 @@ app.get('/auth/fetch-feebacks', FeedBackController.feedbacks);
 
 
 app.get('/auth/fetch-buyers', BuyersController.buyers);
-app.post('/auth/create-buyer', BuyersController.CreateBuyer);
+app.post('/auth/create-buyer',upload.single("file"), BuyersController.CreateBuyer);
 app.delete('/auth/delete-buyer/:buyerId',BuyersController.DeleteBuyer);
 
 app.get('/auth/fetch-buyers/active', BuyersOverviewController.fetchActiveBuyers);
