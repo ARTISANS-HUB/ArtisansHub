@@ -8,7 +8,7 @@ nav{
   transition: transform 0.2s ease-in-out;
 
 }
-.navbar {
+ .navbar {
     display: flex;
     justify-content: space-between;
     align-items: center;
