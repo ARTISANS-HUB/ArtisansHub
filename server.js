@@ -275,9 +275,9 @@ app.get('/auth/fetch-services-completed-artisan/:artisanId', PlatformServicesCon
 app.get('/auth/fetch-services-cancelled-artisan/:artisanId', PlatformServicesController.ServicesCancelled);
 app.get('/auth/fetch-services-pending-artisan/:artisanId', PlatformServicesController.ServicesPending);
 
-//artisan create
-app.post('/auth/artisan-create-service',storage3.single("file"), ArtisansPlatformDashboardController.createServiceArtisan);
-app.post('/auth/artisan-update-service',storage3.single("file"), ArtisansPlatformDashboardController.updateServiceArtisan);
+//artisan
+app.post('/auth/artisan-create-service',upload.single("file"), ArtisansPlatformDashboardController.createServiceArtisan);
+app.post('/auth/artisan-update-service',upload.single("file"), ArtisansPlatformDashboardController.updateServiceArtisan);
 app.get('/auth/artisan-delete-service/:serviceId', ArtisansPlatformDashboardController.deleteServiceArtisan);
 
 

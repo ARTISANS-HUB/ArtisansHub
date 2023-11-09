@@ -1,13 +1,10 @@
  import myImage from "../../../uploads/bg.jpeg"
 import "../../../css/contactForm.css"
-import { useEffect ,useState} from 'react'
-import {Api_connect_server} from '../../../APIs/Api_connect_server'
+import { useState} from 'react'
 import UploadNewContactController from '../../../controllers/UploadNewContactController'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faSpinner } from '@fortawesome/free-solid-svg-icons';
+
 import swal from 'sweetalert';
 const ContactForm = () => {
-const api_connect =  Api_connect_server();
 
  const [formData, setformData] = useState({
     usermail: '',
