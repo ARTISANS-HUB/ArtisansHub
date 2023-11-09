@@ -111,7 +111,7 @@ const ArtisansCard = () => {
                                             username={artisan.username}
                                             location={artisan.description}
                                             artisanId={artisan.artisanId}
-                                            img={process.env.REACT_APP_API_URL_PRO + "/auth/fetch-user-profile/" + artisan.profile}
+                                            img={process.env.REACT_APP_API_URL_DEV + "/auth/fetch-user-profile/" + artisan.profile}
                                         />
                                     )
                                 
