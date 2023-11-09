@@ -61,7 +61,7 @@ const handleChange = (event) => {
 
         <div>
           <label htmlFor="description">Description:</label>
-          <Field as="textarea" id="description" name="description" onChange={handleChange} placeholder ="Description" />
+          <Field as="textarea" id="description"  value={formData.description} name="description" onChange={handleChange} placeholder ="Description" />
           <ErrorMessage name="description" component="div" className="error" />
         </div>
         <div>
@@ -71,23 +71,23 @@ const handleChange = (event) => {
         </div>
         <div>
           <label htmlFor="name">Phone:</label>
-          <Field type="phone" id="name" name="name" value={formData.charge} placeholder="Phone" />
+          <Field type="tel" id="phone" name="phone" value={formData.phone} placeholder="Phone" />
           <ErrorMessage name="name" component="div" className="error" />
         </div>
         <div>
           <label htmlFor="name">Location:</label>
-          <Field type="text" id="name" name="name" value={formData.charge} placeholder="Location" />
-          <ErrorMessage name="name" component="div" className="error" />
+          <Field type="text" id="location" name="location" value={formData.charge} placeholder="Location" />
+          <ErrorMessage name="location" component="div" className="error" />
         </div>
         <div>
           <label htmlFor="name">Profile:</label>
           <Field type="text" id="file" name="file" value={formData.charge} placeholder="Profile" />
-          <ErrorMessage name="name" component="div" className="error" />
+          <ErrorMessage name="file" component="div" className="error" />
         </div>
         <div>
           <label htmlFor="name">Type:</label>
-          <Field type="phone" id="name" name="name" value={formData.charge} placeholder="Phone" />
-          <ErrorMessage name="name" component="div" className="error" />
+          <Field type="phone" id="type" name="type" value={formData.charge} placeholder="Phone" />
+          <ErrorMessage name="type" component="div" className="error" />
         </div>
 
 
