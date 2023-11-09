@@ -974,7 +974,7 @@ color: red;
   }
 
 
-#form-control-container  .uploads-drop .{
+#form-control-container  .uploads-drop {
     padding: 20px;
     text-align: center;
     width: 100%;
