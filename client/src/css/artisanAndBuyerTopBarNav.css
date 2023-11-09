@@ -5,6 +5,7 @@ Styles for the top navigation bar
   padding: 2px 0;
   display: flex;
   justify-content: space-between;
+  border: 1px solid red;
 
 }
 
