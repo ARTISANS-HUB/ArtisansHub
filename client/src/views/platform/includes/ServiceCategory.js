@@ -146,7 +146,7 @@ const handleShowAll = () => {
      <div>
      <div className='featured-category'>
         <div className='featured-category-title'>featured category</div>
-        <Link to={"#"} style={{textDecoration:"none"}} onClick={handleShowAll}>See All <i className="fas fa-refresh ref-button" title="Refresh Table"></i></Link>
+        <Link to={"#"} style={{textDecoration:"none"}} className='featured-category-see-all' onClick={handleShowAll}>See All <i className="fas fa-refresh ref-button" title="Refresh Table"></i></Link>
      </div>
 
      {filteredCards.length === 0 ? 
