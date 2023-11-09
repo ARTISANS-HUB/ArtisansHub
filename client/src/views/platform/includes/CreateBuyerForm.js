@@ -91,25 +91,7 @@ const CreateBuyerFor = () => {
           },
           validate,
     onSubmit: formData => {
-      // alert(JSON.stringify(formData, null, 2));
-      console.log(formData);
-      try {
-        api_connect.post("/auth/create-buyer", {formData},{ headers: { 'Content-Type': 'multipart/form-data' }, })
-        .then((response) => {
-          if (response.status === 200) {
-            // Handle successful submission
-            alert('Form submitted successfully!');
-          } else {
-            // Handle error submission
-            alert('There was an error submitting the form.');
-          }
-        })
-        .catch((error) => {
-          console.error(error.response.data.message);
-        });
-      } catch (error) {
-        console.log(error);
-      }
+   
    
   } 
 });
