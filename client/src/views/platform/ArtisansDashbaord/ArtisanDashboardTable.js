@@ -1,10 +1,18 @@
 import { useState, useEffect } from 'react';
 import * as XLSX from 'xlsx'; // Import all functions and objects from xlsx
 import { Api_connect_server } from '../../../APIs/Api_connect_server';
+import { useNavigate } from "react-router-dom";
 
 function ArtisanDashboardTable(props) {
   const artisanId = localStorage.getItem('artisanId');
+  const navigate = useNavigate();
 
+  const handleNavigate=()=>{
+  navigate("auth/artisan/dashboard/artisan-service-platform");
+
+  } 
+
+  //awsw11232
   const api_connect = Api_connect_server();
 
   const [activeTab, setActiveTab] = useState(0);
@@ -24,9 +32,9 @@ function ArtisanDashboardTable(props) {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const completedResponse = await api_connect.get('/auth/fetch-services-completed-artisan/'+artisanId);
-        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-artisan/'+artisanId);
-        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-artisan/'+artisanId);
+        const completedResponse = await api_connect.get('/auth/fetch-bookings-completed-artisan/'+artisanId);
+        const pendingResponse = await api_connect.get('/auth/fetch-bookings-pending-artisan/'+artisanId);
+        const cancelledResponse = await api_connect.get('/auth/fetch-bookings-cancelled-artisan/'+artisanId);
 
 
 
@@ -71,7 +79,7 @@ function ArtisanDashboardTable(props) {
     const ws = XLSX.utils.table_to_sheet(tableid);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'ARTISANS HISTORY.xlsx');
+    XLSX.writeFile(wb, 'MY TRANSACTION HISTORY.xlsx');
   };
   return (
     <div className='service-table'>
@@ -97,6 +105,9 @@ function ArtisanDashboardTable(props) {
         </button>
 
         <div className='export-btn'>
+          <button onClick={handleNavigate} className="link-export-data-artisan" >
+<span>My Services</span>  <span className="total-tag">{totalCancelled}</span> 
+          </button>
 
           <button onClick={exportToExcel} className="link-export-data-artisan" >
             <span>Export</span>   <i className="fa fa-download" title="export data"></i>
@@ -112,7 +123,7 @@ function ArtisanDashboardTable(props) {
         onChange={(e) => setSearchText(e.target.value)}
         className='platformTableSearch'
       />
-
+       <div className="filter-container">
       <div className='date-filter'>
         <input
           type="date"
@@ -126,6 +137,9 @@ function ArtisanDashboardTable(props) {
           onChange={(e) => setEndDate(e.target.value)}
           placeholder="End Date"
         />
+      </div>
+      <i className="fas fa-refresh ref-button"
+      title="Refresh Table" > </i>
       </div>
 
       <h2>

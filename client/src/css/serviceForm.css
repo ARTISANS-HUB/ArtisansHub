@@ -27,7 +27,7 @@
   font-weight: normal;
 }
 
-.serviceFormContainer input,
+.serviceFormContainer input, .serviceFormContainer  select , .serviceFormContainer  button,
 .serviceFormContainer textarea {
   width: 100%;
   padding: 8px;

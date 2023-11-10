@@ -19,13 +19,15 @@ const createServiceArtisan = async (req ,res , next)=>{
 try{
 
     const {
-        
+        artisanId,
+        serviceId,
         description,
         charge,
         tel,
         type,
         location,
         created_by,
+        created_at,
       } = req.body.formData;
 //Get the uploaded file name
     const fileName = req.file.originalname;
@@ -33,9 +35,11 @@ try{
     const collection = db.collection('services');
 
     const newService = {
-        serviceId:  Date(),
+        artisanId: artisanId,
+        serviceId: serviceId,
         description: description,
-        charge: hashedcharge,
+        charge: charge,
+        completed:0,
         profile: fileName,
         location: location,
         tel: tel,
@@ -44,13 +48,15 @@ try{
         tel: tel,
         created_by: created_by,
         created_at: formattedDate,
+        completed_at:"",
   
       };
-
       //results
       const results = await collection.insertOne(newService);
       if (results) {
         res.status(200).json({ message: "Service created successfully.. ", statusCode: 200 });
+      
+
       } else {
         res.status(200).json({ message: "service not created successfully.. ", statusCode: 200 });
       }
@@ -61,7 +67,7 @@ catch (error) {
   if (error) {
     logger.log('error', "can not create artisan services /  internal error", error);
     res.status(501).json({ message: "internal error... "+error });
-   console.log(error);
+   //console.log(error);
   }
 }
     

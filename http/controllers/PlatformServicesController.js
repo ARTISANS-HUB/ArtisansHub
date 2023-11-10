@@ -8,40 +8,40 @@ const Services = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find().toArray();
-        res.json(services);
+        const bookings = await collection.find().toArray();
+        res.json(bookings);
 
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + ']can not fetch all bookings for platform...' + error);
     }
 
 }
 
 
-// ServicesCategory
-const ServicesCategory = async (req, res, next) => {
+// bookingsCategory
+const bookingsCategory = async (req, res, next) => {
 
     try {
         //query
         // db = await connectToDB();
 
-        // const collection = db.collection('services');
+        // const collection = db.collection('bookings');
 
-        // const services = await collection.find().toArray();
+        // const bookings = await collection.find().toArray();
        
-        // res.json(services);
+        // res.json(bookings);
 
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find().toArray();
+        const bookings = await collection.find().toArray();
 
-        const types = services.map(service => service.type);
+        const types = bookings.map(service => service.type);
 
         res.json(types);
 
@@ -49,18 +49,18 @@ const ServicesCategory = async (req, res, next) => {
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + '] can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + '] can not fetch all bookings for platform...' + error);
     }
 
 }
 
-// const ServicesCat= async (req, res, next) => {
+// const bookingsCat= async (req, res, next) => {
 //     try {
 //         db = await connectToDB();
 
-//         const collection = db.collection('services');
+//         const collection = db.collection('bookings');
 
-//         const services = await collection.find({type}).toArray();
+//         const bookings = await collection.find({type}).toArray();
 //     } catch (error) {
         
 //     }
@@ -69,7 +69,7 @@ const ServicesCategory = async (req, res, next) => {
 
 
 
-const ServicesCompleted = async (req, res, next) => {
+const bookingsCompleted = async (req, res, next) => {
 
     const artisanId = req.params.artisanId;
 
@@ -77,19 +77,19 @@ const ServicesCompleted = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find({ artisanId: artisanId, completed: 1 }).toArray();
-        res.json(services);
+        const bookings = await collection.find({ artisanId: artisanId, completed: 1 }).toArray();
+        res.json(bookings);
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + ']can not fetch all bookings for platform...' + error);
     }
 
 }
 
-const ServicesCancelled = async (req, res, next) => {
+const bookingsCancelled = async (req, res, next) => {
 
     const artisanId = req.params.artisanId;
 
@@ -97,20 +97,20 @@ const ServicesCancelled = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find({ artisanId: artisanId, completed: 2 }).toArray();
-        res.json(services);
+        const bookings = await collection.find({ artisanId: artisanId, completed: 2 }).toArray();
+        res.json(bookings);
 
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + ']can not fetch all bookings for platform...' + error);
     }
 }
 
 
-const ServicesPending = async (req, res, next) => {
+const bookingsPending = async (req, res, next) => {
     const artisanId = req.params.artisanId;
 
 
@@ -118,16 +118,16 @@ const ServicesPending = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find({ artisanId: artisanId, completed: 0 }).toArray();
-        res.json(services);
+        const bookings = await collection.find({ artisanId: artisanId, completed: 0 }).toArray();
+        res.json(bookings);
 
 
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + ']can not fetch all bookings for platform...' + error);
     }
 
 }
@@ -136,7 +136,7 @@ const ServicesPending = async (req, res, next) => {
 
 
 //buyer
-const ServicesCompletedBuyer = async (req, res, next) => {
+const bookingsCompletedBuyer = async (req, res, next) => {
 
 
     const buyerId = req.params.buyerId;
@@ -145,20 +145,20 @@ const ServicesCompletedBuyer = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find({ buyerId: buyerId, completed: 1 }).toArray();
-        res.json(services);
+        const bookings = await collection.find({ buyerId: buyerId, completed: 1 }).toArray();
+        res.json(bookings);
 
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + ']can not fetch all bookings for platform...' + error);
     }
 
 }
 
-const ServicesCancelledBuyer = async (req, res, next) => {
+const bookingsCancelledBuyer = async (req, res, next) => {
 
     const buyerId = req.params.buyerId;
 
@@ -167,20 +167,20 @@ const ServicesCancelledBuyer = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find({ buyerId: buyerId, completed: 2 }).toArray();
-        res.json(services);
+        const bookings = await collection.find({ buyerId: buyerId, completed: 2 }).toArray();
+        res.json(bookings);
 
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + ']can not fetch all bookings for platform...' + error);
     }
 }
 
 
-const ServicesPendingBuyer = async (req, res, next) => {
+const bookingsPendingBuyer = async (req, res, next) => {
     const buyerId = req.params.buyerId;
 
 
@@ -188,15 +188,15 @@ const ServicesPendingBuyer = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('services');
+        const collection = db.collection('bookings');
 
-        const services = await collection.find({ buyerId: buyerId, completed: 0 }).toArray();
-        res.json(services);
+        const bookings = await collection.find({ buyerId: buyerId, completed: 0 }).toArray();
+        res.json(bookings);
 
     }
     catch (error) {
         res.status(501).json({ statusCode: 501 });
-        logger.log('error', '[' + Date() + ']can not fetch all services for platform...' + error);
+        logger.log('error', '[' + Date() + ']can not fetch all bookings for platform...' + error);
     }
 
 }
@@ -204,15 +204,15 @@ const ServicesPendingBuyer = async (req, res, next) => {
 
 module.exports = {
     Services: Services,
-    ServicesCategory:ServicesCategory,
-    ServicesCompleted: ServicesCompleted,
-    ServicesCancelled: ServicesCancelled,
-    ServicesPending: ServicesPending,
+    bookingsCategory:bookingsCategory,
+    bookingsCompleted: bookingsCompleted,
+    bookingsCancelled: bookingsCancelled,
+    bookingsPending: bookingsPending,
 
 
-    ServicesCancelledBuyer: ServicesCancelledBuyer,
-    ServicesPendingBuyer: ServicesPendingBuyer,
-    ServicesCompletedBuyer: ServicesCompletedBuyer,
+    bookingsCancelledBuyer: bookingsCancelledBuyer,
+    bookingsPendingBuyer: bookingsPendingBuyer,
+    bookingsCompletedBuyer: bookingsCompletedBuyer,
 
 
 

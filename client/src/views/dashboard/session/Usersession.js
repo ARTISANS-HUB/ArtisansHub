@@ -5,7 +5,7 @@ const Usersession = async () => {
 	let isAuthenticated = localStorage.getItem('isAuthenticated');
 
 	if (isAuthenticated === "false" || isAuthenticated === null || isAuthenticated === '') {
-		window.location.href = '/login';
+		window.location.href = '/';
 	}
 
 }

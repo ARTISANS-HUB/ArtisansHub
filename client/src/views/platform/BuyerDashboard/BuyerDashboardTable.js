@@ -5,6 +5,7 @@ import { Api_connect_server } from '../../../APIs/Api_connect_server';
 const BuyerDashboardTable = () => {
   const api_connect = Api_connect_server();
   const buyerId = localStorage.getItem('buyerId');
+  //uyr56
   const [activeTab, setActiveTab] = useState(0);
   const [data, setData] = useState({
     completed: [],
@@ -25,9 +26,9 @@ const BuyerDashboardTable = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const completedResponse = await api_connect.get('/auth/fetch-services-completed-buyer/'+buyerId);
-        const pendingResponse = await api_connect.get('/auth/fetch-services-pending-buyer/'+buyerId);
-        const cancelledResponse = await api_connect.get('/auth/fetch-services-cancelled-buyer/'+buyerId);
+        const completedResponse = await api_connect.get('/auth/fetch-bookings-completed-buyer/'+buyerId);
+        const pendingResponse = await api_connect.get('/auth/fetch-bookings-pending-buyer/'+buyerId);
+        const cancelledResponse = await api_connect.get('/auth/fetch-bookings-cancelled-buyer/'+buyerId);
 
 
         settotalCancelled(cancelledResponse.data.length);
@@ -70,7 +71,7 @@ const BuyerDashboardTable = () => {
     const ws = XLSX.utils.table_to_sheet(tableid);
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
-    XLSX.writeFile(wb, 'BUYER HISTORY.xlsx');
+    XLSX.writeFile(wb, 'MY TRANSACTION HISTORY.xlsx');
   };
   return (
     <div className='service-table'>

@@ -82,7 +82,7 @@ const ArtisansOverviewController = require('./http/controllers/ArtisansOverviewC
 const ArtisansController = require('./http/controllers/ArtisansController');
 
 //VerificationController
-const VerificationController = require('./http/controllers/VerificationController');
+VerificationController = require('./http/controllers/VerificationController');
 
 
 const BuyersController = require('./http/controllers/BuyersController');
@@ -96,10 +96,20 @@ const BuyersOverviewController = require('./http/controllers/BuyersOverviewContr
 
 //services
 const ServicesController = require('./http/controllers/ServicesController');
+
+
+//payment
+const PaymentApiController = require('./http/controllers/PaymentApiController');
+
+//contact
+
+const ContactController = require('./http/controllers/ContactController');
+
+//book services
+const BookServiceController = require('./http/controllers/BookServiceController');
+
+//platform controller
 const ArtisansPlatformDashboardController = require('./http/controllers/ArtisansPlatformDashboardController');
-const UploadNewContactController = require('./http/controllers/UploadNewContactController');
-
-
 
 //error_404
 //const error_404_PNF  = require('./http/controllers/error_404');
@@ -209,12 +219,14 @@ app.post('/login/artisan', AuthController.ArtisanAuth);
 app.post('/login/buyer', AuthController.BuyerAuth);
 //update user details
 app.post('/auth/update/user-profile-picture', profileUploadpic.single("file"), UpdateUserController.UpdateUserProfile);
+
 //update user details
 app.post('/auth/edit/edit-user-profile-picture', profileUploadpic.single("file"), UpdateUserController.EditUserProfile);
 
 
 //update user details
 app.post('/auth/update/user-details', UpdateUserController.UpdateUserData);
+
 //fetch user details
 app.get('/auth/fetch-user-profile/:profile', UpdateUserController.fetchUserProfile);
 
@@ -237,9 +249,7 @@ app.post('/auth/edit/edit-user-details', UsersContoller.EditUsersDetails);
 
 
 //artisans controller 
-//fetch all artisan
 app.get('/auth/fetch-artisans', ArtisansController.artisans);
-
 app.delete('/auth/delete-artisan/:artisanId', ArtisansController.deleteArtisan);
 app.get('/auth/fetch-artisans/active', ArtisansOverviewController.fetchActiveArtisans);
 app.get('/auth/fetch-artisans/inactive', ArtisansOverviewController.fetchInActiveArtisans);
@@ -247,17 +257,16 @@ app.get('/auth/fetch-artisans/verified', ArtisansOverviewController.fetchVerfied
 
 
 app.get('/auth/artisan-action/:artisanId/:action', ArtisansController.VerifyArtisans);
-app.post('/auth/create-artisan',upload.single("file"), ArtisansController.CreateArtisan);
+app.post('/auth/create-artisan', ArtisansController.CreateArtisan);
 
 
 app.get('/auth/fetch-feebacks', FeedBackController.feedbacks);
 
-//dashboard
+
 app.get('/auth/fetch-buyers', BuyersController.buyers);
-app.post('/auth/create-buyer',upload.single("file"), BuyersController.CreateBuyer);
+app.post('/auth/create-buyer', BuyersController.CreateBuyer);
 app.delete('/auth/delete-buyer/:buyerId',BuyersController.DeleteBuyer);
 
-//daashboard stats
 app.get('/auth/fetch-buyers/active', BuyersOverviewController.fetchActiveBuyers);
 app.get('/auth/fetch-buyers/inactive', BuyersOverviewController.fetchInActiveBuyers);
 app.get('/auth/fetch-buyers/verified', BuyersOverviewController.fetchVerfiedBuyers);
@@ -270,24 +279,17 @@ app.post('/auth/add-support-message', upload.single("file"), SupportController.A
 
 //dashboard
 app.get('/auth/fetch-services-platform-all', PlatformServicesController.Services);
-//category
-app.get('/auth/fetch-services-category-platform-all', PlatformServicesController.ServicesCategory);
 
-//services ARTISAN platform
-app.get('/auth/fetch-services-completed-artisan/:artisanId', PlatformServicesController.ServicesCompleted);
-app.get('/auth/fetch-services-cancelled-artisan/:artisanId', PlatformServicesController.ServicesCancelled);
-app.get('/auth/fetch-services-pending-artisan/:artisanId', PlatformServicesController.ServicesPending);
-
-//artisan
-app.post('/auth/artisan-create-service',upload.single("file"), ArtisansPlatformDashboardController.createServiceArtisan);
-app.post('/auth/artisan-update-service',upload.single("file"), ArtisansPlatformDashboardController.updateServiceArtisan);
-app.get('/auth/artisan-delete-service/:serviceId', ArtisansPlatformDashboardController.deleteServiceArtisan);
+//bookings ARTISAN platform
+app.get('/auth/fetch-bookings-completed-artisan/:artisanId', PlatformServicesController.bookingsCompleted);
+app.get('/auth/fetch-bookings-cancelled-artisan/:artisanId', PlatformServicesController.bookingsCancelled);
+app.get('/auth/fetch-bookings-pending-artisan/:artisanId', PlatformServicesController.bookingsPending);
 
 
-//services BUYER platform
-app.get('/auth/fetch-services-completed-buyer/:buyerId', PlatformServicesController.ServicesCompletedBuyer);
-app.get('/auth/fetch-services-cancelled-buyer/:buyerId', PlatformServicesController.ServicesCancelledBuyer);
-app.get('/auth/fetch-services-pending-buyer/:buyerId', PlatformServicesController.ServicesPendingBuyer);
+//bookings BUYER platform
+app.get('/auth/fetch-bookings-completed-buyer/:buyerId', PlatformServicesController.bookingsCompletedBuyer);
+app.get('/auth/fetch-bookings-cancelled-buyer/:buyerId', PlatformServicesController.bookingsCancelledBuyer);
+app.get('/auth/fetch-bookings-pending-buyer/:buyerId', PlatformServicesController.bookingsPendingBuyer);
 
 
 //dasboard services
@@ -296,18 +298,34 @@ app.get('/auth/fetch-services-completed', ServicesController.DashboardServicesCo
 app.get('/auth/fetch-services-cancelled', ServicesController.DashboardServicesCancelled);
 app.get('/auth/fetch-services-pending', ServicesController.DashboardServicesPending);
 
-//contact
-app.get('/auth/fetch-services-pending', UploadNewContactController.Contact);
-app.post('/auth/upload-contact',upload.single("file"), UploadNewContactController.AddContact);
-
-
-
-
 
 //verify user mail
 app.post('/auth/user/verify-usermailorTel', VerificationController.VerifyUsermail);
 //update forgot passord 
 app.post('/auth/user/update-forgot-password', VerificationController.UpdateForgotPassword);
+
+
+//payment
+
+app.post('/auth/make-payment', PaymentApiController.PaystackApi);
+app.post('/auth/paystack/payment/callback', PaymentApiController.PaystackApiCallback);
+
+
+app.post('/auth/upload-contact',upload.single("file"), ContactController.addContact);
+//app.post('/auth/paystack/payment/callback', PaymentApiController.PaystackApiCallback);
+
+//book service
+//BookServiceController
+app.post('/auth/book-services',upload.single("file"), BookServiceController.AddbookServices);
+app.get('/auth/booked-services', BookServiceController.BookedServices);
+app.post('/auth/update-booked-services',upload.single("file"), BookServiceController.UpdateBookedServices);
+app.get('/auth/cancel-booked-services/:bookingId', BookServiceController.CancelBookedServices);
+app.get('/auth/delete-booked-services/:bookingId', BookServiceController.DeleteBookedServices);
+
+
+//platformdashboard
+// ArtisansPlatformDashboardController
+app.post('/auth/artisan-create-services',upload.single("file"), ArtisansPlatformDashboardController.createServiceArtisan);
 
 //logout
 app.get('/logout/users', AuthController.logout);

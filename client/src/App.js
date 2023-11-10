@@ -50,7 +50,7 @@ import ArtitsanHome from './views/platform/ArtisansDashbaord/ArtitsanHome';
 import ArtisanCreateServicesForm from './views/platform/ArtisansDashbaord/ArtisanCreateServicesForm'
 import BuyerHome from './views/platform/BuyerDashboard/BuyerHome';
 import PreviewBuyer from './views/dashboard/PreviewBuyer';
-import ArtisanStatisticServices from './views/platform/ArtisansDashbaord/ArtisanStatisticServices'
+import ArtisanPlatformServices from './views/platform/ArtisansDashbaord/ArtisanPlatformServices'
 import Booking from './views/platform/includes/Booking';
 
 // end
@@ -111,8 +111,7 @@ function App() {
             
             <Route path="/auth/artisan/dashboard/home" element={<ArtitsanHome />} />
             <Route path="/auth/artisan/dashboard/create-service-artisan" element={< ArtisanCreateServicesForm/>} />
-            <Route path="/auth/artisan/dashboard/statistics-service-artisan" element={< ArtisanStatisticServices/>} />
-            <Route path="/auth/artisan/dashboard/statistics-service-artisan" element={< ArtisanStatisticServices/>} />
+            <Route path="/auth/artisan/dashboard/artisan-service-platform" element={< ArtisanPlatformServices/>} />
 
 
             <Route path="/auth/buyer/dashboard/home" element={<BuyerHome/>} />

@@ -65,9 +65,9 @@ useEffect(() => {
       // console.log(error);
     })
   } catch (error) {
-    console.log(error);
+    //console.log(error);
   }
-}, []);
+}, [api_connect]);
 
 const filterCards = (buttonValue) => {
   const filtered = artisans.filter((card) => card.type === buttonValue);

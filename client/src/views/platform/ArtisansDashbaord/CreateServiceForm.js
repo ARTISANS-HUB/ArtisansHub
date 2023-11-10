@@ -1,26 +1,30 @@
 import React from "react";
-import { Formik, Field, Form, ErrorMessage } from "formik";
 import "../../../css/serviceForm.css";
-import UploadNewUserController from "../../../controllers/UploadNewUserController";
+import {UploadNewServiceArtisan} from "../../../controllers/ArtisanPlatformServiceController";
 import { useState } from "react";
 import swal from 'sweetalert';
 
 const CreateServiceForm = () => {
   const [file, setFile] = useState(null);
+ 
+ const username = localStorage.getItem('username');
+ const artisanId = localStorage.getItem('artisanId');
 
-  
   const [formData, setformData] = useState({
-    serviceId: Math.random().toString(36).substr(2, 50),
+    serviceId: Math.random().toString(36).substr(2, 90),
+    artisanId:artisanId,
     description:'',
     charge:'',
     type:'',
     location:'',
-    created_by:localStorage.getItem('username'),
+    created_by:username,
     tel:'',
-    created_at:Date.now(),
+    created_at:'',
   });
 
-  const handleSubmit = (values) => {
+  const handleSubmit = (event) => {
+
+    event.preventDefault();
     //check for empty input
     if (
       formData.description === "" ||
@@ -36,7 +40,7 @@ const CreateServiceForm = () => {
         dangerMode: true,
         });
     } else {
-      UploadNewUserController(formData , file);
+      UploadNewServiceArtisan(formData , file);
     }
 
     return;
@@ -53,73 +57,65 @@ const CreateServiceForm = () => {
   return (
     <div className="serviceFormContainer">
       <div className="formwrapper">
-        <Formik
-          initialValues={{ name: "", description: "" }}
-          onSubmit={handleSubmit}
-        >
-          <Form>
+        
+          <form   onSubmit={handleSubmit} >
             <div className="form-group">
               <label htmlFor="name">Charge:</label>
-              <Field
+              <input
                 type="text"
                 id="Charge"
                 name="charge"
-                handleChange={handleChange}  value={formData.charge}  placeholder="Charge"
+                onChange={handleChange}  value={formData.charge}  placeholder="Charge"
               />
-              <ErrorMessage name="name" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Description:</label>
-              <Field
+              <input
                 type="text"
                 as="textarea"
                 id="Description"
                 name="description"
-                handleChange={handleChange}  value={formData.description}  placeholder="Description"
+                onChange={handleChange}  value={formData.description}  placeholder="Description"
               />
-              <ErrorMessage name="name" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Phone:</label>
-              <Field type="text" id="tel" name="tel" handleChange={handleChange}  value={formData.tel}  placeholder="Phone" />
-              <ErrorMessage name="name" component="div" className="error" />
+              <input type="text" id="tel" name="tel" onChange={handleChange}  value={formData.tel}  placeholder="Phone" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Location:</label>
-              <Field
+              <input
                 type="text"
                 id="Location"
                 name="location"
-                handleChange={handleChange}  value={formData.location}  placeholder="Location"
+                onChange={handleChange}  value={formData.location}  placeholder="Location"
               />
-              <ErrorMessage name="location" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Profile:</label>
-              <Field
+              <input
                 type="file"
                 id="Profile"
                 name="file"
-                handleChange={handleChange}  value={formData.file}  placeholder="Profile"
+                onChange={handleChange}  value={formData.file}  placeholder="Profile"
               />
-              <ErrorMessage name="file" component="div" className="error" />
             </div>
             <div className="form-group">
               <label htmlFor="name">Email:</label>
-              <Field type="email" id="email" name="usermail" handleChange={handleChange}  value={formData.usermail}  placeholder="Email" />
-              <ErrorMessage name="email" component="div" className="error" />
+              <input type="email" id="email" name="usermail" onChange={handleChange}  value={formData.usermail}  placeholder="Email" />
             </div>
 
-            {/* ... other fields */}
+            {/* ... other inputs */}
 
             <div className="form-group">
               <label htmlFor="name">Type:</label>
-              <Field
-                as="select"
+              <select
+                
                 id="type"
                 name="type"
                 value={formData.type}
                 onChange={handleChange}
+                className="type"
               >
                 <option value="" disabled>
                   Select Type
@@ -176,15 +172,14 @@ const CreateServiceForm = () => {
                 <option value="meditation">Meditation</option>
                 <option value="dance workout">Dance Workout</option>
                 <option value="home gym workout">Home Gym Workout</option>
-              </Field>
-              <ErrorMessage name="type" component="div" className="error" />
+              </select>
             </div>
 
             <div>
-              <button type="submit">Submit</button>
+              <button type="submit" onClick={handleSubmit}>Submit</button>
             </div>
-          </Form>
-        </Formik>
+          </form>
+       
       </div>
     </div>
   );

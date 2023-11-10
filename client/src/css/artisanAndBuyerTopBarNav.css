@@ -44,9 +44,9 @@
   background-color: #eee;
   border: none;
   color: #333;
-  padding: 10px 20px;
+  padding: 9px 10px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 13px;
   border-radius: 7px;
   transition: all ease-in 0.3s;
 
@@ -55,14 +55,13 @@
  background-color: #ddd;
 }
 
-
 @media (max-width:900px) {
   .tab-buttons button {
 
-    padding: 9px 11px;
+    padding: 10px 3px;
     cursor: pointer;
-    font-size: 12px;
-    gap: 10px;
+    font-size: 11px;
+    gap: 5px;
 
   }
 

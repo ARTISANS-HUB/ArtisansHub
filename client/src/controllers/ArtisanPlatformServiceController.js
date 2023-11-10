@@ -4,10 +4,10 @@ import swal from 'sweetalert';
 const UploadNewServiceArtisan = async (formData , file) => {
 
 
-    console.log(formData)
+    
 	const api_connect = Api_connect_server();
 	let message; 
-	api_connect.post('/auth/artisan-create-service',
+	api_connect.post('/auth/artisan-create-services',
 		{ formData , file }, { headers: { 'Content-Type': 'multipart/form-data' }, })
 
 		.then((response) => {
@@ -28,7 +28,7 @@ const UploadNewServiceArtisan = async (formData , file) => {
                     button: "Aww yiss!",
                 });
 
-                window.location.href='/';
+                window.location.href='/auth/artisan/dashboard/home';
 
 
 			} else if (response.data.statusCode === 501) {

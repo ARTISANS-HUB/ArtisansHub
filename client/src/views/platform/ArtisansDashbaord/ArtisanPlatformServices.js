@@ -1,7 +1,7 @@
 import ArtisandashboardTopNavBar from "./includes/ArtisandashboardTopNavBar"
 import ArtisanServiceTable from "./ArtisanServiceTable"
 
-const ArtisanStatisticServices = () => {
+const ArtisanPlatformServices = () => {
   return (
     <div>
       <ArtisandashboardTopNavBar />
@@ -11,4 +11,4 @@ const ArtisanStatisticServices = () => {
   )
 }
 
-export default ArtisanStatisticServices
+export default ArtisanPlatformServices

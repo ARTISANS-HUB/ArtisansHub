@@ -26,7 +26,7 @@ function ArtisandashboardTopNavBar() {
         if (response.status === 200) { // Check the status code for success (200 OK)
           return response.data; // Use response.data for Axios, not response.blob()
         } else {
-          throw new Error('Network response was not ok');
+         // throw new Error('Network response was not ok');
         }
       })
       .then((imageData) => {
@@ -66,7 +66,7 @@ function ArtisandashboardTopNavBar() {
       <div className="right-nav-dashboad-platform">
                 
         <Link to="/auth/artisan/dashboard/create-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
-        <Link to="/auth/artisan/dashboard/statistics-service-artisan"><i title="Stats" className="create-services-icon  fas  fa-line-chart"></i></Link>
+        {/*<Link to="/auth/artisan/dashboard/statistics-service-artisan"><i title="Stats" className="create-services-icon  fas  fa-line-chart"></i></Link>*/}
          <Link to="/"><i title="Stats" className="create-services-icon  fas  fa-home"></i></Link>
 
         <nav class="top-nav-platform-dashboard">
