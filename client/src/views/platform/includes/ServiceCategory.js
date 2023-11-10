@@ -17,32 +17,27 @@ const api_connect = Api_connect_server();
 const ServiceCategory = () => {
 
 
-  useEffect(() => {
-    try {
-      api_connect.get("/auth/fetch-services-platform-all")
-      .then((response) => {
-        if (response.status === 200) {
-          setFilteredCards(response.data)
-          console.log(filteredCards);
+  // useEffect(() => {
+  //   try {
+  //     api_connect.get("/auth/fetch-services-platform-all")
+  //     .then((response) => {
+  //       if (response.status === 200) {
+  //         setFilteredCards(response.data)
+  //         console.log(filteredCards);
           
-        } else if (response.data.statusCode === 501) {
-          setFilteredCards([])
-        }
-      }).catch((error) => {
-        // alert("not connected to server")
-        console.log(error) 
-      })
-    } catch (error) {
-      // alert("not connected ")
+  //       } else if (response.data.statusCode === 501) {
+  //         setFilteredCards([])
+  //       }
+  //     }).catch((error) => {
+  //       // alert("not connected to server")
+  //       console.log(error) 
+  //     })
+  //   } catch (error) {
+  //     // alert("not connected ")
       
-    }
-  },[])
+  //   }
+  // },[])
   // console.log(artisans);
-
-
-
-
-
 
 
 
@@ -57,7 +52,7 @@ useEffect(() => {
       if (response.status === 200) {
         setArtisans(response.data);
         setFilteredCards(response.data);
-        console.log(response.data);
+        // console.log(response.data);
       } else if (response.data.statusCode === 501) {
         setFilteredCards([]);
       }
@@ -83,6 +78,8 @@ const handleShowAll = () => {
   setFilter('');
   setFilteredCards(artisans);
 };
+
+
 
 
 
@@ -137,7 +134,8 @@ const handleShowAll = () => {
         <div className='card'>
             <Slider {...settings}>
                 {cartCategories.map((cat,index) => {
-                  return <Categories key={index}  icon={cat.icon} title={cat.title} cat={cat.type} handleFilterChange={handleFilterChange} bgColor={cat.bgColor} />
+                  // console.log(cat.type);
+                  return <Categories key={index}  icon={cat.icon} title={cat.title} type={cat.type} handleFilterChange={handleFilterChange} bgColor={cat.bgColor} />
                 })
               }
             </Slider>

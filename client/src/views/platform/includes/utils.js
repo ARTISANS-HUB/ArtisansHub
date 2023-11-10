@@ -49,8 +49,8 @@ export const cartCategories = [
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'welder',
-      type:"welder",
+      title: 'Brick Laying',
+      type:"Brick Laying",
       bgColor:"#e5eee5"
     },
     {
@@ -67,13 +67,13 @@ export const cartCategories = [
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'reading',
-      type:"reading",
+      title: 'Reading',
+      type:"Reading",
       bgColor:"#f2f2cc"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'carpenter',
+      title: 'Carpenter',
       type:"Carpenter",
       bgColor:"#f2f2cc"
     },
@@ -85,32 +85,32 @@ export const cartCategories = [
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'electrician',
-      type: 'electrician',
+      title: 'Electrician',
+      type: 'Electrician',
       bgColor:"#f7f7ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'washing',
-      type: 'washing',
+      title: 'Washing',
+      type: 'Washing',
       bgColor:"#f1f4ff"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'plumber',
-      type: 'plumber',
+      title: 'Plumber',
+      type: 'Plumber',
       bgColor:"#f1f4ff"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'shoe maker',
-      type: 'shoe maker',
+      title: 'Shoe maker',
+      type: 'Shoe maker',
       bgColor:"#f5f0ea"
     },
     {
       icon: <i class="fas fa-utensils"></i>,
-      title: 'tailor',
-      type: 'tailor',
+      title: 'Tailor',
+      type: 'Tailor',
       bgColor:"#f2f2cc"
     },
     {
