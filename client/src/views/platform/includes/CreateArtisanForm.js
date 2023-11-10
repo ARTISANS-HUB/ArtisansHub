@@ -7,6 +7,7 @@ const CreateArtisanForm = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [file, setFileBlog] = useState(null);
     const [ serverFile , setserverFile]= useState(null);
+    const [errors, setErrors] = useState({});
     const [formData, setformData] = useState({
       // userID: Math.random().toString(36).substr(2, 50),
       username: "",
@@ -32,47 +33,78 @@ const CreateArtisanForm = () => {
       }
   
      
+      let error;
+      if (event.target.name === 'username' && event.target.value.length < 3) {
+          error = 'Username must be at least 3 characters long';
+      } else if (event.target.name === 'usermail' && !/\S+@\S+\.\S+/.test(event.target.value)) {
+          error = 'Email must be in a valid format';
+      } else if (event.target.name === 'tel' && event.target.value.length < 10) {
+
+          error = 'Mobile number must be at least 10 characters long';
+      } 
+      else if (event.target.name === 'location' && event.target.value.length < 3) {
+          error = 'Location must be at least 3 characters long';
+      } else if (event.target.name === 'password' && event.target.value.length < 8) {
+          error = 'Password must be at least 8 characters long';
+      }
+      else if (event.target.name === 'expertise' && event.target.value.length < 3) {
+          error = 'Occupation must be at least 3 characters long';
+      }
+      else if (event.target.name === 'work_days_from' && event.target.value.length < 3) {
+          error = 'Working days must be at least 3 characters long';
+      }
+      else if(event.target.name==="file" && event.target.value.length < 3){
+            error = 'Profile picture must be uploaded';
+      }
+      
+      setErrors({ ...errors, [event.target.name]: error });
 
       setformData({ ...formData, [event.target.name]: event.target.value });
     };
 
-    // const handleDragOver = (e) => {
-    //   e.preventDefault();
-    //   setDragOver(true);
-    // };
+
 
     const handleSubmit = (event) => {
       event.preventDefault();
+
+        // Check for errors
+//   if (Object.values(errors).some(error => error !== undefined)) {
+//     alert('Please correct the errors before submitting');
+//     return;
+//   }
+
   
       //check for empty input
-      if (
-        formData.username === "" ||
-        formData.password === "" ||
-        formData.usermail === "" ||
-        formData.tel === "" ||
-        formData.other_tel === "" ||
-        formData.location === "" ||
-        // formData.work_days_from === "" ||
-        // formData.work__days_end === "" ||
-        // formData.expertise === "" ||
-        file === ""
-      ) {
-        alert("all input are required..");
-      } else {
+    //   if (
+    //     formData.username === "" ||
+    //     formData.password === "" ||
+    //     formData.usermail === "" ||
+    //     formData.tel === "" ||
+    //     formData.other_tel === "" ||
+    //     formData.location === "" ||
+    //     file === ""
+    //   ) {
+    //     alert("all input are required..");
+    //   } else {
+
+    // Check for errors
+    if (Object.values(errors).some((error) => error !== undefined)) {
+        alert('Please correct the errors before submitting');
+        return;
+      }
         setIsLoading(true);
-        //send data to controller when auth..
-        //send drag file
+      
   
         UploadNewArtisanController(formData, serverFile);
   
   
-        //simulate the loader to hide
+    
         setTimeout(() => {
           setIsLoading(false);
         }, 9000);
-      }
+    //   }
   
-      //end if
+      
     };
 
 
@@ -102,7 +134,11 @@ const CreateArtisanForm = () => {
                                     name="file"
                                     value={serverFile}
                                     onChange={handleChange}
+                                    required
                                 />
+                                <div className="input-field-error">
+                                        {errors.file && <p>{errors.file}</p>}
+                                </div>
                         </div>
                             }
                     </div>
@@ -113,57 +149,61 @@ const CreateArtisanForm = () => {
                         <div className="fields">
                             <div className="input-field">
                                 <label htmlFor='username'>Username</label>
-                                <input type="text" id="username" name="username" onChange={handleChange} value={formData.username} placeholder="Enter username" />
-                                {/* <div className='input-field-error'>
-                                {errors.username ? <div>{errors.username}</div> : null}
-                                </div> */}
+                                <input type="text" id="username" name="username" onChange={handleChange} value={formData.username} placeholder="Enter username" required/>
+                                <div className="input-field-error">
+                                        {errors.username && <p>{errors.username}</p>}
+                                </div>
                             </div>
 
                             <div className="input-field">
                                 <label htmlFor='password'>Password</label>
-                                <input type="text" id="password" name="password" onChange={handleChange} value={formData.password} placeholder="Enter password" />
-                                {/* <div className='input-field-error'>
-                                {formik.errors.password ? <div>{formik.errors.password}</div> : null}
-                                </div> */}
+                                <input type="text" id="password" name="password" onChange={handleChange} value={formData.password} placeholder="Enter password" required/>
+                                <div className="input-field-error">
+                                        {errors.password && <p>{errors.password}</p>}
+                                </div>
                             </div>
 
                             <div className="input-field">
                                 <label htmlFor='usermail'>Email</label>
-                                <input type="email" id="usermail" name="usermail" onChange={handleChange} value={formData.usermail} placeholder="Enter email" />
+                                <input type="email" id="usermail" name="usermail" onChange={handleChange} value={formData.usermail} placeholder="Enter email" required/>
                        
-                                {/* <div className='input-field-error'>
-                                {errors.usermail ? <div>{errors.usermail}</div> : null}
-                                </div> */}
+                                <div className="input-field-error">
+                                        {errors.usermail && <p>{errors.usermail}</p>}
+                                </div>
                             </div>
 
                             <div className="input-field">
                                 <label htmlFor='tel'>Mobile Number</label>
-                                <input type="text" id="tel" name="tel" onChange={handleChange} value={formData.tel} placeholder="Enter mobile number" />
-                                {/* <div className='input-field-error'>
-                                {errors.tel ? <div>{errors.tel}</div> : null}
-                                </div> */}
+                                <input type="text" id="tel" name="tel" onChange={handleChange} value={formData.tel} placeholder="Enter mobile number" required/>
+                                <div className="input-field-error">
+                                        {errors.tel && <p>{errors.tel}</p>}
+                                </div>
                             </div>
                             <div className="input-field">
                                 <label htmlFor='other_tel'>Other Mobile Number (Optional)</label>
                                 <input type="text" id='other_tel' name='other_tel' onChange={handleChange} value={formData.other_tel} placeholder="Enter other number" />
-                                {/* <div className='input-field-error'>
-                                {errors.other_tel ? <div>{errors.other_tel}</div> : null}
-                                </div> */}
+                         
                             </div>
                             <div className="input-field">
                                 <label htmlFor='expertise'>Occupation</label>
-                                {/* <input type="text" id='expertise' name='expertise' onChange={handleChange} value={formData.expertise} placeholder="Enter your occupation " /> */}
+                               
 
                                 <select name='work_days_from' required>
                                                 <option onChange={handleChange} value={formData.expertise} disabled selected>Select Occupation</option>
-                                                <option value="cleaning">Cleaning</option>
-                                                <option value="washing">Washing</option>
-                                                <option value="plumber">Plumber</option>
-                                                <option value="carpenter">Carpenter</option>
-                                                <option value="reading">Reading</option>
-                                                <option value="welder">Welder</option>
-                                                <option value="shoe-maker">shoe-maker</option>
+                                                <option value="Cleaning">Cleaning</option>
+                                                <option value="Washing">Washing</option>
+                                                <option value="Plumber">Plumber</option>
+                                                <option value="Carpenter">Carpenter</option>
+                                                <option value="Reading">Reading</option>
+                                                <option value="Welder">Welder</option>
+                                                <option value="Shoe-maker">Shoe-maker</option>
+                                                <option value="Tailor">Tailor</option>
+                                                <option value="Tv Repairer">Tv Repairer</option>
+                                                <option value="Electrician">Electrician</option>
                                 </select>
+                                <div className="input-field-error">
+                                        {errors.expertise && <p>{errors.expertise}</p>}
+                                </div>
                             </div>
 
                                 <div className="input-field">
@@ -190,10 +230,13 @@ const CreateArtisanForm = () => {
                                                 <option value="sunday">Sunday</option>
                                             </select>
                                        </div>
+                                       <div className="input-field-error">
+                                        {errors.work_days_from && <p>{errors.work_days_from}</p>}  {errors.work_days_end && <p>{errors.work_days_end}</p>}
+                                </div>
                                 </div>
                             <div className="input-field">
                                     <label htmlFor="location">Location</label>
-                                    <input list="locations"  name="location" id="location" onChange={handleChange} value={formData.location}  placeholder='Enter Location'/>
+                                    <input list="locations"  name="location" id="location" onChange={handleChange} value={formData.location}  placeholder='Enter Location'required/>
 
                                     <datalist id="locations">
                                             <option value="Edge"/>
@@ -202,9 +245,9 @@ const CreateArtisanForm = () => {
                                             <option value="Opera"/>
                                             <option value="Safari"/>
                                     </datalist>
-                                    {/* <div className='input-field-error'>
-                                {formik.errors.location ? <div>{formik.errors.location}</div> : null}
-                                </div> */}
+                                    <div className="input-field-error">
+                                        {errors.location && <p>{errors.location}</p>}
+                                </div>
                             </div>
                             <button type="submit">
                                     <span class="btnText">Register as Artisan</span>
