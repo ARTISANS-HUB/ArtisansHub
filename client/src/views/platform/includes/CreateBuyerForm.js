@@ -106,6 +106,7 @@ return (
                                   name="file"
                                   value={serverFile}
                                   onChange={handleChange}
+                                  required
                               />
                       </div>
                           }
@@ -133,7 +134,7 @@ return (
 
                           <div className="input-field">
                               <label htmlFor='usermail'>Email</label>
-                              <input type="email" id="usermail" name="usermail" onChange={handleChange} value={formData.usermail} placeholder="Enter password" />
+                              <input type="email" id="usermail" name="usermail" onChange={handleChange} value={formData.usermail} placeholder="Enter email" />
                      
                               {/* <div className='input-field-error'>
                               {errors.usermail ? <div>{errors.usermail}</div> : null}

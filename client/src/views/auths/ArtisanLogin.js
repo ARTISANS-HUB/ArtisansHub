@@ -123,7 +123,7 @@ const ArtisanLogin = () => {
 
               <div className="createAc-container" >
 
-                <Link to="/create-artisa"> Create account here</Link>
+                <Link to="/create-artisan"> Create account here</Link>
 
               </div>
                <div style={{paddingTop:'30px',fontSize:'15px'}}>

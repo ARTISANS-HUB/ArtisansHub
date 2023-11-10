@@ -41,7 +41,6 @@ const UploadNewBuyerController = async (formData, file) => {
 
 		})
 		.catch((error) => {
-         alert(error)
 			swal({
                 title: "Hmmm..!",
                 text: message,

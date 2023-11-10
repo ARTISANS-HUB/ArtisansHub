@@ -1,6 +1,7 @@
 
 const { connectToDB, closeDB } = require('../../config/mongodbconfig');
 const logger = require('../../logger');
+const bcrypt = require('bcrypt');
 let db;
 
 const buyers = async (req, res, next) => {
@@ -68,7 +69,7 @@ const CreateBuyer = async (req, res, next) => {
       buyerId: buyerId,
       username: username,
       password: hashedPassword,
-      profile: userID + "-" + fileName,
+      profile: fileName,
       usermail: usermail,
       role: role,
       tel: tel,
@@ -95,6 +96,7 @@ const CreateBuyer = async (req, res, next) => {
     if (error) {
       logger.log('error', "can not create buyer account /  internal error", error);
       res.status(501).json({ message: "Internal error... " });
+    
     }
   }
 

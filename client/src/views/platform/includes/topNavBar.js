@@ -189,7 +189,7 @@ const TopNavBar = () => {
                     <>
                       <Link
                         className="account-item"
-                        to="/auth/dashboard/profile"
+                        to="#"
                       >
                         <i className="fas fa-user-circle"></i> Profile
                       </Link>
@@ -219,7 +219,7 @@ const TopNavBar = () => {
                     <>
                       <Link
                         className="account-item"
-                        to="/auth/dashboard/profile"
+                        to="#"
                       >
                         <i className="fas fa-user-circle"></i> Profile
                       </Link>
