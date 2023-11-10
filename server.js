@@ -251,10 +251,11 @@ app.post('/auth/edit/edit-user-details', UsersContoller.EditUsersDetails);
 //artisans controller 
 app.get('/auth/fetch-artisans', ArtisansController.artisans);
 app.delete('/auth/delete-artisan/:artisanId', ArtisansController.deleteArtisan);
+app.get('/auth/fetch-artisans/:artisanId', ArtisansController.fetchArtisansId);
+
 app.get('/auth/fetch-artisans/active', ArtisansOverviewController.fetchActiveArtisans);
 app.get('/auth/fetch-artisans/inactive', ArtisansOverviewController.fetchInActiveArtisans);
 app.get('/auth/fetch-artisans/verified', ArtisansOverviewController.fetchVerfiedArtisans);
-app.get('/auth/fetch-artisans/:artisanId', ArtisansOverviewController.fetchArtisansId);
 
 
 app.get('/auth/artisan-action/:artisanId/:action', ArtisansController.VerifyArtisans);
