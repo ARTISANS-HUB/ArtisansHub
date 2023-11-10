@@ -268,11 +268,47 @@ const CreateArtisan = async (req, res, next) => {
 
 }
 
+
+
+const fetchArtisansId = async (req, res, next) => {
+
+
+    const artisanId = req.params.artisanId;
+  try {
+
+
+    //query
+    db = await connectToDB();
+
+    const collection = db.collection('artisans');
+
+    const artisans = await collection.find({artisanId:artisanId}).toArray();
+    
+
+    if (artisans.length === 0) {
+
+      res.status(200).json({ statusCode: 404 });
+
+    }
+
+    return res.json(artisans);
+
+
+  }
+  catch (error) {
+    logger.log('error', '[' + Date() + '] can not fetch artisans.. / internal eror', error);
+  }
+
+
+}
+
+
 module.exports = {
 
   artisans: artisans,
   VerifyArtisans: VerifyArtisans,
   deleteArtisan: deleteArtisan,
-  CreateArtisan: CreateArtisan
+  CreateArtisan: CreateArtisan,
+  fetchArtisansId:fetchArtisansId
  
 };
