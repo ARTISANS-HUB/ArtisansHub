@@ -192,6 +192,7 @@ const CreateArtisanForm = () => {
                                                 <option onChange={handleChange} value={formData.expertise} disabled selected>Select Occupation</option>
                                                 <option value="Cleaning">Cleaning</option>
                                                 <option value="Washing">Washing</option>
+                                                <option value="Washing">Reading</option>
                                                 <option value="Plumber">Plumber</option>
                                                 <option value="Carpenter">Carpenter</option>
                                                 <option value="Reading">Reading</option>

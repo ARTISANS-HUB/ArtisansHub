@@ -80,11 +80,11 @@ const BuyerLogin = () => {
   return (
     <div className="login-view">
 
-      <div className="container-login">
+      <div className="container-login log-con">
         <div className="left">
           <img src="../../uploads/bg224.jpeg" alt="" />
         </div>
-        <div className="right">
+        <div className="right right-me">
           <div className="login-form">
             <h2 className="login-title" >Buyers Login</h2>
             <form id="login-form" action="" onSubmit={handleSubmit}  >

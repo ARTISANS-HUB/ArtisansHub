@@ -8,7 +8,7 @@ const api_connect = Api_connect_server();
 const UploadNewArtisanController = async (formData, file) => {
 
 
-	
+	console.log(formData)
 	let message;
 	api_connect.post('/auth/create-artisan',
 		{ formData, file }, { headers: { 'Content-Type': 'multipart/form-data' }, })

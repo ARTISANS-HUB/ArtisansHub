@@ -2,13 +2,27 @@
             display: flex;
             background-color: #f2f2f2;
             border-radius: 8px;
-           box-shadow: rgba(0, 0, 0, 0.1) 0px 1px 2px 0px;
+           box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 2px 0px;
             flex-direction: row;
-            width: 100%;
+            /* width: 100%; */
            
-            height: 100%;
+            height: 80vh;
+            margin-top: 50px;
+            border-radius: 10px;
 
         }
+
+
+        .log-con{
+          width: 90%;
+          margin: 0 auto;
+        }
+        .log-con .right-me{
+          /* background:#fff;
+          width: 30rem; */
+        }
+
+
 
          .login-view .left {
             flex: 1;
@@ -20,7 +34,7 @@
 
         .login-view .left img{
             width: 100%;
-            height: 100vh;
+            height: 100%;
         }
 
 
