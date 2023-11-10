@@ -4,9 +4,6 @@ let message;
 
 const BuyerBookingController = ( formData ) => {
 
-alert('data rece at cont');
-
-
 const api_connect = Api_connect_server();
 api_connect.post('/auth/book-services',
 		{ formData }, { headers: { 'Content-Type': 'multipart/form-data' }, })
