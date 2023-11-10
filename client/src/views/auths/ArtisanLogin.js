@@ -10,9 +10,7 @@ import { Link } from 'react-router-dom';
 
 
 const ArtisanLogin = () => {
-  let message = localStorage.getItem('message');
-  let password_update_success = localStorage.getItem('password_update_success');
-  const [error,] = useState(false);
+
 
   // Function to clear the notification
   // Regular expression for email validation

@@ -4,22 +4,13 @@ import '../../css/login.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faSpinner } from '@fortawesome/free-solid-svg-icons';
 
-import { useEffect, useState } from 'react'
+import {  useState } from 'react'
 
 import { Link } from 'react-router-dom';
 
-import {buyer , artisan , admin } from '../dashboard/session/userType'
 
   const Login = () => {
-  //checkuser type
-  buyer();
-  artisan();
-  admin();
-
-
-  let message = localStorage.getItem('message');
-  let password_update_success = localStorage.getItem('password_update_success');
-  const [error,] = useState(false);
+ 
 
   // Function to clear the notification
   // Regular expression for email validation

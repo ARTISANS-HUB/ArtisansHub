@@ -75,6 +75,7 @@ const BuyerDashboardTable = () => {
   };
   return (
     <div className='service-table'>
+      <h1>BUYER DASHBOARD</h1>
       <div className="tab-buttons">
 
         <button

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import "../../css/serviceProviders.css"
 import profilePicture from '../../uploads/bg.jpeg'; 
 import TopNavBar from "./includes/topNavBar";
@@ -6,21 +6,56 @@ import PlatformFooter from "./includes/platformFooter";
 
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faBook, faPhone } from "@fortawesome/free-solid-svg-icons";
+import { useLocation } from 'react-router-dom';
+import { Api_connect_server } from '../../APIs/Api_connect_server';
+
+const api_connect = Api_connect_server();
 
 const ArtisanProfile = (props) => {
+  const location = useLocation();
+  const id = location.pathname.split("/")[2];
+  
   const { name = "John Doe", email = "johndoe123@example.com", services } = props;
+  const [artisans, setArtisans] = useState([]);
   
   const placeholderServiceImages = Array(4).fill(profilePicture);
 
+
+
+  useEffect(() => {
+    try {
+      api_connect.get(`/auth/fetch-artisans/${id}`)
+      .then((response) => {
+        if (response.status === 200) {
+          setArtisans(response.data);
+          // console.log(artisans);
+        } else if (response.data.statusCode === 501) {
+          setArtisans([]);
+        }
+      }).catch((error) => {
+        // console.log(error);
+      })
+    } catch (error) {
+      //console.log(error);
+    }
+  },[]);
+
+
+  // console.log(artisans[0].username);
+
   return (
-  <div>
+    <div>
     <TopNavBar/>
       <div className="artisan-profile animated-fade-in">
-      <div className="profile-header animated-bounce">
-        <img src={profilePicture} alt={`${name}'s Profile`} className="profile-picture" />
-        <h2>{name}</h2>
-        <p>{email}</p>
-      </div>
+
+      {artisans.map((artisan, index) => (
+  <div key={index} className="profile-header animated-bounce">
+    <img src={profilePicture} alt={`${artisan.username}'s Profile`} className="profile-picture" />
+    <h2>{artisan.username}</h2>
+    <p>{artisan.usermail}</p>
+  </div>
+))}
+     
       <div className="buttons animated-fade-in">
          <FontAwesomeIcon icon={faPhone} className='book-button'/>
           <FontAwesomeIcon icon={faBook} className='call-button'/>

@@ -75,26 +75,13 @@ try{
     } = req.body.formData;
 
 // console.log(req.body.formData)
-
 //fetch artisans
-const artisanData = await artisaCollection.find({artisanId:artisanId}).toArray();
+//fetch artisans
+const artisanData = await artisaCollection.find({ artisanId: artisanId }).toArray();
 //fetch buyers
-const buyerData = await buyerCollection.find({buyerId:buyerId}).toArray();
+const buyerData = await buyerCollection.find({ buyerId: buyerId }).toArray();
 //fetch service
-const serviceData = await servicesCollection.find({serviceId:serviceId}).toArray();
-
-
-
-console.log(serviceData.charge);
-console.log(serviceData.serviceType  );
-console.log(serviceData.artisanUsername);
-
-console.log(buyerData.username);
-console.log(buyerData.usermail);
-
-console.log(artisanData.usermail);
-console.log(artisanData.tel);
-console.log(artisanData.username);
+const serviceData = await servicesCollection.find({ serviceId: serviceId }).toArray();
 
     const newBookingService = {
 
@@ -102,12 +89,12 @@ console.log(artisanData.username);
       buyerId:buyerId,
       artisanId: artisanId,
       serviceId:serviceId,
-      type:serviceData.type,
+      type:serviceData[0].type,
       
 
       //buyer
-      username: buyerData.username,
-      usermail: buyerData.usermail,
+      username: buyerData[0].username,
+      usermail: buyerData[0].usermail,
       
       //artisan
       artisanUsermail:artisanData.usermail,
@@ -120,12 +107,12 @@ console.log(artisanData.username);
       schedule_time:schedule_time,
       schedule_date:schedule_date,
 
-      charge:serviceData.charge,
+      charge:serviceData[0].charge,
       created_at: formattedDate,
       created_by: created_by,
       status: 0,
       action:1,
-      completed:1,
+      completed:3,
       
 
     };
@@ -143,12 +130,13 @@ console.log(artisanData.username);
               // It should be a string of sender/server email
               from: EMAIL_USERNAME,
               //multiple mail
-              to: [artisanData.usermail, buyerData.username],
+              to: buyerData[0].username,
+              
               // Subject of Email
               subject: 'Booking Schedule',
               // This would be the text of email body
               //  + user +
-              html: `<h1>Hi</h1><p>,${buyerData.username},And ${artisanData.username}</p> 
+              html: `<h1>Hi</h1><p>,${buyerData[0].username},And ${artisanData[0].username}</p> 
                       
                       <br>
                       <h1>Job schedule</h1>
@@ -158,18 +146,18 @@ console.log(artisanData.username);
                       <p><b>Schedule Time</b> : ${schedule_time}</p>
                       <p><b>Schedule Date</b> : ${schedule_date}</p>
                       <p><b>Service Location</b> : ${location}</p>
-                      <p><b>Service Charge</b> : ${serviceData.charge}</p>
-					  <p><b>Artisan_Loc</b> : ${artisanData.location}</p>
+                      <p><b>Service Charge</b> : ${serviceData[0].charge}</p>
+					  <p><b>Artisan_Loc</b> : ${artisanData[0].location}</p>
                       <p><b>Artisan Telephone</b> : ${artisanData.tel}</p>
-                      <p><b>Buyer Telephone</b> : ${artisanData.tel} <span>/</span> ${tel}</p>
+                      <p><b>Buyer Telephone</b> : ${artisanData[0].tel} <span>/</span> ${tel}</p>
                       <p><b>Created_By</b> : ${created_by}</p>
                       
 
                       <h1><b>Confirmation / Disclaimer</b></h1>
                       <p>Call this references from the artisans </p>
-                      <p><b>Ref 1</b> :${artisanData.work_ref_1} </p>
-                      <p><b>Ref 2</b> :${artisanData.work_ref_2} </p>
-                      <p><b>Ref 3</b> :${artisanData.work_tel} </p>
+                      <p><b>Ref 1</b> :${artisanData[0].work_ref_1} </p>
+                      <p><b>Ref 2</b> :${artisanData[0].work_ref_2} </p>
+                      <p><b>Ref 3</b> :${artisanData[0].work_tel} </p>
 
 
                        <br><br> <h1>${SERVER_NAME} CHEERS </h1>`,
@@ -187,50 +175,16 @@ console.log(artisanData.username);
               if (error) {
                 logger.log('error', '[' + Date() + 'no internet to send mail');
               }
-              //console.log('Email Sent Successfully');
+              console.log('Email Sent Successfully');
             });
           } catch (error) {
+
+            console.log(error)
             logger.log('error', '[' + Date() + 'An error occurred when sending mail:', error);
           }
         }
         // Initialize by sending an email
         sendEmailWithRefreshedToken();
-
-//send sms
-const message1 = 'Hello ' + artisanData.username + ', Your schedule was successfully placed ' + 
-
-
-
-+ ' ' + SERVER_NAME;
-        // Construct the API URL
-        const apiUrl1 = `https://apps.mnotify.net/smsapi?key=${MNOTIFY_API_KEY}
-&to=${artisanData.tel}&msg=${message1}&sender_id=${SENDER_ID}`;
-        // Send the SMS
-        axios.get(apiUrl1).then(response => {
-          //console.log('SMS sent successfully');
-          //console.log(response.data); // Optional: Log the API response
-        }).catch(error => {
-          logger.log('error', '[' + Date() + 'Failed to send unique code SMS:', error);
-        });
-
-
-
-const message2 = 'Hello ' + artisanData.username + ', Your schedule was successfully placed ' + 
-
-
-
-+ ' ' + SERVER_NAME;
-        // Construct the API URL
-        const apiUrl2 = `https://apps.mnotify.net/smsapi?key=${MNOTIFY_API_KEY}
-&to=${buyerData.tel}&msg=${message2}&sender_id=${SENDER_ID}`;
-        // Send the SMS
-        axios.get(apiUrl2).then(response => {
-          //console.log('SMS sent successfully');
-          //console.log(response.data); // Optional: Log the API response
-        }).catch(error => {
-          logger.log('error', '[' + Date() + 'Failed to send unique code SMS:', error);
-        });
-
 
  
     //send both SMS and Email

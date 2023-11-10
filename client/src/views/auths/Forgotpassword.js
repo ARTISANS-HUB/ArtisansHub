@@ -319,7 +319,7 @@ const Forgotpassword = () => {
 
 			)}
 
-			{reponse_message_code === 200 && user_response_type === "valid_user" && suc_verified === false && (
+			{reponse_message_code === 200 && (
 
 				<form onSubmit={handleSubmitSingleUseCode} className="forget-password-form">
 
