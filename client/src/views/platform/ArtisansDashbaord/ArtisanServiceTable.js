@@ -8,7 +8,7 @@ function ArtisanDashboardTable(props) {
   const navigate = useNavigate();
 
   const handleNavigate=()=>{
-  navigate("/auth/artisan/dashboard/home/service-platform");
+  navigate("/auth/artisan/dashboard/home");
 
   } 
 
@@ -33,6 +33,11 @@ function ArtisanDashboardTable(props) {
     const fetchData = async () => {
       try {
         const completedResponse = await api_connect.get('/auth/fetch-bookings-completed-artisan/'+artisanId);
+        const pendingResponse = await api_connect.get('/auth/fetch-bookings-pending-artisan/'+artisanId);
+        const cancelledResponse = await api_connect.get('/auth/fetch-bookings-cancelled-artisan/'+artisanId);
+        
+        settotalCancelled(cancelledResponse.data.length);
+        settotalPending(pendingResponse.data.length);
         settotalComplete(completedResponse.data.length);
 
         setData({
@@ -59,9 +64,6 @@ function ArtisanDashboardTable(props) {
       return null;
     }
 
-
-
-
   };
 
   //consert table to xlsx data
@@ -78,7 +80,7 @@ function ArtisanDashboardTable(props) {
 
         <div className='export-btn'>
           <button onClick={handleNavigate} className="link-export-data-artisan" >
-          <span>My Services</span>  <span className="total-tag">{totalCancelled}</span> 
+          <span>Bookings</span>  <span className="total-tag">{totalCancelled + totalPending + totalCancelled}</span> 
           </button>
 
           <button onClick={exportToExcel} className="link-export-data-artisan" >

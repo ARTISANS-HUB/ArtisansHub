@@ -8,7 +8,7 @@ const Services = async (req, res, next) => {
         //query
         db = await connectToDB();
 
-        const collection = db.collection('bookings');
+        const collection = db.collection('services');
 
         const bookings = await collection.find().toArray();
         res.json(bookings);
@@ -237,7 +237,6 @@ module.exports = {
     bookingsCancelledBuyer: bookingsCancelledBuyer,
     bookingsPendingBuyer: bookingsPendingBuyer,
     bookingsCompletedBuyer: bookingsCompletedBuyer,
-    
     DashboardBookingAll:DashboardBookingAll,
 
 

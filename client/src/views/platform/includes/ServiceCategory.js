@@ -155,7 +155,7 @@ const handleShowAll = () => {
              {
              
                  filteredCards.map((cat)=>{
-                   return <FilterCategory key={cat.type} type={cat.type} img={myImage} bookId={cat.serviceId}/>
+                   return <FilterCategory key={cat.type} type={cat.type} img={myImage} serviceId={cat.serviceId}/>
                  })
                }
             </Link>

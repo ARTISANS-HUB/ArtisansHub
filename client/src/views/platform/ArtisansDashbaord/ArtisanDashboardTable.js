@@ -38,9 +38,8 @@ function ArtisanDashboardTable(props) {
         const pendingResponse = await api_connect.get('/auth/fetch-bookings-pending-artisan/'+artisanId);
         const cancelledResponse = await api_connect.get('/auth/fetch-bookings-cancelled-artisan/'+artisanId);
         const allResponse = await api_connect.get('/auth/fetch-bookings-all-artisan/'+artisanId);
-
-
-
+        
+        setallServices(allResponse.data.length)
         settotalCancelled(cancelledResponse.data.length);
         settotalPending(pendingResponse.data.length);
         settotalComplete(completedResponse.data.length);
