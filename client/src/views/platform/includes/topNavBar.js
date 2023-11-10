@@ -107,7 +107,7 @@ const TopNavBar = () => {
             <Link to="/contact">Contact</Link>
           </li>
 
-{isAuthenticated == 'false' && (
+{!isAuthenticated && (
           <li>
             <select
               id="selectOption"
@@ -132,7 +132,7 @@ const TopNavBar = () => {
             </select>
           </li>
 )}
-{isAuthenticated == 'false' && (
+{!isAuthenticated && (
           <li>
             <select
               id="selectOption"
@@ -156,14 +156,14 @@ const TopNavBar = () => {
               </option>
             </select>
           </li>
- )}
-          {isAuthenticated == 'true' && (
+)}
+          {isAuthenticated && (
             <li>
               <FontAwesomeIcon icon={faBell} className="notification-bell" />
             </li>
           )}
 
-          {isAuthenticated === 'true' && (
+          {isAuthenticated  && (
             <li>
               <div className="account-container .platform-profile" style={{backGround:'white'}} >
                 {imageSrc ? (

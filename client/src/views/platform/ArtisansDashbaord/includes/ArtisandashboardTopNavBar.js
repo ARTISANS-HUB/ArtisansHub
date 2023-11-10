@@ -66,7 +66,9 @@ function ArtisandashboardTopNavBar() {
       <div className="right-nav-dashboad-platform">
                 
         <Link to="/auth/artisan/dashboard/create-service-artisan"><i title="Create Service" className="create-services-icon  fas fa-plus"></i></Link>
-        
+        <Link to="/auth/artisan/dashboard/statistics-service-artisan"><i title="Stats" className="create-services-icon  fas  fa-line-chart"></i></Link>
+         <Link to="/"><i title="Stats" className="create-services-icon  fas  fa-home"></i></Link>
+
         <nav class="top-nav-platform-dashboard">
           <div class="profile-platform-pic">
             {imageSrc ? (
@@ -77,7 +79,7 @@ function ArtisandashboardTopNavBar() {
 
             )
             }
-            <span class="profile-name-dashbaord-plaform">{username || 'User'}</span>
+            <span class="profile-name-dashbaord-plaform"></span>
 
           </div>
         </nav>
