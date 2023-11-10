@@ -61,7 +61,7 @@ function ArtisanDashboardTable(props) {
 
     if (data && category && Array.isArray(data[category]) && data[category]) {
       return data[category].filter((item) =>
-        item.type.toLowerCase().includes(searchText.toLowerCase()) &&
+        // item.type.toLowerCase().includes(searchText.toLowerCase()) &&
         (startDate === '' || item.created_at >= startDate) && // Filter by start date
         (endDate === '' || item.created_at <= endDate) // Filter by end date
       );

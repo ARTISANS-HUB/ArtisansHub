@@ -99,6 +99,7 @@ console.log(artisanData);
       buyerId:buyerId,
       artisanId: artisanId,
       serviceId:serviceId,
+      type:serviceData.type,
       
 
       //buyer
@@ -122,7 +123,7 @@ console.log(artisanData);
       created_by: created_by,
       status: 0,
       action:1,
-      completed:0,
+      completed:1,
       
 
     };

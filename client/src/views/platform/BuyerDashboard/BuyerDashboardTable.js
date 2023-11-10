@@ -48,13 +48,13 @@ const BuyerDashboardTable = () => {
     };
 
     fetchData();
-  }, [api_connect]);
+  }, [api_connect, buyerId]);
 
   const getCategoryData = (category) => {
 
     if (data && category && Array.isArray(data[category]) && data[category]) {
       return data[category].filter((item) =>
-        item.type.toLowerCase().includes(searchText.toLowerCase()) &&
+        // item.type.toLowerCase().includes(searchText.toLowerCase()) &&
         (startDate === '' || item.created_at >= startDate) && // Filter by start date
         (endDate === '' || item.created_at <= endDate) // Filter by end date
       );

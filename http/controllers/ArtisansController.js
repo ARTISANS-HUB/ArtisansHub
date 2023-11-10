@@ -211,7 +211,10 @@ const CreateArtisan = async (req, res, next) => {
       created_at,
       usermail,
       created_by,
-      tel,
+      work_days_from,
+      work__days_end,
+      other_tel,
+      tel,occupation,
     } = req.body.formData;
  //Get the uploaded file name
  const fileName = req.file.originalname;
@@ -235,6 +238,10 @@ const CreateArtisan = async (req, res, next) => {
       created_by: created_by,
       last_visit: formattedDate,
       updated_at: formattedDate,
+      work_days_from:work_days_from,
+      work__days_end:work__days_end,
+      other_tel:other_tel,
+      occupation:occupation,
       status: 0,
 
     };
