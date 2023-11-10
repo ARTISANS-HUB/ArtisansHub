@@ -85,13 +85,16 @@ const serviceData = await servicesCollection.find({serviceId:serviceId}).toArray
 
 
 
-console.log(serviceData);
+console.log(serviceData.charge);
+console.log(serviceData.serviceType  );
+console.log(serviceData.artisanUsername);
 
-console.log(buyerData);
-console.log(artisanData);
+console.log(buyerData.username);
+console.log(buyerData.usermail);
 
-
-
+console.log(artisanData.usermail);
+console.log(artisanData.tel);
+console.log(artisanData.username);
 
     const newBookingService = {
 
@@ -118,7 +121,6 @@ console.log(artisanData);
       schedule_date:schedule_date,
 
       charge:serviceData.charge,
-      serviceType:serviceData.type,
       created_at: formattedDate,
       created_by: created_by,
       status: 0,
