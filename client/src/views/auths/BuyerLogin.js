@@ -126,7 +126,7 @@ const BuyerLogin = () => {
                 <Link to="/create-buyer"> Create account here</Link>
 
               </div>
-               <div style={{paddingTop:'30px',fontSize:'15px'}}>
+               <div >
               <Link to="/forgot-password-buyer" > Forgot Password ? </Link> Or
               <Link to="/" > Go Home? </Link>
               </div>

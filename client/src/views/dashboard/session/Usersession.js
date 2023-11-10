@@ -1,3 +1,4 @@
+import swal from 'sweetalert';
 
 const Usersession = async () => {
 
@@ -5,6 +6,15 @@ const Usersession = async () => {
 	let isAuthenticated = localStorage.getItem('isAuthenticated');
 
 	if (isAuthenticated === "false" || isAuthenticated === null || isAuthenticated === '') {
+		
+		
+		swal({
+			title: "Hmmm..!",
+			text: "Sorryy , You must be authenticated first",
+			icon: "warning",
+			dangerMode: true,
+			button: "Aww yiss!",
+		});
 		window.location.href = '/';
 	}
 

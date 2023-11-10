@@ -61,14 +61,21 @@
    outline: none;
    background: #fe9931;
    /* background: #fff; */
-   padding: 5px 20px;
+   padding: 5px 10px;
    border-radius: 10px;
    cursor: pointer;
    color: #fff;
+   margin: 0 3px;
+   font-size: 0.7rem;
+   
 }
 .artisan-card-bottom button:hover{
    background: #f1f1f1;
    color: #000;
+}
+
+.swal-button {
+    background: #fe9931 !important;
 }
 
 

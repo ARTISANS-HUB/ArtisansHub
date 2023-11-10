@@ -61,10 +61,10 @@ import { Link } from 'react-router-dom';
   const handleLoginWithGoogle = () => {
 
     //dev
-    //window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
+    window.location.href = process.env.REACT_APP_API_URL_DEV + '/google/auth';
 
     //pro
-    window.location.href = process.env.REACT_APP_API_URL_PRO + '/google/auth';
+    //window.location.href = process.env.REACT_APP_API_URL_PRO + '/google/auth';
 
   };
 
@@ -123,7 +123,7 @@ import { Link } from 'react-router-dom';
 
               </div>*/}
               
-              <div style={{paddingTop:'30px',fontSize:'15px'}}>
+              <div >
               <Link to="/forgot-password" > Forgot Password ? </Link> Or
               <Link to="/" > Go Home? </Link>
               </div>

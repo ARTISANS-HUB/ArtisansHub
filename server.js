@@ -175,10 +175,10 @@ passport.use(new GoogleStrategy({
   clientSecret: process.env.CLIENT_SECRET_LOGIN,
 
   //developing
-  //callbackURL: process.env.SERVER_APP_URL_CALLBACK_DEV+'/auth/callback',
+  callbackURL: process.env.SERVER_APP_URL_CALLBACK_DEV+'/auth/callback',
 
   //production
-  callbackURL: process.env.SERVER_APP_URL_CALLBACK_PRO + '/auth/callback',
+  //callbackURL: process.env.SERVER_APP_URL_CALLBACK_PRO + '/auth/callback',
 
 }, (accessToken, refreshToken, profile, done) => {
   // 'profile' contains user information, including the email
@@ -326,6 +326,8 @@ app.get('/auth/cancel-booked-services/:bookingId', BookServiceController.CancelB
 app.get('/auth/delete-booked-services/:bookingId', BookServiceController.DeleteBookedServices);
 
 
+
+app.post('/auth/add-platform-feedback',upload.single("file"), FeedBackController.feedbacks);
 //platformdashboard
 // ArtisansPlatformDashboardController
 app.post('/auth/artisan-create-services',upload.single("file"), ArtisansPlatformDashboardController.createServiceArtisan);

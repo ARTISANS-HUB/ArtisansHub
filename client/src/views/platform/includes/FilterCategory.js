@@ -1,5 +1,6 @@
 import "../../../css/filterCategory.css"
 import { Link } from "react-router-dom";
+import LazyLoad from "react-lazy-load";
 
 const FilterCategory = ({type,img,artisanId , serviceId}) => {
 
@@ -24,7 +25,10 @@ window.location.href='/auth/customer/book-service';
     <div className='filter-category-container'>
       
        <div className='filter-category-card'>
+        <LazyLoad className="filter-category-card-img">
+
             <img className='filter-category-card-img' src={process.env.REACT_APP_API_URL_PRO + "/auth/fetch-user-profile/"+img} alt={img} />
+        </LazyLoad>
             <div className='filter-category-card-info'>
                 <h3>{type}</h3>
 

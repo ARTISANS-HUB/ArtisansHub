@@ -13,21 +13,21 @@ var SENDER_ID = process.env.SENDER_ID;
 var SERVER_NAME = process.env.SERVER_NAME;
 
 // Create a new Date object
-  var currentDate = new Date();
+var currentDate = new Date();
 
-  // Get the day, month, and year
-  var day = currentDate.getDate();
-  var month = currentDate.getMonth() + 1;
-  var year = currentDate.getFullYear();
+// Get the day, month, and year
+var day = currentDate.getDate();
+var month = currentDate.getMonth() + 1;
+var year = currentDate.getFullYear();
 
-  // Create a formatted string
-  var formattedDate = day + '/' + month + '/' + year;
-  const randomString =  Math.random().toString(36).substr(2, 50);
+// Create a formatted string
+var formattedDate = day + '/' + month + '/' + year;
+const randomString = Math.random().toString(36).substr(2, 50);
 
-const BookedServices  = async ( req,res,next)=>{
-try{
-db = await connectToDB();
-const collection = db.collection('bookings');
+const BookedServices = async (req, res, next) => {
+  try {
+    db = await connectToDB();
+    const collection = db.collection('bookings');
     //fetching user password,empty
     const bookings = await collection.find().toArray();
     res.json(bookings);
@@ -37,9 +37,9 @@ const collection = db.collection('bookings');
       res.status(200).json({ statusCode: 404 });
 
     }
-    
 
-}	
+
+  }
 
   catch (error) {
     if (error) {
@@ -51,10 +51,10 @@ const collection = db.collection('bookings');
 
 }
 
-const AddbookServices = async ( req,res,next)=>{
-//bookings
+const AddbookServices = async (req, res, next) => {
+  //bookings
 
-try{
+  try {
     db = await connectToDB();
     const bookingCollection = db.collection('bookings');
     const artisaCollection = db.collection('artisans');
@@ -74,46 +74,49 @@ try{
       created_by,
     } = req.body.formData;
 
-// console.log(req.body.formData)
-//fetch artisans
-//fetch artisans
-const artisanData = await artisaCollection.find({ artisanId: artisanId }).toArray();
-//fetch buyers
-const buyerData = await buyerCollection.find({ buyerId: buyerId }).toArray();
-//fetch service
-const serviceData = await servicesCollection.find({ serviceId: serviceId }).toArray();
+    // console.log(req.body.formData)
+    //fetch artisans
+    //fetch artisans
+    const artisanData = await artisaCollection.find({ artisanId: artisanId }).toArray();
+    //fetch buyers
+    const buyerData = await buyerCollection.find({ buyerId: buyerId }).toArray();
+    //fetch service
+    const serviceData = await servicesCollection.find({ serviceId: serviceId }).toArray();
+
+
+
 
     const newBookingService = {
 
-      bookingId:bookingId,
-      buyerId:buyerId,
+      bookingId: bookingId,
+      buyerId: buyerId,
       artisanId: artisanId,
-      serviceId:serviceId,
-      type:serviceData[0].type,
-      
+      serviceId: serviceId,
+      type: serviceData.type,
+
 
       //buyer
-      username: buyerData[0].username || 'USER',
-      usermail: buyerData[0].usermail || 'user@gmail.com',
-      
+      username: buyerData.username || 'USER',
+      usermail: buyerData.usermail || 'user@gmail.com',
+
       //artisan
-      artisanUsermail:artisanData.usermail,
-      artisanTel:artisanData.tel,
-      artisanUsername:artisanData.username,
+      artisanUsermail: artisanData.usermail,
+      artisanTel: artisanData.tel,
+      artisanUsername: artisanData.username,
 
       //buyer location , tel choosen
-      location:location,
-      tel:tel,
-      schedule_time:schedule_time,
-      schedule_date:schedule_date,
+      location: location,
+      tel: tel,
+      schedule_time: schedule_time,
+      schedule_date: schedule_date,
 
-      charge:serviceData[0].charge,
+      charge: serviceData.charge,
       created_at: formattedDate,
       created_by: created_by,
       status: 0,
-      action:1,
-      completed:3,
-      
+      action: 1,
+      completed: 3,
+
 
     };
 
@@ -122,21 +125,37 @@ const serviceData = await servicesCollection.find({ serviceId: serviceId }).toAr
     //results
     const results = await bookingCollection.insertOne(newBookingService);
     if (results) {
-    //mail
-          async function sendEmailWithRefreshedToken() {
-          try {
-            //send token after verifying password
-            const mailConfigurations = {
-              // It should be a string of sender/server email
-              from: EMAIL_USERNAME,
-              //multiple mail
-              to: buyerData[0].username,
-              
-              // Subject of Email
-              subject: 'Booking Schedule',
-              // This would be the text of email body
-              //  + user +
-              html: `<h1>Hi</h1><p>,${buyerData[0].username},And ${artisanData[0].username}</p> 
+
+
+      //send sms
+      const message = 'Hello ' + created_by + ', Your home services booking was success. Details Schedule Time : ' + schedule_time + ' Schedule_date : ' + schedule_date + ' location :' + 'Location' + SERVER_NAME;
+      // Construct the API URL
+      const apiUrl = `https://apps.mnotify.net/smsapi?key=${MNOTIFY_API_KEY}
+&to=${tel}&msg=${message}&sender_id=${SENDER_ID}`;
+      // Send the SMS
+      axios.get(apiUrl).then(response => {
+        console.log('SMS sent successfully' + tel);
+        console.log(response.data); // Optional: Log the API response
+      }).catch(error => {
+        logger.log('error', '[' + Date() + 'Failed to send unique code SMS:', error);
+        console.log(error)
+      });
+
+      //mail
+      async function sendEmailWithRefreshedToken() {
+        try {
+          //send token after verifying password
+          const mailConfigurations = {
+            // It should be a string of sender/server email
+            from: EMAIL_USERNAME,
+            //multiple mail
+            to: "danielpmensah926@gmail.com",
+
+            // Subject of Email
+            subject: 'Booking Schedule',
+            // This would be the text of email body
+            //  + user +
+            html: `<h1>Hi</h1><p>,${buyerData.username},And ${artisanData.username}</p> 
                       
                       <br>
                       <h1>Job schedule</h1>
@@ -146,57 +165,51 @@ const serviceData = await servicesCollection.find({ serviceId: serviceId }).toAr
                       <p><b>Schedule Time</b> : ${schedule_time}</p>
                       <p><b>Schedule Date</b> : ${schedule_date}</p>
                       <p><b>Service Location</b> : ${location}</p>
-                      <p><b>Service Charge</b> : ${serviceData[0].charge}</p>
-					  <p><b>Artisan_Loc</b> : ${artisanData[0].location}</p>
-                      <p><b>Artisan Telephone</b> : ${artisanData.tel}</p>
-                      <p><b>Buyer Telephone</b> : ${artisanData[0].tel} <span>/</span> ${tel}</p>
                       <p><b>Created_By</b> : ${created_by}</p>
-                      
-
                       <h1><b>Confirmation / Disclaimer</b></h1>
                       <p>Call this references from the artisans </p>
-                      <p><b>Ref 1</b> :${artisanData[0].work_ref_1} </p>
-                      <p><b>Ref 2</b> :${artisanData[0].work_ref_2} </p>
-                      <p><b>Ref 3</b> :${artisanData[0].work_tel} </p>
+                      <p><b>Ref 1</b> : 0546000222 </p>
+                      <p><b>Ref 2</b> : 0249000033 </p>
+                      <p><b>Ref 3</b> : 0549001222 </p>
 
 
                        <br><br> <h1>${SERVER_NAME} CHEERS </h1>`,
-                        attachments: [
-                       
-                            {
-                             //filename and content type is derived from path
-                             path: `./assets/files/logo.png`
-                            }
-                            
-                        ]
-            };
-            transporter.sendMail(mailConfigurations, function (error, info) {
+            attachments: [
 
-              if (error) {
-                logger.log('error', '[' + Date() + 'no internet to send mail');
+              {
+                //filename and content type is derived from path
+                path: `./assets/files/logo.png`
               }
-              console.log('Email Sent Successfully');
-            });
-          } catch (error) {
 
-            console.log(error)
-            logger.log('error', '[' + Date() + 'An error occurred when sending mail:', error);
-          }
+            ]
+          };
+          transporter.sendMail(mailConfigurations, function (error, info) {
+
+            if (error) {
+              logger.log('error', '[' + Date() + 'no internet to send mail');
+            }
+            console.log('Email Sent Successfully');
+          });
+        } catch (error) {
+
+
+          logger.log('error', '[' + Date() + 'An error occurred when sending mail:', error);
         }
-        // Initialize by sending an email
-        sendEmailWithRefreshedToken();
+      }
+      // Initialize by sending an email
+      sendEmailWithRefreshedToken();
 
- 
-    //send both SMS and Email
-    res.status(200).json({ message: "Booking created successfully.. ", statusCode: 200 });
-    
+
+      //send both SMS and Email
+      res.status(200).json({ message: "Booking created successfully.. ", statusCode: 200 });
+
 
 
     } else {
       res.status(200).json({ message: "Booking not created successfully.. ", statusCode: 200 });
     }
 
-}	
+  }
 
   catch (error) {
     if (error) {
@@ -211,17 +224,17 @@ const serviceData = await servicesCollection.find({ serviceId: serviceId }).toAr
 
 
 
-const UpdateBookedServices  = async ( req,res,next)=>{
-try{
+const UpdateBookedServices = async (req, res, next) => {
+  try {
 
-db = await connectToDB();
-const collection = db.collection('bookings');
+    db = await connectToDB();
+    const collection = db.collection('bookings');
     const {
       bookingId,
       location,
       schedule_time,
       tel,
-      schedule_date:schedule_date,
+      schedule_date: schedule_date,
     } = req.body.formData;
 
 
@@ -230,7 +243,6 @@ const collection = db.collection('bookings');
       { bookingId: bookingId },
       {
         $set: {
-
           location: location,
           schedule_time: schedule_time,
           schedule_date: schedule_date,
@@ -241,10 +253,10 @@ const collection = db.collection('bookings');
       }
     );
 
-      if (bookUpdateResult.modifiedCount === 1) {
+    if (bookUpdateResult.modifiedCount === 1) {
 
 
-      const userData = await collection.findOne({bookingId:bookingId});
+      const userData = await collection.findOne({ bookingId: bookingId });
 
       res.status(200).json({ message: "Booking updated successfully", userData, statusCode: 200 });
 
@@ -252,11 +264,9 @@ const collection = db.collection('bookings');
 
       res.status(200).json({ message: "Update failed , Please try again ", statusCode: 501 });
 
-    }  
+    }
 
-
-
-}	
+  }
 
   catch (error) {
     if (error) {
@@ -269,28 +279,28 @@ const collection = db.collection('bookings');
 }
 
 
-const CancelBookedServices  = async ( req,res,next)=>{
+const CancelBookedServices = async (req, res, next) => {
 
-const bookingId = req.params.bookingId;
-try{
-db = await connectToDB();
-const collection = db.collection('bookings');
-const bookUpdateResult = await collection.updateOne(
+  const bookingId = req.params.bookingId;
+  try {
+    db = await connectToDB();
+    const collection = db.collection('bookings');
+    const bookUpdateResult = await collection.updateOne(
       { bookingId: bookingId },
       {
         $set: {
-          
-          action:2,
+
+          action: 2,
           updated_at: formattedDate
 
         }
       }
     );
 
-      if (bookUpdateResult.modifiedCount === 1) {
+    if (bookUpdateResult.modifiedCount === 1) {
 
 
-      const userData = await collection.findOne({bookingId:bookingId});
+      const userData = await collection.findOne({ bookingId: bookingId });
 
       res.status(200).json({ message: "Booking updated successfully", userData, statusCode: 200 });
 
@@ -298,10 +308,10 @@ const bookUpdateResult = await collection.updateOne(
 
       res.status(200).json({ message: "Update failed , Please try again ", statusCode: 501 });
 
-    } 
+    }
 
 
-}	
+  }
 
   catch (error) {
     if (error) {
@@ -316,12 +326,12 @@ const bookUpdateResult = await collection.updateOne(
 
 
 
-const DeleteBookedServices  = async ( req,res,next)=>{
+const DeleteBookedServices = async (req, res, next) => {
 
-const bookingId = req.params.bookingId;
-try{
-db = await connectToDB();
-const collection = db.collection('bookings');
+  const bookingId = req.params.bookingId;
+  try {
+    db = await connectToDB();
+    const collection = db.collection('bookings');
 
     const bookings = await collection.deleteOne({ bookingId: bookingId });
 
@@ -336,7 +346,7 @@ const collection = db.collection('bookings');
 
     }
 
-}	
+  }
 
   catch (error) {
     if (error) {
@@ -355,10 +365,10 @@ const collection = db.collection('bookings');
 
 module.exports = {
 
-BookedServices:BookedServices,
-AddbookServices:AddbookServices,
-UpdateBookedServices:UpdateBookedServices,
-CancelBookedServices:CancelBookedServices,
-DeleteBookedServices:DeleteBookedServices,
+  BookedServices: BookedServices,
+  AddbookServices: AddbookServices,
+  UpdateBookedServices: UpdateBookedServices,
+  CancelBookedServices: CancelBookedServices,
+  DeleteBookedServices: DeleteBookedServices,
 
 };

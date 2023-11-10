@@ -126,7 +126,7 @@ const ArtisanLogin = () => {
                 <Link to="/create-artisan"> Create account here</Link>
 
               </div>
-               <div style={{paddingTop:'30px',fontSize:'15px'}}>
+               <div >
               <Link to="/forgot-password-artisan" > Forgot Password ? </Link> Or
               <Link to="/" > Go Home? </Link>
                  </div>
