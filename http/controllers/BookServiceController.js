@@ -93,8 +93,8 @@ const serviceData = await servicesCollection.find({ serviceId: serviceId }).toAr
       
 
       //buyer
-      username: buyerData[0].username,
-      usermail: buyerData[0].usermail,
+      username: buyerData[0].username || 'USER',
+      usermail: buyerData[0].usermail || 'user@gmail.com',
       
       //artisan
       artisanUsermail:artisanData.usermail,

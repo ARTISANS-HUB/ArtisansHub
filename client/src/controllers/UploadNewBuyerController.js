@@ -25,7 +25,11 @@ const UploadNewBuyerController = async (formData, file) => {
 					icon: "success",
 					button: "Aww yiss!",
 				});
+
+
+				setTimeout(() => {
 				window.location.href = "/login-buyer";
+				}, 3000);
 
 
 			} else if (response.data.statusCode === 501) {

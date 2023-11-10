@@ -23,7 +23,11 @@ const UploadNewArtisanController = async (formData, file) => {
 					icon: "success",
 					button: "Aww yiss!",
 				});
-				window.location.href = "/login-artisan";
+
+				setTimeout(() => {
+					window.location.href = "/login-artisan";
+					}, 3000);
+				
 
 			} else if (response.data.statusCode === 501) {
 				message = response.data.message;
