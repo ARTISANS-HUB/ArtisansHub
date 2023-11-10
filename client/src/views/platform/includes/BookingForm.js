@@ -1,64 +1,50 @@
 import {useState} from 'react'
 import "../../../css/booking.css";
-import {useFormik} from 'formik';
 import BuyerBookingController from '../../../controllers/BuyerBookingController';
 
+import Usersession from '../../dashboard/session/Usersession'
+import {buyer} from '../../dashboard/session/userType'
 
 import myImage from "../../../uploads/booking.jpg";
 
 const BookingForm = () => {
+  //checkuser type
+buyer();
+//initiate  to check user session
+Usersession();
 
 
+let serviceId  =localStorage.getItem('serviceId-book');
+let artisanId  = localStorage.getItem('artisanId-book');
 
-// Extract the token from the URL's query parameters
-    const searchParams = new URLSearchParams(window.location.search);
-    const artisanId = searchParams.get('artisanId');
-
-   alert(artisanId);
-
+let buyerId = localStorage.getItem('buyerId');
+let  usermail =localStorage.getItem('usermail');
 
 
- const [formData, setformData] = useState({
+const [formData, setformData] = useState({
       bookId: Math.random().toString(36).substr(2, 50),
       artisanId: artisanId,
-      password: "",
-      usermail: "",
+      serviceId:serviceId,
+      buyerId: buyerId,
+      location:'',
+      schedule_time:'',
+      tel:'',
+      schedule_date:'',
+      created_by:usermail,
     });
 
 const handleChange = (event) => {
 setformData({ ...formData, [event.target.name]: event.target.value });
 };
 
-const validate = values => {
-    const errors = {};
-    if (!values.date) {
-      errors.date = 'Required';
-    }
-    if (!values.time) {
-      errors.time = 'Required';
-    } 
-    if (!values.charge) {
-      errors.charge = 'Required';
-    } 
-  
-    return errors;
-  };
 
-
-
-
-    const formik = useFormik({
-        initialValues : {
-            date: '',
-            time: '',
-            charge: '',
-          },
-          validate,
-    onSubmit: values => {
-      //alert(JSON.stringify(values, null, 2));
+const handleSubmit= (event) => {
+    event.preventDefault();
     BuyerBookingController(formData);
-    },
-  });
+
+    console.log(formData)
+    
+};
   return (
     <div className='booking-form-container'>
         <h2 className='booking-form-heading'>Booking Form</h2>
@@ -67,40 +53,36 @@ const validate = values => {
                 <div className='booking-form-image'>
                     <img src={myImage}/>
                 </div>
-                <form  onSubmit={formik.handleSubmit}>
+                <form  onSubmit={handleSubmit}>
                 <div className='booking-form-fields'>
                         <div class="input-field">
                                 <label>Date</label>
-                                <input type="date" id="date" name="date" placeholder="Select Date" onChange={formik.handleChange}/>
+                                <input type="date" id="date" name="schedule_date" placeholder="Select Date" onChange={handleChange}/>
                                 <div className='input-field-error'>
-                                {formik.errors.date ? <div>{formik.errors.date}</div> : null}
                                 </div>
                         </div>
                         <div class="input-field">
                                 <label>Time</label>
-                                <input type="time" id="time" name="time" placeholder="Select time" onChange={formik.handleChange} />
+                                <input type="time" id="time" name="schedule_time" placeholder="Select time" onChange={handleChange} />
                                 <div className='input-field-error'>
-                                {formik.errors.time ? <div>{formik.errors.time}</div> : null}
                                 </div>
                         </div>
                         <div class="input-field">
-                                <label>Service Charge</label>
-                                <input type="text" placeholder="Service Charge" name="charge" id="charge" onChange={formik.handleChange}/>
+                                <label>Location</label>
+                                <input type="text" placeholder="location" name="location" id="charge" onChange={handleChange}/>
                                 <div className='input-field-error'>
-                                {formik.errors.charge ? <div>{formik.errors.charge}</div> : null}
                                 </div>
                         </div>
 
                         <div class="input-field">
                                 <label>Telephone</label>
-                                <input type="tel" placeholder="Telephone" name="tel" id="tel" onChange={formik.handleChange}/>
+                                <input type="tel" placeholder="Telephone" name="tel" id="tel" onChange={handleChange}/>
                                 <div className='input-field-error'>
-                                {formik.errors.charge ? <div>{formik.errors.charge}</div> : null}
                                 </div>
                         </div>
 
-                        <button type="submit">
-                                    <span class="btnText">Book</span>
+                        <button type="submit" onClick={handleSubmit}>
+                        <span class="btnText">Book</span>
                         </button>
                 </div>
                 

@@ -87,7 +87,7 @@ function App() {
         <Route path="/service-provider/:artisanId" element={< ServicesProviders />} />
         <Route path="/create-buyer" element={< CreateBuyer />} />
         <Route path="/create-artisan" element={< CreateArtisan />} />
-        <Route path="/auth/customer/book-service/:artisanId" element={< Booking/>} />
+        <Route path="/auth/customer/book-service" element={< Booking/>} />
 
 
         <Route path="*" element={<ErrorPage />} />

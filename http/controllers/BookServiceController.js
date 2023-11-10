@@ -67,19 +67,25 @@ try{
       location,
       schedule_time,
       tel,
-      schedule_date:schedule_date,
+      schedule_date,
       created_by,
     } = req.body.formData;
 
-
+// console.log(req.body.formData)
 
 //fetch artisans
-const artisanData = await artisaCollection.findOne({artisanId:artisanId}).toArray();
+const artisanData = await artisaCollection.find({artisanId:artisanId}).toArray();
 //fetch buyers
-const buyerData = await buyerCollection.findOne({buyerId:buyerId}).toArray();
+const buyerData = await buyerCollection.find({buyerId:buyerId}).toArray();
 //fetch service
-const serviceData = await servicesCollection.findOne({serviceId:serviceId}).toArray();
+const serviceData = await servicesCollection.find({serviceId:serviceId}).toArray();
 
+
+
+console.log(serviceData);
+
+console.log(buyerData);
+console.log(artisanData);
 
 
 
@@ -198,6 +204,7 @@ const serviceData = await servicesCollection.findOne({serviceId:serviceId}).toAr
     if (error) {
       logger.log('error', "can not create booking.. /  internal error", error);
       res.status(501).json({ message: "Internal error... " });
+      console.log(error);
     }
   }
 

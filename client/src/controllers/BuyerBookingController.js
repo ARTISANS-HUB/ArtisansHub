@@ -8,7 +8,7 @@ alert('data rece at cont');
 
 
 const api_connect = Api_connect_server();
-api_connect.post('/auth/create-buyer',
+api_connect.post('/auth/book-services',
 		{ formData }, { headers: { 'Content-Type': 'multipart/form-data' }, })
 
 		.then((response) => {
@@ -21,7 +21,7 @@ api_connect.post('/auth/create-buyer',
                 icon: "success",
                 button: "Aww yiss!",
             });
-				window.location.href='/';
+			//window.location.href='/';
 			
 				   
 

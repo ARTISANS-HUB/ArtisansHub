@@ -15,13 +15,7 @@ const UploadNewServiceArtisan = async (formData , file) => {
 			if (response.data.statusCode === 200) {
 				message = response.data.message;
 
-				//clear session name
-				localStorage.removeItem("username_new_user");
-				//window.location.reload();
-				localStorage.setItem('message', message);
-				localStorage.setItem('reponse_message_code', 200);
-
-                swal({
+			     swal({
                     title: "Good job!",
                     text: message,
                     icon: "success",
@@ -34,10 +28,7 @@ const UploadNewServiceArtisan = async (formData , file) => {
 			} else if (response.data.statusCode === 501) {
 				message = response.data.message;
 				
-				
-				localStorage.setItem('message', message);
-				localStorage.setItem('reponse_message_code', 501);
-                swal({
+				  swal({
                     title: "Hmmm..!",
                     text: message,
                     icon: "warning",
@@ -49,10 +40,7 @@ const UploadNewServiceArtisan = async (formData , file) => {
 		})
 		.catch((error) => {
 
-			//window.location.reload();
-			localStorage.setItem('reponse_message_code', 501);
-			localStorage.setItem('message', "Couldnt create new artisan Please, try again");
-
+			
             swal({
                 title: "Hmmm..!",
                 text: "Something happened, Try again.",

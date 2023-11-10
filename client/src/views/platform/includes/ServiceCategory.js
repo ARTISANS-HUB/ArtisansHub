@@ -17,30 +17,6 @@ const api_connect = Api_connect_server();
 const ServiceCategory = () => {
 
 
-  // useEffect(() => {
-  //   try {
-  //     api_connect.get("/auth/fetch-services-platform-all")
-  //     .then((response) => {
-  //       if (response.status === 200) {
-  //         setFilteredCards(response.data)
-  //         console.log(filteredCards);
-          
-  //       } else if (response.data.statusCode === 501) {
-  //         setFilteredCards([])
-  //       }
-  //     }).catch((error) => {
-  //       // alert("not connected to server")
-  //       console.log(error) 
-  //     })
-  //   } catch (error) {
-  //     // alert("not connected ")
-      
-  //   }
-  // },[])
-  // console.log(artisans);
-
-
-
 const [filteredCards, setFilteredCards] = useState([]);
 const [filter, setFilter] = useState('');
 const [artisans, setArtisans] = useState([]);
@@ -155,7 +131,7 @@ const handleShowAll = () => {
              {
              
                  filteredCards.map((cat)=>{
-                   return <FilterCategory key={cat.type} type={cat.type} img={myImage} serviceId={cat.serviceId}/>
+                   return <FilterCategory key={cat.type} type={cat.type} img={cat.profile} artisanId={cat.artisanId}  serviceId={cat.serviceId} />
                  })
                }
             </Link>

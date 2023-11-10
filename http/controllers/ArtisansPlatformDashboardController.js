@@ -67,7 +67,7 @@ catch (error) {
   if (error) {
     logger.log('error', "can not create artisan services /  internal error", error);
     res.status(501).json({ message: "internal error... "+error });
-   //console.log(error);
+  
   }
 }
     
