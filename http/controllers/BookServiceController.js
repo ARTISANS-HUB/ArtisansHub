@@ -1,6 +1,8 @@
 const { connectToDB, closeDB } = require('../../config/mongodbconfig');
 const logger = require('../../logger');
 let db;
+const axios = require('axios');
+
 //node mailer
 const mailHelper = require('../controllers/MailController');
 var transporter = mailHelper.transporter;
@@ -62,6 +64,7 @@ try{
 
     const {
       buyerId,
+      bookingId,
       artisanId,
       serviceId,
       location,
@@ -91,6 +94,8 @@ console.log(artisanData);
 
 
     const newBookingService = {
+
+      bookingId:bookingId,
       buyerId:buyerId,
       artisanId: artisanId,
       serviceId:serviceId,
@@ -186,6 +191,40 @@ console.log(artisanData);
         // Initialize by sending an email
         sendEmailWithRefreshedToken();
 
+//send sms
+const message1 = 'Hello ' + artisanData.username + ', Your schedule was successfully placed ' + 
+
+
+
++ ' ' + SERVER_NAME;
+        // Construct the API URL
+        const apiUrl1 = `https://apps.mnotify.net/smsapi?key=${MNOTIFY_API_KEY}
+&to=${artisanData.tel}&msg=${message1}&sender_id=${SENDER_ID}`;
+        // Send the SMS
+        axios.get(apiUrl1).then(response => {
+          //console.log('SMS sent successfully');
+          //console.log(response.data); // Optional: Log the API response
+        }).catch(error => {
+          logger.log('error', '[' + Date() + 'Failed to send unique code SMS:', error);
+        });
+
+
+
+const message2 = 'Hello ' + artisanData.username + ', Your schedule was successfully placed ' + 
+
+
+
++ ' ' + SERVER_NAME;
+        // Construct the API URL
+        const apiUrl2 = `https://apps.mnotify.net/smsapi?key=${MNOTIFY_API_KEY}
+&to=${buyerData.tel}&msg=${message2}&sender_id=${SENDER_ID}`;
+        // Send the SMS
+        axios.get(apiUrl2).then(response => {
+          //console.log('SMS sent successfully');
+          //console.log(response.data); // Optional: Log the API response
+        }).catch(error => {
+          logger.log('error', '[' + Date() + 'Failed to send unique code SMS:', error);
+        });
 
 
  

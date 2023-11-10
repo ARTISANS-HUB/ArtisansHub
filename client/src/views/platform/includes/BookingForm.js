@@ -22,7 +22,7 @@ let  usermail =localStorage.getItem('usermail');
 
 
 const [formData, setformData] = useState({
-      bookId: Math.random().toString(36).substr(2, 50),
+      bookingId: Math.random().toString(36).substr(2, 50),
       artisanId: artisanId,
       serviceId:serviceId,
       buyerId: buyerId,
