@@ -8,7 +8,7 @@ function ArtisanDashboardTable(props) {
   const navigate = useNavigate();
 
   const handleNavigate=()=>{
-  navigate("auth/artisan/dashboard/artisan-service-platform");
+  navigate("/auth/artisan/dashboard/home/service-platform");
 
   } 
 
@@ -21,6 +21,8 @@ function ArtisanDashboardTable(props) {
     pending: [],
     cancelled: [],
   });
+
+  const [allServices, setallServices] = useState(0);
   const [searchText, setSearchText] = useState('');
   const [startDate, setStartDate] = useState('');
   const [endDate, setEndDate] = useState('');
@@ -35,6 +37,7 @@ function ArtisanDashboardTable(props) {
         const completedResponse = await api_connect.get('/auth/fetch-bookings-completed-artisan/'+artisanId);
         const pendingResponse = await api_connect.get('/auth/fetch-bookings-pending-artisan/'+artisanId);
         const cancelledResponse = await api_connect.get('/auth/fetch-bookings-cancelled-artisan/'+artisanId);
+        const allResponse = await api_connect.get('/auth/fetch-bookings-all-artisan/'+artisanId);
 
 
 
@@ -106,7 +109,7 @@ function ArtisanDashboardTable(props) {
 
         <div className='export-btn'>
           <button onClick={handleNavigate} className="link-export-data-artisan" >
-<span>My Services</span>  <span className="total-tag">{totalCancelled}</span> 
+          <span>My Services</span>  <span className="total-tag">{allServices}</span> 
           </button>
 
           <button onClick={exportToExcel} className="link-export-data-artisan" >
@@ -136,18 +139,19 @@ function ArtisanDashboardTable(props) {
           value={endDate}
           onChange={(e) => setEndDate(e.target.value)}
           placeholder="End Date"
-        />
-      </div>
+        /> 
       <i className="fas fa-refresh ref-button"
-      title="Refresh Table" > </i>
+      title="Refresh Table" onClick={()=>{window.location.href=''}} > </i>
+      </div>
+     
       </div>
 
       <h2>
         {activeTab === 0
-          ? 'Completed Services'
+          ? 'Completed Bookings'
           : activeTab === 1
-            ? 'Pending Services'
-            : 'Cancelled Services'}
+            ? 'Pending Bookings'
+            : 'Cancelled Bookings'}
       </h2>
       <table className="data-table" id="myTable">
         <thead>

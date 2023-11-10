@@ -1,10 +1,7 @@
 import React, {useState} from 'react'
 import "../../../css/createArtisans.css";
 import { useFormik } from 'formik';
-import { Api_connect_server } from '../../../APIs/Api_connect_server';
 import UploadNewArtisanController from '../../../controllers/UploadNewArtisanController';
-
-const api_connect = Api_connect_server();
 
 const CreateArtisanForm = () => {
     const [isLoading, setIsLoading] = useState(false);

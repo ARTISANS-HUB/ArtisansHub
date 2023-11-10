@@ -111,7 +111,7 @@ function App() {
             
             <Route path="/auth/artisan/dashboard/home" element={<ArtitsanHome />} />
             <Route path="/auth/artisan/dashboard/create-service-artisan" element={< ArtisanCreateServicesForm/>} />
-            <Route path="/auth/artisan/dashboard/artisan-service-platform" element={< ArtisanPlatformServices/>} />
+            <Route path="/auth/artisan/dashboard/home/service-platform" element={< ArtisanPlatformServices/>} />
 
 
             <Route path="/auth/buyer/dashboard/home" element={<BuyerHome/>} />

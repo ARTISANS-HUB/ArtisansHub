@@ -201,6 +201,30 @@ const bookingsPendingBuyer = async (req, res, next) => {
 
 }
 
+const DashboardBookingAll = async (req, res, next) => {
+
+const buyerId = req.params.buyerId;
+
+
+    const artisanId = req.params.artisanId;
+
+    try {
+        //query
+        db = await connectToDB();
+
+        const collection = db.collection('bookings');
+
+        const bookings = await collection.find({ artisanId: artisanId}).toArray();
+        res.json(bookings);
+
+    }
+    catch (error) {
+        res.status(501).json({ statusCode: 501 });
+        logger.log('error', '[' + Date() + 'can not fetch all bookings for platform...' + error);
+    }
+
+}
+
 
 module.exports = {
     Services: Services,
@@ -213,6 +237,8 @@ module.exports = {
     bookingsCancelledBuyer: bookingsCancelledBuyer,
     bookingsPendingBuyer: bookingsPendingBuyer,
     bookingsCompletedBuyer: bookingsCompletedBuyer,
+    
+    DashboardBookingAll:DashboardBookingAll,
 
 
 

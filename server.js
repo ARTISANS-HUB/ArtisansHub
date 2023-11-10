@@ -284,6 +284,7 @@ app.get('/auth/fetch-services-platform-all', PlatformServicesController.Services
 app.get('/auth/fetch-bookings-completed-artisan/:artisanId', PlatformServicesController.bookingsCompleted);
 app.get('/auth/fetch-bookings-cancelled-artisan/:artisanId', PlatformServicesController.bookingsCancelled);
 app.get('/auth/fetch-bookings-pending-artisan/:artisanId', PlatformServicesController.bookingsPending);
+app.get('/auth/fetch-bookings-all-artisan/:artisanId', PlatformServicesController.DashboardBookingAll);
 
 
 //bookings BUYER platform

@@ -1,234 +1,151 @@
-import { Link } from "react-router-dom";
-import React, { useEffect, useState } from "react";
-import "../../../css/artisanServiceTable.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faPrint, } from "@fortawesome/free-solid-svg-icons";
+import { useState, useEffect } from 'react';
+import * as XLSX from 'xlsx'; // Import all functions and objects from xlsx
+import { Api_connect_server } from '../../../APIs/Api_connect_server';
+import { useNavigate } from "react-router-dom";
 
-const ArtisanServiceTable = () => {
-  const [transactions, setTransactions] = useState([
-    // Sample transaction data (you can replace this with your actual data)
-    { id: 1, date: "2023-10-01", description: "Transaction 1", amount: 100 },
-    { id: 2, date: "2023-10-02", description: "Transaction 2", amount: 150 },
-    { id: 3, date: "2023-10-03", description: "Transaction 3", amount: 75 },
-    // Add more transactions here
-  ]);
+function ArtisanDashboardTable(props) {
+  const artisanId = localStorage.getItem('artisanId');
+  const navigate = useNavigate();
 
-  const [searchInput, setSearchInput] = useState("");
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
-  const [filteredTransactions, setFilteredTransactions] = useState([]);
-  const [sortColumn, setSortColumn] = useState("id");
-  const [sortOrder, setSortOrder] = useState("asc");
+  const handleNavigate=()=>{
+  navigate("/auth/artisan/dashboard/home/service-platform");
 
-  const handleFiltering = () => {
-    const filtered = transactions.filter((transaction) => {
-      const transactionDate = new Date(transaction.date);
-      const matchSearch =
-        transaction.description
-          .toLowerCase()
-          .includes(searchInput.toLowerCase()) ||
-        transaction.id.toString().includes(searchInput.toLowerCase());
+  } 
 
-      const matchDateRange =
-        (!startDate || transactionDate >= new Date(startDate)) &&
-        (!endDate || transactionDate <= new Date(endDate));
+  //awsw11232
+  const api_connect = Api_connect_server();
 
-      return matchSearch && matchDateRange;
-    });
+  const [activeTab, setActiveTab] = useState(0);
+  const [data, setData] = useState({
+    completed: [],
+    pending: [],
+    cancelled: [],
+  });
+  const [searchText, setSearchText] = useState('');
+  const [startDate, setStartDate] = useState('');
+  const [endDate, setEndDate] = useState('');
 
-    setFilteredTransactions(filtered);
-  };
-
-  const handlePrint = () => {
-    // Get the table element to print
-    const tableToPrint = document.querySelector(".transaction-table");
-
-    // Create a new window for printing
-    const newWindow = window.open("", "_blank");
-    newWindow.document.open();
-
-    // Add a title to the new window
-    newWindow.document.write(
-      "<html><head><title>Print Table</title></head><body>"
-    );
-
-    // Define inline styles for the table
-    const tableStyles = `
-        <style>
-     transaction-table {
-      width: 100%;
-      border-collapse: collapse;
-    }
-    
-    transaction-table th,
-    transaction-table td {
-      padding: 10px;
-      text-align: left;
-      font-size: 17px;
-    }
-    
-    transaction-table th {
-      background-color: #333;
-      color: #fff;
-      cursor: pointer;
-    }
-    
-    transaction-table th:hover {
-      background-color: #555;
-    }
-    
-    transaction-table tbody tr:nth-child(even) {
-      background-color: #f2f2f2;
-    }    </style>
-      `;
-
-    // Append the table styles to the new window's head
-    newWindow.document.write(tableStyles);
-
-    // Append the table content to the new window
-    newWindow.document.write("<h1>Transaction Table</h1>");
-    newWindow.document.write(tableToPrint.outerHTML);
-
-    // Close the new window and trigger printing
-    newWindow.document.write("</body></html>");
-    newWindow.document.close();
-    newWindow.print();
-    newWindow.close();
-  };
-
-  const handleSorting = (column) => {
-    if (sortColumn === column) {
-      setSortOrder(sortOrder === "asc" ? "desc" : "asc");
-    } else {
-      setSortColumn(column);
-      setSortOrder("asc");
-    }
-
-    const sorted = [...filteredTransactions].sort((a, b) => {
-      if (column === "id" || column === "amount") {
-        const orderFactor = sortOrder === "asc" ? 1 : -1;
-        return orderFactor * (a[column] - b[column]);
-      } else {
-        const orderFactor = sortOrder === "asc" ? 1 : -1;
-        return orderFactor * a[column].localeCompare(b[column]);
-      }
-    });
-
-    setFilteredTransactions(sorted);
-  };
-
-  const handleRefresh = () => {
-    setSearchInput("");
-    setStartDate("");
-    setEndDate("");
-    setSortColumn("id");
-    setSortOrder("asc");
-    setFilteredTransactions(transactions);
-  };
+  const [totalComplete, settotalComplete] = useState(0);
+  const [totalPending, settotalPending] = useState(0);
+  const [totalCancelled, settotalCancelled] = useState(0);
 
   useEffect(() => {
-    handleFiltering();
-  }, [searchInput, startDate, endDate, transactions]);
+    const fetchData = async () => {
+      try {
+        const completedResponse = await api_connect.get('/auth/fetch-bookings-completed-artisan/'+artisanId);
+        settotalComplete(completedResponse.data.length);
 
+        setData({
+          completed: completedResponse.data,
+        });
+      } catch (error) {
+        //console.error('Error fetching data:', error);
+      }
+    };
+
+    fetchData();
+  }, [api_connect]);
+
+  const getCategoryData = (category) => {
+
+    if (data && category && Array.isArray(data[category]) && data[category]) {
+      return data[category].filter((item) =>
+        item.type.toLowerCase().includes(searchText.toLowerCase()) &&
+        (startDate === '' || item.created_at >= startDate) && // Filter by start date
+        (endDate === '' || item.created_at <= endDate) // Filter by end date
+      );
+    } else {
+
+      return null;
+    }
+
+
+
+
+  };
+
+  //consert table to xlsx data
+  const exportToExcel = () => {
+    const tableid = document.getElementById('myTable');
+    const ws = XLSX.utils.table_to_sheet(tableid);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Sheet1');
+    XLSX.writeFile(wb, 'SERVICE TABLE.xlsx');
+  };
   return (
-    <div>
-      <div className="transaction-table-container">
-        <div className="transaction-table">
-          <h3>Transaction Table</h3>
+    <div className='service-table'>
+      <div className="tab-buttons">
 
-          <div className="transactionTableHeader">
-            <button className="trans-btn">
-              <Link
-                to="#"
-                onClick={handleRefresh}
-                className="fas fa-refresh ref-button"
-                title="Refresh Table"
-              ></Link>
-            </button>
-            <div className="filters">
-              <input
-                type="text"
-                placeholder="Search"
-                value={searchInput}
-                className="filter-input"
-                onChange={(e) => setSearchInput(e.target.value)}
-              />
-            </div>
-            <div className="action-btns">
-              <button onClick={handlePrint} title="Print Report">
-                {" "}<FontAwesomeIcon icon={faPrint}/>{" "}
-              </button>
-            </div>
-          </div>
+        <div className='export-btn'>
+          <button onClick={handleNavigate} className="link-export-data-artisan" >
+          <span>My Services</span>  <span className="total-tag">{totalCancelled}</span> 
+          </button>
 
-          
-          <div  className="dates">
-          <div className="input-end">
-          <label>Start Date:</label>
-            <input
-              type="date"
-              value={startDate}
-              className="date-input"
-              onChange={(e) => setStartDate(e.target.value)}
-            />
-          </div>
-
-          <div className="input-end">
-            <label>End Date:</label>
-            <input
-              type="date"
-              value={endDate}
-              className="date-input"
-              onChange={(e) => setEndDate(e.target.value)}
-            />
-          </div>
-          </div>
-        </div>
-        <div className="table-container">
-          <table className="transaction-table">
-            <thead>
-              <tr>
-                <th onClick={() => handleSorting("id")} title="Click to sort">
-                  ID
-                </th>
-                <th onClick={() => handleSorting("date")} title="Click to sort">
-                  Date
-                </th>
-                <th
-                  onClick={() => handleSorting("description")}
-                  title="Click to sort"
-                >
-                  Description
-                </th>
-                <th
-                  onClick={() => handleSorting("amount")}
-                  title="Click to sort"
-                >
-                  Amount
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {filteredTransactions.length === 0 ? (
-                <tr>
-                  <td colSpan="4">No records found</td>
-                </tr>
-              ) : (
-                filteredTransactions.map((transaction) => (
-                  <tr key={transaction.id}>
-                    <td>{transaction.id}</td>
-                    <td>{transaction.date}</td>
-                    <td>{transaction.description}</td>
-                    <td>{transaction.amount}</td>
-                  </tr>
-                ))
-              )}
-            </tbody>
-          </table>
+          <button onClick={exportToExcel} className="link-export-data-artisan" >
+            <span>Export</span>   <i className="fa fa-download" title="export data"></i>
+          </button>
         </div>
       </div>
+
+
+      <input
+        type="text"
+        placeholder="Search"
+        value={searchText}
+        onChange={(e) => setSearchText(e.target.value)}
+        className='platformTableSearch'
+      />
+       <div className="filter-container">
+      <div className='date-filter'>
+        <input
+          type="date"
+          value={startDate}
+          onChange={(e) => setStartDate(e.target.value)}
+          placeholder="Start Date"
+        />
+        <input
+          type="date"
+          value={endDate}
+          onChange={(e) => setEndDate(e.target.value)}
+          placeholder="End Date"
+        /> 
+      <i className="fas fa-refresh ref-button"
+      title="Refresh Table" onClick={()=>{window.location.href=''}} > </i>
+      </div>
+     
+      </div>
+
+      <h2>
+        {activeTab === 0
+          ? 'Completed Services'
+          : activeTab === 1
+            ? 'Pending Services'
+            : 'Cancelled Services'}
+      </h2>
+      <table className="data-table" id="myTable">
+        <thead>
+          <tr>
+            <th>Type</th>
+            <th>Charge</th>
+            <th>Loc</th>
+            <th>Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          {getCategoryData(activeTab === 0 ? 'completed' : activeTab === 1 ? 'pending' : 'cancelled').map(
+            (item, index) => (
+              <tr key={index}>
+                <td>{item.type}</td>
+                <td>{item.charge}</td>
+                <td>{item.location}</td>
+                <td>{item.created_at}</td>
+              </tr>
+            )
+          )}
+        </tbody>
+      </table>
     </div>
   );
-};
+}
 
-export default ArtisanServiceTable;
+export default ArtisanDashboardTable;
