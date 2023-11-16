@@ -1,15 +1,9 @@
 import React, { useState } from "react";
 import "../../../css/createArtisans.css";
-import { useFormik } from "formik";
-import { buyerValidate } from "./utils";
-import axios from "axios";
-import { Api_connect_server } from "../../../APIs/Api_connect_server";
 import UploadNewBuyerController from "../../../controllers/UploadNewBuyerController";
 
-const api_connect = Api_connect_server();
 
 const CreateBuyerFor = () => {
-  const [isLoading, setIsLoading] = useState(false);
   const [file, setFileBlog] = useState(null);
   const [serverFile, setserverFile] = useState(null);
   const [errors, setErrors] = useState({});
@@ -72,13 +66,11 @@ const CreateBuyerFor = () => {
       alert("Please correct the errors before submitting");
       return;
     }
-    setIsLoading(true);
 
     UploadNewBuyerController(formData, serverFile);
 
     //simulate the loader to hide
     setTimeout(() => {
-      setIsLoading(false);
     }, 9000);
     // }
 

@@ -7,7 +7,6 @@ import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";
 import { cartCategories, categoryData } from "./utils";
 import FilterCategory from "./FilterCategory";
-import myImage from "../../../uploads/bg.jpeg";
 import { Link } from "react-router-dom";
 import { Api_connect_server } from "../../../APIs/Api_connect_server";
 import spin from "../../../uploads/spin.gif";
