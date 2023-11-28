@@ -5,22 +5,16 @@ import Banner from "./includes/Banner";
 import ServiceCategory from "./includes/ServiceCategory";
 import ArtisansCard from "./includes/ArtisansCard";
 
-
 const Index = () => {
-	return (
-		<div>
-	
-		<TopNavBar/>
-		<Banner/>
-		<ServiceCategory/>
-		<ArtisansCard/>
-	
-	
-		<PlatformFooter/>
-	
-			
-		</div>
-	)
-}
+  return (
+    <div>
+      <TopNavBar />
+      <Banner />
+      <ServiceCategory />
+      <ArtisansCard />
+      <PlatformFooter />
+    </div>
+  );
+};
 
-export default Index
+export default Index;

@@ -12,7 +12,6 @@ function ArtisanDashboardTable(props) {
 
   } 
 
-  //awsw11232
   const api_connect = Api_connect_server();
 
   const [activeTab, setActiveTab] = useState(0);
