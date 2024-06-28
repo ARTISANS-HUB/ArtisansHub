@@ -1,60 +1,63 @@
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 
 dotenv.config();
 
 const username = process.env.MongoDbOnlineUsername;
 const password = process.env.MongoDbOnlinePass;
-const clusterName = 'cluster0';
+const clusterName = "Cluster0";
 
-const logger = require('../logger');
-
+const logger = require("../logger");
+//offline db
+const dbName = process.env.dbNameOffline;
 const onlinedbName = process.env.MongoDbOnlineDbname;
+// MongoDB connection to local URL
+//const url = 'mongodb://localhost:27017/'+dbName;
 
-// MongoDB connection to Atlas
-const url = `mongodb+srv://${username}:${password}@${clusterName}.uzkrp1a.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0`;
+const url = `mongodb+srv://${username}:${password}@${clusterName}.uzkrp1a.mongodb.net/${onlinedbName}?retryWrites=true&w=majority`;
 
-mongoose.connect(url, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,  // Adjust as needed
-  socketTimeoutMS: 45000,  // Adjust as needed
-  dbName: onlinedbName,  // Specify the database name here
-})
-  .then(() => {
-    logger.log('info', '[' + new Date() + '] Connected to the database');
-    console.log('Connected to MongoDB');
-  })
+// Create a Mongoose connection
+mongoose
+  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then(() => {})
   .catch((error) => {
-    // Log error
-    logger.log('error', '[' + new Date() + '] Error connecting to the database:', error);
-    console.error('Error connecting to MongoDB:', error);
+    //log error
+    logger.log(
+      "error",
+      "[" + Date() + "Error connecting to the database:",
+      error
+    );
   });
 
-// connectToDB function
+// connectToDB
 async function connectToDB() {
   try {
-    await mongoose.connection.asPromise(); // Ensure the connection is established
     return mongoose.connection; // Return the Mongoose connection
   } catch (error) {
-    logger.log('error', '[' + new Date() + '] Error connecting to the database:', error);
-    console.error('Error in connectToDB:', error);
+    logger.log(
+      "error",
+      "[" + Date() + "Error connecting to the database:",
+      error
+    );
   }
 }
 
 // closeDB function to work with Mongoose
 function closeDB() {
-  mongoose.connection.close()
+  // Close the Mongoose connection when you're done
+  mongoose.connection
+    .close()
     .then(() => {
-      logger.log('info', '[' + new Date() + '] Connection to the database closed');
-      console.log('Connection to the database closed');
+      logger.log("error", "[" + Date() + "Connection to the database closed");
     })
     .catch((error) => {
-      logger.log('error', '[' + new Date() + '] Error closing the database connection:', error);
-      console.error('Error closing the database connection:', error);
+      logger.log(
+        "error",
+        "[" + Date() + "Error closing the database connection:",
+        error
+      );
     });
 }
 
 // Export the modified functions
 module.exports = { connectToDB, closeDB };
-
