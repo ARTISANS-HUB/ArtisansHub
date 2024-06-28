@@ -5,7 +5,7 @@ dotenv.config();
 
 const username = process.env.MongoDbOnlineUsername;
 const password = process.env.MongoDbOnlinePass;
-const clusterName = "Cluster0";
+const clusterName = "cluster0";
 
 const logger = require("../logger");
 //offline db
@@ -13,12 +13,18 @@ const dbName = process.env.dbNameOffline;
 const onlinedbName = process.env.MongoDbOnlineDbname;
 // MongoDB connection to local URL
 //const url = 'mongodb://localhost:27017/'+dbName;
-
+//eyhty
+//uzkrp1a
 const url = `mongodb+srv://${username}:${password}@${clusterName}.uzkrp1a.mongodb.net/${onlinedbName}?retryWrites=true&w=majority`;
 
 // Create a Mongoose connection
 mongoose
-  .connect(url, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(url, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    serverSelectionTimeoutMS: 5000, // Adjust as needed
+    socketTimeoutMS: 45000, // Adjust as needed
+  })
   .then(() => {})
   .catch((error) => {
     //log error
